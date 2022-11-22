@@ -2,6 +2,11 @@
   <div id="app">
     <div style="">
       <div id="nav" :style="opacityStyle">
+        <span id="title">DEEPCBA</span>
+        <img
+          src="../dist/img/logo/logo.png"
+          style="width: 5%; height: 80%"
+        />
         <router-link to="/">HOME</router-link> |
         <!-- <a-dropdown>
           <a class="ant-dropdown-link" @click="(e) => e.preventDefault()">
@@ -12,7 +17,24 @@
             <a-menu-item key="Expression"> Expression </a-menu-item>
           </a-menu>
         </a-dropdown> -->
-        <router-link to="/Expression">TOOLS</router-link> |
+        <a-dropdown placement="bottomCenter">
+          <a class="el-dropdown-link">
+            TOOLS<i class="el-icon-arrow-down el-icon--right"></i>
+          </a>
+          <a-menu slot="overlay" id="tool" style="margin: 15px">
+            <a-menu-item
+              ><router-link to="/Expression"
+                >Expression</router-link
+              ></a-menu-item
+            >
+            <a-menu-item
+              ><router-link to="/Methylation"
+                >Methylation</router-link
+              ></a-menu-item
+            >
+          </a-menu>
+        </a-dropdown>
+        <!-- <router-link to="/Expression">TOOLS</router-link> | -->
         <router-link to="/result">RESULT</router-link> |
         <router-link to="/search">SEARCH</router-link> |
         <router-link to="/about">CONTACT</router-link>
@@ -75,7 +97,7 @@ export default {
         // console.log("height", height);
         opacity = opacity > 1 ? 1 : opacity; //渐变色从0到1
         this.opacityStyle = {
-          opacity: opacity,
+          // opacity: opacity,
           height: height + "px",
           "line-height": height + "px",
         };
@@ -109,10 +131,17 @@ body {
   height: 1000px;
   margin: 0 auto;
 }
-
+#title{
+  position: absolute ;
+  left: 20px;
+  font-size: 20px;
+  color: #fff;
+}
 #nav {
   line-height: 100px;
-  background-color: rgb(0, 0, 0);
+  /* background-color: rgb(0, 0, 0); */
+  background-image:url('../dist/img/back.png');
+
   position: fixed;
   right: 0;
   left: 0;
@@ -131,7 +160,12 @@ body {
   font-size: 20px;
   color: #fff;
 }
-
+#tool a {
+  margin: 10px;
+  font-weight: bold;
+  font-size: 20px;
+  color: #42b983;
+}
 #nav a.router-link-exact-active {
   color: #42b983;
 }
@@ -146,7 +180,8 @@ body {
 }
 section.featured1 {
   padding: 40px 0 60px;
-  background: #70b9b0;
+  /* background: #70b9b0; */
+  background-image:url('../dist/img/back.png');
   color: #fdfdfd;
 }
 </style>

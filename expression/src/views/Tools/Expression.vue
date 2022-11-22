@@ -21,24 +21,28 @@
           thaliana in the result.
         </h3>
         <div style="width: 100%">
-          <!-- <h2>Paste one sequence(3001bp) here 👇</h2>
-          <a-input-group compact>
-            <a-input prefix=">" style="width: 50%" v-model="Seq1" />
-            <a-input prefix=">" style="width: 50%" v-model="Seq2" />
-          </a-input-group> -->
-
+          <!-- 选择模型输入序列 -->
           <a-row>
             <a-col :span="12">
-              <h1 style="margin-top: 6px; font-weight: bold;">
-                PPI Prediction
-              </h1>
+              <h1 style="margin-top: 6px; font-weight: bold">PPI Prediction</h1>
               <div style="width: 80%">
                 <h3>
-                  In these models, the strength of plant core promoter(labels of samples) is defined as the ability to
-                  drive expression of a barcoded reporter gene in maize protoplasts with or without enhancer in dark.
+                  In these models, the strength of plant core promoter(labels of
+                  samples) is defined as the ability to drive expression of a
+                  barcoded reporter gene in maize protoplasts with or without
+                  enhancer in dark.
                 </h3>
-                <a-select style="width: 240px" placeholder="-----Select Model-----" @change="PPIchangeTools">
-                  <a-select-option v-for="value in PPImodellist" :key="value" :value="value">
+                <a-select
+                  style="width: 240px"
+                  placeholder="-----Select Model-----"
+                  @change="PPIchangeTools"
+                  v-model="PPImodel"
+                >
+                  <a-select-option
+                    v-for="value in PPImodellist"
+                    :key="value"
+                    :value="value"
+                  >
                     {{ value }}
                   </a-select-option>
                 </a-select>
@@ -46,50 +50,108 @@
             </a-col>
 
             <a-col :span="12">
-              <h1 style="margin-top: 6px; font-weight: bold">
-                PDI Prediction
-              </h1>
+              <h1 style="margin-top: 6px; font-weight: bold">PDI Prediction</h1>
               <div style="width: 80%">
                 <h3>
-                  In these models, the strength of plant core promoter(labels of samples) is defined as the ability to
-                  drive expression of a barcoded reporter gene in maize protoplasts with or without enhancer in dark.
+                  In these models, the strength of plant core promoter(labels of
+                  samples) is defined as the ability to drive expression of a
+                  barcoded reporter gene in maize protoplasts with or without
+                  enhancer in dark.
                 </h3>
-                <a-select style="width: 240px" placeholder="-----Select Model-----" @change="PDIchangeTools">
-                  <a-select-option v-for="value in PDImodellist" :key="value" :value="value">
+                <a-select
+                  style="width: 240px"
+                  placeholder="-----Select Model-----"
+                  @change="PDIchangeTools"
+                  v-model="PDImodel"
+                >
+                  <a-select-option
+                    v-for="value in PDImodellist"
+                    :key="value"
+                    :value="value"
+                  >
                     {{ value }}
                   </a-select-option>
                 </a-select>
               </div>
             </a-col>
-
-
-            </a-col>
           </a-row>
-          <!-- <a-row style="text-align: center">
-            <a-col :span="6">
+          <h2>Paste one sequence({{ seqlenth }} bp) here 👇</h2>
+          <a-input-group compact>
+            <a-input
+              prefix=">"
+              style="width: 50%"
+              v-model="Seq1"
+              :disabled="!seqflag"
+            />
+            <a-input
+              prefix=">"
+              style="width: 50%"
+              v-model="Seq2"
+              :disabled="!seqflag"
+            />
+          </a-input-group>
+
+          <!-- 或者直接上传文件 -->
+          <a-row style="text-align: center">
+            <a-col :span="4">
               <h2 style="margin-top: 6px; font-weight: bold">
                 Or load it from disk:
               </h2>
             </a-col>
             <a-col :span="2" style="margin-top: 10px">
-              <a-upload :file-list="fileList" :before-upload="handleChange" @change="changestatue">
-                <a-button>
-                  <a-icon type="upload" />Click to Upload
-                </a-button>
+              <a-upload
+                :file-list="fileList"
+                :before-upload="handleChange"
+                @change="changestatue"
+              >
+                <a-button> <a-icon type="upload" />Click to Upload</a-button>
               </a-upload>
             </a-col>
-            <a-col :span="5" style="margin-top: 5px">
+            <!-- <a-col :span="3" style="margin-top: 5px">
               <h1 style="float: left; margin-left: 40%">E-mail:</h1>
-            </a-col>
+            </a-col> -->
+          </a-row>
+          <!-- 输入邮箱 -->
+          <a-row>
+            <!-- <a-input style="margin-left: -50px" v-model="email" @blur="emailVer"/> -->
             <a-col :span="6" style="margin-top: 10px">
-              <a-input style="margin-left: -50px" v-model="email" />
+              <el-form :model="updataForm" ref="updataForm">
+                <el-form-item 
+                  prop="email"
+                  label="E-mail:"
+                  label-width="100px"
+                  :rules="[
+                      // {
+                      //   required: true,
+                      //   message: 'Please enter the email address',
+                      //   trigger: 'blur',
+                      // },
+                      {
+                        type: 'email',
+                        message: 'Please enter the correct email address',
+                        trigger: ['blur', 'change'],
+                      },
+                    ]"
+                >
+                  <el-input v-model="updataForm.email"></el-input>
+                </el-form-item>
+              </el-form>
             </a-col>
-            <a-col :span="4" style="margin-top: 5px">
-              <a-button style="margin-top: 6px" type="primary" block @click="submitseqs">
+          </a-row>
+          <!-- 提交 -->
+          <a-row >
+            <a-col :span="4">
+              <a-button
+                style="margin-top: 6px"
+                type="primary"
+                block
+                @click="submitInputSeq"
+              >
                 {{ uploading ? "Uploading" : "Start Upload" }}
               </a-button>
             </a-col>
-            </a-row> -->
+          </a-row>
+          
         </div>
       </div>
     </div>
@@ -141,23 +203,12 @@ export default {
       loading: true,
       isShowImg: false,
       fileList: [],
-      email: "",
+    
       Seq1: "",
       Seq2: "",
       uploading: false,
-      PPImodellist: [
-        "SHOOT1",
-        "EAR1",
-        "SHOOT2",
-        "EAR2",
-        "TASSEL",
-      ],
-      PDImodellist: [
-        "SHOOT1",
-        "EAR",
-        "SHOOT2",
-
-      ],
+      PPImodellist: ["SHOOT1", "EAR1", "SHOOT2", "EAR2", "TASSEL"],
+      PDImodellist: ["SHOOT1", "EAR", "SHOOT2"],
       options: [{ value: "1" }, { value: "2" }],
       columns: [
         {
@@ -181,7 +232,27 @@ export default {
           expression: "￥00,000.00",
         },
       ],
+      updataForm:{
+        email: '',
+      },
+      // pflag 用来表示模型是否已经选中
+      pflag: false,
+      PPImodel: undefined,
+      PDImodel: undefined,
     };
+  },
+  computed: {
+    // 输入的序列长度
+    seqlenth() {
+      if (this.PPImodel) return 3000;
+      else if (this.PDImodel) return 1500;
+      else return "undetermined";
+    },
+    // seqflag 用来表明序列是否可以输入
+    seqflag() {
+      if (this.PPImodel || this.PDImodel) return true;
+      else return false;
+    },
   },
   methods: {
     handleChange(file) {
@@ -191,11 +262,12 @@ export default {
       this.loading = !this.loading;
       console.log(this.methltype);
     },
+    // 原提交
     submitseqs() {
       let dataForm = new FormData();
       dataForm.append("file", this.fileList[0]);
       dataForm.append("seq", strArr);
-      dataForm.append("email", this.email);
+      dataForm.append("email", this.updataForm.email);
       dataForm.append("modelName", "NCNR_CG_DP");
 
       let seqdata = {
@@ -209,7 +281,18 @@ export default {
         console.log(res);
       });
     },
-
+    // 新输入提交提交
+    submitInputSeq(){
+      if(this.Seq1.length!=this.seqlenth||this.Seq2.length!=this.seqlenth){
+        console.log(this.seqlenth)
+        this.$alert('PPI:3000bp  PDI:1500bp ', 'seq lenth error!', {
+          confirmButtonText: 'confrim',
+          type: 'error',
+        });
+        return
+      }
+      
+    },
     changestatue(info) {
       let fileList = [...info.fileList];
 
@@ -223,12 +306,14 @@ export default {
       console.log(`selected ${value}`);
     },
     PPIchangeTools(value) {
-      this.$router.push(`/Tools/PPI_${value}`);
-      console.log(value);
+      if (this.PDImodel) this.PDImodel = undefined;
+      // this.$router.push(`/Tools/PPI_${value}`);
+      // console.log(value);
     },
     PDIchangeTools(value) {
-      this.$router.push(`/Tools/PDI_${value}`);
-      console.log(value);
+      if (this.PPImodel) this.PPImodel = undefined;
+      // this.$router.push(`/Tools/PDI_${value}`);
+      // console.log(value);
     },
     openimg() {
       this.isShowImg = !this.isShowImg;
@@ -251,7 +336,7 @@ export default {
       }
     },
   },
-  created() { },
+  created() {},
 };
 </script>
 <style scoped>
