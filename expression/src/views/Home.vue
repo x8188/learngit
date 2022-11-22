@@ -29,11 +29,6 @@
             </div>
           </a-col>
         </a-row>
-
-
-
-
-
       </div>
       <div>
         <a-row>
