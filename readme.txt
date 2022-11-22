@@ -1,1 +1,1 @@
-just s
+just dev
