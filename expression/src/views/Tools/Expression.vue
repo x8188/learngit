@@ -98,14 +98,31 @@
                 Or load it from disk:
               </h2>
             </a-col>
-            <a-col :span="2" style="margin-top: 10px">
-              <a-upload
+            <a-col :span="5" style="margin-top: 10px">
+              <!-- :before-upload="handleChange" -->
+              <!-- <a-upload
                 :file-list="fileList"
-                :before-upload="handleChange"
+                action="https://jsonplaceholder.typicode.com/posts/"
+                :multiple="true"
                 @change="changestatue"
               >
                 <a-button> <a-icon type="upload" />Click to Upload</a-button>
-              </a-upload>
+              </a-upload> -->
+              <el-upload
+                class="upload-demo"
+                ref="upload"
+                action="https://jsonplaceholder.typicode.com/posts/"
+                :on-preview="handlePreview"
+                :on-remove="handleRemove"
+                :on-success="handlerSuccess"
+                :on-change="fileChange"
+                :file-list="fileList"
+                :auto-upload="false"
+                accept=".fasta"
+                >
+                <el-button slot="trigger" size="medium" type="primary">选取文件</el-button>
+                <el-button style="margin-left: 10px;" size="medium" icon="el-icon-upload2" @click="submitUpload">上传到服务器</el-button>
+              </el-upload>
             </a-col>
             <!-- <a-col :span="3" style="margin-top: 5px">
               <h1 style="float: left; margin-left: 40%">E-mail:</h1>
@@ -151,7 +168,7 @@
               </a-button>
             </a-col>
           </a-row>
-          
+          <!-- <input type="file" @change="fileChange"></input> -->
         </div>
       </div>
     </div>
@@ -235,8 +252,6 @@ export default {
       updataForm:{
         email: '',
       },
-      // pflag 用来表示模型是否已经选中
-      pflag: false,
       PPImodel: undefined,
       PDImodel: undefined,
     };
@@ -255,9 +270,9 @@ export default {
     },
   },
   methods: {
-    handleChange(file) {
-      return false;
-    },
+    // handleChange(file) {
+    //   return false;
+    // },
     confirmtype() {
       this.loading = !this.loading;
       console.log(this.methltype);
@@ -293,18 +308,27 @@ export default {
       }
       
     },
-    changestatue(info) {
-      let fileList = [...info.fileList];
+    // changestatue(info) {
+    //   let fileList = [...info.fileList];
 
-      // 1. Limit the number of uploaded files
-      //    Only to show two recent uploaded files, and old ones will be replaced by the new
-      fileList = fileList.slice(-1);
-      this.fileList = fileList;
-      console.log(this.fileList);
-    },
-    handleChange(value) {
-      console.log(`selected ${value}`);
-    },
+    //   // 1. Limit the number of uploaded files
+    //   //    Only to show two recent uploaded files, and old ones will be replaced by the new
+    //   fileList = fileList.slice(-1);
+    //   // this.fileList = fileList;
+    //   // console.log(this.fileList);
+    //   fileList = fileList.map(file => {
+    //     if (file.response) {
+    //       // Component will show file.url as link
+    //       file.url = file.response.url;
+    //     }
+    //     return file;
+    //   });
+
+    //   this.fileList = fileList;
+    // },
+    // handleChange(value) {
+    //   console.log(`selected ${value}`);
+    // },
     PPIchangeTools(value) {
       if (this.PDImodel) this.PDImodel = undefined;
       // this.$router.push(`/Tools/PPI_${value}`);
@@ -335,6 +359,26 @@ export default {
         temp.setAttribute("class", "showimg");
       }
     },
+    handleRemove(file, fileList) {
+      console.log(file, fileList);
+    },
+    handlePreview(file) {
+      console.log(file);
+    },
+    handlerSuccess(response, file, fileList) {
+      this.fileList = fileList;
+    },
+    submitUpload() {
+        this.$refs.upload.submit();
+      },
+    fileChange (file,fileLists) {
+      // const self = this
+      // const reader = new FileReader()
+      // reader.readAsText(file.raw, 'gb2312') //读取内容并解决乱码的核心代码
+      // reader.onload = function(event) {
+      //   console.log(this.result)
+      // }
+    }
   },
   created() {},
 };
