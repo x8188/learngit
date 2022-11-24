@@ -4,6 +4,7 @@
 -->
 <template>
   <div class="tool">
+    <Steps></Steps>
     <div class="tool-up">
       <div class="top-text">
         <h1 style="font-size: 35px">Maize Expression prediction base on DNA</h1>
@@ -20,138 +21,176 @@
           for predicted transcription factors to the best hits in Arabidopsis
           thaliana in the result.
         </h3>
-        <div style="width: 100%">
-          <!-- 选择模型输入序列 -->
-          <a-row>
-            <a-col :span="12">
-              <h1 style="margin-top: 6px; font-weight: bold">PPI Prediction</h1>
-              <div style="width: 80%">
-                <h3>
-                  In these models, the strength of plant core promoter(labels of
-                  samples) is defined as the ability to drive expression of a
-                  barcoded reporter gene in maize protoplasts with or without
-                  enhancer in dark.
-                </h3>
-                <a-select
-                  style="width: 240px"
-                  placeholder="-----Select Model-----"
-                  @change="PPIchangeTools"
-                  v-model="PPImodel"
-                >
-                  <a-select-option
-                    v-for="value in PPImodellist"
-                    :key="value"
-                    :value="value"
-                  >
-                    {{ value }}
-                  </a-select-option>
-                </a-select>
-              </div>
-            </a-col>
+        <div style="width: 100%"> 
+          <!-- 输入数据模式 -->
+          <el-tabs tab-position="top" type="border-card" stretch @tab-click="methodsChange" value="input">
+            <!-- 选择模型输入序列 -->
+            <el-tab-pane label="Manual input" name="input">
+              <div>
+                <el-row>
+                  <el-col :span="12">
+                    <h1 style="margin-top: 6px; font-weight: bold">
+                      PPI Prediction
+                    </h1>
+                    <div style="width: 80%">
+                      <h3>
+                        In these models, the strength of plant core
+                        promoter(labels of samples) is defined as the ability to
+                        drive expression of a barcoded reporter gene in maize
+                        protoplasts with or without enhancer in dark.
+                      </h3>
+                      <el-select
+                        style="width: 240px"
+                        placeholder="-----Select Model-----"
+                        @change="PPIchangeTools"
+                        v-model="PPImodel"
+                      >
+                        <el-option
+                          v-for="value in PPImodellist"
+                          :key="value"
+                          :value="value"
+                        >
+                          {{ value }}
+                        </el-option>
+                      </el-select>
+                    </div>
+                  </el-col>
 
-            <a-col :span="12">
-              <h1 style="margin-top: 6px; font-weight: bold">PDI Prediction</h1>
-              <div style="width: 80%">
-                <h3>
-                  In these models, the strength of plant core promoter(labels of
-                  samples) is defined as the ability to drive expression of a
-                  barcoded reporter gene in maize protoplasts with or without
-                  enhancer in dark.
-                </h3>
-                <a-select
-                  style="width: 240px"
-                  placeholder="-----Select Model-----"
-                  @change="PDIchangeTools"
-                  v-model="PDImodel"
-                >
-                  <a-select-option
-                    v-for="value in PDImodellist"
-                    :key="value"
-                    :value="value"
-                  >
-                    {{ value }}
-                  </a-select-option>
-                </a-select>
+                  <el-col :span="12">
+                    <h1 style="margin-top: 6px; font-weight: bold">
+                      PDI Prediction
+                    </h1>
+                    <div style="width: 80%">
+                      <h3>
+                        In these models, the strength of plant core
+                        promoter(labels of samples) is defined as the ability to
+                        drive expression of a barcoded reporter gene in maize
+                        protoplasts with or without enhancer in dark.
+                      </h3>
+                      <el-select
+                        style="width: 240px"
+                        placeholder="-----Select Model-----"
+                        @change="PDIchangeTools"
+                        v-model="PDImodel"
+                      >
+                        <el-option
+                          v-for="value in PDImodellist"
+                          :key="value"
+                          :value="value"
+                        >
+                          {{ value }}
+                        </el-option>
+                      </el-select>
+                    </div>
+                  </el-col>
+                </el-row>
+                <h2 style="text-align: center;" v-if="seqlenth!='undetermined' ">👇 Paste one sequence({{ seqlenth }} bp) here 👇</h2>
+                <h2 style="text-align: center;" v-else >👆 Please select PPI or PDI model 👆</h2>
+                <el-alert
+                  title="BE CAREFUL-------After switching the method, the entered sequence will be cleared"
+                  style="width:50%;margin: 0 auto;"
+                  center
+                  type="info"
+                  close-text="got it">
+                </el-alert>
+                <el-input
+                  type="textarea"
+                  style="width: 47%;margin:10px"
+                  v-model="Seq1"
+                  :disabled="!seqflag"
+                  rows="4"
+                  placeholder="Please select the model from above first"
+                />
+                <el-input
+                  type="textarea"
+                  style="width: 47%;margin:10px "
+                  v-model="Seq2"
+                  :disabled="!seqflag"
+                  rows="4"
+                  placeholder="Please select the model from above first"
+                />
               </div>
-            </a-col>
-          </a-row>
-          <h2>Paste one sequence({{ seqlenth }} bp) here 👇</h2>
-          <a-input-group compact>
-            <a-input
-              prefix=">"
-              style="width: 50%"
-              v-model="Seq1"
-              :disabled="!seqflag"
-            />
-            <a-input
-              prefix=">"
-              style="width: 50%"
-              v-model="Seq2"
-              :disabled="!seqflag"
-            />
-          </a-input-group>
-
-          <!-- 或者直接上传文件 -->
-          <a-row style="text-align: center">
-            <a-col :span="4">
-              <h2 style="margin-top: 6px; font-weight: bold">
-                Or load it from disk:
-              </h2>
-            </a-col>
-            <a-col :span="2" style="margin-top: 10px">
-              <a-upload
-                :file-list="fileList"
-                :before-upload="handleChange"
-                @change="changestatue"
-              >
-                <a-button> <a-icon type="upload" />Click to Upload</a-button>
-              </a-upload>
-            </a-col>
-            <!-- <a-col :span="3" style="margin-top: 5px">
+            </el-tab-pane>
+            <!-- 或者直接上传文件 -->
+            <el-tab-pane label="Upload files" name="file">  
+              <el-row style="text-align: center">
+                <el-col :span="4">
+                  <h2 style="margin-top: 6px; font-weight: bold">
+                    Or load it from disk:
+                  </h2>
+                </el-col>
+                <el-col :span="5" style="margin-top: 10px">
+                  <el-upload
+                    class="upload-demo"
+                    ref="upload"
+                    action="https://jsonplaceholder.typicode.com/posts/"
+                    :on-preview="handlePreview"
+                    :on-remove="handleRemove"
+                    :on-success="handlerSuccess"
+                    :on-change="fileChange"
+                    :file-list="fileList"
+                    :auto-upload="false"
+                    accept=".fasta,.jpg"
+                  >
+                    <el-button slot="trigger" size="medium" type="primary"
+                      >选取文件</el-button
+                    >
+                    <el-button
+                      style="margin-left: 10px"
+                      size="medium"
+                      icon="el-icon-upload2"
+                      @click="submitUpload"
+                      >上传到服务器</el-button
+                    >
+                  </el-upload>
+                </el-col>
+                <!-- <el-col :span="3" style="margin-top: 5px">
               <h1 style="float: left; margin-left: 40%">E-mail:</h1>
-            </a-col> -->
-          </a-row>
+            </el-col> -->
+              </el-row>
+            </el-tab-pane>
+          </el-tabs>
+
           <!-- 输入邮箱 -->
-          <a-row>
-            <!-- <a-input style="margin-left: -50px" v-model="email" @blur="emailVer"/> -->
-            <a-col :span="6" style="margin-top: 10px">
+          <el-row>
+            <el-col :span="6" style="margin-top: 10px">
               <el-form :model="updataForm" ref="updataForm">
-                <el-form-item 
+                <el-form-item
                   prop="email"
                   label="E-mail:"
                   label-width="100px"
                   :rules="[
-                      // {
-                      //   required: true,
-                      //   message: 'Please enter the email address',
-                      //   trigger: 'blur',
-                      // },
-                      {
-                        type: 'email',
-                        message: 'Please enter the correct email address',
-                        trigger: ['blur', 'change'],
-                      },
-                    ]"
+                    {
+                      required: true,
+                      message: 'Please enter the email address',
+                      trigger: 'blur',
+                    },
+                    {
+                      type: 'email',
+                      message: 'Please enter the correct email address',
+                      trigger: ['blur', 'change'],
+                    },
+                  ]"
                 >
                   <el-input v-model="updataForm.email"></el-input>
                 </el-form-item>
               </el-form>
-            </a-col>
-          </a-row>
+            </el-col>
+          </el-row>
           <!-- 提交 -->
-          <a-row >
-            <a-col :span="4">
-              <a-button
+          <el-row>
+            <el-col :span="4">
+              <el-button
                 style="margin-top: 6px"
                 type="primary"
                 block
                 @click="submitInputSeq"
               >
                 {{ uploading ? "Uploading" : "Start Upload" }}
-              </a-button>
-            </a-col>
-          </a-row>
-          
+              </el-button>
+            </el-col>
+          </el-row>
+          <!-- <input type="file" @change="fileChange"></input> -->
         </div>
       </div>
     </div>
@@ -159,19 +198,19 @@
     <!-- <h1 style="font-weight: bold">Output:</h1> -->
 
     <!-- <div class="contain" style="text-align: center; font-size: 30px">
-        <a-table :columns="columns" :data-source="data" bordered>
+        <el-table :columns="columns" :data-source="data" bordered>
           <template slot="name" slot-scope="text">
             <a>{{ text }}</a>
           </template>
-        </a-table>
+        </el-table>
       </div> -->
-    <!-- <a-button
+    <!-- <el-button
         style="margin-top: 6px; width: 20%"
         type="primary"
         @click="submitseqs"
       >
         Dowload Results
-      </a-button> -->
+      </el-button> -->
     <!-- <hr /> -->
     <!-- </div> -->
     <!-- <div style="width: 80%; margin-left: 10%">
@@ -192,7 +231,7 @@
 <script>
 // @ is an alias to /src
 // import HelloWorld from '@/components/HelloWorld.vue'
-
+import { Message } from "element-ui";
 export default {
   name: "Expression",
   components: {},
@@ -203,7 +242,7 @@ export default {
       loading: true,
       isShowImg: false,
       fileList: [],
-    
+
       Seq1: "",
       Seq2: "",
       uploading: false,
@@ -232,11 +271,9 @@ export default {
           expression: "￥00,000.00",
         },
       ],
-      updataForm:{
-        email: '',
+      updataForm: {
+        email: "",
       },
-      // pflag 用来表示模型是否已经选中
-      pflag: false,
       PPImodel: undefined,
       PDImodel: undefined,
     };
@@ -255,56 +292,88 @@ export default {
     },
   },
   methods: {
-    handleChange(file) {
-      return false;
-    },
+    // handleChange(file) {
+    //   return false;
+    // },
     confirmtype() {
       this.loading = !this.loading;
       console.log(this.methltype);
     },
     // 原提交
-    submitseqs() {
-      let dataForm = new FormData();
-      dataForm.append("file", this.fileList[0]);
-      dataForm.append("seq", strArr);
-      dataForm.append("email", this.updataForm.email);
-      dataForm.append("modelName", "NCNR_CG_DP");
+    // submitseqs() {
+    //   let dataForm = new FormData();
+    //   dataForm.append("file", this.fileList[0]);
+    //   dataForm.append("seq", strArr);
+    //   dataForm.append("email", this.updataForm.email);
+    //   dataForm.append("modelName", "NCNR_CG_DP");
 
-      let seqdata = {
-        email: "344501734@qq.com",
-        modelName: "NCNR_CG",
-        seq: strArr,
-      };
+    //   let seqdata = {
+    //     email: "344501734@qq.com",
+    //     modelName: "NCNR_CG",
+    //     seq: strArr,
+    //   };
 
-      console.log(seqdata);
-      uploadseq(seqdata).then((res) => {
-        console.log(res);
-      });
-    },
+    //   console.log(seqdata);
+    //   uploadseq(seqdata).then((res) => {
+    //     console.log(res);
+    //   });
+    // },
     // 新输入提交提交
-    submitInputSeq(){
-      if(this.Seq1.length!=this.seqlenth||this.Seq2.length!=this.seqlenth){
-        console.log(this.seqlenth)
-        this.$alert('PPI:3000bp  PDI:1500bp ', 'seq lenth error!', {
-          confirmButtonText: 'confrim',
-          type: 'error',
-        });
-        return
-      }
-      
-    },
-    changestatue(info) {
-      let fileList = [...info.fileList];
+    submitInputSeq() {
+      // 先进行表单验证邮箱
+      this.$refs.updataForm.validate((valid) => {
+          if (valid) {
+            // 如果是文件输入
+            if(this.fileList.length>0){
+              this.$alert("选择文件", {
+                  confirmButtonText: "确定",
+                  type: "success",
+                });
+            }
+            // 如果是手动输入
+            else{
+              if (
+              this.Seq1.length != this.seqlenth ||
+              this.Seq2.length != this.seqlenth
+              ) {
+                this.$alert("PPI:3000bp  PDI:1500bp ", "seq lenth error!", {
+                  confirmButtonText: "confrim",
+                  type: "error",
+                });
+                return;
+              }
 
-      // 1. Limit the number of uploaded files
-      //    Only to show two recent uploaded files, and old ones will be replaced by the new
-      fileList = fileList.slice(-1);
-      this.fileList = fileList;
-      console.log(this.fileList);
+            }
+          } else {
+            this.$msgbox({
+              message: "please enter correct email",
+              type: "error",
+            });
+            return false;
+          }
+       });
     },
-    handleChange(value) {
-      console.log(`selected ${value}`);
-    },
+    // changestatue(info) {
+    //   let fileList = [...info.fileList];
+
+    //   // 1. Limit the number of uploaded files
+    //   //    Only to show two recent uploaded files, and old ones will be replaced by the new
+    //   fileList = fileList.slice(-1);
+    //   // this.fileList = fileList;
+    //   // console.log(this.fileList);
+    //   fileList = fileList.map(file => {
+    //     if (file.response) {
+    //       // Component will show file.url as link
+    //       file.url = file.response.url;
+    //     }
+    //     return file;
+    //   });
+
+    //   this.fileList = fileList;
+    // },
+    // handleChange(value) {
+    //   console.log(`selected ${value}`);
+    // },
     PPIchangeTools(value) {
       if (this.PDImodel) this.PDImodel = undefined;
       // this.$router.push(`/Tools/PPI_${value}`);
@@ -335,6 +404,37 @@ export default {
         temp.setAttribute("class", "showimg");
       }
     },
+    handleRemove(file, fileList) {
+      console.log(file, fileList);
+    },
+    handlePreview(file) {
+      console.log(file);
+    },
+    handlerSuccess(response, file, fileList) {
+      this.fileList = fileList;
+    },
+    submitUpload() {
+      this.$refs.upload.submit();
+    },
+    fileChange(file, fileLists) {
+      // const self = this
+      // const reader = new FileReader()
+      // reader.readAsText(file.raw, 'gb2312') //读取内容并解决乱码的核心代码
+      // reader.onload = function(event) {
+      //   console.log(this.result)
+      // }
+    },
+    // 输入数据方法切换,清空另一个的内容
+    methodsChange(tab, event){
+      if (tab.name === 'input') {
+
+      } else if (tab.name === 'file') {
+        this.PPImodel=undefined
+        this.PDImodel=undefined
+        this.Seq1=''
+        this.Seq2=''
+      }
+    }
   },
   created() {},
 };
@@ -344,7 +444,14 @@ export default {
   /* height: 1500px; */
   margin-bottom: 250px;
 }
+::v-deep .el-tabs__nav-scroll{
+	width:50%;
+	margin:0 auto;
 
+}
+::v-deep .el-tabs__item{
+  font-size: 20px;
+}
 .tool-up {
   width: 80%;
   margin: 0 auto;

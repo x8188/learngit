@@ -2,11 +2,14 @@
   <div id="app">
     <div style="">
       <div id="nav" :style="opacityStyle">
-        <span id="title">DEEPCBA</span>
-        <img
-          src="../dist/img/logo/logo.png"
-          style="width: 5%; height: 80%"
-        />
+        <div id="title">
+          <span>DEEPCBA</span>
+          <img
+            src="../dist/img/logo/logo.png"
+            style="width: 70px; height: 70px"
+          />
+        </div>
+       
         <router-link to="/">HOME</router-link> |
         <!-- <a-dropdown>
           <a class="ant-dropdown-link" @click="(e) => e.preventDefault()">
@@ -18,7 +21,7 @@
           </a-menu>
         </a-dropdown> -->
         <a-dropdown placement="bottomCenter">
-          <a class="el-dropdown-link">
+          <a class="ant-dropdown-link">
             TOOLS<i class="el-icon-arrow-down el-icon--right"></i>
           </a>
           <a-menu slot="overlay" id="tool" style="margin: 15px">
@@ -40,6 +43,9 @@
         <router-link to="/about">CONTACT</router-link>
       </div>
       <section class="featured1"></section>
+      <!-- <div id="welcome">
+
+      </div> -->
       <div style="">
         <router-view />
       </div>
@@ -78,7 +84,7 @@ export default {
     return {
       backShow: false,
       opacityStyle: {
-        opacity: 0.3, //渐变色从0开始
+        opacity: 1, //渐变色从0开始
       },
     };
   },
@@ -137,6 +143,10 @@ body {
   font-size: 20px;
   color: #fff;
 }
+/* #welcome{
+  width: 100%;
+  background-image:url('../dist/img/welcome.jpg');
+} */
 #nav {
   line-height: 100px;
   /* background-color: rgb(0, 0, 0); */
