@@ -36,6 +36,11 @@ const routes = [
 
   },
   {
+    path: '/Methylation',
+    name: 'Methylation',
+    component: () => import('../views/Tools/Methylation'),
+  },
+  {
     path: '/Tools/PPI_SHOOT1',
     name: 'PPI_SHOOT1',
     component: () => import('../views/Tools/PPI_SHOOT1.vue'),

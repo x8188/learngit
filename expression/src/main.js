@@ -13,9 +13,17 @@ import 'element-ui/lib/theme-chalk/index.css';
 import 'ant-design-vue/dist/antd.css';
 
 Vue.use(ElementUI)
-Vue.config.productionTip = false
-
 Vue.use(Antd);
+
+import { MessageBox } from 'element-ui';
+Vue.config.productionTip = false
+// Vue.prototype.$message = Message
+Vue.prototype.$msgbox = MessageBox;
+Vue.prototype.$alert = MessageBox.alert;
+
+import Steps from "./components/Steps.vue"
+Vue.component(Steps.name,Steps)
+
 new Vue({
   router,
   store,

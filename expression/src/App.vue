@@ -79,6 +79,7 @@
 </template>
 
 <script>
+import Steps from "./components/Steps.vue"
 export default {
   data() {
     return {

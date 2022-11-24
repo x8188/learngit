@@ -4,6 +4,7 @@
 -->
 <template>
   <div class="tool">
+    <Steps></Steps>
     <div class="tool-up">
       <div class="top-text">
         <h1 style="font-size: 35px">
