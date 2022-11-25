@@ -24,7 +24,7 @@
           <a class="ant-dropdown-link">
             TOOLS<i class="el-icon-arrow-down el-icon--right"></i>
           </a>
-          <a-menu slot="overlay" id="tool" style="margin: 15px">
+          <a-menu slot="overlay" id="tool" >
             <a-menu-item
               ><router-link to="/Expression"
                 >Expression</router-link
@@ -171,7 +171,8 @@ body {
   color: #fff;
 }
 #tool a {
-  margin: 10px;
+  /* Margin  : 10px; */
+  height: 50px;
   font-weight: bold;
   font-size: 20px;
   color: #42b983;
