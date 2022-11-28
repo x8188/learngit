@@ -16,11 +16,11 @@
         class="item-card"
       >
         <img class="img" slot="cover" :src="item" />
-        <!-- <template slot="actions" class="ant-card-actions"> -->
-        <!-- <a-icon key="setting" type="setting" /> -->
-        <!-- <a-icon key="edit" type="edit" /> -->
-        <!-- <a-icon key="ellipsis" type="ellipsis" /> -->
-        <!-- </template> -->
+        <!-- <template slot="actions" class="ant-card-actions">
+        <a-icon key="setting" type="setting" />
+        <a-icon key="edit" type="edit" />
+        <a-icon key="ellipsis" type="ellipsis" />
+        </template> -->
         <a-card-meta
           title="Description"
           description="This is the description.This is the descriptionThis is the description"

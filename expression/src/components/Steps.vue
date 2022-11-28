@@ -11,7 +11,7 @@
           <el-step
             title="步骤 2"
             icon="el-icon-edit"
-            description="手动输入序列或者上传序列文件"
+            description="手动输入或者上传文件"
           ></el-step>
           <el-step
             title="步骤 3"
