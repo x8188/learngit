@@ -4,7 +4,7 @@
 -->
 <template>
   <div class="tool">
-    <Steps></Steps>
+    <Steps :steps1="steps1"></Steps>
     <div class="tool-up">
       <div class="top-text">
         <h1 style="font-size: 35px">Maize Expression prediction base on DNA</h1>
@@ -23,67 +23,67 @@
         </h3>
         <div style="width: 100%"> 
           <!-- 输入数据模式 -->
+          <el-row>
+            <el-col :span="12">
+              <h1 style="margin-top: 6px; font-weight: bold">
+                PPI Prediction
+              </h1>
+              <div style="width: 80%">
+                <h3>
+                  In these models, the strength of plant core
+                  promoter(labels of samples) is defined as the ability to
+                  drive expression of a barcoded reporter gene in maize
+                  protoplasts with or without enhancer in dark.
+                </h3>
+                <el-select
+                  style="width: 240px"
+                  placeholder="-----Select Model-----"
+                  @change="PPIchangeTools"
+                  v-model="PPImodel"
+                >
+                  <el-option
+                    v-for="value in PPImodellist"
+                    :key="value"
+                    :value="value"
+                  >
+                    {{ value }}
+                  </el-option>
+                </el-select>
+              </div>
+            </el-col>
+
+            <el-col :span="12">
+              <h1 style="margin-top: 6px; font-weight: bold">
+                PDI Prediction
+              </h1>
+              <div style="width: 80%">
+                <h3>
+                  In these models, the strength of plant core
+                  promoter(labels of samples) is defined as the ability to
+                  drive expression of a barcoded reporter gene in maize
+                  protoplasts with or without enhancer in dark.
+                </h3>
+                <el-select
+                  style="width: 240px"
+                  placeholder="-----Select Model-----"
+                  @change="PDIchangeTools"
+                  v-model="PDImodel"
+                >
+                  <el-option
+                    v-for="value in PDImodellist"
+                    :key="value"
+                    :value="value"
+                  >
+                    {{ value }}
+                  </el-option>
+                </el-select>
+              </div>
+            </el-col>
+          </el-row>
           <el-tabs tab-position="top" type="border-card" stretch @tab-click="methodsChange" value="input">
             <!-- 选择模型输入序列 -->
             <el-tab-pane label="Manual input" name="input">
               <div>
-                <el-row>
-                  <el-col :span="12">
-                    <h1 style="margin-top: 6px; font-weight: bold">
-                      PPI Prediction
-                    </h1>
-                    <div style="width: 80%">
-                      <h3>
-                        In these models, the strength of plant core
-                        promoter(labels of samples) is defined as the ability to
-                        drive expression of a barcoded reporter gene in maize
-                        protoplasts with or without enhancer in dark.
-                      </h3>
-                      <el-select
-                        style="width: 240px"
-                        placeholder="-----Select Model-----"
-                        @change="PPIchangeTools"
-                        v-model="PPImodel"
-                      >
-                        <el-option
-                          v-for="value in PPImodellist"
-                          :key="value"
-                          :value="value"
-                        >
-                          {{ value }}
-                        </el-option>
-                      </el-select>
-                    </div>
-                  </el-col>
-
-                  <el-col :span="12">
-                    <h1 style="margin-top: 6px; font-weight: bold">
-                      PDI Prediction
-                    </h1>
-                    <div style="width: 80%">
-                      <h3>
-                        In these models, the strength of plant core
-                        promoter(labels of samples) is defined as the ability to
-                        drive expression of a barcoded reporter gene in maize
-                        protoplasts with or without enhancer in dark.
-                      </h3>
-                      <el-select
-                        style="width: 240px"
-                        placeholder="-----Select Model-----"
-                        @change="PDIchangeTools"
-                        v-model="PDImodel"
-                      >
-                        <el-option
-                          v-for="value in PDImodellist"
-                          :key="value"
-                          :value="value"
-                        >
-                          {{ value }}
-                        </el-option>
-                      </el-select>
-                    </div>
-                  </el-col>
-                </el-row>
                 <h2 style="text-align: center;" v-if="seqlenth!='undetermined' ">👇 Paste one sequence({{ seqlenth }} bp) here 👇</h2>
                 <h2 style="text-align: center;" v-else >👆 Please select PPI or PDI model 👆</h2>
                 <el-alert
@@ -276,6 +276,9 @@ export default {
       },
       PPImodel: undefined,
       PDImodel: undefined,
+
+      // 当前进行到第几步
+      steps1:0
     };
   },
   computed: {
@@ -375,11 +378,13 @@ export default {
     //   console.log(`selected ${value}`);
     // },
     PPIchangeTools(value) {
+      this.steps1=1
       if (this.PDImodel) this.PDImodel = undefined;
       // this.$router.push(`/Tools/PPI_${value}`);
       // console.log(value);
     },
     PDIchangeTools(value) {
+      this.steps1=1
       if (this.PPImodel) this.PPImodel = undefined;
       // this.$router.push(`/Tools/PDI_${value}`);
       // console.log(value);
@@ -414,6 +419,7 @@ export default {
       this.fileList = fileList;
     },
     submitUpload() {
+      this.steps1=2
       this.$refs.upload.submit();
     },
     fileChange(file, fileLists) {
