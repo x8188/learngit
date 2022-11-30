@@ -38,8 +38,8 @@
           </a-menu>
         </a-dropdown>
         <!-- <router-link to="/Expression">TOOLS</router-link> | -->
-        <router-link to="/result">RESULT</router-link> |
         <router-link to="/search">SEARCH</router-link> |
+        <router-link to="/result">RESULT</router-link> |
         <router-link to="/about">CONTACT</router-link>
       </div>
       <section class="featured1"></section>

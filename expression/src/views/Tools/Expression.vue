@@ -21,19 +21,17 @@
           for predicted transcription factors to the best hits in Arabidopsis
           thaliana in the result.
         </h3>
-        <div style="width: 100%"> 
+        <div style="width: 100%">
           <!-- 输入数据模式 -->
           <el-row>
             <el-col :span="12">
-              <h1 style="margin-top: 6px; font-weight: bold">
-                PPI Prediction
-              </h1>
+              <h1 style="margin-top: 6px; font-weight: bold">PPI Prediction</h1>
               <div style="width: 80%">
                 <h3>
-                  In these models, the strength of plant core
-                  promoter(labels of samples) is defined as the ability to
-                  drive expression of a barcoded reporter gene in maize
-                  protoplasts with or without enhancer in dark.
+                  In these models, the strength of plant core promoter(labels of
+                  samples) is defined as the ability to drive expression of a
+                  barcoded reporter gene in maize protoplasts with or without
+                  enhancer in dark.
                 </h3>
                 <el-select
                   style="width: 240px"
@@ -53,15 +51,13 @@
             </el-col>
 
             <el-col :span="12">
-              <h1 style="margin-top: 6px; font-weight: bold">
-                PDI Prediction
-              </h1>
+              <h1 style="margin-top: 6px; font-weight: bold">PDI Prediction</h1>
               <div style="width: 80%">
                 <h3>
-                  In these models, the strength of plant core
-                  promoter(labels of samples) is defined as the ability to
-                  drive expression of a barcoded reporter gene in maize
-                  protoplasts with or without enhancer in dark.
+                  In these models, the strength of plant core promoter(labels of
+                  samples) is defined as the ability to drive expression of a
+                  barcoded reporter gene in maize protoplasts with or without
+                  enhancer in dark.
                 </h3>
                 <el-select
                   style="width: 240px"
@@ -80,22 +76,36 @@
               </div>
             </el-col>
           </el-row>
-          <el-tabs tab-position="top" type="border-card" stretch @tab-click="methodsChange" value="input">
+          <el-tabs
+            tab-position="top"
+            type="border-card"
+            stretch
+            @tab-click="methodsChange"
+            value="input"
+          >
             <!-- 选择模型输入序列 -->
             <el-tab-pane label="Manual input" name="input">
               <div>
-                <h2 style="text-align: center;" v-if="seqlenth!='undetermined' ">👇 Paste one sequence({{ seqlenth }} bp) here 👇</h2>
-                <h2 style="text-align: center;" v-else >👆 Please select PPI or PDI model 👆</h2>
+                <h2
+                  style="text-align: center"
+                  v-if="seqlenth != 'undetermined'"
+                >
+                  👇 Paste one sequence({{ seqlenth }} bp) here 👇
+                </h2>
+                <h2 style="text-align: center" v-else>
+                  👆 Please select PPI or PDI model 👆
+                </h2>
                 <el-alert
                   title="BE CAREFUL-------After switching the method, the entered sequence will be cleared"
-                  style="width:50%;margin: 0 auto;"
+                  style="width: 50%; margin: 0 auto"
                   center
                   type="info"
-                  close-text="got it">
+                  close-text="got it"
+                >
                 </el-alert>
                 <el-input
                   type="textarea"
-                  style="width: 47%;margin:10px"
+                  style="width: 47%; margin: 10px"
                   v-model="Seq1"
                   :disabled="!seqflag"
                   rows="4"
@@ -103,7 +113,7 @@
                 />
                 <el-input
                   type="textarea"
-                  style="width: 47%;margin:10px "
+                  style="width: 47%; margin: 10px"
                   v-model="Seq2"
                   :disabled="!seqflag"
                   rows="4"
@@ -112,7 +122,7 @@
               </div>
             </el-tab-pane>
             <!-- 或者直接上传文件 -->
-            <el-tab-pane label="Upload files" name="file">  
+            <el-tab-pane label="Upload files" name="file">
               <el-row style="text-align: center">
                 <el-col :span="4">
                   <h2 style="margin-top: 6px; font-weight: bold">
@@ -130,9 +140,13 @@
                     :on-change="fileChange"
                     :file-list="fileList"
                     :auto-upload="false"
-                    accept=".fasta,.jpg"
+                    accept=".fasta"
                   >
-                    <el-button slot="trigger" size="medium" type="primary"
+                    <el-button
+                      slot="trigger"
+                      size="medium"
+                      type="primary"
+                      :disabled="!seqflag"
                       >选取文件</el-button
                     >
                     <el-button
@@ -140,6 +154,7 @@
                       size="medium"
                       icon="el-icon-upload2"
                       @click="submitUpload"
+                      :disabled="!seqflag"
                       >上传到服务器</el-button
                     >
                   </el-upload>
@@ -278,7 +293,9 @@ export default {
       PDImodel: undefined,
 
       // 当前进行到第几步
-      steps1:0
+      steps1: 0,
+      // 表示使用的是哪种方法。0为手动，1为上传
+      method: 0,
     };
   },
   computed: {
@@ -325,36 +342,38 @@ export default {
     submitInputSeq() {
       // 先进行表单验证邮箱
       this.$refs.updataForm.validate((valid) => {
-          if (valid) {
-            // 如果是文件输入
-            if(this.fileList.length>0){
-              this.$alert("选择文件", {
-                  confirmButtonText: "确定",
-                  type: "success",
-                });
-            }
-            // 如果是手动输入
-            else{
-              if (
-              this.Seq1.length != this.seqlenth ||
-              this.Seq2.length != this.seqlenth
-              ) {
-                this.$alert("PPI:3000bp  PDI:1500bp ", "seq lenth error!", {
-                  confirmButtonText: "confrim",
-                  type: "error",
-                });
-                return;
-              }
+        if (valid) {
+          // 如果是文件输入
+          if (this.method == 1) {
+            // 在这里进行数据整理并提交个服务器
+            // 暂时直接显示成功
 
-            }
-          } else {
             this.$msgbox({
               message: "please enter correct email",
-              type: "error",
+              type: "success",
             });
-            return false;
           }
-       });
+          // 如果是手动输入
+          else {
+            if (
+              this.Seq1.length != this.seqlenth ||
+              this.Seq2.length != this.seqlenth
+            ) {
+              this.$alert("PPI:3000bp  PDI:1500bp ", "seq lenth error!", {
+                confirmButtonText: "confrim",
+                type: "error",
+              });
+              return;
+            }
+          }
+        } else {
+          this.$msgbox({
+            message: "please enter correct email",
+            type: "error",
+          });
+          return false;
+        }
+      });
     },
     // changestatue(info) {
     //   let fileList = [...info.fileList];
@@ -378,13 +397,13 @@ export default {
     //   console.log(`selected ${value}`);
     // },
     PPIchangeTools(value) {
-      this.steps1=1
+      this.steps1 = 1;
       if (this.PDImodel) this.PDImodel = undefined;
       // this.$router.push(`/Tools/PPI_${value}`);
       // console.log(value);
     },
     PDIchangeTools(value) {
-      this.steps1=1
+      this.steps1 = 1;
       if (this.PPImodel) this.PPImodel = undefined;
       // this.$router.push(`/Tools/PDI_${value}`);
       // console.log(value);
@@ -419,10 +438,23 @@ export default {
       this.fileList = fileList;
     },
     submitUpload() {
-      this.steps1=2
+      this.steps1 = 2;
       this.$refs.upload.submit();
     },
-    fileChange(file, fileLists) {
+    // 文件改变时监视，限制文件大小
+    fileChange(file, fileList) {
+      this.fileList = fileList;
+      const isSize = file.size / 1024 / 1024;
+      let lim = this.PPImodel ? 50 : 80;
+      if (isSize > lim) {
+        this.$msgbox({
+          message: "The file size exceeds the limit. PPI:50mb PDI:80mb",
+          type: "error",
+        });
+        const currIdx = this.fileList.indexOf(file);
+        this.fileList.splice(currIdx, 1);
+        return;
+      }
       // const self = this
       // const reader = new FileReader()
       // reader.readAsText(file.raw, 'gb2312') //读取内容并解决乱码的核心代码
@@ -431,16 +463,15 @@ export default {
       // }
     },
     // 输入数据方法切换,清空另一个的内容
-    methodsChange(tab, event){
-      if (tab.name === 'input') {
-
-      } else if (tab.name === 'file') {
-        this.PPImodel=undefined
-        this.PDImodel=undefined
-        this.Seq1=''
-        this.Seq2=''
+    methodsChange(tab, event) {
+      if (tab.name === "input") {
+        this.method = 0;
+      } else if (tab.name === "file") {
+        this.method = 1;
+        this.Seq1 = "";
+        this.Seq2 = "";
       }
-    }
+    },
   },
   created() {},
 };
@@ -450,12 +481,11 @@ export default {
   /* height: 1500px; */
   margin-bottom: 250px;
 }
-::v-deep .el-tabs__nav-scroll{
-	width:50%;
-	margin:0 auto;
-
+::v-deep .el-tabs__nav-scroll {
+  width: 50%;
+  margin: 0 auto;
 }
-::v-deep .el-tabs__item{
+::v-deep .el-tabs__item {
   font-size: 20px;
 }
 .tool-up {
