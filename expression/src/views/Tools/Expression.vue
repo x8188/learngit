@@ -85,16 +85,11 @@
           >
             <!-- 选择模型输入序列 -->
             <el-tab-pane label="Manual input" name="input">
-              <div>
-                <h2
-                  style="text-align: center"
-                  v-if="seqlenth != 'undetermined'"
-                >
+              <div style="text-align: center">
+                <h2 v-if="seqlenth != 'undetermined'">
                   👇 Paste one sequence({{ seqlenth }} bp) here 👇
                 </h2>
-                <h2 style="text-align: center" v-else>
-                  👆 Please select PPI or PDI model 👆
-                </h2>
+                <h2 v-else>👆 Please select PPI or PDI model 👆</h2>
                 <el-alert
                   title="BE CAREFUL-------After switching the method, the entered sequence will be cleared"
                   style="width: 50%; margin: 0 auto"
@@ -119,6 +114,9 @@
                   rows="4"
                   placeholder="Please select the model from above first"
                 />
+                <el-button type="primary" @click="Checkinput"
+                  >Check the sequence input</el-button
+                >
               </div>
             </el-tab-pane>
             <!-- 或者直接上传文件 -->
@@ -134,13 +132,12 @@
                     class="upload-demo"
                     ref="upload"
                     action="https://jsonplaceholder.typicode.com/posts/"
-                    :on-preview="handlePreview"
                     :on-remove="handleRemove"
                     :on-success="handlerSuccess"
                     :on-change="fileChange"
                     :file-list="fileList"
                     :auto-upload="false"
-                    accept=".fasta"
+                    accept=".fasta,.jpg"
                   >
                     <el-button
                       slot="trigger"
@@ -296,6 +293,9 @@ export default {
       steps1: 0,
       // 表示使用的是哪种方法。0为手动，1为上传
       method: 0,
+      // 检查两种数据是否校验成功
+      inputFlag: false,
+      fileFlag: false,
     };
   },
   computed: {
@@ -338,6 +338,7 @@ export default {
     //     console.log(res);
     //   });
     // },
+
     // 新输入提交提交
     submitInputSeq() {
       // 先进行表单验证邮箱
@@ -348,21 +349,49 @@ export default {
             // 在这里进行数据整理并提交个服务器
             // 暂时直接显示成功
 
-            this.$msgbox({
-              message: "please enter correct email",
-              type: "success",
-            });
+            // 判断步骤2是否成功
+            if (this.fileFlag) {
+              this.steps1 = 3;
+              this.$msgbox({
+                message:
+                  "Upload sequence succeeded! \
+                  Your email will receive an email with a TASK NAME. \
+                  Please query the progress of this task according to this TASK NAME",
+                type: "success",
+              });
+            } else {
+              this.$alert(
+                "Please upload the correct fasta file",
+                "Step 2 is not complete",
+                {
+                  confirmButtonText: "confrim",
+                  type: "error",
+                }
+              );
+              return;
+            }
           }
           // 如果是手动输入
           else {
-            if (
-              this.Seq1.length != this.seqlenth ||
-              this.Seq2.length != this.seqlenth
-            ) {
-              this.$alert("PPI:3000bp  PDI:1500bp ", "seq lenth error!", {
-                confirmButtonText: "confrim",
-                type: "error",
+            // 判断步骤2是否成功
+            if (this.inputFlag) {
+              this.steps1 = 3;
+              this.$msgbox({
+                message:
+                  "Upload sequence succeeded! \
+                  Your email will receive an email with a TASK NAME. \
+                  Please query the progress of this task according to this TASK NAME",
+                type: "success",
               });
+            } else {
+              this.$alert(
+                "Please enter the correct sequence and verify",
+                "Step 2 is not complete",
+                {
+                  confirmButtonText: "confrim",
+                  type: "error",
+                }
+              );
               return;
             }
           }
@@ -431,14 +460,12 @@ export default {
     handleRemove(file, fileList) {
       console.log(file, fileList);
     },
-    handlePreview(file) {
-      console.log(file);
-    },
     handlerSuccess(response, file, fileList) {
       this.fileList = fileList;
+      this.steps1 = 2;
+      this.fileFlag = true;
     },
     submitUpload() {
-      this.steps1 = 2;
       this.$refs.upload.submit();
     },
     // 文件改变时监视，限制文件大小
@@ -465,12 +492,29 @@ export default {
     // 输入数据方法切换,清空另一个的内容
     methodsChange(tab, event) {
       if (tab.name === "input") {
+        this.fileFlag = false;
         this.method = 0;
       } else if (tab.name === "file") {
         this.method = 1;
+        this.inputFlag = false;
         this.Seq1 = "";
         this.Seq2 = "";
       }
+    },
+    // 检查输入序列格式
+    Checkinput() {
+      if (
+        this.Seq1.length != this.seqlenth ||
+        this.Seq2.length != this.seqlenth
+      ) {
+        this.$alert("PPI:3000bp  PDI:1500bp ", "seq lenth error!", {
+          confirmButtonText: "confrim",
+          type: "error",
+        });
+        return;
+      }
+      this.steps1 = 2;
+      this.inputFlag = true;
     },
   },
   created() {},

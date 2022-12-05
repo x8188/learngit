@@ -9,7 +9,7 @@
             style="width: 70px; height: 70px"
           />
         </div>
-       
+
         <router-link to="/">HOME</router-link> |
         <!-- <a-dropdown>
           <a class="ant-dropdown-link" @click="(e) => e.preventDefault()">
@@ -24,7 +24,7 @@
           <a class="ant-dropdown-link">
             TOOLS<i class="el-icon-arrow-down el-icon--right"></i>
           </a>
-          <a-menu slot="overlay" id="tool" >
+          <a-menu slot="overlay" id="tool">
             <a-menu-item
               ><router-link to="/Expression"
                 >Expression</router-link
@@ -137,10 +137,10 @@ body {
   height: 1000px;
   margin: 0 auto;
 }
-#title{
-  position: absolute ;
+#title {
+  position: absolute;
   left: 20px;
-  font-size: 20px;
+  font-size: 30px;
   color: #fff;
 }
 /* #welcome{
@@ -150,7 +150,7 @@ body {
 #nav {
   line-height: 100px;
   /* background-color: rgb(0, 0, 0); */
-  background-image:url('../dist/img/back.png');
+  background-image: url("../dist/img/back.png");
 
   position: fixed;
   right: 0;
@@ -167,7 +167,7 @@ body {
 #nav a {
   margin: 50px;
   font-weight: bold;
-  font-size: 20px;
+  font-size: 25px;
   color: #fff;
 }
 #tool a {
@@ -192,7 +192,7 @@ body {
 section.featured1 {
   padding: 40px 0 60px;
   /* background: #70b9b0; */
-  background-image:url('../dist/img/back.png');
+  background-image: url("../dist/img/back.png");
   color: #fdfdfd;
 }
 </style>

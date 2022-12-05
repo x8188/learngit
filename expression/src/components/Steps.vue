@@ -21,7 +21,7 @@
         </el-steps>
         <!-- <el-button style="margin-top: 12px" @click="next">下一步</el-button> -->
       </div>
-      <el-button plain style="margin:20px 0px 20px 0px;">查看作业队列</el-button>
+      <el-button plain style="margin:20px 0px 20px 0px;" @click="$router.push('/search')">查看作业队列</el-button>
       <div style="height: 200px">
         <el-steps :active="steps2" finish-status="success" direction="vertical" >
           <el-step
