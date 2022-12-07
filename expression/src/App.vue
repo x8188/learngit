@@ -41,6 +41,8 @@
         <router-link to="/search">SEARCH</router-link> |
         <router-link to="/result">RESULT</router-link> |
         <router-link to="/about">CONTACT</router-link>
+        <router-link to="/tutorial">TUTORIAL</router-link>
+
       </div>
       <section class="featured1"></section>
       <!-- <div id="welcome">

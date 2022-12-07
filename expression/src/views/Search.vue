@@ -64,9 +64,9 @@
         <el-table-column label="任务状态">
           <template slot-scope="{ row }">
             <div id="status">
-              <i class="el-icon-success" v-show="row.status == 'success'"></i>
-              <i class="el-icon-loading" v-show="row.status == 'error'"></i>
-              <i class="el-icon-error" v-show="row.status == 'wait'"></i>
+              <i class="el-icon-success" style="color:#0DBC79" v-show="row.status == 'success'"></i>
+              <i class="el-icon-error" style="color:#D32F2F"  v-show="row.status == 'error'"></i>
+              <i class="el-icon-loading"  v-show="row.status == 'wait'"></i>
             </div>
           </template>
         </el-table-column>

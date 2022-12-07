@@ -82,6 +82,7 @@
             stretch
             @tab-click="methodsChange"
             value="input"
+            style="margin-top:20px;margin-bottom:20px"
           >
             <!-- 选择模型输入序列 -->
             <el-tab-pane label="Manual input" name="input">
@@ -117,6 +118,7 @@
                 <el-button type="primary" @click="Checkinput"
                   >Check the sequence input</el-button
                 >
+                <i class="el-icon-circle-check" style="font-size: 25px;color: #67C23A;" v-show="inputFlag"></i>
               </div>
             </el-tab-pane>
             <!-- 或者直接上传文件 -->
@@ -164,8 +166,8 @@
           </el-tabs>
 
           <!-- 输入邮箱 -->
-          <el-row>
-            <el-col :span="6" style="margin-top: 10px">
+          <el-row type="flex" justify="center">
+            <el-col :span="12" style="margin-top: 10px">
               <el-form :model="updataForm" ref="updataForm">
                 <el-form-item
                   prop="email"
@@ -190,16 +192,17 @@
             </el-col>
           </el-row>
           <!-- 提交 -->
-          <el-row>
-            <el-col :span="4">
+          <el-row type="flex" justify="center">
+            <el-col :span="12" id="ToolButton">
               <el-button
                 style="margin-top: 6px"
                 type="primary"
-                block
                 @click="submitInputSeq"
               >
                 {{ uploading ? "Uploading" : "Start Upload" }}
               </el-button>
+              <el-button type="danger" icon="el-icon-refresh-right" @click="resetInfo">RESET</el-button>
+              <el-button icon="el-icon-s-data">Example</el-button>
             </el-col>
           </el-row>
           <!-- <input type="file" @change="fileChange"></input> -->
@@ -516,6 +519,19 @@ export default {
       this.steps1 = 2;
       this.inputFlag = true;
     },
+    // 清空已经填入的数据
+    resetInfo(){
+      // 手动输入
+      if(this.method==0){
+        this.inputFlag = false;
+        this.Seq1 = "";
+        this.Seq2 = "";
+      }
+      // 上传文件
+      else{
+
+      }
+    }
   },
   created() {},
 };
@@ -556,5 +572,19 @@ export default {
 th.column-money,
 td.column-money {
   text-align: right !important;
+}
+
+#ToolButton button{
+  font-size: 20px;
+}
+
+#ToolButton button:nth-child(2){
+  background-color: #D32F2F;
+  border-color: #D32F2F;
+}
+#ToolButton button:nth-child(2):hover {
+  background: #df6666 !important;
+  border-color: #df6666 !important;
+  color: #fff !important;
 }
 </style>
