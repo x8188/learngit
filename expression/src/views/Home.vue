@@ -4,13 +4,18 @@
 -->
 <template>
   <div class="home">
+    <el-carousel :interval="4000" height="400px">
+        <el-carousel-item v-for="item in 6" :key="item">
+          <h3 class="medium">{{ item }}</h3>
+        </el-carousel-item>
+    </el-carousel>
     <div id="components-layout-demo-basic">
       <div class="top-text" style="margin-top: 20px">
         <a-row type="flex" justify="center">
           <a-col :span="20">
             <el-card class="homecard">
               <div>
-                <p >
+                <p>
                   &nbsp; &nbsp;&nbsp;&nbsp; MaizeDeepCBA is a web server that
                   integrates maize chromatin interaction and deep learning
                   models for maize Gene expression prediction. Based on the
@@ -51,11 +56,13 @@
       <div style="margin-top: 20px">
         <el-row :gutter="40" type="flex">
           <el-col :span="12">
-            <el-card class="homecard" style="background-color: #296D7F;color:#FFFFFF">
-              <p style="font-weight: bold;font-size: 30px;">Introduction</p>
+            <el-card
+              class="homecard"
+              style="background-color: #296d7f; color: #ffffff"
+            >
+              <p style="font-weight: bold; font-size: 30px">Introduction</p>
               <p>
-                xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-                xxxxx
+                xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx xxxxx
                 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
                 xxxxxxxxxxx
                 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
@@ -67,7 +74,7 @@
             </el-card>
           </el-col>
           <el-col :span="12">
-            <el-card class="homecard">
+            <el-card class="homecard" style="background-color:#D7D4B6; color: #262626">
               <p>
                 &nbsp; &nbsp;&nbsp;&nbsp; xxxxxxxxxxxxxxxxxxx
                 xxxxxxxxxxxxxxxxxxx
@@ -145,15 +152,17 @@ export default {
 <style scoped>
 #components-layout-demo-basic .ant-layout-content {
   background: rgb(255, 255, 255);
-  color: black;
-}
+  color: black;  
 
+}
+#components-layout-demo-basic {
+  width: 80%;
+  margin: 0 auto;
+}
 .home {
   /* text-align: center; */
   /* height: 1000px; */
   /* background-color: rgb(0, 135, 172); */
-  width: 80%;
-  margin: 0 auto;
 }
 
 /* p::first-letter {
@@ -179,13 +188,32 @@ export default {
   border-color: #71d8ce !important;
   color: #fff !important;
 }
-.homecard{
+.homecard {
   text-align: center;
   height: 100%;
   /* background-color: #296D7F; */
 }
-.homecard p{
-  font-size: 20px; 
-  text-align: justify
+.homecard p {
+  font-size: 20px;
+  text-align: justify;
+}
+.el-carousel__item{
+  position:absolute ;
+  width: 100%;
+}
+.el-carousel__item h3 {
+  color: #475669;
+  font-size: 14px;
+  opacity: 0.75;
+  line-height: 200px;
+  margin: 0;
+}
+
+.el-carousel__item:nth-child(2n) {
+  background-color: #99a9bf;
+}
+
+.el-carousel__item:nth-child(2n + 1) {
+  background-color: #C0C0C0;
 }
 </style>
