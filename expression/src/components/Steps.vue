@@ -27,12 +27,12 @@
           <el-step
             title="步骤 4"
             icon="el-icon-view"
-            description="查看可视化结果"
+            description="查看任务列表"
           ></el-step>
           <el-step
             title="步骤 5"
-            icon="el-icon-edit"
-            description="手动输入序列或者上传序列文件"
+            icon="el-icon-circle-check"
+            description="下载结果文件"
           ></el-step>
         </el-steps>
         <!-- <el-button style="margin-top: 12px" @click="next">下一步</el-button> -->

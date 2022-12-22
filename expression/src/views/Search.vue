@@ -53,11 +53,18 @@
         <img src="../img/roc.png" style="width: 65%" />
       </div>
     </div> -->
+    <Steps :steps1="3"></Steps>
+ 
+    <h1 style="color:#1D58B3; font-size: 30px;">Result retrieval</h1>
+    <el-divider></el-divider>
+    <p style=" font-size: 20px;">NOTE: The result files will be kept for 30 days on our server. Please download and save your files on time.</p>
     <div style="text-align: center">
-      <el-input placeholder="请输入任务名" style="width: 50%; margin: 20px 0px">
+      <el-input placeholder="Input job identifier here" style="width: 50%; margin: 20px 0px;">
         <el-button slot="append" icon="el-icon-search"></el-button>
       </el-input>
-      <el-table :data="DataList" style="width: 100%" height="250">
+      <p style="color:#1D58B3; font-size: 20px;text-align: left">Job queue monitor (update in 10 seconds):</p>
+
+      <el-table :data="DataList">
         <el-table-column prop="key" label="任务名" width="150">
         </el-table-column>
         <el-table-column prop="name" label="临时码"> </el-table-column>
@@ -79,7 +86,7 @@
               size="mini"
               @click="visTask(row)"
               style="margin: 0px 10px"
-              >查看可视化结果</el-button
+              >查看结果</el-button
             >
             <el-popconfirm title="确定删除吗？" @onConfirm="deleteTask(row)">
               <el-button
@@ -103,14 +110,6 @@
       >
       </el-pagination>
     </div>
-    <el-empty
-      v-if="visid == undefined"
-      description="请选择想要查看可视化的任务"
-    ></el-empty>
-    <div v-else id="imgId" @click="openimg" class="showimg">
-      <img style="width: 100%; height: 280px" :src="img_chg" />
-      <img style="width: 100%; height: 110px" :src="img_seq" />
-    </div>
   </div>
 </template>
 
@@ -126,10 +125,6 @@ const data = [
     age: 32,
     status: "success",
     time: "2022-11-30",
-    imgurl: {
-      chg: require("../img/CHG_TN.png"),
-      seq: require("../img/seqs.png"),
-    },
   },
   {
     key: 2,
@@ -137,7 +132,6 @@ const data = [
     age: 32,
     status: "wait",
     time: "2022-11-30",
-    imgurl: { chg: "../img/CHG_TN.png", seq: "../img/seqs.png" },
   },
   {
     key: 3,
@@ -145,7 +139,6 @@ const data = [
     age: 32,
     status: "success",
     time: "2022-11-30",
-    imgurl: { chg: require("../img/1.png"), seq: require("../img/1.png") },
   },
   {
     key: 4,
@@ -153,23 +146,20 @@ const data = [
     age: 32,
     status: "error",
     time: "2022-11-30",
-    imgurl: { chg: "../img/CHG_TN.png", seq: "../img/seqs.png" },
   },
   {
-    key: 4,
+    key: 5,
     name: "John Brown",
     age: 32,
     status: "success",
     time: "2022-11-30",
-    imgurl: { chg: "../img/CHG_TN.png", seq: "../img/seqs.png" },
   },
   {
-    key: 4,
+    key: 6,
     name: "John Brown",
     age: 32,
     status: "success",
     time: "2022-11-30",
-    imgurl: { chg: "../img/CHG_TN.png", seq: "../img/seqs.png" },
   },
 ];
 
@@ -191,26 +181,6 @@ export default {
     };
   },
   methods: {
-    openimg() {
-      this.isShowImg = !this.isShowImg;
-      if (this.isShowImg) {
-        let temp = document.getElementById("imgId");
-        // console.log(temp.childNodes);
-        temp.childNodes[0].style.width = "160%";
-        temp.childNodes[0].style.height = "340px";
-        temp.childNodes[1].style.width = "160%";
-        temp.childNodes[1].style.height = "160px";
-        temp.setAttribute("class", "isopenimg");
-      } else {
-        let temp = document.getElementById("imgId");
-        // console.log(temp.childNodes);
-        temp.childNodes[0].style.width = "100%";
-        temp.childNodes[0].style.height = "280px";
-        temp.childNodes[1].style.width = "100%";
-        temp.childNodes[1].style.height = "110px";
-        temp.setAttribute("class", "showimg");
-      }
-    },
     deleteTask(row) {
       // 在此向服务器发请求，成功后删除
     },
@@ -222,9 +192,12 @@ export default {
         });
         return;
       } else {
-        this.visid = row.key;
-        this.img_chg = row.imgurl.chg;
-        this.img_seq = row.imgurl.seq;
+        // this.visid = row.key;
+        // this.img_chg = row.imgurl.chg;
+        // this.img_seq = row.imgurl.seq;
+        this.$router.push({
+          path:`/show/${row.key}`,
+        })
         return;
       }
     },
@@ -264,16 +237,6 @@ export default {
 .result {
   width: 80%;
   margin: 0 auto;
-}
-.showimg {
-  cursor: zoom-in;
-  /* width: 80%; */
-}
-.isopenimg {
-  width: 90%;
-  margin: 0 auto;
-  overflow-x: scroll;
-  cursor: zoom-out;
 }
 
 #status i{
