@@ -30,9 +30,21 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
   },
   {
-    path: '/Expression',
-    name: 'Expression',
-    component: () => import('../views/Tools/Expression'),
+    path: '/Expression/index',
+    name: 'ExpIndex',
+    component: () => import('../views/Tools/Index'),
+
+  },
+  {
+    path: '/Expression/PPI',
+    name: 'ExpPPI',
+    component: () => import('../views/Tools/ExpPPI'),
+
+  },
+  {
+    path: '/Expression/PDI',
+    name: 'ExpPDI',
+    component: () => import('../views/Tools/ExpPDI'),
 
   },
   {
@@ -43,48 +55,6 @@ const routes = [
   {
     path: '/Tools/PPI_SHOOT1',
     name: 'PPI_SHOOT1',
-    component: () => import('../views/Tools/PPI_SHOOT1.vue'),
-
-  },
-  {
-    path: '/Tools/PPI_EAR1',
-    name: 'PPI_EAR1',
-    component: () => import('../views/Tools/PPI_SHOOT1.vue'),
-
-  },
-  {
-    path: '/Tools/PPI_SHOOT2',
-    name: 'PPI_SHOOT2',
-    component: () => import('../views/Tools/PPI_SHOOT1.vue'),
-
-  },
-  {
-    path: '/Tools/PPI_EAR2',
-    name: 'Shoot1',
-    component: () => import('../views/Tools/PPI_SHOOT1.vue'),
-
-  },
-  {
-    path: '/Tools/PPI_TASSEL',
-    name: 'PPI_TASSEL',
-    component: () => import('../views/Tools/PPI_SHOOT1.vue'),
-
-  },
-  {
-    path: '/Tools/PDI_SHOOT1',
-    name: 'PDI_SHOOT1',
-    component: () => import('../views/Tools/PPI_SHOOT1.vue'),
-
-  },
-  {
-    path: '/Tools/PDI_EAR',
-    name: 'PDI_EAR',
-    component: () => import('../views/Tools/PPI_SHOOT1.vue'),
-
-  },
-  {
-    path: '/Tools/PDI_SHOOT2',
-    name: 'PDI_SHOOT2',
     component: () => import('../views/Tools/PPI_SHOOT1.vue'),
 
   },

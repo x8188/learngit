@@ -82,7 +82,7 @@
               <div class="image-content" style="margin-top: 10px; width: 100%">
                 <img src="../img/home_3.jpg" style="width: 80%" />
               </div>
-              <el-button class="rouButton" @click="$router.push('/Expression')"
+              <el-button class="rouButton" @click="$router.push('/Expression/Index')"
                 >Go Tools</el-button
               >
             </el-card>

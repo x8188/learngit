@@ -8,22 +8,11 @@
     <div class="tool-up">
       <div class="top-text">
         <h1 style="font-size: 35px">Maize Expression prediction base on DNA</h1>
-        <h3>Introductions how to use?</h3>
       </div>
       <div style="margin-top: 50px">
-        <h3>
-          The family assignment rules (see details) and thresholds determined by
-          established methods (see details) are used to identify transcrption
-          factors from the input sequences. When you input nucleic acid
-          sequences, ESTScan 3.0 is employed to identify CDS regions of input
-          nucleic acid sequences and translate them to protein sequences. By
-          checking "Best hit in Arabidopsis thaliana", you will get the links
-          for predicted transcription factors to the best hits in Arabidopsis
-          thaliana in the result.
-        </h3>
         <div style="width: 100%">
           <!-- 输入数据模式 -->
-          <el-row>
+          <el-row type="flex" justify="center">
             <el-col :span="12">
               <h1 style="margin-top: 6px; font-weight: bold">PPI Prediction</h1>
               <div style="width: 80%">
@@ -33,6 +22,11 @@
                   barcoded reporter gene in maize protoplasts with or without
                   enhancer in dark.
                 </h3>
+                <h3>
+                  Promoter proximal region interaction (PPI)
+                </h3>
+
+                <h3 style="color:#FB6672; font-weight: bold;">Please select PPI models here👇</h3>
                 <el-select
                   style="width: 240px"
                   placeholder="-----Select Model-----"
@@ -49,8 +43,26 @@
                 </el-select>
               </div>
             </el-col>
+            <el-col :span="6">
+              <el-card>
+                <div slot="header">
+                  <span class="cardTitle">Note</span>
+                </div>
+                <div>
+                  <p style="font-size: 15px">
+                    To run the PPI-based model, you need to prepare the data in
+                    fasta format, where the length of each chromatin sequence is
+                    3000bp. You can upload the required forecast data and
+                    forecast tasks in two formats, online or locally. Each task
+                    will take different time depending on the amount of data you
+                    provide. When you submit your homework, please keep it in
+                    mind ID, so that you can check the results later.
+                  </p>
+                </div>
+              </el-card>
+            </el-col>
 
-            <el-col :span="12">
+            <!-- <el-col :span="12">
               <h1 style="margin-top: 6px; font-weight: bold">PDI Prediction</h1>
               <div style="width: 80%">
                 <h3>
@@ -74,7 +86,7 @@
                   </el-option>
                 </el-select>
               </div>
-            </el-col>
+            </el-col> -->
           </el-row>
           <el-tabs
             tab-position="top"
@@ -82,15 +94,11 @@
             stretch
             @tab-click="methodsChange"
             value="input"
-            style="margin-top:20px;margin-bottom:20px"
+            style="margin-top: 20px; margin-bottom: 20px"
           >
             <!-- 选择模型输入序列 -->
             <el-tab-pane label="Manual input" name="input">
               <div style="text-align: center">
-                <h2 v-if="seqlenth != 'undetermined'">
-                  👇 Paste one sequence({{ seqlenth }} bp) here 👇
-                </h2>
-                <h2 v-else>👆 Please select PPI or PDI model 👆</h2>
                 <el-alert
                   title="BE CAREFUL-------After switching the method, the entered sequence will be cleared"
                   style="width: 50%; margin: 0 auto"
@@ -118,7 +126,11 @@
                 <el-button type="primary" @click="Checkinput"
                   >Check the sequence input</el-button
                 >
-                <i class="el-icon-circle-check" style="font-size: 25px;color: #67C23A;" v-show="inputFlag"></i>
+                <i
+                  class="el-icon-circle-check"
+                  style="font-size: 25px; color: #67c23a"
+                  v-show="inputFlag"
+                ></i>
               </div>
             </el-tab-pane>
             <!-- 或者直接上传文件 -->
@@ -201,7 +213,12 @@
               >
                 {{ uploading ? "Uploading" : "Start Upload" }}
               </el-button>
-              <el-button type="danger" icon="el-icon-refresh-right" @click="resetInfo">RESET</el-button>
+              <el-button
+                type="danger"
+                icon="el-icon-refresh-right"
+                @click="resetInfo"
+                >RESET</el-button
+              >
               <el-button icon="el-icon-s-data">Example</el-button>
             </el-col>
           </el-row>
@@ -248,7 +265,7 @@
 // import HelloWorld from '@/components/HelloWorld.vue'
 import { Message } from "element-ui";
 export default {
-  name: "Expression",
+  name: "ExpPPI",
   components: {},
   data() {
     return {
@@ -262,7 +279,7 @@ export default {
       Seq2: "",
       uploading: false,
       PPImodellist: ["SHOOT1", "EAR1", "SHOOT2", "EAR2", "TASSEL"],
-      PDImodellist: ["SHOOT1", "EAR", "SHOOT2"],
+      // PDImodellist: ["SHOOT1", "EAR", "SHOOT2"],
       options: [{ value: "1" }, { value: "2" }],
       columns: [
         {
@@ -290,7 +307,7 @@ export default {
         email: "",
       },
       PPImodel: undefined,
-      PDImodel: undefined,
+      // PDImodel: undefined,
 
       // 当前进行到第几步
       steps1: 0,
@@ -304,13 +321,14 @@ export default {
   computed: {
     // 输入的序列长度
     seqlenth() {
-      if (this.PPImodel) return 3000;
-      else if (this.PDImodel) return 1500;
-      else return "undetermined";
+      // if (this.PPImodel) return 3000;
+      // else if (this.PDImodel) return 1500;
+      // else return "undetermined";
+      return 3000;
     },
     // seqflag 用来表明序列是否可以输入
     seqflag() {
-      if (this.PPImodel || this.PDImodel) return true;
+      if (this.PPImodel) return true;
       else return false;
     },
   },
@@ -430,16 +448,16 @@ export default {
     // },
     PPIchangeTools(value) {
       this.steps1 = 1;
-      if (this.PDImodel) this.PDImodel = undefined;
+      // if (this.PDImodel) this.PDImodel = undefined;
       // this.$router.push(`/Tools/PPI_${value}`);
       // console.log(value);
     },
-    PDIchangeTools(value) {
-      this.steps1 = 1;
-      if (this.PPImodel) this.PPImodel = undefined;
-      // this.$router.push(`/Tools/PDI_${value}`);
-      // console.log(value);
-    },
+    // PDIchangeTools(value) {
+    //   this.steps1 = 1;
+    //   if (this.PPImodel) this.PPImodel = undefined;
+    //   // this.$router.push(`/Tools/PDI_${value}`);
+    //   // console.log(value);
+    // },
     openimg() {
       this.isShowImg = !this.isShowImg;
       if (this.isShowImg) {
@@ -475,7 +493,7 @@ export default {
     fileChange(file, fileList) {
       this.fileList = fileList;
       const isSize = file.size / 1024 / 1024;
-      let lim = this.PPImodel ? 50 : 80;
+      let lim = 50;
       if (isSize > lim) {
         this.$msgbox({
           message: "The file size exceeds the limit. PPI:50mb PDI:80mb",
@@ -485,12 +503,6 @@ export default {
         this.fileList.splice(currIdx, 1);
         return;
       }
-      // const self = this
-      // const reader = new FileReader()
-      // reader.readAsText(file.raw, 'gb2312') //读取内容并解决乱码的核心代码
-      // reader.onload = function(event) {
-      //   console.log(this.result)
-      // }
     },
     // 输入数据方法切换,清空另一个的内容
     methodsChange(tab, event) {
@@ -520,18 +532,17 @@ export default {
       this.inputFlag = true;
     },
     // 清空已经填入的数据
-    resetInfo(){
+    resetInfo() {
       // 手动输入
-      if(this.method==0){
+      if (this.method == 0) {
         this.inputFlag = false;
         this.Seq1 = "";
         this.Seq2 = "";
       }
       // 上传文件
-      else{
-
+      else {
       }
-    }
+    },
   },
   created() {},
 };
@@ -574,17 +585,32 @@ td.column-money {
   text-align: right !important;
 }
 
-#ToolButton button{
+#ToolButton button {
   font-size: 20px;
 }
 
-#ToolButton button:nth-child(2){
-  background-color: #D32F2F;
-  border-color: #D32F2F;
+#ToolButton button:nth-child(2) {
+  background-color: #d32f2f;
+  border-color: #d32f2f;
 }
 #ToolButton button:nth-child(2):hover {
   background: #df6666 !important;
   border-color: #df6666 !important;
   color: #fff !important;
 }
+
+.cardTitle {
+  margin-left: 10px;
+  /* margin: auto; */
+  font-size: 20px;
+  /* color: #FA5F6F; */
+}
+.el-card ::v-deep .el-card__header {
+  background-color: #a5ece4;
+  /* border: #A5ECE4; */
+}
+/* .el-card ::v-deep .el-card__body {
+  background-color: #C3EAEF;
+  border: #A5ECE4;
+} */
 </style>

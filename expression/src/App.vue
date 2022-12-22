@@ -26,7 +26,7 @@
           </a>
           <a-menu slot="overlay" id="tool">
             <a-menu-item
-              ><router-link to="/Expression"
+              ><router-link to="/Expression/index"
                 >Expression</router-link
               ></a-menu-item
             >
