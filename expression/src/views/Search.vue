@@ -53,7 +53,7 @@
         <img src="../img/roc.png" style="width: 65%" />
       </div>
     </div> -->
-    <Steps :steps1="3"></Steps>
+    <Steps :steps1="3" :steps2="steps2"></Steps>
  
     <h1 style="color:#1D58B3; font-size: 30px;">Result retrieval</h1>
     <el-divider></el-divider>
@@ -178,6 +178,7 @@ export default {
       visid: undefined,
       img_chg: "",
       img_seq: "",
+      steps2:0
     };
   },
   methods: {

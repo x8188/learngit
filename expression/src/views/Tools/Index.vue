@@ -6,7 +6,7 @@
   <div class="tool">
     <h1 id="modelSelect">Please Select PPI/PDI Model</h1>
     <el-row type="flex" style="margin-bottom:30px">
-      <el-col :span="12">
+      <el-col :span="12" class="cardFa">
         <el-card class="card">
           <div slot="header">
             <span class="cardTitle">PPI</span>
@@ -36,7 +36,7 @@
           </div>
         </el-card>
       </el-col>
-      <el-col :span="12">
+      <el-col :span="12" class="cardFa">
         <el-card class="card">
           <div slot="header">
             <span class="cardTitle">PDI</span>
@@ -98,6 +98,10 @@ export default {
 .card {
   width: 80%;
   height: 100%;
+}
+.cardFa{
+  display:flex;
+justify-content:center;
 }
 .modelP {
   text-align: justify;

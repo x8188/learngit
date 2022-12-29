@@ -1,5 +1,6 @@
 <template>
   <div id="show">
+    <Steps :steps1="3" :steps2="steps2"></Steps>
     <div class="childShow">
       <el-card>
         <div slot="header">
@@ -108,6 +109,7 @@ export default {
         chg: require("../img/CHG_TN.png"),
         seq: require("../img/seqs.png"),
       },
+      steps2:1
     };
   },
   methods: {
