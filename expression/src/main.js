@@ -24,6 +24,9 @@ Vue.prototype.$alert = MessageBox.alert;
 import Steps from "./components/Steps.vue"
 Vue.component(Steps.name,Steps)
 
+import Table from "./components/Table.vue"
+Vue.component(Table.name,Table)
+
 new Vue({
   router,
   store,

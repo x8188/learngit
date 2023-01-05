@@ -12,120 +12,96 @@
       <h1 style="font-size: 30px">Promoter proximal region interaction</h1>
       <!-- </div> -->
     </div>
-    <div style="width: 80%; margin: 0 auto; margin-top: 40px">
-      <a-row>
-        <a-col :span="12">
-          <div>
-            <p style="margin-top: 35px; font-size: 25px">
-              &nbsp; &nbsp;&nbsp;&nbsp;这对目标 数据集(五套 PPI
-              数据)分别以回归分析中的皮尔逊相关系数 Pearson 和决定系数 R-Square
-              来衡量模型的 优异，结果显示五套数据中 Pearson 最高为 0.94[Shoot
-              (Li et al. 2019)]，最低为 0.85[Tassel (Sun et al. 2020)],
-              五套数据中 R2 最大为 0.88，最小为 0.73;
-            </p>
-          </div>
-        </a-col>
-        <a-col :span="12">
-          <div style="width: 80%; height: 80%; margin: 0 auto">
-            <img
-              style="width: 100%; height: 100%"
-              src="../img/results/PPI/PPI_Saliency.jpg"
-            />
-          </div>
-        </a-col>
-      </a-row>
+    <el-card class="resTabs">
+      <div slot="header">
+        <span class="tableTitle">PPI EXPRESSION TABLE</span>
+      </div>
+      <div>
+        <el-tabs tab-position="top" type="card" stretch>
+          <el-tab-pane label="ear">
+            <Table :tableId="1"></Table>
+          </el-tab-pane>
+          <el-tab-pane label="pie">
+            <Table :tableId="2"></Table>
+          </el-tab-pane>
+          <el-tab-pane label="pit">
+            <Table :tableId="3"></Table>
+          </el-tab-pane>
+          <el-tab-pane label="py">
+            <Table :tableId="4"></Table>
+          </el-tab-pane>
+          <el-tab-pane label="shoot">
+            <Table :tableId="5"></Table>
+          </el-tab-pane>
+        </el-tabs>
+      </div>
+    </el-card>
+    <el-card  class="resTabs">
+      <div slot="header">
+        <span class="tableTitle">PPI SEQ TABLE</span>
+      </div>
+      <div>
+        <el-tabs tab-position="top" type="card" stretch class="resTabs">
+          <el-tab-pane label="gene1">
+            <Table :tableId="1"></Table>
+          </el-tab-pane>
+          <el-tab-pane label="gene2">
+            <Table :tableId="2"></Table>
+          </el-tab-pane>
+          <el-tab-pane label="gen3">
+            <Table :tableId="3"></Table>
+          </el-tab-pane>
+          <el-tab-pane label="gene4">
+            <Table :tableId="4"></Table>
+          </el-tab-pane>
+        </el-tabs>
+      </div>
+    </el-card>
 
-      <a-row>
-        <a-col :span="6">
-          <img style="width: 100%" src="../img/results/PPI/PPI_Ear_li.jpg" />
-        </a-col>
-        <a-col :span="6">
-          <img style="width: 100%" src="../img/results/PPI/PPI_Ear_sun.jpg" />
-        </a-col>
-        <a-col :span="6">
-          <img style="width: 100%" src="../img/results/PPI/PPI_Shoot_li.jpg" />
-        </a-col>
-        <a-col :span="6">
-          <img
-            style="width: 100%"
-            src="../img/results/PPI/PPI_Shoot_peng.jpg"
-          />
-        </a-col>
-      </a-row>
-    </div>
-    <div style="width: 80%; margin: 0 auto; margin-top: 35px">
-      <p style="font-size: 25px">
-        &nbsp; &nbsp;&nbsp;&nbsp;展示的为 DeepCBA 模型所预测的基于 PPI 的 Gene
-        表达量真实 值和预测值间的拟合分布，从拟合分布图可以看出在玉米 B73 材料中
-        DeepCBA 模型针对不同组织下的表 达量预测十分精准。
-      </p>
-    </div>
-    <div style="width: 80%; margin: 0 auto; margin-top: 10px">
-      <a-row>
-        <a-col :span="12">
-          <img style="width: 100%" src="../img/results/PPI/Ear_sun.jpg" />
-        </a-col>
-        <a-col :span="12">
-          <img style="width: 100%" src="../img/results/PPI/Shoot_Li.jpg" />
-        </a-col>
-      </a-row>
-      <!-- <img style="width: 100%; height: 280px" src="../img/CHG_TN.png" />
-      <img style="width: 100%; height: 150px" src="../img/seqs.png" /> -->
-    </div>
     <div class="top wrap1">
       <!-- <div class="box box1"> -->
       <h1 style="font-size: 30px">Promoter-distal element interaction</h1>
       <!-- </div> -->
     </div>
-    <div style="width: 80%; margin: 0 auto; margin-top: 35px">
-      <p style="font-size: 25px">
-        &nbsp; &nbsp;&nbsp;&nbsp;展示的为 DeepCBA 模型所预测的基于 PDI 的 Gene
-        表达量的真实值和预测值之间的拟合分布，从实验 结果可知基于 PDI 的 Gene
-        表达量预测中，最终的结果很大程度会受到原始数据中远端元件的分布、数量
-        等因素的影响。
-      </p>
-    </div>
-    <div style="width: 80%; margin: 0 auto; margin-top: 40px">
-      <a-row>
-        <a-col :span="8">
-          <img style="width: 100%" src="../img/results/PDI/Ear_Li.jpg" />
-        </a-col>
-        <a-col :span="8">
-          <img style="width: 100%" src="../img/results/PDI/Shoot_Li.jpg" />
-        </a-col>
-        <a-col :span="8">
-          <img style="width: 100%" src="../img/results/PDI/Shoot_Peng.jpg" />
-        </a-col>
-      </a-row>
-    </div>
-    <div style="width: 80%; margin: 0 auto; margin-top: 35px">
-      <p style="font-size: 25px">
-        &nbsp; &nbsp;&nbsp;&nbsp;展示的为 DeepCBA 模型所预测的基于 PDI 的 Gene
-        表达量的真实值和预测值之间的拟合分布，从实验 结果可知基于 PDI 的 Gene
-        表达量预测中，最终的结果很大程度会受到原始数据中远端元件的分布、数量
-        等因素的影响。
-      </p>
-    </div>
-    <div
-      style="width: 80%; margin: 0 auto; margin-top: 10px; margin-bottom: 30px"
-    >
-      <a-row>
-        <a-col :span="8">
-          <img style="width: 100%" src="../img/results/PDI/PDI_Ear_li.jpg" />
-        </a-col>
-        <a-col :span="8">
-          <img style="width: 100%" src="../img/results/PDI/PDI_Shoot_li.jpg" />
-        </a-col>
-        <a-col :span="8">
-          <img
-            style="width: 100%"
-            src="../img/results/PDI/PDI_Shoot_peng.jpg"
-          />
-        </a-col>
-      </a-row>
-      <!-- <img style="width: 100%; height: 280px" src="../img/CHG_TN.png" />
-      <img style="width: 100%; height: 150px" src="../img/seqs.png" /> -->
-    </div>
+    <el-card class="resTabs">
+      <div slot="header">
+        <span class="tableTitle">PDI  EXPRESSION TABLE</span>
+      </div>
+      <div>
+        <el-tabs tab-position="top" type="card" stretch class="resTabs">
+          <el-tab-pane label="ear">
+            <Table :tableId="6"></Table>
+          </el-tab-pane>
+          <el-tab-pane label="py">
+            <Table :tableId="7"></Table>
+          </el-tab-pane>
+          <el-tab-pane label="shoot">
+            <Table :tableId="8"></Table>
+          </el-tab-pane>
+        </el-tabs>
+      </div>
+    </el-card>
+    <el-card  class="resTabs">
+      <div slot="header">
+        <span class="tableTitle">PDI SEQ TABLE</span>
+      </div>
+      <div>
+        <el-tabs tab-position="top" type="card" stretch class="resTabs">
+          <el-tab-pane label="gene1">
+            <Table :tableId="1"></Table>
+          </el-tab-pane>
+          <el-tab-pane label="gene2">
+            <Table :tableId="2"></Table>
+          </el-tab-pane>
+          <el-tab-pane label="gen3">
+            <Table :tableId="3"></Table>
+          </el-tab-pane>
+          <el-tab-pane label="gene4">
+            <Table :tableId="4"></Table>
+          </el-tab-pane>
+        </el-tabs>
+      </div>
+    </el-card>
   </div>
 </template>
 
@@ -137,7 +113,12 @@ export default {
   name: "Result",
   components: {},
   data() {
-    return {};
+    return {
+      data2: [],
+      data3: [],
+      header: [],
+      header1: [],
+    };
   },
   methods: {},
   created() {},
@@ -147,7 +128,7 @@ export default {
 .result {
   /* height: 80%; */
   /* text-align: center; */
-  /* width: 80%; */
+  width: 80%;
   margin: 0 auto;
 }
 .top {
@@ -160,5 +141,26 @@ export default {
   height: 50px;
   margin-top: 50px;
   background-color: #f0f8ff;
+}
+::v-deep .el-tabs__nav-scroll {
+  width: 80%;
+  margin: 0 auto;
+}
+::v-deep .el-tabs__item {
+  font-size: 20px;
+}
+
+.resTabs {
+  margin-top: 30px;
+  margin-bottom: 20px;
+  /* width: 80%;
+  margin: 0 auto; */
+}
+.tableTitle {
+  margin-left: 20px;
+  /* margin: auto; */
+  font-size: 20px;
+  font-weight: bold;
+  color:#FB636F ;
 }
 </style>

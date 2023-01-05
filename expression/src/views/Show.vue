@@ -9,7 +9,7 @@
         </div>
         <div>
           <!-- <el-button class="dowload" icon="el-icon-download">Dowload</el-button> -->
-          <el-table :data="expData" stripe style="width: 100%">
+          <el-table :data="expData" stripe style="width: 100%" height="400">
             <el-table-column prop="Annotation1" label="Annotation1">
             </el-table-column>
             <el-table-column prop="Annotation2" label="Annotation2">
@@ -109,7 +109,7 @@ export default {
         chg: require("../img/CHG_TN.png"),
         seq: require("../img/seqs.png"),
       },
-      steps2:1
+      steps2: 1,
     };
   },
   methods: {
@@ -152,6 +152,7 @@ export default {
       //   this.$refs.uploadFile.clearFiles();
     },
     readCsv2(file, fileList) {
+      // console.log(file)
       let reader = new FileReader();
       reader.readAsText(file.raw, "UTF-8");
       let data = [];
@@ -187,6 +188,7 @@ export default {
         this.header = Object.keys(data[0]);
         // console.log(Object.keys(data[0]))
         this.data2 = data;
+        // console.log(this.data2)
       };
       //最后清楚选择文件信息，可以再进行选择文件继续操作
       //   this.$refs.uploadFile.clearFiles();
@@ -212,10 +214,21 @@ export default {
       }
     },
   },
-  created() {
-    // axios.get("../../dist/text/test1.csv").then(res => {
-    // console.log(res.data);
-    // })
+  async created() {
+    // const url = "../assets/ppi/dou_pit.csv";
+
+    // const response= await fetch(url)
+    // console.log('bodyUsed:', response.bodyUsed)
+    
+    // const body = await response.blob()
+ 
+    // console.log(body)
+ 
+    // console.log('bodyUsed:', response.bodyUsed)
+ 
+    // const bodyAgain = await response.blob()
+    
+    // console.log(bodyAgain)
   },
 };
 </script>
