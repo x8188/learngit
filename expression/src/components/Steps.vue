@@ -2,37 +2,43 @@
   <div>
     <a-affix :offset-top="150" id="steps">
       <div style="height: 300px">
-        <el-steps :active="steps1" finish-status="success" direction="vertical" >
+        <el-steps :active="steps1" finish-status="success" direction="vertical">
           <el-step
-            title="步骤 1"
+            title="steps 1"
             icon="el-icon-thumb"
-            description="选择模型"
+            description="Select Model"
           ></el-step>
           <el-step
-            title="步骤 2"
+            title="steps 2"
             icon="el-icon-edit"
-            description="手动输入或者上传文件"
+            description="Manually input or upload files"
           ></el-step>
           <el-step
-            title="步骤 3"
+            title="steps 3"
             icon="el-icon-upload"
-            description="提交到作业序列"
+            description="Submit to Job Queue"
           ></el-step>
         </el-steps>
         <!-- <el-button style="margin-top: 12px" @click="next">下一步</el-button> -->
       </div>
-      <el-button plain style="margin:20px 0px 20px 0px;" @click="$router.push('/search')">查看作业队列</el-button>
+      <el-button
+        plain
+        style="margin: 20px 0px 20px 0px"
+        @click="$router.push('/search')"
+      >
+        Go to job queue</el-button
+      >
       <div style="height: 200px">
-        <el-steps :active="steps2" finish-status="success" direction="vertical" >
+        <el-steps :active="steps2" finish-status="success" direction="vertical">
           <el-step
-            title="步骤 4"
+            title="steps 4"
             icon="el-icon-view"
-            description="查看任务列表"
+            description="View Task Queue"
           ></el-step>
           <el-step
-            title="步骤 5"
+            title="stepss 5"
             icon="el-icon-circle-check"
-            description="下载结果文件"
+            description="Download result file"
           ></el-step>
         </el-steps>
         <!-- <el-button style="margin-top: 12px" @click="next">下一步</el-button> -->
@@ -44,14 +50,11 @@
 <script>
 export default {
   name: "Steps",
-  props: ['steps1',"steps2"],
+  props: ["steps1", "steps2"],
   data() {
-    return {
-    };
+    return {};
   },
-  methods: {
-
-  },
+  methods: {},
 };
 </script>
 
