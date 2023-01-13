@@ -109,38 +109,35 @@
             <!-- 或者直接上传文件 -->
             <el-tab-pane label="Upload files" name="file">
               <el-row style="text-align: center">
-                <el-col :span="4">
+                <!-- <el-col :span="4">
                   <h2 style="margin-top: 6px; font-weight: bold">
                     Or load it from disk:
                   </h2>
-                </el-col>
-                <el-col :span="5" style="margin-top: 10px">
+                </el-col> -->
+                <el-col :span="24" style="margin-top: 10px">
+                  <div >
+                    <h1 style="color:#FB6672;font-weight: bold;">👆👆👆 Please select the model from above first </h1>
+                  </div>
                   <el-upload
                     class="upload-demo"
-                    ref="upload"
-                    action="https://jsonplaceholder.typicode.com/posts/"
-                    :on-remove="handleRemove"
-                    :on-success="handlerSuccess"
+                    drag
+                    action=""
+                    multiple
                     :on-change="fileChange"
+
                     :file-list="fileList"
                     :auto-upload="false"
                     accept=".fasta,.jpg"
+                    :disabled="!seqflag"
+                    :limit=1
                   >
-                    <el-button
-                      slot="trigger"
-                      size="medium"
-                      type="primary"
-                      :disabled="!seqflag"
-                      >选取文件</el-button
-                    >
-                    <el-button
-                      style="margin-left: 10px"
-                      size="medium"
-                      icon="el-icon-upload2"
-                      @click="submitUpload"
-                      :disabled="!seqflag"
-                      >上传到服务器</el-button
-                    >
+                    <i class="el-icon-upload"></i>
+                    <div class="el-upload__text">
+                      Drop files here, Or <em>Click Upload</em>
+                    </div>
+                    <div class="el-upload__tip" slot="tip">
+                      Only .fasta files can be uploaded
+                    </div>
                   </el-upload>
                 </el-col>
                 <!-- <el-col :span="3" style="margin-top: 5px">
@@ -167,7 +164,7 @@
                     {
                       type: 'email',
                       message: 'Please enter the correct email address',
-                      trigger: ['blur', 'change'],
+                      trigger: ['blur'],
                     },
                   ]"
                 >
@@ -178,7 +175,7 @@
           </el-row>
           <!-- 提交 -->
           <el-row type="flex" justify="center">
-            <el-col :span="12" id="ToolButton">
+            <div id="ToolButton">
               <el-button
                 style="margin-top: 6px"
                 type="primary"
@@ -193,7 +190,7 @@
                 >RESET</el-button
               >
               <el-button icon="el-icon-s-data">Example</el-button>
-            </el-col>
+            </div>
           </el-row>
           <!-- <input type="file" @change="fileChange"></input> -->
         </div>
@@ -211,39 +208,13 @@ export default {
   components: {},
   data() {
     return {
-      list1: [],
-      InputSeqs: "",
-      loading: true,
-      isShowImg: false,
+
       fileList: [],
 
       Seq1: "",
       Seq2: "",
       uploading: false,
       PDImodellist: ["SHOOT1", "EAR", "SHOOT2"],
-      options: [{ value: "1" }, { value: "2" }],
-      columns: [
-        {
-          title: "Chromosome",
-          dataIndex: "chromosome",
-        },
-        {
-          title: "Expression",
-          dataIndex: "expression",
-        },
-      ],
-      data: [
-        {
-          key: "1",
-          chromosome: "John Brown",
-          expression: "300,000.00",
-        },
-        {
-          key: "2",
-          chromosome: "John Brown",
-          expression: "￥00,000.00",
-        },
-      ],
       updataForm: {
         email: "",
       },
@@ -256,6 +227,17 @@ export default {
       // 检查两种数据是否校验成功
       inputFlag: false,
       fileFlag: false,
+
+      taskBoby_seq: {
+        modelName: "testseq",
+        seq: [],
+        email: "",
+      },
+
+      taskBoby_file: {
+        modelName: "testfile",
+        email: "",
+      },
     };
   },
   computed: {
@@ -273,23 +255,25 @@ export default {
     // handleChange(file) {
     //   return false;
     // },
-    confirmtype() {
-      this.loading = !this.loading;
-      console.log(this.methltype);
-    },
 
     // 新输入提交提交
     submitInputSeq() {
       // 先进行表单验证邮箱
-      this.$refs.updataForm.validate((valid) => {
+      this.$refs.updataForm.validate(async (valid) => {
         if (valid) {
           // 如果是文件输入
           if (this.method == 1) {
             // 在这里进行数据整理并提交个服务器
-            // 暂时直接显示成功
 
             // 判断步骤2是否成功
             if (this.fileFlag) {
+
+              this.taskBoby_file.file=this.fileList[0].raw
+              this.taskBoby_file.email = this.updataForm.email;
+              
+              let result=await this.$API.reqSubmitFlie(this.taskBoby_file)
+
+              if(result.code==200){
               this.steps1 = 3;
               this.$msgbox({
                 message:
@@ -298,6 +282,7 @@ export default {
                   Please query the progress of this task according to this TASK NAME",
                 type: "success",
               });
+              }
             } else {
               this.$alert(
                 "Please upload the correct fasta file",
@@ -314,14 +299,22 @@ export default {
           else {
             // 判断步骤2是否成功
             if (this.inputFlag) {
-              this.steps1 = 3;
-              this.$msgbox({
-                message:
-                  "Upload sequence succeeded! \
+              this.taskBoby_seq.seq.push(this.Seq1);
+              this.taskBoby_seq.seq.push(this.Seq2);
+              this.taskBoby_seq.email = this.updataForm.email;
+
+              let result = await this.$API.reqSubmitSeq(this.taskBoby_seq);
+
+              if (result.code == 200) {
+                this.steps1 = 3;
+                this.$msgbox({
+                  message:
+                    "Upload sequence succeeded! \
                   Your email will receive an email with a TASK NAME. \
                   Please query the progress of this task according to this TASK NAME",
-                type: "success",
-              });
+                  type: "success",
+                });
+              }
             } else {
               this.$alert(
                 "Please enter the correct sequence and verify",
@@ -346,40 +339,10 @@ export default {
     PDIchangeTools(value) {
       this.steps1 = 1;
     },
-    openimg() {
-      this.isShowImg = !this.isShowImg;
-      if (this.isShowImg) {
-        let temp = document.getElementById("imgId");
-        console.log(temp.childNodes);
-        temp.childNodes[0].style.width = "160%";
-        temp.childNodes[0].style.height = "340px";
-        temp.childNodes[1].style.width = "160%";
-        temp.childNodes[1].style.height = "160px";
-        temp.setAttribute("class", "isopenimg");
-      } else {
-        let temp = document.getElementById("imgId");
-        console.log(temp.childNodes);
-        temp.childNodes[0].style.width = "100%";
-        temp.childNodes[0].style.height = "280px";
-        temp.childNodes[1].style.width = "100%";
-        temp.childNodes[1].style.height = "110px";
-        temp.setAttribute("class", "showimg");
-      }
-    },
-    handleRemove(file, fileList) {
-      console.log(file, fileList);
-    },
-    handlerSuccess(response, file, fileList) {
-      this.fileList = fileList;
-      this.steps1 = 2;
-      this.fileFlag = true;
-    },
-    submitUpload() {
-      this.$refs.upload.submit();
-    },
+
     // 文件改变时监视，限制文件大小
     fileChange(file, fileList) {
-      this.fileList = fileList;
+      // this.fileList = fileList;
       const isSize = file.size / 1024 / 1024;
       let lim = 80;
       if (isSize > lim) {
@@ -387,10 +350,13 @@ export default {
           message: "The file size exceeds the limit. PPI:50mb PDI:80mb",
           type: "error",
         });
-        const currIdx = this.fileList.indexOf(file);
-        this.fileList.splice(currIdx, 1);
+        // const currIdx = this.fileList.indexOf(file);
+        // this.fileList.splice(currIdx, 1);
         return;
       }
+      this.fileList = fileList;
+      this.steps1 = 2;
+      this.fileFlag = true;
     },
     // 输入数据方法切换,清空另一个的内容
     methodsChange(tab, event) {
@@ -407,8 +373,8 @@ export default {
     // 检查输入序列格式
     Checkinput() {
       if (
-        this.Seq1.length != this.seqlenth ||
-        this.Seq2.length != this.seqlenth
+        this.Seq1.length > this.seqlenth ||
+        this.Seq2.length > this.seqlenth
       ) {
         this.$alert("PPI:3000bp  PDI:1500bp ", "seq lenth error!", {
           confirmButtonText: "confrim",
@@ -438,7 +404,7 @@ export default {
 <style scoped>
 .tool {
   /* height: 1500px; */
-  margin-bottom: 250px;
+  margin-bottom: 50px;
 }
 ::v-deep .el-tabs__nav-scroll {
   width: 50%;
@@ -454,18 +420,13 @@ export default {
 
 .top-text {
   text-align: center;
-}
-
-.showimg {
-  cursor: zoom-in;
-  /* width: 80%; */
-}
-
-.isopenimg {
-  width: 90%;
   margin: 0 auto;
-  overflow-x: scroll;
-  cursor: zoom-out;
+  height: 70px;
+  margin-top: 30px;
+
+  /* background:-webkit-linear-gradient(left,#93a5cf,#e4efe9) ; */
+  background:-webkit-linear-gradient(left,#fff1eb,#ace0f9) ;
+  border-radius:8px
 }
 
 th.column-money,

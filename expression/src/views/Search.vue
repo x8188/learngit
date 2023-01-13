@@ -54,31 +54,48 @@
       </div>
     </div> -->
     <Steps :steps1="3" :steps2="steps2"></Steps>
- 
-    <h1 style="color:#1D58B3; font-size: 30px;">Result retrieval</h1>
+
+    <h1 style="color: #1d58b3; font-size: 30px">Result retrieval</h1>
     <el-divider></el-divider>
-    <p style=" font-size: 20px;">NOTE: The result files will be kept for 30 days on our server. Please download and save your files on time.</p>
+    <p style="font-size: 20px">
+      NOTE: The result files will be kept for 30 days on our server. Please
+      download and save your files on time.
+    </p>
     <div style="text-align: center">
-      <el-input placeholder="Input job identifier here" style="width: 50%; margin: 20px 0px;">
+      <el-input
+        placeholder="Input job identifier here"
+        style="width: 50%; margin: 20px 0px"
+      >
         <el-button slot="append" icon="el-icon-search"></el-button>
       </el-input>
-      <p style="color:#1D58B3; font-size: 20px;text-align: left">Job queue monitor (update in 10 seconds):</p>
+      <p style="color: #1d58b3; font-size: 20px; text-align: left">
+        Job queue monitor (update in 10 seconds):
+      </p>
 
-      <el-table :data="DataList">
-        <el-table-column prop="key" label="任务名" width="150">
+      <el-table :data="taskTable">
+        <el-table-column prop="taskID" label="task ID">
         </el-table-column>
-        <el-table-column prop="name" label="临时码"> </el-table-column>
-        <el-table-column label="任务状态">
+        <el-table-column prop="modelName" label="model Name"> </el-table-column>
+        <el-table-column label="tast status">
           <template slot-scope="{ row }">
             <div id="status">
-              <i class="el-icon-success" style="color:#0DBC79" v-show="row.status == 'success'"></i>
-              <i class="el-icon-error" style="color:#D32F2F"  v-show="row.status == 'error'"></i>
-              <i class="el-icon-loading"  v-show="row.status == 'wait'"></i>
+              <i
+                class="el-icon-success"
+                style="color: #0dbc79"
+                v-show="row.stataus == 1"
+              ></i>
+              <i
+                class="el-icon-error"
+                style="color: #d32f2f"
+                v-show="row.stataus == 'error'"
+              ></i>
+              <i class="el-icon-loading" v-show="row.stataus == 'wait'"></i>
             </div>
           </template>
         </el-table-column>
-        <el-table-column prop="time" label="提交时间"> </el-table-column>
-        <el-table-column label="操作" width="300">
+        <el-table-column prop="submitTime" label="submit Time"> </el-table-column>
+        <el-table-column prop="ttl" label="Time remaining"> </el-table-column>
+        <el-table-column label="function" width="300">
           <template slot-scope="{ row }">
             <el-button
               type="primary"
@@ -86,7 +103,7 @@
               size="mini"
               @click="visTask(row)"
               style="margin: 0px 10px"
-              >查看结果</el-button
+              >View Task results</el-button
             >
             <el-popconfirm title="确定删除吗？" @onConfirm="deleteTask(row)">
               <el-button
@@ -99,7 +116,7 @@
           </template>
         </el-table-column>
       </el-table>
-      <el-pagination
+      <!-- <el-pagination
         @size-change="handleSizeChange"
         @current-change="getPageList"
         :current-page="page"
@@ -108,7 +125,7 @@
         layout="total, sizes, prev, pager, next, jumper"
         :total="total"
       >
-      </el-pagination>
+      </el-pagination> -->
     </div>
   </div>
 </template>
@@ -118,50 +135,6 @@
 // import HelloWorld from '@/components/HelloWorld.vue'
 
 // require这个函数是为了正确显示本地图片，将来换成网络地址不加
-const data = [
-  {
-    key: 1,
-    name: "John Brown",
-    age: 32,
-    status: "success",
-    time: "2022-11-30",
-  },
-  {
-    key: 2,
-    name: "John Brown",
-    age: 32,
-    status: "wait",
-    time: "2022-11-30",
-  },
-  {
-    key: 3,
-    name: "John Brown",
-    age: 32,
-    status: "success",
-    time: "2022-11-30",
-  },
-  {
-    key: 4,
-    name: "John Brown",
-    age: 32,
-    status: "error",
-    time: "2022-11-30",
-  },
-  {
-    key: 5,
-    name: "John Brown",
-    age: 32,
-    status: "success",
-    time: "2022-11-30",
-  },
-  {
-    key: 6,
-    name: "John Brown",
-    age: 32,
-    status: "success",
-    time: "2022-11-30",
-  },
-];
 
 export default {
   name: "Result",
@@ -170,15 +143,25 @@ export default {
     return {
       page: 1,
       limit: 5,
-      total: data.length,
+      // total: data.length,
 
-      DataList: data,
       isShowImg: false,
 
       visid: undefined,
       img_chg: "",
       img_seq: "",
-      steps2:0
+      steps2: 0,
+
+      taskTable: [
+        {
+          email: "",
+          modelName: "",
+          stataus: 0,
+          submitTime: "",
+          taskID: "",
+          ttl: 0,
+        },
+      ],
     };
   },
   methods: {
@@ -186,19 +169,16 @@ export default {
       // 在此向服务器发请求，成功后删除
     },
     visTask(row) {
-      if (row.status != "success") {
+      if (row.stataus != 1) {
         this.$alert("This mission has not been successful", "ERROR!", {
           confirmButtonText: "confrim",
           type: "error",
         });
         return;
       } else {
-        // this.visid = row.key;
-        // this.img_chg = row.imgurl.chg;
-        // this.img_seq = row.imgurl.seq;
         this.$router.push({
-          path:`/show/${row.key}`,
-        })
+          path: `/show/${row.taskID}`,
+        });
         return;
       }
     },
@@ -211,8 +191,16 @@ export default {
       this.limit = limit;
       this.getPageList();
     },
+    async getTasks() {
+      let result = await this.$API.reqTasksInfo();
+      if (result.code == 200) {
+        this.taskTable=result.tasks
+      }
+    },
   },
-  created() {},
+  created() {
+    this.getTasks();
+  },
 };
 </script>
 <style scoped>
@@ -240,7 +228,7 @@ export default {
   margin: 0 auto;
 }
 
-#status i{
+#status i {
   font-size: 25px;
 }
 </style>

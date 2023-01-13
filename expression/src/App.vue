@@ -11,16 +11,7 @@
         </div>
 
         <router-link to="/">HOME</router-link> |
-        <!-- <a-dropdown>
-          <a class="ant-dropdown-link" @click="(e) => e.preventDefault()">
-            TOOLS <a-icon type="down" />
-          </a>
-          <a-menu slot="overlay" @click="onClick" @visbleChange="visibleChange">
-            <a-menu-item key="Methylation"> Methylation </a-menu-item>
-            <a-menu-item key="Expression"> Expression </a-menu-item>
-          </a-menu>
-        </a-dropdown> -->
-        <a-dropdown placement="bottomCenter">
+        <!-- <a-dropdown placement="bottomCenter">
           <a class="ant-dropdown-link">
             TOOLS<i class="el-icon-arrow-down el-icon--right"></i>
           </a>
@@ -36,8 +27,8 @@
               ></a-menu-item
             >
           </a-menu>
-        </a-dropdown>
-        <!-- <router-link to="/Expression">TOOLS</router-link> | -->
+        </a-dropdown> -->
+        <router-link to="/Expression/index">TOOLS</router-link> |
         <router-link to="/search">SEARCH</router-link> |
         <router-link to="/result">RESULT</router-link> |
         <router-link to="/about">CONTACT</router-link>

@@ -5,18 +5,12 @@
       <el-card>
         <div slot="header">
           <span class="tableTitle">EXPRESSION TABLE</span>
-          <el-button class="dowload" icon="el-icon-download">Dowload</el-button>
+          <el-button class="dowload" icon="el-icon-download" @click="dowload(1,$event)"
+            >Dowload</el-button
+          >
         </div>
         <div>
-          <!-- <el-button class="dowload" icon="el-icon-download">Dowload</el-button> -->
-          <el-table :data="expData" stripe style="width: 100%" height="400">
-            <el-table-column prop="Annotation1" label="Annotation1">
-            </el-table-column>
-            <el-table-column prop="Annotation2" label="Annotation2">
-            </el-table-column>
-            <el-table-column prop="exp" label="exp"> </el-table-column>
-            <el-table-column prop="pre" label="pre"> </el-table-column>
-          </el-table>
+          <Table :tableId="0" :tdata="expData"></Table>
         </div>
       </el-card>
 
@@ -27,23 +21,12 @@
       <el-card>
         <div slot="header">
           <span class="tableTitle">SEQ TABLE</span>
-          <el-button class="dowload" icon="el-icon-download">Dowload</el-button>
+          <el-button class="dowload" icon="el-icon-download" @click="dowload(2,$event)"
+            >Dowload</el-button
+          >
         </div>
         <div>
-          <!-- <el-button class="dowload" icon="el-icon-download">Dowload</el-button> -->
-          <el-table :data="data2" stripe style="width: 100%">
-            <el-table-column
-              v-for="(item, index) in header"
-              :key="index"
-              :label="item"
-              align="center"
-              width="110"
-            >
-              <template slot-scope="scope">
-                <span>{{ scope.row[item] }}</span>
-              </template>
-            </el-table-column>
-          </el-table>
+          <Table :tableId="1" :tdata="data2"></Table>
         </div>
       </el-card>
     </div>
@@ -51,7 +34,9 @@
       <el-card>
         <div slot="header">
           <span class="tableTitle">Visualization image</span>
-          <el-button class="dowload" icon="el-icon-download">Dowload</el-button>
+          <el-button class="dowload" icon="el-icon-download" @click="dowload(3,$event)"
+            >Dowload</el-button
+          >
         </div>
         <div>
           <!-- <el-button class="dowload" icon="el-icon-download">Dowload</el-button> -->
@@ -62,34 +47,6 @@
         </div>
       </el-card>
     </div>
-    <el-upload
-      ref="uploadFile"
-      :auto-upload="false"
-      :limit="1"
-      :multiple="false"
-      :on-change="readCsv"
-      :show-file-list="false"
-      accept=".csv"
-      action="Fake Action"
-      class="upload-demo"
-      style="margin-right: 10px"
-    >
-      <el-button type="primary">临时1</el-button>
-    </el-upload>
-    <el-upload
-      ref="uploadFile"
-      :auto-upload="false"
-      :limit="1"
-      :multiple="false"
-      :on-change="readCsv2"
-      :show-file-list="false"
-      accept=".csv"
-      action="Fake Action"
-      class="upload-demo"
-      style="margin-right: 10px"
-    >
-      <el-button type="primary">临时2</el-button>
-    </el-upload>
   </div>
 </template>
 
@@ -104,95 +61,55 @@ export default {
       id: this.$route.params.id,
       expData: [],
       data2: [],
-      header: [],
+
       imgurl: {
-        chg: require("../img/CHG_TN.png"),
-        seq: require("../img/seqs.png"),
+        chg: "",
+        seq: "",
       },
       steps2: 1,
+      
+      fileurl:[]
     };
   },
   methods: {
     //读取数据
-    readCsv(file, fileList) {
-      let reader = new FileReader();
-      reader.readAsText(file.raw, "UTF-8");
-      let data = [];
-      reader.onload = (evt) => {
-        // 读取文件内容 csv格式
-        let fileString = evt.target.result;
-        //转化为array对象
-        // console.log(fileString);
+    // readCsv(file, fileList) {
+    //   let reader = new FileReader();
+    //   reader.readAsText(file.raw, "UTF-8");
+    //   let data = [];
+    //   reader.onload = (evt) => {
+    //     // 读取文件内容 csv格式
+    //     let fileString = evt.target.result;
+    //     //转化为array对象
+    //     // console.log(fileString);
 
-        var delimiter = ",";
-        const headers = fileString
-          .slice(0, fileString.indexOf("\n"))
-          .split(delimiter);
-        const rows = fileString.slice(fileString.indexOf("\n") + 1).split("\n");
+    //     var delimiter = ",";
+    //     const headers = fileString
+    //       .slice(0, fileString.indexOf("\n"))
+    //       .split(delimiter);
+    //     const rows = fileString.slice(fileString.indexOf("\n") + 1).split("\n");
 
-        headers[headers.length - 1] = headers
-          .slice(-1)[0]
-          .replace(/[\r\n]/g, "");
+    //     headers[headers.length - 1] = headers
+    //       .slice(-1)[0]
+    //       .replace(/[\r\n]/g, "");
 
-        // rows.forEach((element,index) => {
-        //     rows[index]=element.replace(/[\r\n]/g, "")
-        // });
+    //     // rows.forEach((element,index) => {
+    //     //     rows[index]=element.replace(/[\r\n]/g, "")
+    //     // });
 
-        data = rows.map((row) => {
-          const values = row.split(delimiter);
-          return headers.reduce((object, header, index) => {
-            object[header] = values[index];
-            return object;
-          }, {});
-        });
+    //     data = rows.map((row) => {
+    //       const values = row.split(delimiter);
+    //       return headers.reduce((object, header, index) => {
+    //         object[header] = values[index];
+    //         return object;
+    //       }, {});
+    //     });
 
-        this.expData = data;
-      };
-      //最后清楚选择文件信息，可以再进行选择文件继续操作
-      //   this.$refs.uploadFile.clearFiles();
-    },
-    readCsv2(file, fileList) {
-      // console.log(file)
-      let reader = new FileReader();
-      reader.readAsText(file.raw, "UTF-8");
-      let data = [];
-      reader.onload = (evt) => {
-        // 读取文件内容 csv格式
-        let fileString = evt.target.result;
-        //转化为array对象
-        // console.log(fileString);
-
-        var delimiter = ",";
-        const headers = fileString
-          .slice(0, fileString.indexOf("\n"))
-          .split(delimiter);
-        const rows = fileString.slice(fileString.indexOf("\n") + 1).split("\n");
-
-        headers[headers.length - 1] = headers
-          .slice(-1)[0]
-          .replace(/[\r\n]/g, "");
-
-        // rows.forEach((element,index) => {
-        //     rows[index]=element.replace(/[\r\n]/g, "")
-        // });
-        let getLocation = rows.indexOf("");
-        rows.splice(getLocation, 1);
-
-        data = rows.map((row) => {
-          const values = row.split(delimiter);
-          return headers.reduce((object, header, index) => {
-            object[header] = values[index];
-            return object;
-          }, {});
-        });
-        this.header = Object.keys(data[0]);
-        // console.log(Object.keys(data[0]))
-        this.data2 = data;
-        // console.log(this.data2)
-      };
-      //最后清楚选择文件信息，可以再进行选择文件继续操作
-      //   this.$refs.uploadFile.clearFiles();
-    },
+    //     this.expData = data;
+    //   };
+    //   //最后清楚选择文件信息，可以再进行选择文件继续操作
+    //   //   this.$refs.uploadFile.clearFiles();
+    // },
     openimg() {
       this.isShowImg = !this.isShowImg;
       if (this.isShowImg) {
@@ -213,22 +130,38 @@ export default {
         temp.setAttribute("class", "showimg");
       }
     },
-  },
-  async created() {
-    // const url = "../assets/ppi/dou_pit.csv";
+    async getTaskInfo() {
+      let result = await this.$API.reqTaskResultInfo(this.id);
+      if (result.code == 200) {
+        this.expData = result["1_1_2.csv"];
+        this.data2 = result["1_1_1.csv"];
+        this.fileurl=result.fileurl
+        this.imgurl.chg="http://124.220.197.196/"+result.fileurl[1]
+        this.imgurl.seq="http://124.220.197.196/"+result.fileurl[1]
+      }
+    },
+    dowload(flag,event) {
+      let dowload_url="http://124.220.197.196/"
+      if(flag==1){
+        dowload_url=dowload_url+this.fileurl[2]
+      }else if(flag==2){
+        dowload_url=dowload_url+this.fileurl[0]
+      }else{
+        dowload_url=dowload_url+this.fileurl[1]
+      }
+      // console.log(dowload_url)
+      window.open(dowload_url)
+      
+      let target = event.target;
+      if (target.nodeName === "BUTTON" || target.nodeName === "SPAN"){
+          target.parentNode.blur();
+      }
+      target.blur();
 
-    // const response= await fetch(url)
-    // console.log('bodyUsed:', response.bodyUsed)
-    
-    // const body = await response.blob()
- 
-    // console.log(body)
- 
-    // console.log('bodyUsed:', response.bodyUsed)
- 
-    // const bodyAgain = await response.blob()
-    
-    // console.log(bodyAgain)
+    },
+  },
+  created() {
+    this.getTaskInfo();
   },
 };
 </script>
@@ -248,9 +181,9 @@ export default {
   border-color: #d32f2f;
 }
 .dowload:hover {
-  background: #df6666 !important;
-  border-color: #df6666 !important;
-  color: #fff !important;
+  background: #df6666 ;
+  border-color: #df6666 ;
+  color: #fff ;
 }
 .childShow {
   margin-top: 20px;

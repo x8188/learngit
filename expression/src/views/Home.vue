@@ -13,7 +13,11 @@
       <div class="top-text" style="margin-top: 20px">
         <a-row type="flex" justify="center">
           <a-col :span="20">
-            <el-card class="homecard">
+            <el-card class="homecard" 
+            style="
+            /* background:-webkit-linear-gradient(left top,#E3D1C3,#FEFCFB) ; */
+            /* background:-webkit-linear-gradient(left top,#E8EFFD,#ACCBEE) ; */
+            ">
               <div>
                 <p>
                   &nbsp; &nbsp;&nbsp;&nbsp; MaizeDeepCBA is a web server that
@@ -74,7 +78,7 @@
             </el-card>
           </el-col>
           <el-col :span="12">
-            <el-card class="homecard" style="background-color:#D7D4B6; color: #262626">
+            <el-card class="homecard" style=" background:-webkit-linear-gradient(left,#fff1eb,#ace0f9) ;">
               <p>
                 &nbsp; &nbsp;&nbsp;&nbsp; xxxxxxxxxxxxxxxxxxx
                 xxxxxxxxxxxxxxxxxxx
@@ -93,8 +97,17 @@
       <div style="margin: 20px">
         <el-row type="flex" justify="center">
           <el-col :span="20">
-            <el-card style="text-align: center">
-              <div style="margin-bottom: 50px; text-align: justify">
+           
+            <el-card style="
+            text-align: center; 
+            background: linear-gradient(220.55deg, #0C3A2D 0%, #6D9773 100%);            
+            color: #ffffff;
+            border-radius:30px
+            /* background: linear-gradient(220.55deg, #EAEAEA 0%, #8B8B8B 100%); */
+
+            "
+            >
+              <div style="margin-bottom: 50px; text-align: justify ;">
                 <p style="font-size: 20px">
                   &nbsp; &nbsp;&nbsp;&nbsp;The DeepCBA framework includes a CNN
                   module for extracting sequence features and feature
