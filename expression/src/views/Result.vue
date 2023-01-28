@@ -18,19 +18,19 @@
       </div>
       <div>
         <el-tabs tab-position="top" type="card" stretch>
-          <el-tab-pane label="ear">
+          <el-tab-pane label="ear(Li et al. 2019)">
             <Table :tableId="0" :tdata="ppi_dou_ear"></Table>
           </el-tab-pane>
-          <el-tab-pane label="pie">
+          <el-tab-pane label="ear(Sun et al. 2020)">
             <Table :tableId="0" :tdata="ppi_dou_pie"></Table>
           </el-tab-pane>
-          <el-tab-pane label="pit">
+          <el-tab-pane label="tassel(Sun et al. 2020)">
             <Table :tableId="0" :tdata="ppi_dou_pit"></Table>
           </el-tab-pane>
-          <el-tab-pane label="py">
+          <el-tab-pane label="shoot(Peng et al. 2019)">
             <Table :tableId="0" :tdata="ppi_dou_py"></Table>
           </el-tab-pane>
-          <el-tab-pane label="shoot">
+          <el-tab-pane label="shoot(Li et al. 2019)">
             <Table :tableId="0" :tdata="ppi_dou_shoot"></Table>
           </el-tab-pane>
         </el-tabs>
@@ -69,13 +69,13 @@
       </div>
       <div>
         <el-tabs tab-position="top" type="card" stretch class="resTabs">
-          <el-tab-pane label="ear">
+          <el-tab-pane label="ear(Li et al. 2019)">
             <Table :tableId="0" :tdata="pdi_dou_ear"></Table>
           </el-tab-pane>
-          <el-tab-pane label="py">
+          <el-tab-pane label="shoot(Peng et al. 2019)">
             <Table :tableId="0" :tdata="pdi_dou_py"></Table>
           </el-tab-pane>
-          <el-tab-pane label="shoot">
+          <el-tab-pane label="shoot(Li et al. 2019)">
             <Table :tableId="0" :tdata="pdi_dou_shoot"></Table>
           </el-tab-pane>
         </el-tabs>
@@ -182,7 +182,7 @@ export default {
   border-radius:8px
 }
 ::v-deep .el-tabs__nav-scroll {
-  width: 80%;
+  width: 100%;
   margin: 0 auto;
 }
 ::v-deep .el-tabs__item {
