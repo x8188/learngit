@@ -155,10 +155,19 @@
                     :disabled="!seqflag"
                     :limit=1
                   >
+                  <div v-if="seqflag">
                     <i class="el-icon-upload"></i>
                     <div class="el-upload__text">
                       Drop files here, Or <em>Click Upload</em>
                     </div>
+                  </div>
+                  <div v-else>
+                    <i class="el-icon-upload" style="color:#d32f2f"></i>
+                    <div class="el-upload__text">
+                      You haven't selected the model from above
+                    </div>
+                  </div>
+
                     <div class="el-upload__tip" slot="tip">
                       Only .fasta files can be uploaded
                     </div>

@@ -150,7 +150,7 @@ body {
 }
 
 .link-wrapper a {
-  max-width: 200px;
+  max-width: 250px;
   flex: 1;
   text-align: center;
 }
