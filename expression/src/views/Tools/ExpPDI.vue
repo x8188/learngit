@@ -22,10 +22,10 @@
                   barcoded reporter gene in maize protoplasts with or without
                   enhancer in dark.
                 </h3>
-                <h3>
-                  Promoter-distal element interactions (PDI)
+                <h3>Promoter-distal element interactions (PDI)</h3>
+                <h3 style="color: #fb6672; font-weight: bold">
+                  Please select PDI models here👇
                 </h3>
-                <h3 style="color:#FB6672;font-weight: bold;">Please select PDI models here👇</h3>
                 <el-select
                   style="width: 240px"
                   placeholder="-----Select Model-----"
@@ -87,6 +87,7 @@
                   :disabled="!seqflag"
                   rows="4"
                   placeholder="Please select the model from above first"
+                  @blur="checkinput(1)"
                 />
                 <el-input
                   type="textarea"
@@ -95,28 +96,35 @@
                   :disabled="!seqflag"
                   rows="4"
                   placeholder="Please select the model from above first"
+                  @blur="checkinput(2)"
                 />
-                <el-button type="primary" @click="Checkinput"
-                  >Check the sequence input</el-button
-                >
-                <i
-                  class="el-icon-circle-check"
-                  style="font-size: 25px; color: #67c23a"
-                  v-show="inputFlag"
-                ></i>
               </div>
             </el-tab-pane>
             <!-- 或者直接上传文件 -->
             <el-tab-pane label="Upload files" name="file">
               <el-row style="text-align: center">
-                <!-- <el-col :span="4">
-                  <h2 style="margin-top: 6px; font-weight: bold">
-                    Or load it from disk:
-                  </h2>
-                </el-col> -->
+                <el-alert
+                  title="BE CAREFUL-------After switching the method, the uploaded file will be cleared"
+                  style="width: 50%; margin: 0 auto"
+                  center
+                  type="info"
+                  close-text="got it"
+                >
+                </el-alert>
                 <el-col :span="24" style="margin-top: 10px">
-                  <div >
-                    <h1 style="color:#FB6672;font-weight: bold;">👆👆👆 Please select the model from above first </h1>
+                  <div>
+                    <h1
+                      v-if="!seqflag"
+                      style="color: #fb6672; font-weight: bold"
+                    >
+                      👆👆👆 Please select the model from above first
+                    </h1>
+                    <h1
+                      v-if="fileFlag"
+                      style="color: #47b347; font-weight: bold"
+                    >
+                      Successfully uploaded the file
+                    </h1>
                   </div>
                   <el-upload
                     class="upload-demo"
@@ -124,25 +132,24 @@
                     action=""
                     multiple
                     :on-change="fileChange"
-
                     :file-list="fileList"
                     :auto-upload="false"
-                    accept=".fasta,.jpg"
+                    accept=".fasta"
                     :disabled="!seqflag"
-                    :limit=1
+                    :limit="1"
                   >
-                  <div v-if="seqflag">
-                    <i class="el-icon-upload"></i>
-                    <div class="el-upload__text">
-                      Drop files here, Or <em>Click Upload</em>
+                    <div v-if="seqflag">
+                      <i class="el-icon-upload"></i>
+                      <div class="el-upload__text">
+                        Drop files here, Or <em>Click Upload</em>
+                      </div>
                     </div>
-                  </div>
-                  <div v-else>
-                    <i class="el-icon-upload" style="color:#d32f2f"></i>
-                    <div class="el-upload__text">
-                      You haven't selected the model from above
+                    <div v-else>
+                      <i class="el-icon-upload" style="color: #d32f2f"></i>
+                      <div class="el-upload__text">
+                        You haven't selected the model from above
+                      </div>
                     </div>
-                  </div>
                     <div class="el-upload__tip" slot="tip">
                       Only .fasta files can be uploaded
                     </div>
@@ -216,7 +223,6 @@ export default {
   components: {},
   data() {
     return {
-
       fileList: [],
 
       Seq1: "",
@@ -275,21 +281,20 @@ export default {
 
             // 判断步骤2是否成功
             if (this.fileFlag) {
-
-              this.taskBoby_file.file=this.fileList[0].raw
+              this.taskBoby_file.file = this.fileList[0].raw;
               this.taskBoby_file.email = this.updataForm.email;
-              
-              let result=await this.$API.reqSubmitFlie(this.taskBoby_file)
 
-              if(result.code==200){
-              this.steps1 = 3;
-              this.$msgbox({
-                message:
-                  "Upload sequence succeeded! \
+              let result = await this.$API.reqSubmitFlie(this.taskBoby_file);
+
+              if (result.code == 200) {
+                this.steps1 = 3;
+                this.$msgbox({
+                  message:
+                    "Upload sequence succeeded! \
                   Your email will receive an email with a TASK NAME. \
                   Please query the progress of this task according to this TASK NAME",
-                type: "success",
-              });
+                  type: "success",
+                });
               }
             } else {
               this.$alert(
@@ -371,6 +376,7 @@ export default {
       if (tab.name === "input") {
         this.fileFlag = false;
         this.method = 0;
+        this.fileList = [];
       } else if (tab.name === "file") {
         this.method = 1;
         this.inputFlag = false;
@@ -379,19 +385,21 @@ export default {
       }
     },
     // 检查输入序列格式
-    Checkinput() {
-      if (
-        this.Seq1.length > this.seqlenth ||
-        this.Seq2.length > this.seqlenth
-      ) {
-        this.$alert("PPI:3000bp  PDI:1500bp ", "seq lenth error!", {
-          confirmButtonText: "confrim",
-          type: "error",
-        });
-        return;
+    checkinput(seq) {
+      if ((seq == 1 && this.Seq2 != "") || (seq == 2 && this.Seq1 != "")) {
+        if (
+          this.Seq1.length > this.seqlenth ||
+          this.Seq2.length > this.seqlenth
+        ) {
+          this.$alert("PPI:3000bp  PDI:1500bp ", "seq lenth error!", {
+            confirmButtonText: "confrim",
+            type: "error",
+          });
+          return;
+        }
+        this.steps1 = 2;
+        this.inputFlag = true;
       }
-      this.steps1 = 2;
-      this.inputFlag = true;
     },
     // 清空已经填入的数据
     resetInfo() {
@@ -433,8 +441,8 @@ export default {
   margin-top: 30px;
 
   /* background:-webkit-linear-gradient(left,#93a5cf,#e4efe9) ; */
-  background:-webkit-linear-gradient(left,#fff1eb,#ace0f9) ;
-  border-radius:8px
+  background: -webkit-linear-gradient(left, #fff1eb, #ace0f9);
+  border-radius: 8px;
 }
 
 th.column-money,
@@ -463,7 +471,7 @@ td.column-money {
 }
 
 .el-card ::v-deep .el-card__header {
-  background-color:#A5ECE4;
+  background-color: #a5ece4;
   /* border: #A5ECE4; */
 }
 </style>

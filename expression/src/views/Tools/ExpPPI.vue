@@ -115,6 +115,7 @@
                   :disabled="!seqflag"
                   rows="4"
                   placeholder="Please select the model from above first"
+                  @blur="checkinput(1)"
                 />
                 <el-input
                   type="textarea"
@@ -123,24 +124,26 @@
                   :disabled="!seqflag"
                   rows="4"
                   placeholder="Please select the model from above first"
+                  @blur="checkinput(2)"
                 />
-                <el-button type="primary" @click="Checkinput"
-                  >Check the sequence input</el-button
-                >
-                <i
-                  class="el-icon-circle-check"
-                  style="font-size: 25px; color: #67c23a"
-                  v-show="inputFlag"
-                ></i>
               </div>
             </el-tab-pane>
             <!-- 或者直接上传文件 -->
             <el-tab-pane label="Upload files" name="file">
               <el-row style="text-align: center">
-  
+                <el-alert
+                  title="BE CAREFUL-------After switching the method, the uploaded file will be cleared"
+                  style="width: 50%; margin: 0 auto"
+                  center
+                  type="info"
+                  close-text="got it"
+                >
+                </el-alert>
                 <el-col :span="24" style="margin-top: 10px">
                   <div >
-                    <h1 style="color:#FB6672;font-weight: bold;">👆👆👆 Please select the model from above first </h1>
+                    <h1 v-if="!seqflag" style="color:#FB6672;font-weight: bold;">👆👆👆 Please select the model from above first </h1>
+                    <h1 v-if="fileFlag" style="color:#47B347;font-weight: bold;">Successfully uploaded the file</h1>
+                  
                   </div>
                   <el-upload
                     class="upload-demo"
@@ -151,7 +154,7 @@
 
                     :file-list="fileList"
                     :auto-upload="false"
-                    accept=".fasta,.jpg"
+                    accept=".fasta"
                     :disabled="!seqflag"
                     :limit=1
                   >
@@ -495,6 +498,7 @@ export default {
       if (tab.name === "input") {
         this.fileFlag = false;
         this.method = 0;
+        this.fileList=[];
       } else if (tab.name === "file") {
         this.method = 1;
         this.inputFlag = false;
@@ -503,19 +507,21 @@ export default {
       }
     },
     // 检查输入序列格式
-    Checkinput() {
-      if (
-        this.Seq1.length > this.seqlenth ||
-        this.Seq2.length > this.seqlenth
-      ) {
-        this.$alert("PPI:3000bp  PDI:1500bp ", "seq lenth error!", {
-          confirmButtonText: "confrim",
-          type: "error",
-        });
-        return;
+    checkinput(seq) {
+      if ((seq == 1 && this.Seq2 != "") || (seq == 2 && this.Seq1 != "")) {
+        if (
+          this.Seq1.length > this.seqlenth ||
+          this.Seq2.length > this.seqlenth
+        ) {
+          this.$alert("PPI:3000bp  PDI:1500bp ", "seq lenth error!", {
+            confirmButtonText: "confrim",
+            type: "error",
+          });
+          return;
+        }
+        this.steps1 = 2;
+        this.inputFlag = true;
       }
-      this.steps1 = 2;
-      this.inputFlag = true;
     },
     // 清空已经填入的数据
     resetInfo() {
