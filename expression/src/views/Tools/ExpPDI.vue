@@ -403,6 +403,7 @@ export default {
     },
     // 清空已经填入的数据
     resetInfo() {
+      this.PDImodel="";
       // 手动输入
       if (this.method == 0) {
         this.inputFlag = false;
@@ -411,7 +412,12 @@ export default {
       }
       // 上传文件
       else {
+        this.fileFlag=false
+        this.fileList=[];
       }
+
+      this.updataForm.email="" 
+      this.steps1 = 0;
     },
   },
   created() {},

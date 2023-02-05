@@ -1,6 +1,9 @@
 <template>
   <div id="show">
     <Steps :steps1="3" :steps2="steps2"></Steps>
+
+    <h1 style="font-size: 30px;font-weight: bolder;color:#22CAB3;margin-top: 20px;">TASK ID : {{ id }} RESULT</h1>
+
     <div class="childShow">
       <el-card>
         <div slot="header">
@@ -170,6 +173,8 @@ export default {
 #show {
   width: 80%;
   margin: 0 auto;
+
+  text-align: center;
 }
 
 .dowload {
