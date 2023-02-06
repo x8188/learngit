@@ -120,8 +120,8 @@ body {
 } */
 #nav {
   line-height: 100px;
-  /* background-color: rgb(0, 0, 0); */
-  background-image: url("./img/back.png");
+  background-color:#004B5F;
+  /* background-image: url("./img/back.png"); */
 
   position: fixed;
   right: 0;
@@ -176,8 +176,9 @@ body {
 }
 section.featured1 {
   padding: 40px 0 60px;
-  /* background: #70b9b0; */
-  background-image: url("./img/back.png");
+  /* background-image: url("./img/back.png"); */
+  background-color:#004B5F;
+
   color: #fdfdfd;
 }
 </style>
