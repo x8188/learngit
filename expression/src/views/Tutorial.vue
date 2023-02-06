@@ -4,7 +4,7 @@
       <!-- <i class="el-icon-notebook-2" style="font-weight: bold; font-size: 40px"
         >CONTENT</i
       > -->
-      <el-menu
+      <!-- <el-menu
         default-active="2"
         class="el-menu-vertical-demo"
       >
@@ -38,11 +38,19 @@
           <i class="el-icon-setting"></i>
           <span slot="title">导航四</span>
         </el-menu-item>
-      </el-menu>
+      </el-menu> -->
+
+      <el-tree
+        :data="data"
+        :props="defaultProps"
+        @node-click="handleNodeClick"
+
+        :default-expand-all="true"
+      ></el-tree>
     </a-affix>
 
     <el-row class="tac" type="flex" justify="center">
-      <el-col :span="6" id="doc">
+      <el-col :span="12" id="doc">
         <i class="el-icon-s-management" ref="top1">导航1</i>
         <h2>选项1</h2>
         <p>
@@ -124,20 +132,52 @@
 
 <script>
 export default {
+  data() {
+    return {
+      data: [
+        {
+          label: "导航1",
+          ref:"top1",
+          children: [
+            {
+              label: "选项1",
+            },
+            {
+              label: "选项2",
+            },
+            {
+              label: "选项3",
+            },
+            {
+              label: "选项4",
+            },
+          ],
+        },
+        {
+          label: "导航2",
+          ref:"top2",
+        },
+        {
+          label: "导航3",
+          ref:"top3",
+        },
+        {
+          label: "导航4",
+          ref:"top4",
+        },
+      ],
+      defaultProps: {
+        children: "children",
+        label: "label",
+      },
+    };
+  },
   methods: {
-    goTop(id) {
-      let top = "";
-      if (id == 1) {
-        top = "top1";
-      } else if (id == 2) {
-        top = "top2";
-      } else if (id == 3) {
-        top = "top3";
-      } else if (id == 4) {
-        top = "top4";
-      }
+    handleNodeClick(data) {
+      // console.log(data);
+      // console.log(data.label);
 
-      this.$refs[top].scrollIntoView({
+      this.$refs[data.ref].scrollIntoView({
         behavior: "smooth", // 平滑过渡
         block: "center", // start 上边框  center 中间  end 底部边框 与视窗顶部平齐
       });
@@ -158,4 +198,35 @@ export default {
   font-size: 30px;
 }
 
+#doc p{
+  font-size: 20px;
+  font-family: "Roboto",sans-serif;
+  font-weight: 300;
+}
+
+.el-tree-node__label {
+width: auto;
+margin-top: 12px;
+margin-left: 50px;
+/* float: right; */
+font-family: “Trebuchet MS”, Arial, Helvetica, sans-serif;
+font-size: 18px;
+/* color: #999999; */
+line-height: 50px;
+letter-spacing: 1px;
+}
+
+.el-tree-node__content {
+  height: 35px;
+}
+
+.el-tree-node__expand-icon {
+    color: #22CAB3;
+    font-size: 20px;
+}
+
+.el-tree-node:focus > .el-tree-node__content {
+    /* background-color: #66b1ff87 !important; */
+    color: #22CAB3;
+}
 </style>

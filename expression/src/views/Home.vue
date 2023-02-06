@@ -100,7 +100,7 @@
            
             <el-card style="
             text-align: center; 
-            background: linear-gradient(220.55deg, #0C3A2D 0%, #6D9773 100%);            
+            /* background: linear-gradient(220.55deg, #0C3A2D 0%, #6D9773 100%);             */
             color: #ffffff;
             border-radius:30px
             /* background: linear-gradient(220.55deg, #EAEAEA 0%, #8B8B8B 100%); */

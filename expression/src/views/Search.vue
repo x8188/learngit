@@ -54,6 +54,9 @@
       </div>
     </div> -->
     <Steps :steps1="3" :steps2="steps2"></Steps>
+    <div class="top-text">
+        <h1 style="font-size: 40px;font-weight: bolder;">Task Queue</h1>
+    </div>
 
     <h1 style="color: #1d58b3; font-size: 30px">Result retrieval</h1>
     <el-divider></el-divider>
@@ -71,8 +74,8 @@
       <p style="color: #1d58b3; font-size: 20px; text-align: left">
         Job queue monitor (update in 10 seconds):
       </p>
-
-      <el-table :data="taskTable">
+      <el-card class="box-card">
+              <el-table :data="taskTable">
         <el-table-column prop="taskID" label="task ID">
         </el-table-column>
         <el-table-column prop="modelName" label="model Name"> </el-table-column>
@@ -116,6 +119,8 @@
           </template>
         </el-table-column>
       </el-table>
+      </el-card>
+
       <!-- <el-pagination
         @size-change="handleSizeChange"
         @current-change="getPageList"
@@ -226,9 +231,23 @@ export default {
 .result {
   width: 80%;
   margin: 0 auto;
+
+  min-height: 1000px;
 }
 
 #status i {
   font-size: 25px;
+}
+
+.top-text {
+  text-align: center;
+  margin: 0 auto;
+  height: 70px;
+  margin-top: 30px;
+  width: 800px;
+  /* background:-webkit-linear-gradient(left,#93a5cf,#e4efe9) ; */
+  background:-webkit-linear-gradient(top,#accbee,#e7f0fd) ;
+  border-radius:8px
+
 }
 </style>
