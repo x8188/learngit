@@ -55,10 +55,10 @@
     </div> -->
     <Steps :steps1="3" :steps2="steps2"></Steps>
     <div class="top-text">
-        <h1 style="font-size: 40px;font-weight: bolder;">Task Queue</h1>
+        <h1 style="font-size: 40px;font-weight: bolder;  color: #22CAC4;">Task Queue</h1>
     </div>
 
-    <h1 style="color: #1d58b3; font-size: 30px">Result retrieval</h1>
+    <h1 style="color: #0DBC79; font-size: 30px">Result retrieval</h1>
     <el-divider></el-divider>
     <p style="font-size: 20px">
       NOTE: The result files will be kept for 30 days on our server. Please
@@ -71,7 +71,7 @@
       >
         <el-button slot="append" icon="el-icon-search"></el-button>
       </el-input>
-      <p style="color: #1d58b3; font-size: 20px; text-align: left">
+      <p style="color: #0DBC79; font-size: 20px; text-align: left">
         Job queue monitor (update in 10 seconds):
       </p>
       <el-card class="box-card">
@@ -120,7 +120,6 @@
         </el-table-column>
       </el-table>
       </el-card>
-
       <!-- <el-pagination
         @size-change="handleSizeChange"
         @current-change="getPageList"
@@ -246,8 +245,11 @@ export default {
   margin-top: 30px;
   width: 800px;
   /* background:-webkit-linear-gradient(left,#93a5cf,#e4efe9) ; */
-  background:-webkit-linear-gradient(top,#accbee,#e7f0fd) ;
-  border-radius:8px
+  /* background:-webkit-linear-gradient(top,#accbee,#e7f0fd) ; */
+  border-radius:8px;
+
+
+  text-shadow: 0 2px 4px rgb(11 90 88 / 50%);
 
 }
 </style>

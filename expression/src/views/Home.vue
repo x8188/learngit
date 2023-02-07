@@ -70,7 +70,7 @@
     </div>
     <div>
       <div class="teacher3-serve">
-        <div style="width: 80%; margin: 0 auto; margin-top: 200px">
+        <div style="width: 80%; margin: 0 auto; margin-top: 200px;margin-bottom: 150px;">
           <el-row :gutter="40" type="flex">
             <el-col :span="12">
               <el-card
@@ -123,7 +123,7 @@
 
       
     </div>
-    <div style="margin: 20px; width: 80%; margin: 0 auto">
+    <div style="width: 80%; margin: 0 auto;margin-top: -150px; margin-bottom: 100px;">
       <el-row type="flex" justify="center">
         <el-col :span="20">
           <el-card
@@ -256,18 +256,19 @@ export default {
   content: "";
   width: 100%;
   height: 100%;
-  position: absolute;
+  position: fixed;
   left: 0;
   top: 0;
   --color-filter: hue-rotate(25.4219deg);
   background-size: cover;
-  /* background-image: linear-gradient(
-      rgba(255, 255, 255, 0),
-      rgba(255, 255, 255, 1)
+  background-image: linear-gradient(
+      rgba(255, 255, 255, 0.2),
+      rgba(255, 255, 255, 0.2)
     ),
-    url("../img/homeback.png"); */
-  background-image: linear-gradient(transparent, rgb(250, 250, 250) 85%),
     url("../img/homeback.png");
+  /* background-image: linear-gradient(transparent, rgb(250, 250, 250) 85%),
+    url("../img/homeback.png"); */
+
   z-index: -2;
 }
 .welcome {
