@@ -55,10 +55,12 @@
     </div> -->
     <Steps :steps1="3" :steps2="steps2"></Steps>
     <div class="top-text">
-        <h1 style="font-size: 40px;font-weight: bolder;  color: #22CAC4;">Task Queue</h1>
+      <h1 style="font-size: 40px; font-weight: bolder; color: #22cac4">
+        Task Queue
+      </h1>
     </div>
 
-    <h1 style="color: #0DBC79; font-size: 30px">Result retrieval</h1>
+    <h1 style="color: #0dbc79; font-size: 30px">Result retrieval</h1>
     <el-divider></el-divider>
     <p style="font-size: 20px">
       NOTE: The result files will be kept for 30 days on our server. Please
@@ -66,59 +68,90 @@
     </p>
     <div style="text-align: center">
       <el-input
+        v-model="searchValue"
         placeholder="Input job identifier here"
         style="width: 50%; margin: 20px 0px"
+        @keyup.enter.native="searchJob"
       >
-        <el-button slot="append" icon="el-icon-search"></el-button>
+        <el-button
+          slot="append"
+          icon="el-icon-search"
+          @click="searchJob"
+        ></el-button>
       </el-input>
-      <p style="color: #0DBC79; font-size: 20px; text-align: left">
+      <p style="color: #0dbc79; font-size: 20px; text-align: left">
         Job queue monitor (update in 10 seconds):
       </p>
+      <div style="text-align: right; margin-top: -50px">
+        <el-button @click="clearFilter" type="warning" plain class="reFilter"
+          >Reset all Filters</el-button
+        >
+        <el-tooltip effect="dark" content="Refresh task list" placement="top">
+          <el-button
+            icon="el-icon-refresh-right"
+            circle
+            class="reBtn"
+            @click="getTasks"
+          ></el-button>
+        </el-tooltip>
+      </div>
+
       <el-card class="box-card">
-              <el-table :data="taskTable">
-        <el-table-column prop="taskID" label="task ID">
-        </el-table-column>
-        <el-table-column prop="modelName" label="model Name"> </el-table-column>
-        <el-table-column label="tast status">
-          <template slot-scope="{ row }">
-            <div id="status">
-              <i
-                class="el-icon-success"
-                style="color: #0dbc79"
-                v-show="row.stataus == 1"
-              ></i>
-              <i
-                class="el-icon-error"
-                style="color: #d32f2f"
-                v-show="row.stataus == 'error'"
-              ></i>
-              <i class="el-icon-loading" v-show="row.stataus == 'wait'"></i>
-            </div>
-          </template>
-        </el-table-column>
-        <el-table-column prop="submitTime" label="submit Time"> </el-table-column>
-        <el-table-column prop="ttl" label="Time remaining"> </el-table-column>
-        <el-table-column label="function" width="300">
-          <template slot-scope="{ row }">
-            <el-button
-              type="primary"
-              icon="el-icon-edit"
-              size="mini"
-              @click="visTask(row)"
-              style="margin: 0px 10px"
-              >View Task results</el-button
-            >
-            <el-popconfirm title="确定删除吗？" @onConfirm="deleteTask(row)">
+        <el-table :data="taskTable" ref="filterTable" style="font-size: 15px">
+          <el-table-column prop="taskID" label="task ID"> </el-table-column>
+          <el-table-column
+            prop="modelName"
+            label="model Name"
+            :filters="filters"
+            :filter-method="filterHandler"
+          >
+          </el-table-column>
+          <el-table-column
+            label="tast status"
+            :filters="filter_statu"
+            :filter-method="filterStatu"
+          >
+            <template slot-scope="{ row }">
+              <div id="status">
+                <i
+                  class="el-icon-success"
+                  style="color: #0dbc79"
+                  v-show="row.stataus == 2"
+                ></i>
+                <i
+                  class="el-icon-error"
+                  style="color: #d32f2f"
+                  v-show="row.stataus == 3"
+                ></i>
+                <i class="el-icon-loading" v-show="row.stataus == 1"></i>
+              </div>
+            </template>
+          </el-table-column>
+          <el-table-column prop="submitTime" label="submit Time">
+          </el-table-column>
+          <el-table-column prop="ttl1" label="Time remaining">
+          </el-table-column>
+          <el-table-column label="function" width="300">
+            <template slot-scope="{ row }">
+              <el-button
+                type="primary"
+                icon="el-icon-download"
+                size="mini"
+                @click="visTask(row)"
+                class="viewBtn"
+                >View results</el-button
+              >
+              <!-- <el-popconfirm title="确定删除吗？" @onConfirm="deleteTask(row)">
               <el-button
                 type="danger"
                 icon="el-icon-delete"
                 size="mini"
                 slot="reference"
               ></el-button>
-            </el-popconfirm>
-          </template>
-        </el-table-column>
-      </el-table>
+            </el-popconfirm> -->
+            </template>
+          </el-table-column>
+        </el-table>
       </el-card>
       <!-- <el-pagination
         @size-change="handleSizeChange"
@@ -160,12 +193,24 @@ export default {
         {
           email: "",
           modelName: "",
-          stataus: 0,
+          stataus: "",
           submitTime: "",
           taskID: "",
           ttl: 0,
         },
       ],
+
+      searchValue: "",
+
+      filters: [],
+      filter_statu: [
+        { text: "wait", value: 0 },
+        { text: "run", value: 1 },
+        { text: "success", value: 2 },
+        { text: "fail", value: 3 },
+      ],
+
+      statu: ["wait", ""],
     };
   },
   methods: {
@@ -195,11 +240,94 @@ export default {
       this.limit = limit;
       this.getPageList();
     },
+    formatSeconds(value) {
+      var secondTime = parseInt(value); // 秒
+      var minuteTime = 0; // 分
+      var hourTime = 0; // 小时
+      var dayTime = 0; // 天
+      var result = "";
+      if (value < 60) {
+        result = secondTime + " sec ";
+      } else {
+        if (secondTime >= 60) {
+          // 如果秒数大于60，将秒数转换成整数
+          // 获取分钟，除以60取整数，得到整数分钟
+          minuteTime = parseInt(secondTime / 60);
+          // 获取秒数，秒数取佘，得到整数秒数
+          secondTime = parseInt(secondTime % 60);
+          // 如果分钟大于60，将分钟转换成小时
+          if (minuteTime >= 60) {
+            // 获取小时，获取分钟除以60，得到整数小时
+            hourTime = parseInt(minuteTime / 60);
+            // 获取小时后取佘的分，获取分钟除以60取佘的分
+            minuteTime = parseInt(minuteTime % 60);
+            if (hourTime >= 24) {
+              // 获取天数， 获取小时除以24，得到整数天
+              dayTime = parseInt(hourTime / 24);
+              // 获取小时后取余小时，获取分钟除以24取余的分；
+              hourTime = parseInt(hourTime % 24);
+            }
+          }
+        }
+        if (secondTime > 0) {
+          secondTime =
+            parseInt(secondTime) >= 10 ? secondTime : "0" + secondTime;
+          result = "" + secondTime + " sec ";
+        }
+        if (minuteTime > 0) {
+          minuteTime =
+            parseInt(minuteTime) >= 10 ? minuteTime : "0" + minuteTime;
+          result = "" + minuteTime + " min " + result;
+        }
+        if (hourTime > 0) {
+          result = "" + parseInt(hourTime) + " hour " + result;
+        }
+        if (dayTime > 0) {
+          result = "" + parseInt(dayTime) + " day " + result;
+        }
+      }
+      return result;
+    },
+
+    isEqual(object1, object2) {
+      return object1.text === object2.text;
+    },
     async getTasks() {
       let result = await this.$API.reqTasksInfo();
       if (result.code == 200) {
-        this.taskTable=result.tasks
+        this.taskTable = result.tasks;
+        // this.taskTable.ttl=this.formatSeconds(this.taskTable.ttl)
+        this.filters = [];
+        this.taskTable.forEach((el) => {
+          el["ttl1"] = this.formatSeconds(el.ttl);
+
+          this.filters.push({ text: el.modelName, value: el.modelName });
+          const res = new Map();
+          this.filters = this.filters.filter(
+            (a) => !res.has(a.text) && res.set(a.text, 1)
+          );
+        });
       }
+      // console.log(this.filters[0]);
+    },
+    searchJob() {
+      this.taskTable = this.taskTable.filter((el) => {
+        return el.taskID === this.searchValue;
+      });
+    },
+    filterHandler(value, row, column) {
+      // const property = column['property'];
+      // return row[property] === value;
+      return row.modelName === value;
+    },
+    filterStatu(value, row, column) {
+      // const property = column['property'];
+      // return row[property] === value;
+      // console.log(row.stataus,value)
+      return row.stataus == value;
+    },
+    clearFilter() {
+      this.$refs.filterTable.clearFilter();
     },
   },
   created() {
@@ -246,10 +374,35 @@ export default {
   width: 800px;
   /* background:-webkit-linear-gradient(left,#93a5cf,#e4efe9) ; */
   /* background:-webkit-linear-gradient(top,#accbee,#e7f0fd) ; */
-  border-radius:8px;
-
+  border-radius: 8px;
 
   text-shadow: 0 2px 4px rgb(11 90 88 / 50%);
-
 }
+
+.viewBtn {
+  margin: 0px 10px;
+  font-size: 15px;
+}
+
+.reBtn {
+  height: 55px;
+  width: 55px;
+  font-size: 25px;
+  margin: 20px;
+}
+.reFilter {
+  height: 50px;
+  font-size: 15px;
+}
+
+::v-deep .el-table__column-filter-trigger .el-icon-arrow-down {
+  /* font-family: el-icon-d-caret !important; */
+  font-size: 20px;
+  font-weight: bold;
+  /* transform: unset */
+}
+/* ::v-deep .el-table__column-filter-trigger .el-icon-arrow-down:before {
+  content: "\e637";
+} */
+
 </style>

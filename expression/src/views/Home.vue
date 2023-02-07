@@ -70,20 +70,27 @@
     </div>
     <div>
       <div class="teacher3-serve">
-        <div style="width: 80%; margin: 0 auto; margin-top: 200px;margin-bottom: 150px;">
+        <div
+          style="
+            width: 80%;
+            margin: 0 auto;
+            margin-top: 200px;
+            margin-bottom: 150px;
+          "
+        >
           <el-row :gutter="40" type="flex">
             <el-col :span="12">
               <el-card
                 class="homecard"
-                style="background-color: #296d7f; color: #ffffff"
+                style="background-color: #296d7f; color: #ffffff;border-radius: 15px"
               >
                 <p style="font-weight: bold; font-size: 30px">Introduction</p>
                 <p>
-                  xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx xxxxx
-                  xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-                  xxxxxxxxxxx
-                  xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-                  xxxxxxxxxxxxxxxxxxx
+                  The core structure of the deep neural network used in Deep CBA
+                  can be divided into three modules: convolution neural network
+                  module, bidirectional long-term and short-term memory network
+                  module and self-attention mechanism module, as shown in the
+                  following figure. 
                 </p>
                 <div
                   class="image-content"
@@ -98,11 +105,24 @@
                 class="homecard"
                 style="
                   background: -webkit-linear-gradient(left, #fff1eb, #ace0f9);
+                  border-radius: 15px
                 "
               >
                 <p>
-                  &nbsp; &nbsp;&nbsp;&nbsp; xxxxxxxxxxxxxxxxxxx
-                  xxxxxxxxxxxxxxxxxxx
+                  The overall process of DeepCBA is as
+                  follows: First, encode the sequence with length of 3000 bp and
+                  1500 bp into 4*3000/4*1500 one-pot encoding matrix;
+                  Secondly, take the encoded one-pot encoding matrix as the
+                  input of the CNN Layer, use the ReLU activation function to
+                  propagate the forward output and eliminate the reverse output,
+                  and then use the maximum pooling operation to reduce the
+                  dimension, and achieve the extraction of higher-level
+                  features; Next, combine the information output by CNN and
+                  input it into the bidirectional long-term and short-term
+                  memory network to extract more important information from the
+                  merged CNN information; Finally, use Self-Attention to
+                  redistribute the weights of the network model, and then
+                  realize the final prediction.
                 </p>
                 <div
                   class="image-content"
@@ -120,10 +140,15 @@
           </el-row>
         </div>
       </div>
-
-      
     </div>
-    <div style="width: 80%; margin: 0 auto;margin-top: -150px; margin-bottom: 100px;">
+    <div
+      style="
+        width: 80%;
+        margin: 0 auto;
+        margin-top: -150px;
+        margin-bottom: 100px;
+      "
+    >
       <el-row type="flex" justify="center">
         <el-col :span="20">
           <el-card

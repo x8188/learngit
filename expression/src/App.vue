@@ -4,7 +4,7 @@
       <div id="nav" :style="opacityStyle">
         <div id="title">
           <span>DEEPCBA</span>
-          <img src="./img/logo/logo.png" style="width: 70px; height: 70px" />
+          <img src="./img/logo/logo.png" style="width: 70px; height: 65px" />
         </div>
 
         <div class="link-wrapper" style="display: flex">
@@ -112,7 +112,9 @@ body {
 #title {
   font-size: 30px;
   color: #fff;
-  margin-left: 20px;
+  margin-left: 30px;
+  /* text-shadow: 0 2px 4px rgba(255, 255, 255, 0.5); */
+  text-shadow: 3px 3px 8px rgba(255, 255, 255, 0.5)
 }
 /* #welcome{
   width: 100%;
