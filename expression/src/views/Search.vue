@@ -91,13 +91,13 @@
             icon="el-icon-refresh-right"
             circle
             class="reBtn"
-            @click="getTasks"
+            @click="refresh"
           ></el-button>
         </el-tooltip>
       </div>
 
       <el-card class="box-card">
-        <el-table :data="taskTable" ref="filterTable" style="font-size: 15px">
+        <el-table :data="taskTable" ref="filterTable" style="font-size: 15px;"  max-height="500">
           <el-table-column prop="taskID" label="task ID"> </el-table-column>
           <el-table-column
             prop="modelName"
@@ -220,13 +220,28 @@ export default {
       // 在此向服务器发请求，成功后删除
     },
     visTask(row) {
-      if (row.stataus != 1) {
-        this.$alert("This mission has not been successful", "ERROR!", {
+      if (row.stataus == 0) {
+        this.$alert("This task is queuing", "Please wait patiently", {
+          confirmButtonText: "confrim",
+          type: "warning",
+        });
+        return;
+      }
+      else if(row.stataus == 1){
+        this.$alert("This task is running", "Please wait patiently", {
+          confirmButtonText: "confrim",
+          type: "info",
+        });
+        return;
+      }
+      else if(row.stataus == 3){
+        this.$alert("This task failed to run", "Error", {
           confirmButtonText: "confrim",
           type: "error",
         });
         return;
-      } else {
+      }
+      else {
         this.$router.push({
           path: `/show/${row.taskID}`,
         });
@@ -304,17 +319,22 @@ export default {
           el["ttl1"] = this.formatSeconds(el.ttl);
 
           this.filters.push({ text: el.modelName, value: el.modelName });
-          const res = new Map();
-          this.filters = this.filters.filter(
-            (a) => !res.has(a.text) && res.set(a.text, 1)
-          );
+
         });
+        const res = new Map();
+        this.filters = this.filters.filter(
+          (a) => !res.has(a.text) && res.set(a.text, 1)
+        )
       }
       // console.log(this.filters[0]);
     },
-    searchJob() {
+    async searchJob() {
+      await this.getTasks()
       this.taskTable = this.taskTable.filter((el) => {
-        return el.taskID === this.searchValue;
+        // console.log(el.taskID.search(this.searchValue))
+        if(el.taskID.search(this.searchValue)!=-1) return true
+        else return false
+        // return el.taskID === this.searchValue;
       });
     },
     filterHandler(value, row, column) {
@@ -331,6 +351,10 @@ export default {
     clearFilter() {
       this.$refs.filterTable.clearFilter();
     },
+    refresh(){
+      this.getTasks()
+      this.searchValue=""
+    }
   },
   created() {
     this.getTasks();

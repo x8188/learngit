@@ -349,7 +349,7 @@ export default {
 }
 
 .teacher3-serve {
-  position: relative;
+  /* position: relative; */
   display: flex;
   flex-direction: column;
   min-width: 960px;
