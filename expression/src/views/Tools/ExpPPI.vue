@@ -165,7 +165,9 @@
                     </div>
                   </div>
                   <div v-else>
-                    <i class="el-icon-upload" style="color:#d32f2f"></i>
+                    <!-- <i class="el-icon-upload" style="color:#d32f2f"></i> -->
+                    <span class="iconfont icon-jinyong" style="font-size:70px;color:#d32f2f"></span>
+                    
                     <div class="el-upload__text">
                       You haven't selected the model from above
                     </div>

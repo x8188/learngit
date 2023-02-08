@@ -124,6 +124,7 @@
                   v-show="row.stataus == 3"
                 ></i>
                 <i class="el-icon-loading" v-show="row.stataus == 1"></i>
+                <span class="iconfont icon-paidui" v-show="row.stataus == 0" style="font-size:20px"></span>
               </div>
             </template>
           </el-table-column>
@@ -153,6 +154,7 @@
           </el-table-column>
         </el-table>
       </el-card>
+      <!-- <span class="iconfont icon-shaixuan"></span> -->
       <!-- <el-pagination
         @size-change="handleSizeChange"
         @current-change="getPageList"
@@ -396,13 +398,14 @@ export default {
 }
 
 ::v-deep .el-table__column-filter-trigger .el-icon-arrow-down {
-  /* font-family: el-icon-d-caret !important; */
-  font-size: 20px;
+  font-family: "iconfont" !important;
+  font-size: 15px;
   font-weight: bold;
-  /* transform: unset */
+
+  transform: unset
 }
-/* ::v-deep .el-table__column-filter-trigger .el-icon-arrow-down:before {
-  content: "\e637";
-} */
+::v-deep .el-table__column-filter-trigger .el-icon-arrow-down:before {
+  content: "\e74a";
+}
 
 </style>

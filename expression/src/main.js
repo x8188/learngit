@@ -30,6 +30,8 @@ Vue.component(Table.name,Table)
 import * as API  from './request' 
 Vue.prototype.$API=API;
 
+import './assets/iconfont/iconfont.css'
+
 new Vue({
   router,
   store,

@@ -1,0 +1,30 @@
+{
+  "id": "3667461",
+  "name": "ds",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "577355",
+      "name": "筛选",
+      "font_class": "shaixuan",
+      "unicode": "e74a",
+      "unicode_decimal": 59210
+    },
+    {
+      "icon_id": "5638797",
+      "name": "禁用",
+      "font_class": "jinyong",
+      "unicode": "e615",
+      "unicode_decimal": 58901
+    },
+    {
+      "icon_id": "6992594",
+      "name": "排队",
+      "font_class": "paidui",
+      "unicode": "e662",
+      "unicode_decimal": 58978
+    }
+  ]
+}
