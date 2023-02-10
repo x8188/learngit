@@ -7,7 +7,9 @@
     <Steps :steps1="steps1"></Steps>
     <div class="tool-up">
       <div class="top-text">
-        <h1 style="font-size: 40px;font-weight: bolder;">Maize Expression prediction base on DNA</h1>
+        <h1 style="font-size: 40px; font-weight: bolder">
+          Maize Expression prediction base on DNA
+        </h1>
       </div>
 
       <div style="margin-top: 50px">
@@ -44,7 +46,7 @@
                 </el-select>
               </div>
             </el-col>
-            <el-col :span="6">
+            <el-col :span="8">
               <el-card>
                 <div slot="header">
                   <span class="cardTitle">Note</span>
@@ -102,30 +104,47 @@
               <div style="text-align: center">
                 <el-alert
                   title="BE CAREFUL-------After switching the method, the entered sequence will be cleared"
-                  style="width: 50%; margin: 0 auto"
+                  style="width: 50%; margin: 0 auto; margin-bottom: 10px"
                   center
                   type="info"
                   close-text="got it"
                 >
                 </el-alert>
-                <el-input
-                  type="textarea"
-                  style="width: 47%; margin: 10px"
-                  v-model="Seq1"
-                  :disabled="!seqflag"
-                  rows="4"
-                  placeholder="Please select the model from above first"
-                  @blur="checkinput(1)"
-                />
-                <el-input
-                  type="textarea"
-                  style="width: 47%; margin: 10px"
-                  v-model="Seq2"
-                  :disabled="!seqflag"
-                  rows="4"
-                  placeholder="Please select the model from above first"
-                  @blur="checkinput(2)"
-                />
+                <el-popover placement="right" width="500" trigger="hover">
+                  <h2 style="text-align: center; margin: 0 auto">
+                    DATA FORMAT
+                  </h2>
+                  <el-input
+                    type="textarea"
+                    style="width: 95%; margin: 10px"
+                    :value="exampleSeq"
+                    rows="10"
+                    :readonly="true"
+                  />
+                  <el-button slot="reference" class="el-icon-info">
+                    View Correct data format</el-button
+                  >
+                </el-popover>
+                <div>
+                  <el-input
+                    type="textarea"
+                    style="width: 47%; margin: 10px"
+                    v-model="Seq1"
+                    :disabled="!seqflag"
+                    rows="4"
+                    placeholder="Please select the model from above first"
+                    @blur="checkinput(1)"
+                  />
+                  <el-input
+                    type="textarea"
+                    style="width: 47%; margin: 10px"
+                    v-model="Seq2"
+                    :disabled="!seqflag"
+                    rows="4"
+                    placeholder="Please select the model from above first"
+                    @blur="checkinput(2)"
+                  />
+                </div>
               </div>
             </el-tab-pane>
             <!-- 或者直接上传文件 -->
@@ -140,10 +159,19 @@
                 >
                 </el-alert>
                 <el-col :span="24" style="margin-top: 10px">
-                  <div >
-                    <h1 v-if="!seqflag" style="color:#FB6672;font-weight: bold;">👆👆👆 Please select the model from above first </h1>
-                    <h1 v-if="fileFlag" style="color:#47B347;font-weight: bold;">Successfully uploaded the file</h1>
-                  
+                  <div>
+                    <h1
+                      v-if="!seqflag"
+                      style="color: #fb6672; font-weight: bold"
+                    >
+                      👆👆👆 Please select the model from above first
+                    </h1>
+                    <h1
+                      v-if="fileFlag"
+                      style="color: #47b347; font-weight: bold"
+                    >
+                      Successfully uploaded the file
+                    </h1>
                   </div>
                   <el-upload
                     class="upload-demo"
@@ -151,27 +179,29 @@
                     action=""
                     multiple
                     :on-change="fileChange"
-
                     :file-list="fileList"
                     :auto-upload="false"
                     accept=".fasta"
                     :disabled="!seqflag"
-                    :limit=1
+                    :limit="1"
                   >
-                  <div v-if="seqflag">
-                    <i class="el-icon-upload"></i>
-                    <div class="el-upload__text">
-                      Drop files here, Or <em>Click Upload</em>
+                    <div v-if="seqflag">
+                      <i class="el-icon-upload"></i>
+                      <div class="el-upload__text">
+                        Drop files here, Or <em>Click Upload</em>
+                      </div>
                     </div>
-                  </div>
-                  <div v-else>
-                    <!-- <i class="el-icon-upload" style="color:#d32f2f"></i> -->
-                    <span class="iconfont icon-jinyong" style="font-size:70px;color:#d32f2f"></span>
-                    
-                    <div class="el-upload__text">
-                      You haven't selected the model from above
+                    <div v-else>
+                      <!-- <i class="el-icon-upload" style="color:#d32f2f"></i> -->
+                      <span
+                        class="iconfont icon-jinyong"
+                        style="font-size: 70px; color: #d32f2f"
+                      ></span>
+
+                      <div class="el-upload__text">
+                        You haven't selected the model from above
+                      </div>
                     </div>
-                  </div>
 
                     <div class="el-upload__tip" slot="tip">
                       Only .fasta files can be uploaded
@@ -286,7 +316,13 @@ export default {
       Seq1: "",
       Seq2: "",
       uploading: false,
-      PPImodellist: ["SHOOT1", "EAR1", "SHOOT2", "EAR2", "TASSEL"],
+      PPImodellist: [
+        "Shoot_Li",
+        "Ear_Sun",
+        "Shoot_Peng",
+        "Ear_Li",
+        "Tassel_Sun",
+      ],
       // PDImodellist: ["SHOOT1", "EAR", "SHOOT2"],
       options: [{ value: "1" }, { value: "2" }],
       updataForm: {
@@ -304,14 +340,21 @@ export default {
       fileFlag: false,
 
       taskBoby_seq: {
-        modelName: "testseq",
+        modelName: "",
         seq: [],
         email: "",
       },
       taskBoby_file: {
-        modelName: "testfile",
+        modelName: "",
         email: "",
       },
+
+      exampleSeq:
+        ">Zm00001d027230_1_+_43289-44789_49337-50837\n" +
+        "GGAAGAGAGAGGCTGCTCCCTCTGTACATGGGGGAGTTCTAATCTCCCCTATTTCGGTAATCTATGTTTTA\n" +
+        ">Zm00001d027235_1_+_121120-122620_122114-123614\n" +
+        "AATGGCCTCCTCTAACATCTGTCCTTCCCTTCCATAAAAACCCCCTGCGAATCTTATCAATAGCTCTAA\n" +
+        "\nwhich means:\n>your Gene Name\nyour Gene Seq",
     };
   },
   computed: {
@@ -367,23 +410,23 @@ export default {
             // 暂时直接显示成功
             // 判断步骤2是否成功
             if (this.fileFlag) {
-
-              this.taskBoby_file.file=this.fileList[0].raw
+              this.taskBoby_file.file = this.fileList[0].raw;
               this.taskBoby_file.email = this.updataForm.email;
-              
-              let result=await this.$API.reqSubmitFlie(this.taskBoby_file)
+              this.taskBoby_file.modelName = this.PPImodel;
 
-              if(result.code==200){
-              this.steps1 = 3;
-              this.$msgbox({
-                message:
-                  "Upload sequence succeeded! \
-                  Your email will receive an email with a TASK NAME. \
+              let result = await this.$API.reqSubmitFlie(this.taskBoby_file);
+
+              if (result.code == 200) {
+                this.steps1 = 3;
+                this.$msgbox({
+                  title:"Upload sequence succeeded!",
+                  message:
+                    "Your email will receive an email with a TASK NAME.\n \
                   Please query the progress of this task according to this TASK NAME",
-                type: "success",
-              });
+                  type: "success",
+                  confirmButtonText:"confrim"
+                });
               }
-
             } else {
               this.$alert(
                 "Please upload the correct fasta file",
@@ -403,17 +446,19 @@ export default {
               this.taskBoby_seq.seq.push(this.Seq1);
               this.taskBoby_seq.seq.push(this.Seq2);
               this.taskBoby_seq.email = this.updataForm.email;
+              this.taskBoby_seq.modelName = this.PPImodel;
 
               let result = await this.$API.reqSubmitSeq(this.taskBoby_seq);
 
               if (result.code == 200) {
                 this.steps1 = 3;
                 this.$msgbox({
+                  title:"Upload sequence succeeded!\n ",
                   message:
-                    "Upload sequence succeeded! \
-                  Your email will receive an email with a TASK NAME. \
+                    "Your email will receive an email with a TASK NAME.\n \
                   Please query the progress of this task according to this TASK NAME",
                   type: "success",
+                  confirmButtonText:"confrim"
                 });
               }
             } else {
@@ -432,6 +477,7 @@ export default {
           this.$msgbox({
             message: "please enter correct email",
             type: "error",
+            confirmButtonText:"confrim"
           });
           return false;
         }
@@ -471,9 +517,7 @@ export default {
     //   // console.log(value);
     // },
 
-    handlerSuccess(response, file, fileList) {
-
-    },
+    handlerSuccess(response, file, fileList) {},
     // submitUpload() {
     //   this.$refs.upload.submit();
     // },
@@ -485,12 +529,13 @@ export default {
         this.$msgbox({
           message: "The file size exceeds the limit. PPI:50mb PDI:80mb",
           type: "error",
+          confirmButtonText:"confrim"
         });
         // const currIdx = this.fileList.indexOf(file);
         // this.fileList.splice(currIdx, 1);
         return;
       }
-      
+
       this.fileList = fileList;
       this.steps1 = 2;
       this.fileFlag = true;
@@ -500,7 +545,7 @@ export default {
       if (tab.name === "input") {
         this.fileFlag = false;
         this.method = 0;
-        this.fileList=[];
+        this.fileList = [];
       } else if (tab.name === "file") {
         this.method = 1;
         this.inputFlag = false;
@@ -508,17 +553,56 @@ export default {
         this.Seq2 = "";
       }
     },
+
+    checkSeq(seq) {
+      var seq_list = seq.split("\n");
+      if(seq_list.length%2!=0){ return false;}
+      // console.log(seq_list)
+      for (var i = 0; i < seq_list.length; i++) {
+        if (i % 2 == 0 && seq_list[i][0] != ">") {
+          return false;
+        }
+        if (i % 2 == 1 && !/^[ATCG]+$/.test(seq_list[i])) {
+          return false;
+        }
+      }
+      // if(seq_list)
+      return true;
+// >Zm222222
+// GGAAG
+// >Zm11111
+// AATGGC
+// >Zm000
+// AATGGCC
+    },
     // 检查输入序列格式
     checkinput(seq) {
-      if ((seq == 1 && this.Seq2 != "") || (seq == 2 && this.Seq1 != "")) {
-        if (
-          this.Seq1.length > this.seqlenth ||
-          this.Seq2.length > this.seqlenth
-        ) {
-          this.$alert("PPI:3000bp  PDI:1500bp ", "seq lenth error!", {
-            confirmButtonText: "confrim",
+      if (this.Seq2 != "" && this.Seq1 != "") {
+        // 判断是否基因数过多
+        var len1 = this.Seq1.split("\n").length;
+        var len2 = this.Seq1.split("\n").length;
+        if (len1 > 20 || len2 > 20) {
+          this.$alert(
+            "Maximum number of genes:20.If you want to upload more genes, please select File Upload ",
+            "Too many genes!",
+            {
+              confirmButtonText: "confrim",
+              type: "error",
+            }
+          );
+          this.steps1 = 1;
+          this.inputFlag = false;
+          return;
+        }
+
+        if (!(this.checkSeq(this.Seq1) && this.checkSeq(this.Seq2))) {
+          Message({
+            message: "Wrong data format !!! Please view the correct data format from above",
             type: "error",
+            offset: 400,
           });
+          this.steps1 = 1;
+          this.inputFlag = false;
           return;
         }
         this.steps1 = 2;
@@ -527,7 +611,7 @@ export default {
     },
     // 清空已经填入的数据
     resetInfo() {
-      this.PPImodel="";
+      this.PPImodel = "";
       // 手动输入
       if (this.method == 0) {
         this.inputFlag = false;
@@ -536,11 +620,11 @@ export default {
       }
       // 上传文件
       else {
-        this.fileFlag=false
-        this.fileList=[];
+        this.fileFlag = false;
+        this.fileList = [];
       }
 
-      this.updataForm.email="" 
+      this.updataForm.email = "";
       this.steps1 = 0;
     },
   },
@@ -560,7 +644,7 @@ export default {
   font-size: 20px;
 }
 .tool-up {
-  width: 80%;
+  width: 70%;
   margin: 0 auto;
 }
 
@@ -571,9 +655,8 @@ export default {
   margin-top: 30px;
 
   /* background:-webkit-linear-gradient(left,#93a5cf,#e4efe9) ; */
-  background:-webkit-linear-gradient(left,#fff1eb,#ace0f9) ;
-  border-radius:8px
-
+  background: -webkit-linear-gradient(left, #fff1eb, #ace0f9);
+  border-radius: 8px;
 }
 
 .showimg {

@@ -136,6 +136,7 @@ export default {
     async getTaskInfo() {
       let result = await this.$API.reqTaskResultInfo(this.id);
       if (result.code == 200) {
+        console.log(result)
         this.expData = result["1_1_2.csv"];
         this.data2 = result["1_1_1.csv"];
         this.fileurl=result.fileurl

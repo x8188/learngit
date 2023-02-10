@@ -82,7 +82,11 @@
             <el-col :span="12">
               <el-card
                 class="homecard"
-                style="background-color: #296d7f; color: #ffffff;border-radius: 15px"
+                style="
+                  background-color: #296d7f;
+                  color: #ffffff;
+                  border-radius: 15px;
+                "
               >
                 <p style="font-weight: bold; font-size: 30px">Introduction</p>
                 <p>
@@ -90,7 +94,7 @@
                   can be divided into three modules: convolution neural network
                   module, bidirectional long-term and short-term memory network
                   module and self-attention mechanism module, as shown in the
-                  following figure. 
+                  following figure.
                 </p>
                 <div
                   class="image-content"
@@ -105,24 +109,23 @@
                 class="homecard"
                 style="
                   background: -webkit-linear-gradient(left, #fff1eb, #ace0f9);
-                  border-radius: 15px
+                  border-radius: 15px;
                 "
               >
                 <p>
-                  The overall process of DeepCBA is as
-                  follows: First, encode the sequence with length of 3000 bp and
-                  1500 bp into 4*3000/4*1500 one-pot encoding matrix;
-                  Secondly, take the encoded one-pot encoding matrix as the
-                  input of the CNN Layer, use the ReLU activation function to
-                  propagate the forward output and eliminate the reverse output,
-                  and then use the maximum pooling operation to reduce the
-                  dimension, and achieve the extraction of higher-level
-                  features; Next, combine the information output by CNN and
-                  input it into the bidirectional long-term and short-term
-                  memory network to extract more important information from the
-                  merged CNN information; Finally, use Self-Attention to
-                  redistribute the weights of the network model, and then
-                  realize the final prediction.
+                  The overall process of DeepCBA is as follows: First, encode
+                  the sequence with length of 3000 bp and 1500 bp into
+                  4*3000/4*1500 one-pot encoding matrix; Secondly, take the
+                  encoded one-pot encoding matrix as the input of the CNN Layer,
+                  use the ReLU activation function to propagate the forward
+                  output and eliminate the reverse output, and then use the
+                  maximum pooling operation to reduce the dimension, and achieve
+                  the extraction of higher-level features; Next, combine the
+                  information output by CNN and input it into the bidirectional
+                  long-term and short-term memory network to extract more
+                  important information from the merged CNN information;
+                  Finally, use Self-Attention to redistribute the weights of the
+                  network model, and then realize the final prediction.
                 </p>
                 <div
                   class="image-content"
@@ -151,15 +154,7 @@
     >
       <el-row type="flex" justify="center">
         <el-col :span="20">
-          <el-card
-            style="
-              text-align: center;
-              /* background: linear-gradient(220.55deg, #0C3A2D 0%, #6D9773 100%);             */
-              color: #ffffff;
-              border-radius: 30px;
-              /* background: linear-gradient(220.55deg, #EAEAEA 0%, #8B8B8B 100%); */
-            "
-          >
+          <el-card class="bottom-card">
             <div style="margin-bottom: 50px; text-align: justify">
               <p style="font-size: 20px">
                 &nbsp; &nbsp;&nbsp;&nbsp;The DeepCBA framework includes a CNN
@@ -168,7 +163,7 @@
                 Network (BiLSTM) for capturing sequence timing features, and an
                 attention for weight reassignment. The force mechanism has three
                 parts. DeepCBA first performs one-hot encoding on the input
-                chromatin sequence of length 3002; its encoding format is as
+                chromatin sequence of length 3000; its encoding format is as
                 follows: A(1,0,0,0)T, C(0,1,0,0)T, G( 0,0,1,0)T, T(0,0,0,1)T;
                 Input the encoded sequence into the convolutional neural network
                 to achieve feature dimensionality reduction and feature
@@ -360,5 +355,15 @@ export default {
   margin-top: -300px;
   padding-bottom: 110px;
   z-index: -1;
+}
+
+.bottom-card {
+  text-align: center;
+  /* background: linear-gradient(220.55deg, #0C3A2D 0%, #6D9773 100%);             */
+  background: -webkit-linear-gradient(transparent, rgb(250, 250, 250) 100%);
+
+  color: #050505;
+  border-radius: 30px;
+  /* background: linear-gradient(220.55deg, #EAEAEA 0%, #8B8B8B 100%); */
 }
 </style>
