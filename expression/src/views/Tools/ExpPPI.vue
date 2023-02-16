@@ -317,11 +317,11 @@ export default {
       Seq2: "",
       uploading: false,
       PPImodellist: [
-        "Shoot_Li",
-        "Ear_Sun",
-        "Shoot_Peng",
-        "Ear_Li",
-        "Tassel_Sun",
+        "PPI_Shoot_Li",
+        "PPI_Ear_Sun",
+        "PPI_Shoot_Peng",
+        "PPI_Ear_Li",
+        "PPI_Tassel_Sun",
       ],
       // PDImodellist: ["SHOOT1", "EAR", "SHOOT2"],
       options: [{ value: "1" }, { value: "2" }],
@@ -524,10 +524,10 @@ export default {
     // 文件改变时监视，限制文件大小
     fileChange(file, fileList) {
       const isSize = file.size / 1024 / 1024;
-      let lim = 50;
+      let lim = 10;
       if (isSize > lim) {
         this.$msgbox({
-          message: "The file size exceeds the limit. PPI:50mb PDI:80mb",
+          message: "The file size exceeds the limit. PPI:10mb PDI:10mb",
           type: "error",
           confirmButtonText:"confrim"
         });

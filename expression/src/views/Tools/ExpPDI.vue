@@ -245,7 +245,7 @@ export default {
       Seq1: "",
       Seq2: "",
       uploading: false,
-      PDImodellist: ["SHOOT1", "EAR", "SHOOT2"],
+      PDImodellist: ["PDI_Shoot_Li", "PDI_Ear_Li", "PDI_Shoot_Peng"],
       updataForm: {
         email: "",
       },
@@ -385,10 +385,10 @@ export default {
     fileChange(file, fileList) {
       // this.fileList = fileList;
       const isSize = file.size / 1024 / 1024;
-      let lim = 80;
+      let lim = 10;
       if (isSize > lim) {
         this.$msgbox({
-          message: "The file size exceeds the limit. PPI:50mb PDI:80mb",
+          message: "The file size exceeds the limit. PPI:10mb PDI:10mb",
           type: "error",
           confirmButtonText:"confrim"
         });
