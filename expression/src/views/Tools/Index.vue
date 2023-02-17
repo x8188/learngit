@@ -65,6 +65,7 @@
         </el-card>
       </el-col>
     </el-row>
+    <Back></Back>
   </div>
 </template>
 
@@ -86,6 +87,7 @@ export default {
 .tool {
   width: 80%;
   margin: 0 auto;
+  height: 800px;
 }
 
 .cardTitle {
@@ -111,7 +113,8 @@ justify-content:center;
 #modelSelect {
   text-align: center;
   font-weight: bold;
-  color: #a7f0e8;
+  color: #003164;
+  margin: 50px;
 }
 
 .rouButton {

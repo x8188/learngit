@@ -27,6 +27,9 @@ Vue.component(Steps.name,Steps)
 import Table from "./components/Table.vue"
 Vue.component(Table.name,Table)
 
+import Back from "./components/Back.vue"
+Vue.component(Back.name,Back)
+
 import * as API  from './request' 
 Vue.prototype.$API=API;
 

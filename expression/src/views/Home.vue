@@ -12,16 +12,16 @@
     <div class="teacher-overview-welcome" style="width: 70%; margin: 0 auto">
       <div class="welcome">
         <p class="welcome-title">WELCOME</p>
-        <p class="welcome-organization">This is DeepCBA</p>
+        <p class="welcome-organization">This is website of DeepCBA</p>
         <p class="welcome-email">
-          xx xx xxx xx xx x <span class="bindEmail">xx xx xxx xx xx x </span>
+          where you can simply understand DeepCBA and use online tools conveniently
         </p>
-        <p class="welcome-time">xx xx xxx xx xx x</p>
+        <p class="welcome-time">Zhenye Wang &nbsp;&nbsp; Jianxiao Liu*</p>
         <p></p>
         <div class="welcome-bd">
           <div class="weather"></div>
           <div class="temp">
-            x xxx xx xx xxx xx xx x xxx xx xxx xxx xxx xx xxx xxx xxx xxxx
+            DeepCBA: Gene expression prediction by integrating maize promoter proximal and distal region interaction using deep learning
           </div>
         </div>
       </div>
@@ -285,7 +285,7 @@ export default {
       rgba(255, 255, 255, 0.2),
       rgba(255, 255, 255, 0.2)
     ),
-    url("../img/homeback.png");
+    url("../img/homeback2.png");
   /* background-image: linear-gradient(transparent, rgb(250, 250, 250) 85%),
     url("../img/homeback.png"); */
 

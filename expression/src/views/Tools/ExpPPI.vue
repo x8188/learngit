@@ -419,12 +419,26 @@ export default {
               if (result.code == 200) {
                 this.steps1 = 3;
                 this.$msgbox({
-                  title:"Upload sequence succeeded!",
+                  title: "Upload sequence succeeded!",
                   message:
                     "Your email will receive an email with a TASK NAME.\n \
                   Please query the progress of this task according to this TASK NAME",
                   type: "success",
-                  confirmButtonText:"confrim"
+                  confirmButtonText: "confrim",
+                });
+              } else if (result.code == 500) {
+                this.$msgbox({
+                  title: "error!\n ",
+                  message: "File processing error",
+                  type: "error",
+                  confirmButtonText: "confrim",
+                });
+              } else if (result.code == 400) {
+                this.$msgbox({
+                  title: "error!\n ",
+                  message: "Illegal sequence",
+                  type: "error",
+                  confirmButtonText: "confrim",
                 });
               }
             } else {
@@ -443,22 +457,35 @@ export default {
           else {
             // 判断步骤2是否成功
             if (this.inputFlag) {
+              this.taskBoby_seq.seq = [];
               this.taskBoby_seq.seq.push(this.Seq1);
               this.taskBoby_seq.seq.push(this.Seq2);
               this.taskBoby_seq.email = this.updataForm.email;
               this.taskBoby_seq.modelName = this.PPImodel;
-
               let result = await this.$API.reqSubmitSeq(this.taskBoby_seq);
-
               if (result.code == 200) {
                 this.steps1 = 3;
                 this.$msgbox({
-                  title:"Upload sequence succeeded!\n ",
+                  title: "Upload sequence succeeded!\n ",
                   message:
                     "Your email will receive an email with a TASK NAME.\n \
                   Please query the progress of this task according to this TASK NAME",
                   type: "success",
-                  confirmButtonText:"confrim"
+                  confirmButtonText: "confrim",
+                });
+              } else if (result.code == 500) {
+                this.$msgbox({
+                  title: "error!\n ",
+                  message: "File processing error",
+                  type: "error",
+                  confirmButtonText: "confrim",
+                });
+              } else if (result.code == 400) {
+                this.$msgbox({
+                  title: "error!\n ",
+                  message: "Illegal sequence",
+                  type: "error",
+                  confirmButtonText: "confrim",
                 });
               }
             } else {
@@ -477,7 +504,7 @@ export default {
           this.$msgbox({
             message: "please enter correct email",
             type: "error",
-            confirmButtonText:"confrim"
+            confirmButtonText: "confrim",
           });
           return false;
         }
@@ -529,7 +556,7 @@ export default {
         this.$msgbox({
           message: "The file size exceeds the limit. PPI:10mb PDI:10mb",
           type: "error",
-          confirmButtonText:"confrim"
+          confirmButtonText: "confrim",
         });
         // const currIdx = this.fileList.indexOf(file);
         // this.fileList.splice(currIdx, 1);
@@ -554,30 +581,34 @@ export default {
       }
     },
 
-    checkSeq(seq) {
-      var seq_list = seq.split("\n");
-      if(seq_list.length%2!=0){ return false;}
+    checkSeq(seq1, seq2) {
+      var seq1_list = seq1.split("\n");
+      var seq2_list = seq2.split("\n");
+
+      // 1:表示基因格式错误
+      if (seq1_list.length % 2 != 0 || seq2_list.length % 2 != 0) return 1;
+      // 2:表示两侧基因个数不一致
+      if (seq1_list.length != seq2_list.length) return 2;
+
       // console.log(seq_list)
-      for (var i = 0; i < seq_list.length; i++) {
-        if (i % 2 == 0 && seq_list[i][0] != ">") {
-          return false;
+      for (var i = 0; i < seq1_list.length; i++) {
+        if (i % 2 == 0) {
+          if (seq1_list[i][0] != ">" || seq2_list[i][0] != ">") return 1;
+          // 3表示交互的基因名重复了
+          if (seq1_list[i] == seq2_list[i]) return 3;
         }
         if (i % 2 == 1 && !/^[ATCG]+$/.test(seq_list[i])) {
-          return false;
+          return 1;
         }
       }
       // if(seq_list)
-      return true;
-// >Zm222222
-// GGAAG
-// >Zm11111
-// AATGGC
-// >Zm000
-// AATGGCC
+      return 0;
     },
     // 检查输入序列格式
-    checkinput(seq) {
+    checkinput() {
       if (this.Seq2 != "" && this.Seq1 != "") {
+        this.Seq1 = this.Seq1.trim();
+        this.Seq2 = this.Seq2.trim();
         // 判断是否基因数过多
         var len1 = this.Seq1.split("\n").length;
         var len2 = this.Seq1.split("\n").length;
@@ -595,18 +626,38 @@ export default {
           return;
         }
 
-        if (!(this.checkSeq(this.Seq1) && this.checkSeq(this.Seq2))) {
+        var tem = this.checkSeq(this.Seq1, this.Seq2);
+        if (tem == 0) {
+          this.steps1 = 2;
+          this.inputFlag = true;
+        } else if (tem == 1) {
           Message({
-            message: "Wrong data format !!! Please view the correct data format from above",
+            message:
+              "Wrong data format !!! Please view the correct data format from above",
             type: "error",
             offset: 400,
           });
           this.steps1 = 1;
           this.inputFlag = false;
-          return;
+        } else if (tem == 2) {
+          Message({
+            message:
+              "The number of genes in the two input boxes should be the same",
+            type: "error",
+            offset: 400,
+          });
+          this.steps1 = 1;
+          this.inputFlag = false;
+        } else if (tem == 3) {
+          Message({
+            message:
+              "The gene name of the interaction (that is, the gene name of the same line) cannot be the same",
+            type: "error",
+            offset: 400,
+          });
+          this.steps1 = 1;
+          this.inputFlag = false;
         }
-        this.steps1 = 2;
-        this.inputFlag = true;
       }
     },
     // 清空已经填入的数据

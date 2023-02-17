@@ -40,9 +40,8 @@
       <div class="foot">
         <h1 style="color: white; font-weight: bold; font-size: 30px; text-align: center">Contact</h1>
         <p style="width: 50%; text-align: center; margin: 0 auto; padding: 10px 0">
-          Address: Room B111, National Key Laboratory of Crop Genetic Improvement, Huazhong Agricultural university,
-          Wuhan, 430070, China 湖北省武汉市南湖狮子山街一号第二综合楼B111室 Tel: 027-87280350 Email: weibo.xie [at]
-          mail.hzau.edu.cnt
+          Address: Room C423, Research Office of Artificial Intelligence Research Group, Huazhong Agricultural university,
+          Wuhan, 430070, China 湖北省武汉市南湖狮子山街一号逸夫楼C座423室 Tel: 027-87280350 Email: 
         </p>
       </div>
     </div>
