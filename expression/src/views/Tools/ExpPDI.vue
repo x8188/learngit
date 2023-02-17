@@ -73,7 +73,7 @@
           >
             <!-- 选择模型输入序列 -->
             <el-tab-pane label="Manual input" name="input">
-              <div style="text-align: center">
+              <div>
                 <el-alert
                   title="BE CAREFUL-------After switching the method, the entered sequence will be cleared"
                   style="width: 50%; margin: 0 auto; margin-bottom: 10px"
@@ -82,21 +82,79 @@
                   close-text="got it"
                 >
                 </el-alert>
-                <el-popover placement="right" width="500" trigger="hover">
-                  <h2 style="text-align: center; margin: 0 auto">
-                    DATA FORMAT
-                  </h2>
-                  <el-input
-                    type="textarea"
-                    style="width: 95%; margin: 10px"
-                    :value="exampleSeq"
-                    rows="8"
-                    :readonly="true"
-                  />
-                  <el-button slot="reference" class="el-icon-info">
-                    View Correct data format</el-button
-                  >
-                </el-popover>
+                <div class="tipsButton">
+                  <el-popover placement="top" width="500" trigger="hover">
+                    <h2 style="text-align: center; margin: 0 auto">
+                      Right example
+                    </h2>
+                    <el-input
+                      type="textarea"
+                      style="width: 95%; margin: 10px"
+                      :value="exampleSeq"
+                      rows="10"
+                      :readonly="true"
+                    />
+                    <el-button
+                      slot="reference"
+                      class="el-icon-info"
+                      ref="dataBu"
+                    >
+                      First : Correct data format</el-button
+                    >
+                  </el-popover>
+                  <el-popover placement="top" width="400" trigger="hover">
+                    <h2 style="text-align: center; margin: 0 auto">
+                      Wrong example
+                    </h2>
+                    <el-input
+                      type="textarea"
+                      style="width: 43%; margin: 10px"
+                      :value="NumSeq1"
+                      rows="5"
+                      :readonly="true"
+                    />
+                    <el-input
+                      type="textarea"
+                      style="width: 43%; margin: 10px"
+                      :value="NumSeq2"
+                      rows="5"
+                      :readonly="true"
+                    />
+                    <el-button
+                      slot="reference"
+                      class="el-icon-info"
+                      ref="numBu"
+                    >
+                      Second : Same number of genes</el-button
+                    >
+                  </el-popover>
+                  <el-popover placement="top" width="400" trigger="hover">
+                    <h2 style="text-align: center; margin: 0 auto">
+                      Wrong example
+                    </h2>
+                    <el-input
+                      type="textarea"
+                      style="width: 43%; margin: 10px"
+                      :value="NameSeq1"
+                      rows="5"
+                      :readonly="true"
+                    />
+                    <el-input
+                      type="textarea"
+                      style="width: 43%; margin: 10px"
+                      :value="NameSeq2"
+                      rows="5"
+                      :readonly="true"
+                    />
+                    <el-button
+                      slot="reference"
+                      class="el-icon-info"
+                      ref="nameBu"
+                    >
+                      Third : Different gene names</el-button
+                    >
+                  </el-popover>
+                </div>
                 <div>
                   <el-input
                     type="textarea"
@@ -277,6 +335,11 @@ export default {
         ">Zm00001d027235_1_+_121120-122620_122114-123614\n" +
         "AATGGCCTCCTCTAACATCTGTCCTTCCCTTCCATAAAAACCCCCTGCGAATCTTATCAATAGCTCTAA\n" +
         "\nwhich means:\n>your Gene Name\nyour Gene Seq",
+
+      NumSeq1: ">GeneName1\nATCGATCGATCG\n>GeneName2\nATCGATCGATCG\n",
+      NumSeq2: ">GeneName3\nATCGATCGATCG",
+      NameSeq1: ">GeneName1\nATCGATCGATCG\n>GeneName2\nATCGATCGATCG\n",
+      NameSeq2: ">GeneName1\nATCGATCGATCG\n>GeneName2\nATCGATCGATCG\n",
     };
   },
   computed: {
@@ -362,6 +425,7 @@ export default {
 
               let result = await this.$API.reqSubmitSeq(this.taskBoby_seq);
 
+              console.log(result)
               if (result.code == 200) {
                 this.steps1 = 3;
                 this.$msgbox({
@@ -461,7 +525,10 @@ export default {
           // 3表示交互的基因名重复了
           if (seq1_list[i] == seq2_list[i]) return 3;
         }
-        if (i % 2 == 1 && !/^[ATCG]+$/.test(seq_list[i])) {
+        if (
+          i % 2 == 1 &&
+          (!/^[ATCG]+$/.test(seq1_list[i]) || !/^[ATCG]+$/.test(seq2_list[i]))
+        ) {
           return 1;
         }
       }
@@ -469,11 +536,11 @@ export default {
       return 0;
     },
     // 检查输入序列格式
-    checkinput(seq) {
+    checkinput() {
       if (this.Seq2 != "" && this.Seq1 != "") {
-        // 判断是否基因数过多
         this.Seq1 = this.Seq1.trim();
         this.Seq2 = this.Seq2.trim();
+        // 判断是否基因数过多
         var len1 = this.Seq1.split("\n").length;
         var len2 = this.Seq1.split("\n").length;
         if (len1 > 20 || len2 > 20) {
@@ -491,10 +558,12 @@ export default {
         }
 
         var tem = this.checkSeq(this.Seq1, this.Seq2);
+        var wrongBu = "";
         if (tem == 0) {
           this.steps1 = 2;
           this.inputFlag = true;
         } else if (tem == 1) {
+          // this.$refs.dataBu[0].setAttribute("class", " wrongBu");
           Message({
             message:
               "Wrong data format !!! Please view the correct data format from above",
@@ -503,6 +572,8 @@ export default {
           });
           this.steps1 = 1;
           this.inputFlag = false;
+
+          wrongBu = "dataBu";
         } else if (tem == 2) {
           Message({
             message:
@@ -512,6 +583,8 @@ export default {
           });
           this.steps1 = 1;
           this.inputFlag = false;
+
+          wrongBu = "numBu";
         } else if (tem == 3) {
           Message({
             message:
@@ -521,6 +594,15 @@ export default {
           });
           this.steps1 = 1;
           this.inputFlag = false;
+
+          wrongBu = "nameBu";
+        }
+
+        if (wrongBu != "") {
+          this.$refs[wrongBu].$el.classList.add("wrongBu");
+          setTimeout(() => {
+            this.$refs[wrongBu].$el.classList.remove("wrongBu");
+          }, 3000);
         }
       }
     },
@@ -602,5 +684,17 @@ td.column-money {
 .el-card ::v-deep .el-card__header {
   background-color: #a5ece4;
   /* border: #A5ECE4; */
+}
+
+.tipsButton {
+  display: flex;
+  /* margin: 0 auto; */
+  justify-content: space-evenly;
+}
+
+.wrongBu {
+  color: #fff;
+  background-color: #FF4D4F;
+  border-color: #FF4D4F;
 }
 </style>
