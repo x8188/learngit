@@ -7,44 +7,48 @@
     <Steps :steps1="steps1"></Steps>
     <div class="tool-up">
       <div class="top-text">
-        <h1 style="font-size: 40px; font-weight: bolder">
+        <h1 style="font-size: 40px; font-weight: bolder;">
           Maize Expression prediction base on DNA
         </h1>
       </div>
 
-      <div style="margin-top: 50px">
+      <div style="margin-top: 20px">
         <div style="width: 100%">
           <!-- 输入数据模式 -->
           <el-row type="flex" justify="center">
             <el-col :span="12">
-              <h1 style="margin-top: 6px; font-weight: bold">PPI Prediction</h1>
-              <div style="width: 80%">
-                <h3>
-                  In these models, the strength of plant core promoter(labels of
-                  samples) is defined as the ability to drive expression of a
-                  barcoded reporter gene in maize protoplasts with or without
-                  enhancer in dark.
-                </h3>
-                <h3>Promoter proximal region interaction (PPI)</h3>
+              <el-card class="cardModel">
+                <div slot="header">
+                  <span class="mdoelT">PPI Prediction</span>
+                </div>
+                <div>
+                  <h3>
+                    In these models, the strength of plant core promoter(labels
+                    of samples) is defined as the ability to drive expression of
+                    a barcoded reporter gene in maize protoplasts with or
+                    without enhancer in dark.
+                  </h3>
+                  <h3>Promoter proximal region interaction (PPI)</h3>
 
-                <h3 style="color: #fb6672; font-weight: bold">
-                  Please select PPI models here👇
-                </h3>
-                <el-select
-                  style="width: 240px"
-                  placeholder="-----Select Model-----"
-                  @change="PPIchangeTools"
-                  v-model="PPImodel"
-                >
-                  <el-option
-                    v-for="value in PPImodellist"
-                    :key="value"
-                    :value="value"
+                  <h3 style="color: #fb6672; font-weight: bold">
+                    Please select PPI models here👇
+                  </h3>
+                  <el-select
+                    style="width: 240px"
+                    placeholder="-----Select Model-----"
+                    @change="PPIchangeTools"
+                    v-model="PPImodel"
                   >
-                    {{ value }}
-                  </el-option>
-                </el-select>
-              </div>
+                    <el-option
+                      v-for="value in PPImodellist"
+                      :key="value"
+                      :value="value"
+                    >
+                      {{ value }}
+                    </el-option>
+                  </el-select>
+                </div>
+              </el-card>
             </el-col>
             <el-col :span="8">
               <el-card>
@@ -629,7 +633,10 @@ export default {
           // 3表示交互的基因名重复了
           if (seq1_list[i] == seq2_list[i]) return 3;
         }
-        if (i % 2 == 1 && (!/^[ATCG]+$/.test(seq1_list[i])||!/^[ATCG]+$/.test(seq2_list[i]))) {
+        if (
+          i % 2 == 1 &&
+          (!/^[ATCG]+$/.test(seq1_list[i]) || !/^[ATCG]+$/.test(seq2_list[i]))
+        ) {
           return 1;
         }
       }
@@ -752,7 +759,7 @@ export default {
   margin-top: 30px;
 
   /* background:-webkit-linear-gradient(left,#93a5cf,#e4efe9) ; */
-  background: -webkit-linear-gradient(left, #fff1eb, #ace0f9);
+  /* background: -webkit-linear-gradient(left, #fff1eb, #ace0f9); */
   border-radius: 8px;
 }
 
@@ -785,10 +792,21 @@ td.column-money {
   background-color: #a5ece4;
   /* border: #A5ECE4; */
 }
-/* .el-card ::v-deep .el-card__body {
-  background-color: #C3EAEF;
-  border: #A5ECE4;
-} */
+.cardModel {
+  width:80%;
+}
+
+.cardModel ::v-deep .el-card__header {
+  background-color: #18BC9C;
+  /* border: #A5ECE4; */
+}
+
+.mdoelT {
+  margin-left: 10px;
+  /* margin: auto; */
+  font-size: 25px;
+  font-weight: bold
+}
 
 .tipsButton {
   display: flex;

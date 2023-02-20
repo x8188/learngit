@@ -204,7 +204,7 @@ export default {
 
 <style>
 #show {
-  width: 80%;
+  width: 75%;
   margin: 0 auto;
 
   text-align: center;

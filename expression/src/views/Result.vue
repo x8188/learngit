@@ -180,7 +180,7 @@ export default {
   margin: 0 auto;
   height: 70px;
   margin-top: 50px;
-  background:-webkit-linear-gradient(top,#A3EFE6,#C3EAEF) ;
+  /* background:-webkit-linear-gradient(top,#A3EFE6,#C3EAEF) ; */
   border-radius:8px
 }
 ::v-deep .el-tabs__nav-scroll {

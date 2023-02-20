@@ -20,13 +20,13 @@ export default {
   top: 0;
   --color-filter: hue-rotate(25.4219deg);
   background-size: cover;
-  /* background-image: linear-gradient(
+  background-image: linear-gradient(
       rgba(255, 255, 255, 0.2),
       rgba(255, 255, 255, 0.2)
     ),
-    url("../img/homeback.png"); */
-  background-image: linear-gradient(transparent, rgb(250, 250, 250) 85%),
     url("../img/homeback.png");
+  /* background-image: linear-gradient(transparent, rgb(250, 250, 250) 85%),
+    url("../img/homeback.png"); */
 
   z-index: -2;
 }

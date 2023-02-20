@@ -11,38 +11,43 @@
           Maize Expression prediction base on DNA
         </h1>
       </div>
-      <div style="margin-top: 50px">
+      <div style="margin-top: 20px">
         <div style="width: 100%">
           <!-- 输入数据模式 -->
           <el-row type="flex" justify="center">
             <el-col :span="12">
-              <h1 style="margin-top: 6px; font-weight: bold">PDI Prediction</h1>
-              <div style="width: 80%">
-                <h3>
+              <el-card class="cardModel">
+                <div slot="header">
+                  <span class="mdoelT">PDI Prediction</span>
+                </div>
+                <div>
+                  <h3>
                   In these models, the strength of plant core promoter(labels of
                   samples) is defined as the ability to drive expression of a
                   barcoded reporter gene in maize protoplasts with or without
                   enhancer in dark.
                 </h3>
                 <h3>Promoter-distal element interactions (PDI)</h3>
-                <h3 style="color: #fb6672; font-weight: bold">
-                  Please select PDI models here👇
-                </h3>
-                <el-select
-                  style="width: 240px"
-                  placeholder="-----Select Model-----"
-                  @change="PDIchangeTools"
-                  v-model="PDImodel"
-                >
-                  <el-option
-                    v-for="value in PDImodellist"
-                    :key="value"
-                    :value="value"
+
+                  <h3 style="color: #fb6672; font-weight: bold">
+                    Please select PDI models here👇
+                  </h3>
+                  <el-select
+                    style="width: 240px"
+                    placeholder="-----Select Model-----"
+                    @change="PDIchangeTools"
+                    v-model="PDImodel"
                   >
-                    {{ value }}
-                  </el-option>
-                </el-select>
-              </div>
+                    <el-option
+                      v-for="value in PDImodellist"
+                      :key="value"
+                      :value="value"
+                    >
+                      {{ value }}
+                    </el-option>
+                  </el-select>
+                </div>
+              </el-card>
             </el-col>
             <el-col :span="8">
               <el-card>
@@ -652,7 +657,7 @@ export default {
   margin-top: 30px;
 
   /* background:-webkit-linear-gradient(left,#93a5cf,#e4efe9) ; */
-  background: -webkit-linear-gradient(left, #fff1eb, #ace0f9);
+  /* background: -webkit-linear-gradient(left, #fff1eb, #ace0f9); */
   border-radius: 8px;
 }
 
@@ -685,6 +690,23 @@ td.column-money {
   background-color: #a5ece4;
   /* border: #A5ECE4; */
 }
+
+.cardModel {
+  width:80%;
+}
+
+.cardModel ::v-deep .el-card__header {
+  background-color: #18BC9C;
+  /* border: #A5ECE4; */
+}
+
+.mdoelT {
+  margin-left: 10px;
+  /* margin: auto; */
+  font-size: 25px;
+  font-weight: bold
+}
+
 
 .tipsButton {
   display: flex;
