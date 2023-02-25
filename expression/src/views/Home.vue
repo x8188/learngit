@@ -14,14 +14,16 @@
         <p class="welcome-title">WELCOME</p>
         <p class="welcome-organization">This is website of DeepCBA</p>
         <p class="welcome-email">
-          where you can simply understand DeepCBA and use online tools conveniently
+          where you can simply understand DeepCBA and use online tools
+          conveniently
         </p>
-        <p class="welcome-time">Zhenye Wang &nbsp;&nbsp; Jianxiao Liu*</p>
+        <p class="welcome-time">Zhenye Wang#,&nbsp;&nbsp; Jianxiao Liu*</p>
         <p></p>
         <div class="welcome-bd">
           <div class="weather"></div>
           <div class="temp">
-            DeepCBA: Gene expression prediction by integrating maize promoter proximal and distal region interaction using deep learning
+            DeepCBA: Gene expression prediction by integrating maize promoter
+            proximal and distal region interaction using deep learning
           </div>
         </div>
       </div>
@@ -90,11 +92,14 @@
               >
                 <p style="font-weight: bold; font-size: 30px">Introduction</p>
                 <p>
-                  The core structure of the deep neural network used in Deep CBA
+                  &nbsp;&nbsp;&nbsp;&nbsp;The core structure of the deep neural network used in Deep CBA
                   can be divided into three modules: convolution neural network
                   module, bidirectional long-term and short-term memory network
                   module and self-attention mechanism module, as shown in the
-                  following figure.
+                  following figure. <br />
+                  &nbsp;&nbsp;&nbsp;&nbsp;The overall process of DeepCBA is as follows: <br />
+                  &nbsp;&nbsp;&nbsp;&nbsp;First, encode the sequence with length of 3000 bp and 1500 bp
+                  into 4*3000/4*1500 one-pot encoding matrix;
                 </p>
                 <div
                   class="image-content"
@@ -113,18 +118,17 @@
                 "
               >
                 <p>
-                  The overall process of DeepCBA is as follows: First, encode
-                  the sequence with length of 3000 bp and 1500 bp into
-                  4*3000/4*1500 one-pot encoding matrix; Secondly, take the
-                  encoded one-pot encoding matrix as the input of the CNN Layer,
-                  use the ReLU activation function to propagate the forward
-                  output and eliminate the reverse output, and then use the
-                  maximum pooling operation to reduce the dimension, and achieve
-                  the extraction of higher-level features; Next, combine the
-                  information output by CNN and input it into the bidirectional
-                  long-term and short-term memory network to extract more
-                  important information from the merged CNN information;
-                  Finally, use Self-Attention to redistribute the weights of the
+                  &nbsp;&nbsp;&nbsp;&nbsp;Secondly, take the encoded one-pot encoding matrix as the
+                  input of the CNN Layer, use the ReLU activation function to
+                  propagate the forward output and eliminate the reverse output,
+                  and then use the maximum pooling operation to reduce the
+                  dimension, and achieve the extraction of higher-level
+                  features; <br />
+                  &nbsp;&nbsp;&nbsp;&nbsp;Next, combine the information output by CNN and input it into
+                  the bidirectional long-term and short-term memory network to
+                  extract more important information from the merged CNN
+                  information;<br />
+                  &nbsp;&nbsp;&nbsp;&nbsp;Finally, use Self-Attention to redistribute the weights of the
                   network model, and then realize the final prediction.
                 </p>
                 <div

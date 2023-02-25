@@ -22,12 +22,12 @@
                 </div>
                 <div>
                   <h3>
-                  In these models, the strength of plant core promoter(labels of
-                  samples) is defined as the ability to drive expression of a
-                  barcoded reporter gene in maize protoplasts with or without
-                  enhancer in dark.
-                </h3>
-                <h3>Promoter-distal element interactions (PDI)</h3>
+                    In these models, the strength of plant core promoter(labels
+                    of samples) is defined as the ability to drive expression of
+                    a barcoded reporter gene in maize protoplasts with or
+                    without enhancer in dark.
+                  </h3>
+                  <h3>Promoter-distal element interactions (PDI)</h3>
 
                   <h3 style="color: #fb6672; font-weight: bold">
                     Please select PDI models here👇
@@ -70,14 +70,16 @@
           </el-row>
           <el-tabs
             tab-position="top"
-            type="border-card"
             stretch
             @tab-click="methodsChange"
             value="input"
-            style="margin-top: 20px; margin-bottom: 20px"
+            style="margin-top: 40px; margin-bottom: 20px"
           >
             <!-- 选择模型输入序列 -->
-            <el-tab-pane label="Manual input" name="input">
+            <el-tab-pane name="input">
+              <span slot="label" class="tabLable"
+                ><i class="el-icon-edit"></i> Manual input</span
+              >
               <div>
                 <el-alert
                   title="BE CAREFUL-------After switching the method, the entered sequence will be cleared"
@@ -183,7 +185,10 @@
               </div>
             </el-tab-pane>
             <!-- 或者直接上传文件 -->
-            <el-tab-pane label="Upload files" name="file">
+            <el-tab-pane name="file">
+              <span slot="label" class="tabLable"
+                ><i class="el-icon-folder-add"></i> Upload files</span
+              >
               <el-row style="text-align: center">
                 <el-alert
                   title="BE CAREFUL-------After switching the method, the uploaded file will be cleared"
@@ -250,7 +255,6 @@
               <el-form :model="updataForm" ref="updataForm">
                 <el-form-item
                   prop="email"
-                  label="E-mail:"
                   label-width="100px"
                   :rules="[
                     {
@@ -265,6 +269,7 @@
                     },
                   ]"
                 >
+                  <span slot="label" style="font-size: 20px"> E-mail: </span>
                   <el-input v-model="updataForm.email"></el-input>
                 </el-form-item>
               </el-form>
@@ -430,7 +435,6 @@ export default {
 
               let result = await this.$API.reqSubmitSeq(this.taskBoby_seq);
 
-              console.log(result)
               if (result.code == 200) {
                 this.steps1 = 3;
                 this.$msgbox({
@@ -692,11 +696,11 @@ td.column-money {
 }
 
 .cardModel {
-  width:80%;
+  width: 80%;
 }
 
 .cardModel ::v-deep .el-card__header {
-  background-color: #18BC9C;
+  background-color: #18bc9c;
   /* border: #A5ECE4; */
 }
 
@@ -704,9 +708,8 @@ td.column-money {
   margin-left: 10px;
   /* margin: auto; */
   font-size: 25px;
-  font-weight: bold
+  font-weight: bold;
 }
-
 
 .tipsButton {
   display: flex;
@@ -716,7 +719,12 @@ td.column-money {
 
 .wrongBu {
   color: #fff;
-  background-color: #FF4D4F;
-  border-color: #FF4D4F;
+  background-color: #ff4d4f;
+  border-color: #ff4d4f;
+}
+
+.tabLable {
+  font-size: 25px;
+  font-weight: bold;
 }
 </style>

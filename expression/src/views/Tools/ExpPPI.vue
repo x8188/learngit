@@ -7,7 +7,7 @@
     <Steps :steps1="steps1"></Steps>
     <div class="tool-up">
       <div class="top-text">
-        <h1 style="font-size: 40px; font-weight: bolder;">
+        <h1 style="font-size: 35px; font-weight: bolder">
           Maize Expression prediction base on DNA
         </h1>
       </div>
@@ -97,14 +97,16 @@
           </el-row>
           <el-tabs
             tab-position="top"
-            type="border-card"
             stretch
             @tab-click="methodsChange"
             value="input"
-            style="margin-top: 20px; margin-bottom: 20px"
+            style="margin-top: 40px; margin-bottom: 20px"
           >
             <!-- 选择模型输入序列 -->
-            <el-tab-pane label="Manual input" name="input">
+            <el-tab-pane name="input">
+              <span slot="label" class="tabLable"
+                ><i class="el-icon-edit"></i> Manual input</span
+              >
               <div>
                 <el-alert
                   title="BE CAREFUL-------After switching the method, the entered sequence will be cleared"
@@ -210,7 +212,10 @@
               </div>
             </el-tab-pane>
             <!-- 或者直接上传文件 -->
-            <el-tab-pane label="Upload files" name="file">
+            <el-tab-pane name="file">
+              <span slot="label" class="tabLable"
+                ><i class="el-icon-folder-add"></i> Upload files</span
+              >
               <el-row style="text-align: center">
                 <el-alert
                   title="BE CAREFUL-------After switching the method, the uploaded file will be cleared"
@@ -283,7 +288,6 @@
               <el-form :model="updataForm" ref="updataForm">
                 <el-form-item
                   prop="email"
-                  label="E-mail:"
                   label-width="100px"
                   :rules="[
                     {
@@ -298,6 +302,9 @@
                     },
                   ]"
                 >
+                  <span slot="label" style="font-size: 20px;">
+                    E-mail:
+                  </span>
                   <el-input v-model="updataForm.email"></el-input>
                 </el-form-item>
               </el-form>
@@ -793,11 +800,11 @@ td.column-money {
   /* border: #A5ECE4; */
 }
 .cardModel {
-  width:80%;
+  width: 80%;
 }
 
 .cardModel ::v-deep .el-card__header {
-  background-color: #18BC9C;
+  background-color: #18bc9c;
   /* border: #A5ECE4; */
 }
 
@@ -805,7 +812,7 @@ td.column-money {
   margin-left: 10px;
   /* margin: auto; */
   font-size: 25px;
-  font-weight: bold
+  font-weight: bold;
 }
 
 .tipsButton {
@@ -818,5 +825,10 @@ td.column-money {
   color: #fff;
   background-color: #d32f2f;
   border-color: #d32f2f;
+}
+
+.tabLable {
+  font-size: 25px;
+  font-weight: bolder;
 }
 </style>
