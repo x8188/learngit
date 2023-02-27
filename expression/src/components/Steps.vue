@@ -56,7 +56,7 @@
               description="View Task Queue"
             ></el-step>
             <el-step
-              title="stepss 5"
+              title="steps 5"
               icon="el-icon-circle-check"
               description="Download result file"
             ></el-step>

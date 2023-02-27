@@ -90,7 +90,7 @@
                 >
                 </el-alert>
                 <div class="tipsButton">
-                  <el-popover placement="top" width="500" trigger="hover">
+                  <el-popover placement="top" width="500" trigger="hover" open-delay="100">
                     <h2 style="text-align: center; margin: 0 auto">
                       Right example
                     </h2>
@@ -109,7 +109,7 @@
                       First : Correct data format</el-button
                     >
                   </el-popover>
-                  <el-popover placement="top" width="400" trigger="hover">
+                  <el-popover placement="top" width="400" trigger="hover" open-delay="100">
                     <h2 style="text-align: center; margin: 0 auto">
                       Wrong example
                     </h2>
@@ -135,7 +135,7 @@
                       Second : Same number of genes</el-button
                     >
                   </el-popover>
-                  <el-popover placement="top" width="400" trigger="hover">
+                  <el-popover placement="top" width="400" trigger="hover" open-delay="100">
                     <h2 style="text-align: center; margin: 0 auto">
                       Wrong example
                     </h2>
@@ -181,6 +181,9 @@
                     placeholder="Please select the model from above first"
                     @blur="checkinput(2)"
                   />
+                </div>
+                <div class="ToolButton" style="display: flex;">
+                  <el-button icon="el-icon-s-data" @click="updataEx" style="margin: 0 auto;" :disabled="!seqflag">Example</el-button>
                 </div>
               </div>
             </el-tab-pane>
@@ -277,7 +280,7 @@
           </el-row>
           <!-- 提交 -->
           <el-row type="flex" justify="center">
-            <div id="ToolButton">
+            <div class="ToolButton">
               <el-button
                 style="margin-top: 6px"
                 type="primary"
@@ -291,7 +294,6 @@
                 @click="resetInfo"
                 >RESET</el-button
               >
-              <el-button icon="el-icon-s-data">Example</el-button>
             </div>
           </el-row>
           <!-- <input type="file" @change="fileChange"></input> -->
@@ -350,6 +352,11 @@ export default {
       NumSeq2: ">GeneName3\nATCGATCGATCG",
       NameSeq1: ">GeneName1\nATCGATCGATCG\n>GeneName2\nATCGATCGATCG\n",
       NameSeq2: ">GeneName1\nATCGATCGATCG\n>GeneName2\nATCGATCGATCG\n",
+
+      EXseq1:">Zm00001d027230_1_+_43289-44789_49337-50837\n" +
+        "GGAAGAGAGAGGCTGCTCCCTCTGTACATGGGGGAGTTCTAATCTCCCCTATTTCGGTAATCTATGTTTTA",
+      EXseq2:">Zm00001d027235_1_+_121120-122620_122114-123614\n" +
+        "AATGGCCTCCTCTAACATCTGTCCTTCCCTTCCATAAAAACCCCCTGCGAATCTTATCAATAGCTCTAA"
     };
   },
   computed: {
@@ -394,6 +401,9 @@ export default {
                   Please query the progress of this task according to this TASK NAME",
                   type: "success",
                   confirmButtonText: "confrim",
+                  callback: (action) => {
+                    this.$router.go(0);
+                  },
                 });
               } else if (result.code == 500) {
                 this.$msgbox({
@@ -444,6 +454,9 @@ export default {
                   Please query the progress of this task according to this TASK NAME",
                   type: "success",
                   confirmButtonText: "confrim",
+                  callback: (action) => {
+                    this.$router.go(0);
+                  },
                 });
               } else if (result.code == 500) {
                 this.$msgbox({
@@ -633,6 +646,12 @@ export default {
       this.updataForm.email = "";
       this.steps1 = 0;
     },
+    updataEx(){
+      this.Seq1=this.EXseq1
+      this.Seq2=this.EXseq2
+
+      this.steps1=2
+    }
   },
   created() {},
 };
@@ -670,15 +689,15 @@ td.column-money {
   text-align: right !important;
 }
 
-#ToolButton button {
+.ToolButton button {
   font-size: 20px;
 }
 
-#ToolButton button:nth-child(2) {
+.ToolButton button:nth-child(2) {
   background-color: #d32f2f;
   border-color: #d32f2f;
 }
-#ToolButton button:nth-child(2):hover {
+.ToolButton button:nth-child(2):hover {
   background: #df6666 !important;
   border-color: #df6666 !important;
   color: #fff !important;

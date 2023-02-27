@@ -83,9 +83,9 @@
         Job queue monitor (update in 10 seconds):
       </p>
       <div style="text-align: right; margin-top: -50px">
-        <el-button @click="clearFilter" type="warning" plain class="reFilter"
+        <!-- <el-button @click="clearFilter" type="warning" plain class="reFilter"
           >Reset all Filters</el-button
-        >
+        > -->
         <el-tooltip effect="dark" content="Refresh task list" placement="top">
           <el-button
             icon="el-icon-refresh-right"
@@ -104,12 +104,14 @@
             label="model Name"
             :filters="filters"
             :filter-method="filterHandler"
+            
           >
           </el-table-column>
           <el-table-column
             label="tast status"
             :filters="filter_statu"
             :filter-method="filterStatu"
+            width="150"
           >
             <template slot-scope="{ row }">
               <div id="status">
@@ -132,7 +134,7 @@
           </el-table-column>
           <el-table-column prop="ttl1" label="Time remaining">
           </el-table-column>
-          <el-table-column label="function" width="300">
+          <el-table-column label="function">
             <template slot-scope="{ row }">
               <el-button
                 type="primary"
@@ -348,10 +350,8 @@ export default {
       // console.log(row.stataus,value)
       return row.stataus == value;
     },
-    clearFilter() {
-      this.$refs.filterTable.clearFilter();
-    },
     refresh(){
+      this.$refs.filterTable.clearFilter();
       this.getTasks()
       this.searchValue=""
     }

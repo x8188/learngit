@@ -17,7 +17,7 @@
         <span class="tableTitle">PPI EXPRESSION TABLE</span>
       </div>
       <div>
-        <el-tabs tab-position="top" type="card" stretch>
+        <el-tabs tab-position="top" stretch>
           <el-tab-pane label="ear(Li et al. 2019)">
             <Table :tableId="0" :tdata="ppi_dou_ear"></Table>
           </el-tab-pane>
@@ -41,7 +41,7 @@
         <span class="tableTitle">PPI SEQ TABLE</span>
       </div>
       <div>
-        <el-tabs tab-position="top" type="card" stretch class="resTabs">
+        <el-tabs tab-position="top" stretch class="resTabs">
           <el-tab-pane label="gene1">
             <Table :tableId="1" :tdata="ppi_seq1"></Table>
           </el-tab-pane>
@@ -68,7 +68,7 @@
         <span class="tableTitle">PDI  EXPRESSION TABLE</span>
       </div>
       <div>
-        <el-tabs tab-position="top" type="card" stretch class="resTabs">
+        <el-tabs tab-position="top" stretch class="resTabs">
           <el-tab-pane label="ear(Li et al. 2019)">
             <Table :tableId="0" :tdata="pdi_dou_ear"></Table>
           </el-tab-pane>
@@ -86,7 +86,7 @@
         <span class="tableTitle">PDI SEQ TABLE</span>
       </div>
       <div>
-        <el-tabs tab-position="top" type="card" stretch class="resTabs">
+        <el-tabs tab-position="top" stretch class="resTabs">
           <el-tab-pane label="gene1">
             <Table :tableId="1" :tdata="pdi_seq1"></Table>
           </el-tab-pane>
