@@ -90,7 +90,12 @@
                 >
                 </el-alert>
                 <div class="tipsButton">
-                  <el-popover placement="top" width="500" trigger="hover" open-delay="100">
+                  <el-popover
+                    placement="top"
+                    width="500"
+                    trigger="hover"
+                    :open-delay="100"
+                  >
                     <h2 style="text-align: center; margin: 0 auto">
                       Right example
                     </h2>
@@ -109,7 +114,12 @@
                       First : Correct data format</el-button
                     >
                   </el-popover>
-                  <el-popover placement="top" width="400" trigger="hover" open-delay="100">
+                  <el-popover
+                    placement="top"
+                    width="400"
+                    trigger="hover"
+                    :open-delay="100"
+                  >
                     <h2 style="text-align: center; margin: 0 auto">
                       Wrong example
                     </h2>
@@ -135,7 +145,12 @@
                       Second : Same number of genes</el-button
                     >
                   </el-popover>
-                  <el-popover placement="top" width="400" trigger="hover" open-delay="100">
+                  <el-popover
+                    placement="top"
+                    width="400"
+                    trigger="hover"
+                    :open-delay="100"
+                  >
                     <h2 style="text-align: center; margin: 0 auto">
                       Wrong example
                     </h2>
@@ -182,8 +197,14 @@
                     @blur="checkinput(2)"
                   />
                 </div>
-                <div class="ToolButton" style="display: flex;">
-                  <el-button icon="el-icon-s-data" @click="updataEx" style="margin: 0 auto;" :disabled="!seqflag">Example</el-button>
+                <div class="ToolButton" style="display: flex">
+                  <el-button
+                    icon="el-icon-s-data"
+                    @click="updataEx"
+                    style="margin: 0 auto"
+                    :disabled="!seqflag"
+                    >Example</el-button
+                  >
                 </div>
               </div>
             </el-tab-pane>
@@ -335,12 +356,20 @@ export default {
         modelName: "",
         seq: [],
         email: "",
+        uuid: undefined,
+        captcha: undefined,
       },
 
       taskBoby_file: {
         modelName: "",
         email: "",
+        uuid: undefined,
+        captcha: undefined,
       },
+      uuid:undefined,
+      captchaImg: "",
+      inputCaptcha: undefined,
+
       exampleSeq:
         ">Zm00001d027230_1_+_43289-44789_49337-50837\n" +
         "GGAAGAGAGAGGCTGCTCCCTCTGTACATGGGGGAGTTCTAATCTCCCCTATTTCGGTAATCTATGTTTTA\n" +
@@ -353,10 +382,12 @@ export default {
       NameSeq1: ">GeneName1\nATCGATCGATCG\n>GeneName2\nATCGATCGATCG\n",
       NameSeq2: ">GeneName1\nATCGATCGATCG\n>GeneName2\nATCGATCGATCG\n",
 
-      EXseq1:">Zm00001d027230_1_+_43289-44789_49337-50837\n" +
+      EXseq1:
+        ">Zm00001d027230_1_+_43289-44789_49337-50837\n" +
         "GGAAGAGAGAGGCTGCTCCCTCTGTACATGGGGGAGTTCTAATCTCCCCTATTTCGGTAATCTATGTTTTA",
-      EXseq2:">Zm00001d027235_1_+_121120-122620_122114-123614\n" +
-        "AATGGCCTCCTCTAACATCTGTCCTTCCCTTCCATAAAAACCCCCTGCGAATCTTATCAATAGCTCTAA"
+      EXseq2:
+        ">Zm00001d027235_1_+_121120-122620_122114-123614\n" +
+        "AATGGCCTCCTCTAACATCTGTCCTTCCCTTCCATAAAAACCCCCTGCGAATCTTATCAATAGCTCTAA",
     };
   },
   computed: {
@@ -374,7 +405,67 @@ export default {
     // handleChange(file) {
     //   return false;
     // },
-
+    async getcaptch() {
+      let flag= undefined
+      this.inputCaptcha= undefined
+      let result = await this.$API.reqCaptchaImg();
+      if (result.code == 200) {
+        this.captchaImg = "data:image/png;base64," + result.img;
+        this.uuid=result.uuid
+        const h = this.$createElement;
+        await this.$msgbox({
+          title: "请输入验证码",
+          message: h("p", undefined, [
+            h(
+              "input",
+              {
+                attrs: {
+                  value: this.inputCaptcha,
+                  id:"input1"
+                },
+                style: {
+                  width: "80%",
+                },
+                on: {
+                  input: function (event) {
+                    this.inputCaptcha = event.target.value;
+                  }.bind(this),
+                },
+              },
+              ""
+            ),
+            h("img", {
+              attrs: {
+                src: this.captchaImg,
+              },
+              style: {
+                "margin-top": "20px",
+              },
+            }),
+          ]),
+          type: "warning",
+          center: true,
+          showCancelButton: true,
+          confirmButtonText: "confirm",
+          cancelButtonText: "cancel",
+          beforeClose: (action, instance, done) => {
+            // console.log(action);
+            if (action === "confirm") {
+              flag=true
+              done();
+            } else {
+              flag=false
+              done();
+            }
+          },
+        }).then((action) => {}).catch((err)=>{});
+      }
+      // 返回的值代表用户是否提交了验证码
+      if(this.inputCaptcha==undefined) flag=false
+      // 每次关闭后清空输入的验证码
+      document.getElementById('input1').value=''
+      return flag
+    },
     // 新输入提交提交
     submitInputSeq() {
       // 先进行表单验证邮箱
@@ -384,11 +475,17 @@ export default {
           if (this.method == 1) {
             // 在这里进行数据整理并提交个服务器
 
+
             // 判断步骤2是否成功
             if (this.fileFlag) {
+              let t=await this.getcaptch()
+              if(t!=true) return
+              
               this.taskBoby_file.file = this.fileList[0].raw;
               this.taskBoby_file.email = this.updataForm.email;
               this.taskBoby_file.modelName = this.PDImodel;
+              this.taskBoby_file.uuid=this.uuid
+              this.taskBoby_file.captcha=this.inputCaptcha
 
               let result = await this.$API.reqSubmitFlie(this.taskBoby_file);
 
@@ -436,12 +533,17 @@ export default {
           else {
             // 判断步骤2是否成功
             if (this.inputFlag) {
-              this.taskBoby_seq.seq = [];
+              
+              let t=await this.getcaptch()
+              if(t!=true) return
 
+              this.taskBoby_seq.seq = [];
               this.taskBoby_seq.seq.push(this.Seq1);
               this.taskBoby_seq.seq.push(this.Seq2);
               this.taskBoby_seq.email = this.updataForm.email;
               this.taskBoby_seq.modelName = this.PDImodel;
+              this.taskBoby_seq.uuid=this.uuid
+              this.taskBoby_seq.captcha=this.inputCaptcha
 
               let result = await this.$API.reqSubmitSeq(this.taskBoby_seq);
 
@@ -646,12 +748,13 @@ export default {
       this.updataForm.email = "";
       this.steps1 = 0;
     },
-    updataEx(){
-      this.Seq1=this.EXseq1
-      this.Seq2=this.EXseq2
+    updataEx() {
+      this.Seq1 = this.EXseq1;
+      this.Seq2 = this.EXseq2;
 
-      this.steps1=2
-    }
+      this.steps1 = 2;
+      this.inputFlag = true;
+    },
   },
   created() {},
 };
