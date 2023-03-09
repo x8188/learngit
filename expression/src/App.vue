@@ -9,24 +9,24 @@
 
         <div class="link-wrapper" style="display: flex">
           <router-link to="/">HOME</router-link>
-          <!-- <a-dropdown placement="bottomCenter">
-          <a class="ant-dropdown-link">
-            TOOLS<i class="el-icon-arrow-down el-icon--right"></i>
-          </a>
-          <a-menu slot="overlay" id="tool">
-            <a-menu-item
-              ><router-link to="/Expression/index"
-                >Expression</router-link
-              ></a-menu-item
-            >
-            <a-menu-item
-              ><router-link to="/Methylation"
-                >Methylation</router-link
-              ></a-menu-item
-            >
-          </a-menu>
-        </a-dropdown> -->
-          <router-link to="/Expression/index">TOOLS</router-link>
+          <a-dropdown placement="bottomCenter">
+            <a class="ant-dropdown-link">
+              TOOLS<i class="el-icon-arrow-down el-icon--right"></i>
+            </a>
+            <a-menu slot="overlay" id="tool">
+              <a-menu-item
+                ><router-link to="/Expression/index"
+                  >Expression</router-link
+                ></a-menu-item
+              >
+              <a-menu-item
+                ><router-link to="/Expression/indexShui"
+                  >Methylation</router-link
+                ></a-menu-item
+              >
+            </a-menu>
+          </a-dropdown>
+          <!-- <router-link to="/Expression/index">TOOLS</router-link> -->
           <router-link to="/search">SEARCH</router-link>
           <router-link to="/result">RESULT</router-link>
           <router-link to="/about">CONTACT</router-link>
@@ -38,10 +38,27 @@
         <router-view />
       </div>
       <div class="foot">
-        <h1 style="color: white; font-weight: bold; font-size: 30px; text-align: center">Contact</h1>
-        <p style="width: 50%; text-align: center; margin: 0 auto; padding: 10px 0">
-          Address: Room C423, Research Office of Artificial Intelligence Research Group, Huazhong Agricultural university,
-          Wuhan, 430070, China 湖北省武汉市南湖狮子山街一号逸夫楼C座423室 Tel: 027-87280350 Email: 
+        <h1
+          style="
+            color: white;
+            font-weight: bold;
+            font-size: 30px;
+            text-align: center;
+          "
+        >
+          Contact
+        </h1>
+        <p
+          style="
+            width: 50%;
+            text-align: center;
+            margin: 0 auto;
+            padding: 10px 0;
+          "
+        >
+          Address: Room C423, Research Office of Artificial Intelligence
+          Research Group, Huazhong Agricultural university, Wuhan, 430070, China
+          湖北省武汉市南湖狮子山街一号逸夫楼C座423室 Tel: 027-87280350 Email:
         </p>
       </div>
     </div>
@@ -57,43 +74,43 @@ export default {
       opacityStyle: {
         opacity: 1, //渐变色从0开始
       },
-    }
+    };
   },
   mounted() {
-    window.addEventListener("scroll", this.handleScroll)
+    window.addEventListener("scroll", this.handleScroll);
   },
   methods: {
     handleScroll() {
       //逐渐填充start
-      var scrollTop = document.documentElement.scrollTop
+      var scrollTop = document.documentElement.scrollTop;
       // console.log(scrollTop);
       if (scrollTop > 0) {
-        let opacity = 0.3 + scrollTop / 210
-        let height = 100 - 40 * (scrollTop / 300)
-        height = height < 60 ? 60 : height
+        let opacity = 0.3 + scrollTop / 210;
+        let height = 100 - 40 * (scrollTop / 300);
+        height = height < 60 ? 60 : height;
         // console.log("height", height);
-        opacity = opacity > 1 ? 1 : opacity //渐变色从0到1
+        opacity = opacity > 1 ? 1 : opacity; //渐变色从0到1
         this.opacityStyle = {
           // opacity: opacity,
           height: height + "px",
           "line-height": height + "px",
-        }
-        this.backShow = true
+        };
+        this.backShow = true;
       } else {
-        this.backShow = false
+        this.backShow = false;
       }
       //逐渐填充end
     },
     onClick({ key }) {
-      this.$router.push(`/tools/${key}`)
-      console.log(this.$router)
-      console.log(`Click on item ${key}`)
+      this.$router.push(`/tools/${key}`);
+      console.log(this.$router);
+      console.log(`Click on item ${key}`);
     },
     visibleChange(visible) {
-      console.log(visible)
+      console.log(visible);
     },
   },
-}
+};
 </script>
 
 <style>
@@ -114,7 +131,7 @@ body {
   color: #fff;
   margin-left: 30px;
   /* text-shadow: 0 2px 4px rgba(255, 255, 255, 0.5); */
-  text-shadow: 3px 3px 8px rgba(255, 255, 255, 0.5)
+  text-shadow: 3px 3px 8px rgba(255, 255, 255, 0.5);
 }
 /* #welcome{
   width: 100%;
@@ -122,7 +139,7 @@ body {
 } */
 #nav {
   line-height: 100px;
-  background-color:#004B5F;
+  background-color: #004b5f;
   /* background-image: url("./img/back.png"); */
 
   position: fixed;
@@ -179,7 +196,7 @@ body {
 section.featured1 {
   padding: 40px 0 60px;
   /* background-image: url("./img/back.png"); */
-  background-color:#004B5F;
+  background-color: #004b5f;
 
   color: #fdfdfd;
 }

@@ -68,32 +68,6 @@
                 </div>
               </el-card>
             </el-col>
-
-            <!-- <el-col :span="12">
-              <h1 style="margin-top: 6px; font-weight: bold">PDI Prediction</h1>
-              <div style="width: 80%">
-                <h3>
-                  In these models, the strength of plant core promoter(labels of
-                  samples) is defined as the ability to drive expression of a
-                  barcoded reporter gene in maize protoplasts with or without
-                  enhancer in dark.
-                </h3>
-                <el-select
-                  style="width: 240px"
-                  placeholder="-----Select Model-----"
-                  @change="PDIchangeTools"
-                  v-model="PDImodel"
-                >
-                  <el-option
-                    v-for="value in PDImodellist"
-                    :key="value"
-                    :value="value"
-                  >
-                    {{ value }}
-                  </el-option>
-                </el-select>
-              </div>
-            </el-col> -->
           </el-row>
           <el-tabs
             tab-position="top"
@@ -459,25 +433,6 @@ export default {
       this.loading = !this.loading;
       console.log(this.methltype);
     },
-    // 原提交
-    // submitseqs() {
-    //   let dataForm = new FormData();
-    //   dataForm.append("file", this.fileList[0]);
-    //   dataForm.append("seq", strArr);
-    //   dataForm.append("email", this.updataForm.email);
-    //   dataForm.append("modelName", "NCNR_CG_DP");
-
-    //   let seqdata = {
-    //     email: "344501734@qq.com",
-    //     modelName: "NCNR_CG",
-    //     seq: strArr,
-    //   };
-
-    //   console.log(seqdata);
-    //   uploadseq(seqdata).then((res) => {
-    //     console.log(res);
-    //   });
-    // },
 
     async getcaptch() {
       let flag = undefined;
@@ -489,37 +444,41 @@ export default {
         this.uuid = result.uuid;
 
         const h = this.$createElement;
+        const inputElem = h(
+          "input",
+          {
+            attrs: {
+              value: this.inputCaptcha,
+              id: "input1",
+            },
+            style: {
+              width: "80%",
+            },
+            on: {
+              input: function (event) {
+                this.inputCaptcha = event.target.value;
+              }.bind(this),
+            },
+          },
+          ""
+        );
+        const imgElem = this.$createElement("img", {
+          // ref: "captchaImg",
+          
+          attrs: {
+            src: this.captchaImg,
+            id:"captcha-img",
+          },
+          style: {
+            "margin-top": "20px",
+          },
+        });
+
+        // 将 input 和 img 元素放到 Vue 组件之外的 div 中
+        const divElem = h("div", [inputElem, imgElem]);
         await this.$msgbox({
           title: "Please enter the verification code",
-          message: h("p", undefined, [
-            h(
-              "input",
-              {
-                attrs: {
-                  value: this.inputCaptcha,
-                  id: "input1",
-                },
-                style: {
-                  width: "80%",
-                },
-                on: {
-                  input: function (event) {
-                    this.inputCaptcha = event.target.value;
-                  }.bind(this),
-                },
-              },
-              ""
-            ),
-            this.$createElement("img", {
-              ref: "captchaImg",
-              attrs: {
-                src: this.captchaImg,
-              },
-              style: {
-                "margin-top": "20px",
-              },
-            }),
-          ]),
+          message: divElem,
           type: "warning",
           center: true,
           showCancelButton: true,
@@ -527,37 +486,36 @@ export default {
           cancelButtonText: "refresh",
           distinguishCancelAndClose: true,
           beforeClose: async (action, instance, done) => {
-            console.log(action);
+            // console.log(action);
             if (action === "confirm") {
               flag = true;
               done();
-            } else if(action==="cancel"){
+            } else if (action === "cancel") {
               let result = await this.$API.reqCaptchaImg();
+              // let result = await this.$API.reqCaptchaImg({ timestamp: new Date().getTime() });
               this.captchaImg = "data:image/png;base64," + result.img;
               this.uuid = result.uuid;
 
               this.$nextTick(() => {
                 // 更新captchaImg元素的src属性
-                // console.log(this.$refs.captchaImg)
-                this.$refs.captchaImg.src = this.captchaImg;
+                // this.$refs.captchaImg.src = this.captchaImg;
+                document.getElementById('captcha-img').src = this.captchaImg;
+
               });
-            }else{
+            } else {
               flag = false;
               done();
-
             }
           },
         })
-          .then((action) => {
-          })
-          .catch((action) => {
-          });
+          .then((action) => {})
+          .catch((action) => {});
       }
       // 返回的值代表用户是否提交了验证码
       if (this.inputCaptcha == undefined) flag = false;
       // 每次关闭后清空输入的验证码
       document.getElementById("input1").value = "";
-      console.log(flag)
+      // console.log(flag);
       return flag;
     },
 
@@ -573,7 +531,7 @@ export default {
             // 判断步骤2是否成功
             if (this.fileFlag) {
               let t = await this.getcaptch();
-              
+
               if (t != true) return;
 
               this.taskBoby_file.file = this.fileList[0].raw;
@@ -690,44 +648,16 @@ export default {
         }
       });
     },
-    // changestatue(info) {
-    //   let fileList = [...info.fileList];
 
-    //   // 1. Limit the number of uploaded files
-    //   //    Only to show two recent uploaded files, and old ones will be replaced by the new
-    //   fileList = fileList.slice(-1);
-    //   // this.fileList = fileList;
-    //   // console.log(this.fileList);
-    //   fileList = fileList.map(file => {
-    //     if (file.response) {
-    //       // Component will show file.url as link
-    //       file.url = file.response.url;
-    //     }
-    //     return file;
-    //   });
-
-    //   this.fileList = fileList;
-    // },
-    // handleChange(value) {
-    //   console.log(`selected ${value}`);
-    // },
     PPIchangeTools(value) {
       this.steps1 = 1;
       // if (this.PDImodel) this.PDImodel = undefined;
       // this.$router.push(`/Tools/PPI_${value}`);
       // console.log(value);
     },
-    // PDIchangeTools(value) {
-    //   this.steps1 = 1;
-    //   if (this.PPImodel) this.PPImodel = undefined;
-    //   // this.$router.push(`/Tools/PDI_${value}`);
-    //   // console.log(value);
-    // },
 
     handlerSuccess(response, file, fileList) {},
-    // submitUpload() {
-    //   this.$refs.upload.submit();
-    // },
+
     // 文件改变时监视，限制文件大小
     fileChange(file, fileList) {
       const isSize = file.size / 1024 / 1024;

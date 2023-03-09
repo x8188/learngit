@@ -415,37 +415,41 @@ export default {
         this.uuid = result.uuid;
 
         const h = this.$createElement;
+        const inputElem = h(
+          "input",
+          {
+            attrs: {
+              value: this.inputCaptcha,
+              id: "input1",
+            },
+            style: {
+              width: "80%",
+            },
+            on: {
+              input: function (event) {
+                this.inputCaptcha = event.target.value;
+              }.bind(this),
+            },
+          },
+          ""
+        );
+        const imgElem = this.$createElement("img", {
+          // ref: "captchaImg",
+          
+          attrs: {
+            src: this.captchaImg,
+            id:"captcha-img",
+          },
+          style: {
+            "margin-top": "20px",
+          },
+        });
+
+        // 将 input 和 img 元素放到 Vue 组件之外的 div 中
+        const divElem = h("div", [inputElem, imgElem]);
         await this.$msgbox({
           title: "Please enter the verification code",
-          message: h("p", undefined, [
-            h(
-              "input",
-              {
-                attrs: {
-                  value: this.inputCaptcha,
-                  id: "input1",
-                },
-                style: {
-                  width: "80%",
-                },
-                on: {
-                  input: function (event) {
-                    this.inputCaptcha = event.target.value;
-                  }.bind(this),
-                },
-              },
-              ""
-            ),
-            this.$createElement("img", {
-              ref: "captchaImg",
-              attrs: {
-                src: this.captchaImg,
-              },
-              style: {
-                "margin-top": "20px",
-              },
-            }),
-          ]),
+          message: divElem,
           type: "warning",
           center: true,
           showCancelButton: true,
@@ -453,37 +457,36 @@ export default {
           cancelButtonText: "refresh",
           distinguishCancelAndClose: true,
           beforeClose: async (action, instance, done) => {
-            console.log(action);
+            // console.log(action);
             if (action === "confirm") {
               flag = true;
               done();
-            } else if(action==="cancel"){
+            } else if (action === "cancel") {
               let result = await this.$API.reqCaptchaImg();
+              // let result = await this.$API.reqCaptchaImg({ timestamp: new Date().getTime() });
               this.captchaImg = "data:image/png;base64," + result.img;
               this.uuid = result.uuid;
 
               this.$nextTick(() => {
                 // 更新captchaImg元素的src属性
-                // console.log(this.$refs.captchaImg)
-                this.$refs.captchaImg.src = this.captchaImg;
+                // this.$refs.captchaImg.src = this.captchaImg;
+                document.getElementById('captcha-img').src = this.captchaImg;
+
               });
-            }else{
+            } else {
               flag = false;
               done();
-
             }
           },
         })
-          .then((action) => {
-          })
-          .catch((action) => {
-          });
+          .then((action) => {})
+          .catch((action) => {});
       }
       // 返回的值代表用户是否提交了验证码
       if (this.inputCaptcha == undefined) flag = false;
       // 每次关闭后清空输入的验证码
       document.getElementById("input1").value = "";
-      console.log(flag)
+      // console.log(flag);
       return flag;
     },
     // 新输入提交提交

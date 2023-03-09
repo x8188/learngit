@@ -48,6 +48,13 @@ const routes = [
 
   },
   {
+    path: '/Expression/indexShui',
+    name: 'indexShui',
+    component: () => import('../views/Tools/indexShui'),
+
+  },
+
+  {
     path: '/Methylation',
     name: 'Methylation',
     component: () => import('../views/Tools/Methylation'),
