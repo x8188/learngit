@@ -36,6 +36,9 @@ Vue.prototype.$API=API;
 
 import './assets/iconfont/iconfont.css'
 
+// import jquery from 'jquery'
+// Vue.prototype.$ = jquery
+
 new Vue({
   router,
   store,
