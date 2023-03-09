@@ -607,7 +607,7 @@ export default {
               } else if (result.code == 400) {
                 this.$msgbox({
                   title: "error!\n ",
-                  message: "Illegal sequence",
+                  message: "Verification code error",
                   type: "error",
                   confirmButtonText: "confrim",
                 });
@@ -663,7 +663,7 @@ export default {
               } else if (result.code == 400) {
                 this.$msgbox({
                   title: "error!\n ",
-                  message: "Illegal sequence",
+                  message: "Verification code error",
                   type: "error",
                   confirmButtonText: "confrim",
                 });
