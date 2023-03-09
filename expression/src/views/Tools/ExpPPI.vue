@@ -413,7 +413,7 @@ export default {
         uuid: undefined,
         captcha: undefined,
       },
-      uuid:undefined,
+      uuid: undefined,
       captchaImg: "",
       inputCaptcha: undefined,
 
@@ -480,22 +480,24 @@ export default {
     // },
 
     async getcaptch() {
-      let flag= undefined
-      this.inputCaptcha= undefined
+      let flag = undefined;
+      this.inputCaptcha = undefined;
       let result = await this.$API.reqCaptchaImg();
+
       if (result.code == 200) {
         this.captchaImg = "data:image/png;base64," + result.img;
-        this.uuid=result.uuid
+        this.uuid = result.uuid;
+
         const h = this.$createElement;
         await this.$msgbox({
-          title: "请输入验证码",
+          title: "Please enter the verification code",
           message: h("p", undefined, [
             h(
               "input",
               {
                 attrs: {
                   value: this.inputCaptcha,
-                  id:"input1"
+                  id: "input1",
                 },
                 style: {
                   width: "80%",
@@ -508,7 +510,8 @@ export default {
               },
               ""
             ),
-            h("img", {
+            this.$createElement("img", {
+              ref: "captchaImg",
               attrs: {
                 src: this.captchaImg,
               },
@@ -521,24 +524,41 @@ export default {
           center: true,
           showCancelButton: true,
           confirmButtonText: "confirm",
-          cancelButtonText: "cancel",
-          beforeClose: (action, instance, done) => {
-            // console.log(action);
+          cancelButtonText: "refresh",
+          distinguishCancelAndClose: true,
+          beforeClose: async (action, instance, done) => {
+            console.log(action);
             if (action === "confirm") {
-              flag=true
+              flag = true;
               done();
-            } else {
-              flag=false
+            } else if(action==="cancel"){
+              let result = await this.$API.reqCaptchaImg();
+              this.captchaImg = "data:image/png;base64," + result.img;
+              this.uuid = result.uuid;
+
+              this.$nextTick(() => {
+                // 更新captchaImg元素的src属性
+                // console.log(this.$refs.captchaImg)
+                this.$refs.captchaImg.src = this.captchaImg;
+              });
+            }else{
+              flag = false;
               done();
+
             }
           },
-        }).then((action) => {}).catch((err)=>{});
+        })
+          .then((action) => {
+          })
+          .catch((action) => {
+          });
       }
       // 返回的值代表用户是否提交了验证码
-      if(this.inputCaptcha==undefined) flag=false
+      if (this.inputCaptcha == undefined) flag = false;
       // 每次关闭后清空输入的验证码
-      document.getElementById('input1').value=''
-      return flag
+      document.getElementById("input1").value = "";
+      console.log(flag)
+      return flag;
     },
 
     // 新输入提交提交
@@ -552,14 +572,15 @@ export default {
             // 暂时直接显示成功
             // 判断步骤2是否成功
             if (this.fileFlag) {
-              let t=await this.getcaptch()
-              if(t!=true) return
+              let t = await this.getcaptch();
+              
+              if (t != true) return;
 
               this.taskBoby_file.file = this.fileList[0].raw;
               this.taskBoby_file.email = this.updataForm.email;
               this.taskBoby_file.modelName = this.PPImodel;
-              this.taskBoby_file.uuid=this.uuid
-              this.taskBoby_file.captcha=this.inputCaptcha
+              this.taskBoby_file.uuid = this.uuid;
+              this.taskBoby_file.captcha = this.inputCaptcha;
 
               let result = await this.$API.reqSubmitFlie(this.taskBoby_file);
 
@@ -607,16 +628,16 @@ export default {
           else {
             // 判断步骤2是否成功
             if (this.inputFlag) {
-              let t=await this.getcaptch()
-              if(t!=true) return
+              let t = await this.getcaptch();
+              if (t != true) return;
 
               this.taskBoby_seq.seq = [];
               this.taskBoby_seq.seq.push(this.Seq1);
               this.taskBoby_seq.seq.push(this.Seq2);
               this.taskBoby_seq.email = this.updataForm.email;
               this.taskBoby_seq.modelName = this.PPImodel;
-              this.taskBoby_seq.uuid=this.uuid
-              this.taskBoby_seq.captcha=this.inputCaptcha
+              this.taskBoby_seq.uuid = this.uuid;
+              this.taskBoby_seq.captcha = this.inputCaptcha;
 
               let result = await this.$API.reqSubmitSeq(this.taskBoby_seq);
               if (result.code == 200) {

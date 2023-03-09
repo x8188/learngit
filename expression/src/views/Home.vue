@@ -80,6 +80,44 @@
             margin-bottom: 150px;
           "
         >
+          <!-- <el-row class="gallery-grids" type="flex" justify="space-around">
+            <el-col class="baner-top" :span="8">
+              <figure class="effect-bubba">
+                <div
+                  class="cursor"
+                  onclick=" window.open('http://www.baidu.com','_blank'); "
+                >
+                  <img src="../img/yumi.jpg" alt="" class="img-responsive" />
+                  <figcaption>
+                    <h4>玉米</h4>
+                    <p>
+                      Happen active county. Winding morning ambition shyness
+                      evident to poor. Because elderly new to the point to main
+                      success.
+                    </p>
+                  </figcaption>
+                </div>
+              </figure>
+            </el-col>
+            <el-col class="baner-top" :span="8">
+              <figure class="effect-bubba">
+                <div
+                  class="cursor"
+                  onclick=" window.open('http://www.baidu.com','_blank'); "
+                >
+                  <img src="../img/shuidao.jpg" alt="" class="img-responsive" />
+                  <figcaption>
+                    <h4>水稻</h4>
+                    <p>
+                      Happen active county. Winding morning ambition shyness
+                      evident to poor. Because elderly new to the point to main
+                      success.
+                    </p>
+                  </figcaption>
+                </div>
+              </figure>
+            </el-col>
+          </el-row> -->
           <el-row :gutter="40" type="flex">
             <el-col :span="12">
               <el-card
@@ -92,14 +130,16 @@
               >
                 <p style="font-weight: bold; font-size: 30px">Introduction</p>
                 <p>
-                  &nbsp;&nbsp;&nbsp;&nbsp;The core structure of the deep neural network used in Deep CBA
-                  can be divided into three modules: convolution neural network
-                  module, bidirectional long-term and short-term memory network
-                  module and self-attention mechanism module, as shown in the
-                  following figure. <br />
-                  &nbsp;&nbsp;&nbsp;&nbsp;The overall process of DeepCBA is as follows: <br />
-                  &nbsp;&nbsp;&nbsp;&nbsp;First, encode the sequence with length of 3000 bp and 1500 bp
-                  into 4*3000/4*1500 one-pot encoding matrix;
+                  &nbsp;&nbsp;&nbsp;&nbsp;The core structure of the deep neural
+                  network used in Deep CBA can be divided into three modules:
+                  convolution neural network module, bidirectional long-term and
+                  short-term memory network module and self-attention mechanism
+                  module, as shown in the following figure. <br />
+                  &nbsp;&nbsp;&nbsp;&nbsp;The overall process of DeepCBA is as
+                  follows: <br />
+                  &nbsp;&nbsp;&nbsp;&nbsp;First, encode the sequence with length
+                  of 3000 bp and 1500 bp into 4*3000/4*1500 one-pot encoding
+                  matrix;
                 </p>
                 <div
                   class="image-content"
@@ -109,27 +149,31 @@
                 </div>
               </el-card>
             </el-col>
+
             <el-col :span="12">
               <el-card
                 class="homecard"
                 style="
-                  background: -webkit-linear-gradient(left, #fff1eb, #ace0f9);
+                  background-color: #296d7f;
+                  color: #ffffff;
                   border-radius: 15px;
+                  /* background: -webkit-linear-gradient(left, #fff1eb, #ace0f9); */
                 "
               >
                 <p>
-                  &nbsp;&nbsp;&nbsp;&nbsp;Secondly, take the encoded one-pot encoding matrix as the
-                  input of the CNN Layer, use the ReLU activation function to
-                  propagate the forward output and eliminate the reverse output,
-                  and then use the maximum pooling operation to reduce the
-                  dimension, and achieve the extraction of higher-level
-                  features; <br />
-                  &nbsp;&nbsp;&nbsp;&nbsp;Next, combine the information output by CNN and input it into
-                  the bidirectional long-term and short-term memory network to
-                  extract more important information from the merged CNN
-                  information;<br />
-                  &nbsp;&nbsp;&nbsp;&nbsp;Finally, use Self-Attention to redistribute the weights of the
-                  network model, and then realize the final prediction.
+                  &nbsp;&nbsp;&nbsp;&nbsp;Secondly, take the encoded one-pot
+                  encoding matrix as the input of the CNN Layer, use the ReLU
+                  activation function to propagate the forward output and
+                  eliminate the reverse output, and then use the maximum pooling
+                  operation to reduce the dimension, and achieve the extraction
+                  of higher-level features; <br />
+                  &nbsp;&nbsp;&nbsp;&nbsp;Next, combine the information output
+                  by CNN and input it into the bidirectional long-term and
+                  short-term memory network to extract more important
+                  information from the merged CNN information;<br />
+                  &nbsp;&nbsp;&nbsp;&nbsp;Finally, use Self-Attention to
+                  redistribute the weights of the network model, and then
+                  realize the final prediction.
                 </p>
                 <div
                   class="image-content"
@@ -199,7 +243,7 @@
 <script>
 // @ is an alias to /src
 // import HelloWorld from '@/components/HelloWorld.vue'
-
+// import "../assets/css/style.css";
 export default {
   name: "Home",
   components: {},

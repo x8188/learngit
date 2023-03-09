@@ -24,3 +24,7 @@ export const reqTasksInfo = () =>
 
 export const reqTaskResultInfo = (taskID) =>
   requests({ url: `/model/result`, method: "get", params: { taskID: taskID } });
+
+
+export const reqCaptchaImg = () =>
+  requests({ url: `/model/captcha`, method: "get" });

@@ -49,6 +49,7 @@
 </template>
 
 <script>
+// import './assets/css/bootstrap.css'
 export default {
   data() {
     return {
