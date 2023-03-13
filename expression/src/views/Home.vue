@@ -66,7 +66,11 @@
               style="position: relative; left: 10%"
               >TUORIAL</el-button
             >
+            <div class="shape-bottom-right" style="left:0;opacity: 0.3;">
+                  <img src="../assets/picture/11.png" alt="Image Not Found" style="width: 1100px;"/>
+            </div>
           </el-card>
+
         </a-col>
       </a-row>
     </div>
@@ -157,9 +161,11 @@
                   background-color: #296d7f;
                   color: #ffffff;
                   border-radius: 15px;
+                  background: #1f4e3d;
                   /* background: -webkit-linear-gradient(left, #fff1eb, #ace0f9); */
                 "
               >
+
                 <p>
                   &nbsp;&nbsp;&nbsp;&nbsp;Secondly, take the encoded one-pot
                   encoding matrix as the input of the CNN Layer, use the ReLU
@@ -181,11 +187,36 @@
                 >
                   <img src="../img/home_3.jpg" style="width: 80%" />
                 </div>
-                <el-button
+                <!-- <el-button
                   class="rouButton"
                   @click="$router.push('/Expression/index')"
                   >Go Tools</el-button
+                > -->
+
+                <div
+                  class="product-list-box"
+                  style="width: 60%; margin: 0 auto"
                 >
+                  <div class="product-list-item">
+                    <a @click="$router.push('/Expression/index')">
+                      <img src="../assets/picture/yumiICON.png" alt="Icon" />
+                      <h5>Corn</h5>
+                    </a>
+                  </div>
+
+                  <div class="product-list-item">
+                    <a @click="$router.push('/Expression/indexShui')">
+                      <img
+                        src="../assets/picture/southeast-removebg-preview.png"
+                        alt="Icon"
+                      />
+                      <h5>Rice</h5>
+                    </a>
+                  </div>
+                </div>
+                <div class="shape-bottom-right">
+                  <img src="../assets/picture/21.png" alt="Image Not Found" />
+                </div>
               </el-card>
             </el-col>
           </el-row>
@@ -229,6 +260,9 @@
                 expression fused with PPI data, etc.
               </p>
             </div>
+            <div class="shape-bottom-right">
+                  <img src="../assets/picture/v1.png" alt="Image Not Found" style="height: 300px;"/>
+            </div>
           </el-card>
         </el-col>
       </el-row>
@@ -243,7 +277,7 @@
 <script>
 // @ is an alias to /src
 // import HelloWorld from '@/components/HelloWorld.vue'
-// import "../assets/css/style.css";
+import "../assets/css/style.css";
 export default {
   name: "Home",
   components: {},
@@ -295,6 +329,9 @@ export default {
   text-align: center;
   height: 100%;
   /* background-color: #296D7F; */
+	position: relative;
+
+  z-index: 1;
 }
 .homecard p {
   font-size: 20px;
@@ -408,10 +445,14 @@ export default {
 .bottom-card {
   text-align: center;
   /* background: linear-gradient(220.55deg, #0C3A2D 0%, #6D9773 100%);             */
-  background: -webkit-linear-gradient(transparent, rgb(250, 250, 250) 100%);
+  /* background: -webkit-linear-gradient(transparent, rgb(250, 250, 250) 0%); */
 
   color: #050505;
   border-radius: 30px;
-  /* background: linear-gradient(220.55deg, #EAEAEA 0%, #8B8B8B 100%); */
+  background: linear-gradient(120deg, #EAEAEA 0%, #8B8B8B 100%);
+
+  position: relative;
+
+  z-index: 1;
 }
 </style>

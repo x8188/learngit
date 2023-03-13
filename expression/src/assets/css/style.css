@@ -1,1045 +1,182 @@
+/* ----------------------------------
 
-.gallery-grids{
-	margin:3em 0 0;
+Template Name: Agrul - Organic Farm Agriculture Template
+Author: validtheme
+Description:
+Version: 1.0
+
+Main Font    : Manrope
+Main Color   : #6222cc
+
+-------------------------------------
+
+[Typography]
+
+Body copy:    15px 'Manrope', sans-serif
+Header:     36px 'Manrope', sans-serif
+Input, textarea:  16px 'Manrope', sans-serif
+Sidebar heading:  20px 'Manrope', sans-serif
+
+>>> TABLE OF CONTENTS:
+=======================
+        
+    01. Template default css
+        - Animations
+        - General
+        - Section Title
+        - Video Button
+        - Typography
+        - Tables
+        - Forms
+        - Buttons
+        - Pagination
+        - Colors
+    02. Preloader
+    03. Topbar
+	    - Topbar Regular
+        - Topbar With Menu
+    04 Navbar
+        - Navbar Default
+        - Navbar Right Menu
+        - Navbar Sticky
+        - Navbar Center
+    05. Banner
+        - Banner Style One
+        - Banner Style Two
+    06. About Us
+	    - About Style One
+        - About Style Two
+    07. Services
+        - What We Do (Slider)
+        - Services With Image & Icon
+        - Services Single
+    09. Product
+		- Product Light Version
+        - Product Dark Version
+    10. Why Choose Us
+    11. Fun Factor
+    12. Testimonials
+    13. Farmers
+        - Farmer Grid
+        - Farmer Details
+    14. Projects
+        - Project Slider
+        - Prject Grid
+        - Prject Details
+    15. Order Process
+    16. Clients / Brand
+    17. Blog
+        - Standard
+        - Blog Grid
+        - Left Sidebar
+        - Right Sidebar
+        - Single
+    18. Error 404
+    19. Footer
+    20. PHP Contact Form
+    21. Others
+
+*/
+
+/* @import url('css2.css');
+
+@import url('css21.css'); */
+
+/* Varialbes */
+.cursor{
+	cursor: pointer;
 }
-.baner-bottom img,.baner-top img{
- width:100%;
- }
- 
-.gallery-grids h4 {
-    font-size: 2.1em;
-    color: #fff;
+
+:root {
+	--font-default: 'Manrope', sans-serif;
+	--font-secondary: 'Handlee', cursive;
+	--fontawesome: "Font Awesome 5 Pro";
+	--black: #000000;
+	--dark: #1f4e3d;
+	--white: #ffffff;
+	--color-primary: #49a760;
+	--color-secondary: #f7c35f;
+	--color-heading: #04000b;
+	--color-paragraph: #787878;
+	--box-shadow-primary: -1px 3px 10px 0 rgba(0, 0, 0, 0.6);
+	--box-shadow-secondary: 0 10px 30px 0 rgba(44, 130, 237, 0.4);
+	--box-shadow-regular: 0px 2px 12px 0px #e7e7e7;
+	--bg-gray: #eff2f5;
+	--bg-gradient: linear-gradient(97deg, #49a760 50%, rgba(252,197,27,1) 100%);
 }
-.gallery-grids figure {
-	position: relative;
-	float: left;
-	overflow: hidden;
-	text-align: center;
-	width:100%;
+
+.bg-gray {
+	background: var(--bg-gray);
 }
-.gallery-grids figure img {
-	position: relative;
+
+.product-list-item a {
+	background: #2c5848;
+	/* background: #4DB6AC; */
+	padding: 5px 20px 20px;
+	border-radius: 10px;
 	display: block;
-	width:100%;
-}
-figcaption p {
-    font-size: 1em;
-    width:80%;
-    margin: 0 auto;
-    line-height: 1.8em;
-}
-.baner-row{
-	margin:2em 0;
-}
-.baner-bottom p {
-    width: 87%;
-}
-.gallery-grids figure figcaption {
-	padding: 2em;
-	color: #fff;
-	-webkit-backface-visibility: hidden;
-	-moz-backface-visibility: hidden;
-	-o-backface-visibility: hidden;
-	-ms-backface-visibility: hidden;
-	backface-visibility: hidden;
-}
-.gallery-grids figure figcaption::before,
-.gallery-grids figure figcaption::after {
-	pointer-events: none;
+	font-weight: 700;
+	margin-top: 20px;
+	margin-bottom: 10px;
 }
 
-.gallery-grids figure figcaption{
+.product-list-box {
+	display: grid;
+	grid-column-gap: 50px;
+	grid-auto-columns: minmax(0, 1fr);
+	grid-auto-flow: column;
+}
+
+.product-list-item h5 {
+	font-weight: 700;
+	margin: 0;
+
+	font-size: 20px;
+	color: var(--white);
+}
+
+.product-list-item a:hover {
+	background: var(--color-secondary);
+}
+
+.product-list-item a:hover h5 {
+	color: var(--color-heading);
+}
+
+.product-list-item a h5 {
+	transition: all 0.35s ease-in-out;
+}
+
+/* .bg-gray .product-list-item a:hover {
+	background: var(--color-primary);
+}
+
+.bg-gray .product-list-item a:hover h5 {
+	color: var(--white);
+}
+
+.bg-gray .product-list-item a h5 {
+	transition: all 0.35s ease-in-out;
+} */
+
+.product-list-item img {
+	height: 100px;
+	margin-bottom: 10px;
+}
+
+.product-list-item h4 {
+	margin: 0;
+}
+
+.shape-bottom-right {
 	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-}
-figure.effect-bubba {
- /* background: #AF2D39; */
- background: #24A057;
-}
-figure.effect-bubba:hover img {
+	right: 0;
+	bottom: 0;
+	max-width: 40%;
+	z-index: -1;
 	opacity: 0.3;
 }
-figure.effect-bubba figcaption::before,
-figure.effect-bubba figcaption::after {
-	position: absolute;
-	top: 30px;
-	right: 30px;
-	bottom: 30px;
-	left: 30px;
-	content: '';
-	opacity: 0;
-	-webkit-transition: opacity 0.35s,-webkit-transform 0.35s;	
-	-moz-transition: opacity 0.35s, -moz-transform 0.35s;
-	-o-transition: opacity 0.35s, -o-transform 0.35s;
-	-ms-transition: opacity 0.35s, -ms-transform 0.35s;
-	transition: opacity 0.35s, transform 0.35s;
-}
 
-figure.effect-bubba figcaption::before {
-	border-top: 1px solid #fff;
-	border-bottom: 1px solid #fff;
-	-webkit-transform: scale(0,1);
-	-moz-transform: scale(0,1); 
-	-o-transform: scale(0,1);
-	-ms-transform: scale(0,1);
-	transform: scale(0,1);
-}
-
-figure.effect-bubba figcaption::after {
-	border-right: 1px solid #fff;
-	border-left: 1px solid #fff;
-	-webkit-transform: scale(1,0);
-	-moz-transform: scale(1,0);
-	-o-transform: scale(1,0);
-	-ms-transform: scale(1,0);
-	transform: scale(1,0);
-}
-
-figure.effect-bubba h4 {
-	padding-top:11%;
-	-webkit-transition: transform 0.35s;
-	-moz-transition: transform 0.35s;
-	-o-transition: -o-transform 0.35s;
-	-ms-transition: -ms-transform 0.35s;
-	transition: transform 0.35s;
-	-webkit-transform: translate3d(0,-20px,0);
-	-moz-transform: translate3d(0,-20px,0);
-	-o-transform: translate3d(0,-20px,0);
-	-ms-transform: translate3d(0,-20px,0);
-	transform: translate3d(0,-20px,0);
-	opacity:0;
-}
-
-figure.effect-bubba p {
-	padding: 12px 2.5em;
-	opacity: 0;
-	-webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
-	-moz-transition: opacity 0.35s, -moz-transform 0.35s;
-	-o-transition: opacity 0.35s, -o-transform 0.35s;
-	-ms-transition: opacity 0.35s, -ms-transform 0.35s;
-	transition: opacity 0.35s, transform 0.35s;
-	-webkit-transform: translate3d(0,20px,0);
-	-moz-transform: translate3d(0,20px,0);
-	-o-transform: translate3d(0,20px,0);
-	-ms-transform: translate3d(0,20px,0);
-	transform: translate3d(0,20px,0);
-}
-
-figure.effect-bubba:hover figcaption::before,
-figure.effect-bubba:hover figcaption::after {
-	opacity: 1;
-	-webkit-transform: scale(1);
-	-moz-transform: scale(1);
-	-o-transform: scale(1);
-	-ms-transform: scale(1);
-	transform: scale(1);
-}
-
-figure.effect-bubba:hover h4,
-figure.effect-bubba:hover p {
-	opacity: 1;
-	-webkit-transform: translate3d(0,0,0);
-	-moz-transform: translate3d(0,0,0);
-	-o-transform: translate3d(0,0,0);
-	-ms-transform: translate3d(0,0,0);
-	transform: translate3d(0,0,0);
-}
-/*-- //gallery --*/
-
-@media (max-width:1024px){
-	.banner {
-		min-height: 469px;
-	}
-	.text-bottom h4 {
-      font-size: 1.3em;
-	}
-	.banner-top {
-      min-height: 227px;
-    }
-	.top-menu ul li {
-		margin: 10px 15px;
-		vertical-align: top;
-	}
-	.banner-top-text h2 {
-      font-size: 3.5em;
-	}
-	ul.workout-exercises li {
-      padding: 8px 0 10px 141px;
-	}
-	.video {
-		min-height: 303px;
-	}
-	.video a span {
-		top: 38%;
-		left: 48%;
-	}
-	.trainer-text h4 {
-      font-size: 1.4em;
-	}
-	.trainer-text.lady {
-		padding: 3.37em 4em;
-	}
-	figure.effect-bubba p {
-		padding: 4px 0em;
-		font-size: 0.9em;
-	}
-	.banner-top-text p {
-		font-size: 0.9em;
-	}
-}
-
-@media (max-width:991px){
-	.baner-top {
-		float: left;
-		width: 50%;
-	}
-	.baner-bottom {
-		float: left;
-		width: 33.33%;
-	}
-	.gallery-grids figure figcaption {
-		padding: 1em;
-	}
-	.gallery-grids h4 {
-      font-size: 1.7em;
-	}
-	figure.effect-bubba figcaption::before, figure.effect-bubba figcaption::after {
-		position: absolute;
-		top: 10px;
-		right: 10px;
-		bottom: 10px;
-		left: 10px;
-   }
-   .text-bottom {
-		padding: 0;
-		padding: 2em 4em;
-		float: left;
-		width: 50%;
-	}
-	.text-bottom h4 {
-      font-size: 1.2em;
-    }
-	.top-menu ul li {
-      margin: 10px 6px;
-	}
-	.top_right {
-		float: left;
-		margin-top: 1.8em;
-		padding: 0;
-		width: 30%;
-	}
-	.search {
-		width:19%;
-		padding: 0;
-		margin-top: 2em;
-	}
-	.logo {
-		float: left;
-		padding: 0;
-		margin-right: 1%;
-		width: 46%;
-	}
-	.logo a h1 {
-		font-size: 3.5em;
-		font-weight: 400;
-	}
-	ul.f-icons {
-		float: left;
-		margin-top: 0;
-	}
-	.search {
-		width: 19%;
-		padding: 0;
-		margin-top: 1em;
-	}
-	.testimonials-grid-left {
-		padding: 0;
-		float: left;
-		width: 47%;
-		margin-right: 3%;
-	}
-	.testimonials-grid-right1 p {
-		font-size:0.9em;
-		margin: 1.5em 0 0;
-		padding-left: 0.5em;
-	}
-	.wmuSlider.example1 {
-		min-height: 330px!important;
-	}
-	.wmuSliderPagination {
-		z-index: 2;
-		position: absolute;
-		right: 42%;
-		top: 94%;
-	}
-	.contact-grid {
-		padding-left: 0;
-		padding: 0;
-	}
-	.contact-in {
-		padding: 0;
-		margin-top: 2em;
-	}
-	p.para1,.text-bottom p,.text-bottom p,.trainer-text p,ul.workout-exercises p,p.location, p.mail, p.phone{
-	font-size:0.9em;
-	}
-		.trainer-gent, .trainer-lady {
-		padding: 0;
-		width: 49%;
-		float: left;
-	}
-	.trainer-text h4 {
-		font-size: 1.2em;
-	}
-
-	.trainer-text.lady {
-		padding: 1.95em 4em;
-	}
-	.banner-top {
-		min-height: 189px;
-	}
-	.banner-top-text h2 {
-		font-size: 3em;
-	}
-	.trainer-text {
-		padding: 0;
-		padding: 3.42em 4em;
-	}
-	.trainer-text.lady {
-		padding: 1.95em 4em;
-	}
-}
-@media (max-width:800px){
-   .banner {
-		min-height: 353px;
-	}
-	.text-bottom {
-		padding: 0;
-		padding: 2em 2em;
-		float: left;
-		width: 50%;
-	}
-	.text-bottom h4 {
-		font-size: 1em;
-	}
-	.features {
-      padding: 3em 0;
-	}
-	ul.workout-exercises {
-    margin-top: 3em;
-   }
-   .video {
-		min-height: 239px;
-	}
-	.trainer-gent, .trainer-lady {
-		padding: 0;
-		width: 49%;
-		float: left;
-	}
-	.trainer-text h4 {
-		font-size: 1.2em;
-	}
-	.banner-top {
-		min-height: 189px;
-	}
-	.banner-top-text h2 {
-		font-size: 3em;
-	}
-	.trainer-lady img {
-		width: 98.9%;
-	}
-	.trainer-text {
-		padding: 0;
-		padding: 1.6em 4em;
-	}
-	.trainer-text.lady {
-		padding: 1.95em 4em;
-	}
-}
-@media (max-width:768px){
-	.banner {
-		min-height: 343px;
-	}
-	.text-bottom {
-		padding: 0;
-		padding: 2em 2em;
-		float: left;
-		width: 50%;
-	}
-	.text-bottom h4 {
-		font-size: 1em;
-	}
-	.features {
-      padding: 3em 0;
-	}
-	ul.workout-exercises {
-    margin-top: 3em;
-   }
-   .video {
-		min-height: 239px;
-	}
-	.trainer-gent, .trainer-lady {
-		padding: 0;
-		width: 49%;
-		float: left;
-	}
-	.trainer-text h4 {
-		font-size: 1.2em;
-	}
-
-	.trainer-text.lady {
-		padding: 1.95em 4em;
-	}
-	.banner-top {
-		min-height: 189px;
-	}
-	.banner-top-text h2 {
-		font-size: 3em;
-	}
-	.baner-top p {
-		margin-top: 1em;
-	}
-}
-@media (max-width:736px){
-	.logo a h1 {
-		font-size: 3em;
-		font-weight: 400;
-	}
-	.trainer-text h4 {
-		font-size: 1.1em;
-	}
-	.trainer-text.lady {
-		padding: 2.35em 4em;
-	}
-	h3.tittle,.features-text h3 {
-		font-size: 2.5em;
-   }
-   .contact {
-		 padding: 4em 0;
-	  }
-	  .customer {
-    padding: 3em 0;
-	}
-	 
-}
-@media (max-width:667px){
- .top-menu ul li {
-		margin: 8px 3px;
-	 }
-	 .banner-top-text p {
-		font-size: 0.8em;
-	}
-	.banner-top {
-		min-height: 138px;
-	}
-	.banner-top-text {
-		text-align: center;
-		padding-top: 1.5em;
-	}
-	.top-menu ul li a {
-      font-size: 0.85em;
-	}
-	.banner {
-		min-height: 308px;
-	}
-	.text-bottom h4 {
-		font-size: 0.9em;
-	}
-	h3.tittle,.features-text h3 {
-	font-size: 2.3em;
-	}
-	.features-text h4 {
-    font-size: 1.8em;
-	}
-	ul.workout-exercises h4 {
-		font-size: 1.2em;
-	}
-	.trainer-gent, .trainer-lady {
-		padding: 0;
-		width: 100%;
-		float: left;
-  }
-  .gallery-grids h4 {
-    font-size: 1.4em;
-  }
-  figure.effect-bubba p {
-    padding: 4px 0em;
-    font-size: 0.8em;
-    line-height: 1.6em;
-	}
-	.gallery-grids figure figcaption {
-		padding: 1em 0;
-	}
-	.baner-top p {
-		margin-top: 1em;
-	}
-	.contact-in h5 {
-      font-size: 1.8em;
-	}
-}
-@media (max-width:640px){
-	.logo {
-		float: right;
-		padding: 0;
-		margin-right: 0%;
-		width: 70%;
-		text-align: right;
-	}
-	.top_right {
-		float: left;
-		margin-top:1.5em;
-		padding: 0;
-		width: 30%;
-	}
-	.search {
-		width: 54%;
-		padding: 0;
-		margin-top: 1em;
-		float: left;
-	}
-	.main-nav {
-		position: relative;
-	}
-	span.menu {
-		width: 35px;
-		height: 35px;
-		/* background: url(../images/nav.png)no-repeat 0px 0px; */
-		display: inline-block;
-		cursor: pointer;
-		margin-top: 8px;
-		position: absolute;
-		top: -58px;
-		right: 0px;
-	}
-	.text-bottom {
-		padding: 0;
-		padding: 2em 1em;
-		float: left;
-		width: 50%;
-	}
-	figure.effect-bubba h4 {
-      padding-top: 6%;
-	}
-}
-@media (max-width:600px){
-	.logo {
-		float: right;
-		padding: 0;
-		margin-right: 0%;
-		width: 63%;
-		text-align: right;
-	}
-	.search {
-		width: 46%;
-		padding: 0;
-		margin-top: 1em;
-		float: left;
-		margin: 2em auto 0em;
-		margin-left: -11em;
-	}
-	span.menu {
-		width: 35px;
-		height: 35px;
-		/* background: url(../images/nav.png)no-repeat 0px 0px; */
-		display: inline-block;
-		cursor: pointer;
-		margin-top: 8px;
-		position: absolute;
-		top: -74px;
-		right: 0px;
-	}
-	.text-bottom h4 {
-		font-size: 0.8em;
-	}
-	.features-text h4 {
-      font-size: 1.4em;
-	}
-	ul.workout-exercises li {
-		padding: 8px 20px 10px 81px;
-	}
-	ul.workout-exercises li:before {
-		top: 0;
-		left: 13px;
-	}
-	ul.workout-exercises li:after {
-		content: '';
-		width: 2px;
-		background-color: #fff;
-		position: absolute;
-		top: 40px;
-		left: 32px;
-		bottom: 0;
-	}
-	.testimonials-grid-left1 {
-		float: left;
-		width: 100%;
-	}
-	.testimonials-grid-right1 {
-		float: right;
-		width: 100%;
-	}
-	.wmuSliderPagination {
-		z-index: 2;
-		position: absolute;
-		right: 42%;
-		top: 96%;
-	}
-	.top_right {
-		float:left;
-		margin-top: 1.5em;
-		padding: 0;
-		width: 36%;
-	}
-}
-
-@media (max-width:568px){
-	.logo a h1 {
-		font-size: 2.7em;
-		font-weight: 400;
-	}
-	ul.f-icons li {
-			list-style:none;
-			display: inline-block;
-			margin-right: 0.5em;
-		}
-		.search {
-		width: 46%;
-		padding: 0;
-		margin-top: 1em;
-		float: left;
-		margin: 2em auto 0em;
-		margin-left: -10em;
-	}
-	.banner {
-		min-height: 235px;
-	}
-	.banner-top-text h2 {
-		font-size: 2.3em;
-	}
-	.text-bottom {
-		padding: 0;
-		padding: 2em 1em;
-		float: left;
-		width: 100%;
-	}
-	.text-bottom h4 {
-		font-size: 1.1em;
-	}
-	.features-text h4 {
-		font-size: 1.3em;
-	}
-	ul.workout-exercises h4 {
-		font-size: 1.15em;
-	}
-	.video {
-		min-height: 165px;
-	}
-	.video a span {
-		top: 31%;
-		left: 43%;
-	}
-	.baner-top {
-		float: left;
-		width: 100%;
-		padding: 0;
-		margin-bottom: 1em;
-	}
-	figure.effect-bubba figcaption::before, figure.effect-bubba figcaption::after {
-		position: absolute;
-		top: 30px;
-		right: 30px;
-		bottom: 30px;
-		left: 30px;
-	}
-	.baner-bottom {
-		float: left;
-		width: 100%;
-		padding:0;
-		margin-bottom: 1em;
-	}
-	figure.effect-bubba h4 {
-		padding-top: 15%;
-		font-size: 1.7em;
-	}
-	figure.effect-bubba p {
-    padding: 4px 0em;
-    font-size: 0.9em;
-    line-height: 1.6em;
-	}
-	figure.effect-bubba p {
-		padding: 18px 0em;
-		font-size: 0.9em;
-		line-height: 1.6em;
-	}
-	.baner-top p {
-		margin-top:0em;
-	}
-		.testimonials-grid-left {
-		float: none;
-		width: 100%;
-		margin: 0 0 2em;
-	}
-	.testimonials-grid-left1 {
-		float: left;
-		width: 30%;
-	}
-	.testimonials-grid-left {
-		padding: 0;
-		float: left;
-		width: 100%;
-		margin-right: 3%;
-	}
-	.testimonials-grid-left1 {
-		float: left;
-		width: 29%;
-	}
-	.testimonials-grid-right1 {
-		float: right;
-		width: 69%;
-	}
-	.testimonials-grid-right1 p:before {
-    /* background: url(../images/13.png) no-repeat 0px 0px; */
-    display: block;
-    width: 20px;
-    height: 20px;
-    content: '';
-    position: absolute;
-    left: -11px;
-  }
-}
-@media (max-width:480px){
-	.logo a h1 {
-		font-size: 2.7em;
-		font-weight: 400;
-	}
-	ul.f-icons li {
-			list-style:none;
-			display: inline-block;
-			margin-right: 0.5em;
-		}
-		.search {
-		width: 46%;
-		padding: 0;
-		margin-top: 1em;
-		float: left;
-		margin: 2em auto 0em;
-		margin-left: -10em;
-	}
-	.banner {
-		min-height: 235px;
-	}
-	.banner-top-text h2 {
-		font-size: 2.3em;
-	}
-	.text-bottom {
-		padding: 0;
-		padding: 2em 1em;
-		float: left;
-		width: 100%;
-	}
-	.text-bottom h4 {
-		font-size: 1.1em;
-	}
-	.features-text h4 {
-		font-size: 1.3em;
-	}
-	ul.workout-exercises h4 {
-		font-size: 1.15em;
-	}
-	.video {
-		min-height: 165px;
-	}
-	.video a span {
-		top: 31%;
-		left: 43%;
-	}
-	.baner-top {
-		float: left;
-		width: 100%;
-		padding: 0;
-		margin-bottom: 1em;
-	}
-	figure.effect-bubba figcaption::before, figure.effect-bubba figcaption::after {
-		position: absolute;
-		top: 30px;
-		right: 30px;
-		bottom: 30px;
-		left: 30px;
-	}
-	.baner-bottom {
-		float: left;
-		width: 100%;
-		padding:0;
-		margin-bottom: 1em;
-	}
-	figure.effect-bubba h4 {
-		padding-top: 15%;
-		font-size: 1.7em;
-	}
-	figure.effect-bubba p {
-    padding: 4px 0em;
-    font-size: 0.9em;
-    line-height: 1.6em;
-	}
-	figure.effect-bubba p {
-		padding: 18px 0em;
-		font-size: 0.9em;
-		line-height: 1.6em;
-	}
-	.baner-top p {
-		margin-top:0em;
-	}
-		.testimonials-grid-left {
-		float: none;
-		width: 100%;
-		margin: 0 0 2em;
-	}
-	.testimonials-grid-left1 {
-		float: left;
-		width: 30%;
-	}
-	.testimonials-grid-left {
-		padding: 0;
-		float: left;
-		width: 100%;
-		margin-right: 3%;
-	}
-	.testimonials-grid-left1 {
-		float: left;
-		width: 29%;
-	}
-	.testimonials-grid-right1 {
-		float: right;
-		width: 69%;
-	}
-	.testimonials-grid-right1 p:before {
-    /* background: url(../images/13.png) no-repeat 0px 0px; */
-    display: block;
-    width: 20px;
-    height: 20px;
-    content: '';
-    position: absolute;
-    left: -11px;
-  }
-}
-@media (max-width:414px){
-	ul.f-icons li {
-		list-style: none;
-		display: inline-block;
-		margin-right: 0.3em;
-	}
-	.logo a h1 {
-		font-size: 2.4em;
-		font-weight: 400;
-	}
-	.top_right {
-		float: left;
-		margin-top: 0.8em;
-		padding: 0;
-		width: 36%;
-	}
-	.search {
-		width: 46%;
-		padding: 0;
-		margin-top: 0em;
-		float: left;
-		margin: 1em auto 0em;
-		margin-left: 0em;
-	}
-	span.menu {
-		width: 35px;
-		height: 35px;
-		/* background: url(../images/nav.png)no-repeat 0px 0px; */
-		display: inline-block;
-		cursor: pointer;
-		margin-top: 8px;
-		position: absolute;
-		top: -51px;
-		right: 0px;
-	}
-	.banner-top-text p {
-		font-size: 0.8em;
-		line-height: 1.6em;
-	}
-	.trainer-text {
-		padding: 0;
-		padding: 1.6em 2em;
-	}
-	.main-nav {
-		margin-top: 0.5em;
-	}
-	.testimonials-grid-right1 p {
-		font-size: 0.85em;
-		margin: 0em 0 0;
-		padding-left: 0.5em;
-	}
-	h3.tittle, .features-text h3 {
-		font-size: 1.6em;
-	}
-	.customer {
-		padding: 2em 0;
-	}
-	.wmuSliderPagination {
-		z-index: 2;
-		position: absolute;
-		right: 34%;
-		top: 96%;
-	}
-	.wmuSliderPagination a {
-    width: 10px;
-    height: 10px;
-	}
-	.nbs-flexisel-item > img {
-        width: 100%;
-	    margin-left: 1em;
-	}
-	#partner,.contact {
-		padding: 2em 0;
-	}
-	.contact-form {
-		margin: 1.5em 0 0em 0;
-	}
-	.contact-grid textarea {
-		resize: none;
-		min-height: 147px;
-	}
-	.send input[type="submit"] {
-    font-size: 0.95em;
-    padding: 0.7em 2em
-	}
-	.contact-in h5 {
-		font-size: 1.4em;
-	}
-	.copy p {
-		font-size: 0.85em;
-		line-height: 1.9em;
-	}
-}
-@media (max-width:384px){
-	.top_right {
-		float: none;
-		margin-top: 0.8em;
-		padding: 0;
-		width: 100%;
-		text-align: center;
-	}
-	.logo {
-		float: left;
-		padding: 0;
-		margin-right: 0%;
-		width: 100%;
-		text-align: center;
-		margin-top:0.8em;
-	}
-	ul.f-icons {
-		float: none;
-		margin-top: 0;
-	}
-	.banner {
-		min-height: 177px;
-	}
-	.features {
-		padding: 2em 0;
-	}
-	.features {
-		padding: 2em 0;
-	}
-	.features-text p {
-		margin: 1em 0;
-		font-size: 0.9em;
-	}
-	ul.workout-exercises h4 {
-		font-size: 1em;
-	}
-	ul.workout-exercises li {
-		padding: 8px 0px 10px 81px;
-	}
-	.trainer-text.lady {
-		padding: 2em 2em;
-	}
-	figure.effect-bubba p {
-		padding: 6px 0.5em;
-		font-size: 0.85em;
-		line-height: 1.6em;
-	}
-	figure.effect-bubba h4 {
-		padding-top: 12%;
-		font-size: 1.4em;
-	}
-	.logo a h1 {
-		font-size: 2.2em;
-		font-weight: 400;
-	}
-	.testimonials-grid img {
-      width: 80%;
-    }
-}
-@media (max-width:320px){
-	.header-top {
-		padding: 0.5em 0;
-	}
-	.logo {
-		float: left;
-		padding: 0;
-		margin-right: 0%;
-		width: 100%;
-		text-align: center;
-		margin-top: 0.3em;
-	}
-	.search {
-		width: 46%;
-		padding: 0;
-		margin-top: 0em;
-		float: left;
-		margin: 0.5em auto 0em;
-		margin-left: 0em;
-	}
-	span.menu {
-		width: 35px;
-		height: 35px;
-		/* background: url(../images/nav.png)no-repeat 0px 0px; */
-		display: inline-block;
-		cursor: pointer;
-		margin-top: 8px;
-		position: absolute;
-		top: -47px;
-		right: 0px;
-		background-size: 80%;
-	}
-	.search input[type="text"] {
-    outline: none;
-    padding: 8px 0px 8px 34px;
-    background: none;
-    width: 100%;
-    border: none;
-    font-size: 0.8em;
-	}
-	.banner {
-		min-height: 135px;
-	}
-	.text-bottom h4 {
-    font-size: 1em;	
-    line-height: 1.6em;
-	}
-	p.para1, .text-bottom p, .text-bottom p, .trainer-text p, ul.workout-exercises p, p.location, p.mail, p.phone {
-		font-size: 0.85em;
-		margin: 0.6em 0 0 0;
-	}
-	.banner-top-text h2 {
-		font-size: 1.6em;
-	}
-	.banner-top-text {
-		text-align: center;
-		padding-top: 1em;
-	}
-	.wmuSliderPagination {
-		z-index: 2;
-		position: absolute;
-		right: 34%;
-		top: 96%;
-	}
-
-}
+/* .shape-bottom-right img {
+	max-width: 120%;
+} */
