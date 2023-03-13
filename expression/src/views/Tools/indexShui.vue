@@ -20,7 +20,7 @@
               </p>
               <el-button
                 class="rouButton"
-                @click="$router.push('')"
+                @click="$router.push('/Expression/mh63')"
                 >Go MH63</el-button
               >
             </div>
@@ -40,7 +40,7 @@
               </p>
               <el-button
                 class="rouButton"
-                @click="$router.push('')"
+                @click="$router.push('/Expression/zs97')"
                 >Go ZS97</el-button
               >
             </div>

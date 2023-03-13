@@ -329,6 +329,10 @@
           <el-input v-model="inputCaptcha"></el-input> -->
         </div>
       </div>
+      <!-- <div>
+        <input type="text" ref="myInput"/>
+        <button @click="handleClick">Click me</button>
+      </div> -->
     </div>
   </div>
 </template>
@@ -426,8 +430,13 @@ export default {
     },
   },
   methods: {
-    // handleChange(file) {
-    //   return false;
+    // handleClick() {
+    //   console.log("id:",document.getElementById("myInput")); // 输出input元素
+    //   console.log("ref:",this.$refs.myInput); // 输出undefined
+    //   // 使用this.$nextTick在DOM更新后获取DOM节点
+    //   // this.$nextTick(() => {
+    //   //   console.log(3,this.$refs.myInput); // 输出input元素
+    //   // });
     // },
     confirmtype() {
       this.loading = !this.loading;
@@ -463,15 +472,18 @@ export default {
           ""
         );
         const imgElem = this.$createElement("img", {
-          // ref: "captchaImg",
-          
+          ref: "captchaImg",
+
           attrs: {
             src: this.captchaImg,
-            id:"captcha-img",
+            // id: "captcha-img",
           },
           style: {
             "margin-top": "20px",
           },
+          // 在这里。需要加上key才能保证el.msgbox每次都能渲染组件。
+          // 详情见el官方文档。
+          key:Date.now()
         });
 
         // 将 input 和 img 元素放到 Vue 组件之外的 div 中
@@ -492,15 +504,16 @@ export default {
               done();
             } else if (action === "cancel") {
               let result = await this.$API.reqCaptchaImg();
-              // let result = await this.$API.reqCaptchaImg({ timestamp: new Date().getTime() });
               this.captchaImg = "data:image/png;base64," + result.img;
               this.uuid = result.uuid;
 
               this.$nextTick(() => {
                 // 更新captchaImg元素的src属性
-                // this.$refs.captchaImg.src = this.captchaImg;
-                document.getElementById('captcha-img').src = this.captchaImg;
 
+                // 在这里有两种解决方法，一种是使用ref，一种是使用id
+                // 使用ref的话需要同时为元素绑定key属性
+                this.$refs.captchaImg.src = this.captchaImg;
+                // document.getElementById("captcha-img").src = this.captchaImg;
               });
             } else {
               flag = false;

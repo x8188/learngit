@@ -53,6 +53,18 @@ const routes = [
     component: () => import('../views/Tools/indexShui'),
 
   },
+  {
+    path: '/Expression/mh63',
+    name: 'ExpMh63',
+    component: () => import('../views/Tools/ExpMH63'),
+
+  },
+  {
+    path: '/Expression/zs97',
+    name: 'ExpZs97',
+    component: () => import('../views/Tools/ExpZS97'),
+
+  },
 
   {
     path: '/Methylation',

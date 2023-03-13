@@ -11,6 +11,7 @@
           Maize Expression prediction base on DNA
         </h1>
       </div>
+
       <div style="margin-top: 20px">
         <div style="width: 100%">
           <!-- 输入数据模式 -->
@@ -18,7 +19,7 @@
             <el-col :span="12">
               <el-card class="cardModel">
                 <div slot="header">
-                  <span class="mdoelT">PDI Prediction</span>
+                  <span class="mdoelT">MH63 Prediction</span>
                 </div>
                 <div>
                   <h3>
@@ -27,19 +28,19 @@
                     a barcoded reporter gene in maize protoplasts with or
                     without enhancer in dark.
                   </h3>
-                  <h3>Promoter-distal element interactions (PDI)</h3>
+                  <h3>Promoter proximal region interaction (MH63)</h3>
 
                   <h3 style="color: #fb6672; font-weight: bold">
-                    Please select PDI models here👇
+                    Please select MH63 models here👇
                   </h3>
                   <el-select
                     style="width: 240px"
                     placeholder="-----Select Model-----"
-                    @change="PDIchangeTools"
-                    v-model="PDImodel"
+                    @change="MH63changeTools"
+                    v-model="MH63model"
                   >
                     <el-option
-                      v-for="value in PDImodellist"
+                      v-for="value in MH63modellist"
                       :key="value"
                       :value="value"
                     >
@@ -55,10 +56,10 @@
                   <span class="cardTitle">Note</span>
                 </div>
                 <div>
-                  <p>
-                    To run a PDI-based model, you need to prepare the data in
-                    fasta format, where each chromatin sequence is 1500bp in
-                    length. You can upload the required forecast data and
+                  <p style="font-size: 15px">
+                    To run the MH63-based model, you need to prepare the data in
+                    fasta format, where the length of each chromatin sequence is
+                    3000bp. You can upload the required forecast data and
                     forecast tasks in two formats, online or locally. Each task
                     will take different time depending on the amount of data you
                     provide. When you submit your homework, please keep it in
@@ -256,11 +257,17 @@
                       </div>
                     </div>
                     <div v-else>
-                      <i class="el-icon-upload" style="color: #d32f2f"></i>
+                      <!-- <i class="el-icon-upload" style="color:#d32f2f"></i> -->
+                      <span
+                        class="iconfont icon-jinyong"
+                        style="font-size: 70px; color: #d32f2f"
+                      ></span>
+
                       <div class="el-upload__text">
                         You haven't selected the model from above
                       </div>
                     </div>
+
                     <div class="el-upload__tip" slot="tip">
                       Only .fasta files can be uploaded
                     </div>
@@ -318,6 +325,8 @@
             </div>
           </el-row>
           <!-- <input type="file" @change="fileChange"></input> -->
+          <!-- <img :src="captchaImg" />
+          <el-input v-model="inputCaptcha"></el-input> -->
         </div>
       </div>
       <!-- <div>
@@ -333,20 +342,33 @@
 // import HelloWorld from '@/components/HelloWorld.vue'
 import { Message } from "element-ui";
 export default {
-  name: "ExpPDI",
+  name: "ExpMH63",
   components: {},
   data() {
     return {
+      list1: [],
+      InputSeqs: "",
+      loading: true,
+      isShowImg: false,
       fileList: [],
 
       Seq1: "",
       Seq2: "",
       uploading: false,
-      PDImodellist: ["PDI_Shoot_Li", "PDI_Ear_Li", "PDI_Shoot_Peng"],
+      MH63modellist: [
+        "MH63_Shoot_Li",
+        "MH63_Ear_Sun",
+        "MH63_Shoot_Peng",
+        "MH63_Ear_Li",
+        "MH63_Tassel_Sun",
+      ],
+      // PDImodellist: ["SHOOT1", "EAR", "SHOOT2"],
+      options: [{ value: "1" }, { value: "2" }],
       updataForm: {
         email: "",
       },
-      PDImodel: undefined,
+      MH63model: undefined,
+      // PDImodel: undefined,
 
       // 当前进行到第几步
       steps1: 0,
@@ -363,14 +385,13 @@ export default {
         uuid: undefined,
         captcha: undefined,
       },
-
       taskBoby_file: {
         modelName: "",
         email: "",
         uuid: undefined,
         captcha: undefined,
       },
-      uuid:undefined,
+      uuid: undefined,
       captchaImg: "",
       inputCaptcha: undefined,
 
@@ -397,11 +418,14 @@ export default {
   computed: {
     // 输入的序列长度
     seqlenth() {
-      return 1500;
+      // if (this.MH63model) return 3000;
+      // else if (this.PDImodel) return 1500;
+      // else return "undetermined";
+      return 3000;
     },
     // seqflag 用来表明序列是否可以输入
     seqflag() {
-      if (this.PDImodel) return true;
+      if (this.MH63model) return true;
       else return false;
     },
   },
@@ -414,6 +438,11 @@ export default {
     //   //   console.log(3,this.$refs.myInput); // 输出input元素
     //   // });
     // },
+    confirmtype() {
+      this.loading = !this.loading;
+      console.log(this.methltype);
+    },
+
     async getcaptch() {
       let flag = undefined;
       this.inputCaptcha = undefined;
@@ -443,15 +472,18 @@ export default {
           ""
         );
         const imgElem = this.$createElement("img", {
-          // ref: "captchaImg",
-          
+          ref: "captchaImg",
+
           attrs: {
             src: this.captchaImg,
-            id:"captcha-img",
+            // id: "captcha-img",
           },
           style: {
             "margin-top": "20px",
           },
+          // 在这里。需要加上key才能保证el.msgbox每次都能渲染组件。
+          // 详情见el官方文档。
+          key:Date.now()
         });
 
         // 将 input 和 img 元素放到 Vue 组件之外的 div 中
@@ -472,15 +504,16 @@ export default {
               done();
             } else if (action === "cancel") {
               let result = await this.$API.reqCaptchaImg();
-              // let result = await this.$API.reqCaptchaImg({ timestamp: new Date().getTime() });
               this.captchaImg = "data:image/png;base64," + result.img;
               this.uuid = result.uuid;
 
               this.$nextTick(() => {
                 // 更新captchaImg元素的src属性
-                // this.$refs.captchaImg.src = this.captchaImg;
-                document.getElementById('captcha-img').src = this.captchaImg;
 
+                // 在这里有两种解决方法，一种是使用ref，一种是使用id
+                // 使用ref的话需要同时为元素绑定key属性
+                this.$refs.captchaImg.src = this.captchaImg;
+                // document.getElementById("captcha-img").src = this.captchaImg;
               });
             } else {
               flag = false;
@@ -498,6 +531,7 @@ export default {
       // console.log(flag);
       return flag;
     },
+
     // 新输入提交提交
     submitInputSeq() {
       // 先进行表单验证邮箱
@@ -506,19 +540,18 @@ export default {
           // 如果是文件输入
           if (this.method == 1) {
             // 在这里进行数据整理并提交个服务器
-
-
+            // 暂时直接显示成功
             // 判断步骤2是否成功
             if (this.fileFlag) {
               let t = await this.getcaptch();
-              
+
               if (t != true) return;
 
               this.taskBoby_file.file = this.fileList[0].raw;
               this.taskBoby_file.email = this.updataForm.email;
-              this.taskBoby_file.modelName = this.PDImodel;
-              this.taskBoby_file.uuid=this.uuid
-              this.taskBoby_file.captcha=this.inputCaptcha
+              this.taskBoby_file.modelName = this.MH63model;
+              this.taskBoby_file.uuid = this.uuid;
+              this.taskBoby_file.captcha = this.inputCaptcha;
 
               let result = await this.$API.reqSubmitFlie(this.taskBoby_file);
 
@@ -566,25 +599,22 @@ export default {
           else {
             // 判断步骤2是否成功
             if (this.inputFlag) {
-              
               let t = await this.getcaptch();
-              
               if (t != true) return;
 
               this.taskBoby_seq.seq = [];
               this.taskBoby_seq.seq.push(this.Seq1);
               this.taskBoby_seq.seq.push(this.Seq2);
               this.taskBoby_seq.email = this.updataForm.email;
-              this.taskBoby_seq.modelName = this.PDImodel;
-              this.taskBoby_seq.uuid=this.uuid
-              this.taskBoby_seq.captcha=this.inputCaptcha
+              this.taskBoby_seq.modelName = this.MH63model;
+              this.taskBoby_seq.uuid = this.uuid;
+              this.taskBoby_seq.captcha = this.inputCaptcha;
 
               let result = await this.$API.reqSubmitSeq(this.taskBoby_seq);
-
               if (result.code == 200) {
                 this.steps1 = 3;
                 this.$msgbox({
-                  title: "Upload sequence succeeded!",
+                  title: "Upload sequence succeeded!\n ",
                   message:
                     "Your email will receive an email with a TASK NAME.\n \
                   Please query the progress of this task according to this TASK NAME",
@@ -631,18 +661,23 @@ export default {
         }
       });
     },
-    PDIchangeTools(value) {
+
+    MH63changeTools(value) {
       this.steps1 = 1;
+      // if (this.PDImodel) this.PDImodel = undefined;
+      // this.$router.push(`/Tools/MH63_${value}`);
+      // console.log(value);
     },
+
+    handlerSuccess(response, file, fileList) {},
 
     // 文件改变时监视，限制文件大小
     fileChange(file, fileList) {
-      // this.fileList = fileList;
       const isSize = file.size / 1024 / 1024;
       let lim = 10;
       if (isSize > lim) {
         this.$msgbox({
-          message: "The file size exceeds the limit. PPI:10mb PDI:10mb",
+          message: "The file size exceeds the limit. MH63:10mb PDI:10mb",
           type: "error",
           confirmButtonText: "confrim",
         });
@@ -650,6 +685,7 @@ export default {
         // this.fileList.splice(currIdx, 1);
         return;
       }
+
       this.fileList = fileList;
       this.steps1 = 2;
       this.fileFlag = true;
@@ -667,6 +703,7 @@ export default {
         this.Seq2 = "";
       }
     },
+
     checkSeq(seq1, seq2) {
       var seq1_list = seq1.split("\n");
       var seq2_list = seq2.split("\n");
@@ -755,7 +792,6 @@ export default {
 
           wrongBu = "nameBu";
         }
-
         if (wrongBu != "") {
           this.$refs[wrongBu].$el.classList.add("wrongBu");
           setTimeout(() => {
@@ -766,7 +802,7 @@ export default {
     },
     // 清空已经填入的数据
     resetInfo() {
-      this.PDImodel = "";
+      this.MH63model = "";
       // 手动输入
       if (this.method == 0) {
         this.inputFlag = false;
@@ -782,6 +818,7 @@ export default {
       this.updataForm.email = "";
       this.steps1 = 0;
     },
+
     updataEx() {
       this.Seq1 = this.EXseq1;
       this.Seq2 = this.EXseq2;
@@ -839,18 +876,17 @@ td.column-money {
   border-color: #df6666 !important;
   color: #fff !important;
 }
+
 .cardTitle {
   margin-left: 10px;
   /* margin: auto; */
   font-size: 20px;
-  /* color: #f1b0a4; */
+  /* color: #FA5F6F; */
 }
-
 .el-card ::v-deep .el-card__header {
   background-color: #a5ece4;
   /* border: #A5ECE4; */
 }
-
 .cardModel {
   width: 80%;
 }
@@ -875,12 +911,12 @@ td.column-money {
 
 .wrongBu {
   color: #fff;
-  background-color: #ff4d4f;
-  border-color: #ff4d4f;
+  background-color: #d32f2f;
+  border-color: #d32f2f;
 }
 
 .tabLable {
   font-size: 25px;
-  font-weight: bold;
+  font-weight: bolder;
 }
 </style>
