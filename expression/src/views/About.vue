@@ -7,7 +7,7 @@
     <div style="margin: 15px">
       <h1 style="font-size: 40px; font-weight: bold">TOUR TEAM</h1>
     </div>
-    <div class="member">
+    <!-- <div class="member">
       <a-card
         hoverable
         :bordered="false"
@@ -16,22 +16,89 @@
         class="item-card"
       >
         <img class="img" slot="cover" :src="item" />
-        <!-- <template slot="actions" class="ant-card-actions">
-        <a-icon key="setting" type="setting" />
-        <a-icon key="edit" type="edit" />
-        <a-icon key="ellipsis" type="ellipsis" />
-        </template> -->
+
         <a-card-meta
           title="Description"
           description="This is the description.This is the descriptionThis is the description"
         >
-          <!-- <a-avatar
-            slot="avatar"
-            src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
-          /> -->
         </a-card-meta>
         <a-card-meta title="Contact" description="lsj<at>google.con" />
       </a-card>
+    </div> -->
+    <div class="row">
+      <div class="services-style-two col-xl-3 col-md-3">
+        <div class="services-style-two-item">
+          <div class="info">
+            <div class="thumb">
+              <img src="../assets/picture/34.jpg" alt="Image Not Found" />
+            </div>
+            <p>
+              Continue indulged speaking technical maximum horrible domestic
+              position seeing.
+            </p>
+          </div>
+          <h5 class="title">
+            <a href=""
+              ><i class="flaticon-vegetable"></i> Fresh Vegetables</a
+            >
+          </h5>
+        </div>
+      </div>
+      <div class="services-style-two col-xl-3 col-md-3">
+        <div class="services-style-two-item">
+          <div class="info">
+            <div class="thumb">
+              <img src="../assets/picture/34.jpg" alt="Image Not Found" />
+            </div>
+            <p>
+              Recenting indulged speaking technical maximum horrible domestic
+              position seeing.
+            </p>
+          </div>
+          <h5 class="title">
+            <a href=""
+              ><i class="flaticon-corn"></i> Agricultural</a
+            >
+          </h5>
+        </div>
+      </div>
+      <div class="services-style-two col-xl-3 col-md-3">
+        <div class="services-style-two-item">
+          <div class="info">
+            <div class="thumb">
+              <img src="../assets/picture/34.jpg" alt="Image Not Found" />
+            </div>
+            <p>
+              Continue indulged speaking technical maximum horrible domestic
+              position seeing.
+            </p>
+          </div>
+          <h5 class="title">
+            <a href=""
+              ><i class="flaticon-bees"></i> Organic Products</a
+            >
+          </h5>
+        </div>
+      </div>
+      <div class="services-style-two col-xl-3 col-md-3">
+        <div class="services-style-two-item">
+          <div class="info">
+            <div class="thumb">
+              <img src="../assets/picture/34.jpg" alt="Image Not Found" />
+            </div>
+            <p>
+              Maximum indulged speaking technical maximum horrible domestic
+              position seeing.
+            </p>
+          </div>
+          <h5 class="title">
+            <a href=""
+              ><i class="flaticon-cow-3"></i> Dairy Production</a
+            >
+          </h5>
+        </div>
+      </div>
+      <!-- End Single Item -->
     </div>
   </div>
 </template>
@@ -39,6 +106,8 @@
 <script>
 // @ is an alias to /src
 // import HelloWorld from '@/components/HelloWorld.vue'
+
+
 
 export default {
   name: "About",
@@ -58,10 +127,14 @@ export default {
 };
 </script>
 <style scoped>
+@import "../assets/css/bootstrap.css";
+@import "../assets/css/style.css";
+@import "../assets/css/flaticon-set.css";
+
 .about {
   height: 1000px;
   text-align: center;
-  width: 80%;
+  width: 70%;
   margin: 0 auto;
 }
 .img {

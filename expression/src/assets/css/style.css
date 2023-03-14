@@ -180,3 +180,65 @@ Sidebar heading:  20px 'Manrope', sans-serif
 /* .shape-bottom-right img {
 	max-width: 120%;
 } */
+
+.services-style-two {
+	margin-bottom: 30px;
+}
+
+.services-style-two-item .thumb > img {
+	border-radius: 50%;
+	max-width: 80%;
+	margin-bottom: 30px;
+}
+
+.services-style-two-item {
+	box-shadow: 0 25px 70px rgb(0 0 0 / 7%);
+	border-radius: 8px;
+	border: 1px solid transparent;
+	transition: all 0.35s ease-in-out;
+	background: var(--white);
+}
+
+.services-style-two:nth-child(1) .services-style-two-item, 
+.services-style-two-item:hover {
+	border: 1px solid var(--dark);
+}
+
+.services-style-two-item .info {
+	padding: 50px 37px;
+}
+
+.services-style-two-item p {
+	margin-bottom: -5px;
+}
+
+.services-style-two-item .title {
+	text-align: left;
+	margin: 0;
+}
+
+.services-style-two-item .title a {
+	margin: 0;
+	background: var(--dark);
+	padding: 15px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: relative;
+	border-radius: 0 0 8px 8px;
+}
+
+.services-style-two-item .title a {
+	color: var(--white);
+    font-weight: 600;
+    text-decoration: none;
+    font-size: 20px;
+}
+
+.services-style-two-item .title i {
+	display: inline-block;
+	color: var(--color-secondary);
+	font-size: 45px;
+	margin-right: 13px;
+}
+

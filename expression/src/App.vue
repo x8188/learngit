@@ -66,7 +66,6 @@
 </template>
 
 <script>
-// import './assets/css/bootstrap.css'
 export default {
   data() {
     return {
@@ -157,6 +156,8 @@ body {
   font-weight: bold;
   font-size: 25px;
   color: #fff;
+
+  text-decoration: none;
 }
 
 #nav .link-wrapper {
