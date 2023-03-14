@@ -73,13 +73,13 @@
             <el-image
               class="showimg"
               :src="imgurl.chg"
-              :preview-src-list="[imgurl.chg,imgurl.seq]"
+              :preview-src-list="[imgurl.chg, imgurl.seq]"
             >
             </el-image>
             <el-image
               class="showimg"
               :src="imgurl.seq"
-              :preview-src-list="[imgurl.chg,imgurl.seq]"
+              :preview-src-list="[imgurl.chg, imgurl.seq]"
             >
             </el-image>
             <!-- <img style="width: 100%; height: 280px" :src="imgurl.chg" />
@@ -156,7 +156,7 @@ export default {
     async getTaskInfo() {
       let result = await this.$API.reqTaskResultInfo(this.id);
       if (result.code == 200) {
-        console.log(result);
+        // console.log(result);
 
         this.expData = result[this.id + "_predict.csv"];
         this.data2 = result[this.id + "_saliency.csv"];
@@ -173,6 +173,28 @@ export default {
         }
       }
     },
+    // downloadImage(imgsrc) {
+    //   let image = new Image();
+    //   image.setAttribute("crossOrigin", "anonymous");
+    //   image.src = imgsrc;
+    //   image.onload = () => {
+    //     let canvas = document.createElement("canvas");
+    //     canvas.width = image.width;
+    //     canvas.height = image.height;
+    //     let ctx = canvas.getContext("2d");
+    //     ctx.drawImage(image, 0, 0, image.width, image.height);
+    //     canvas.toBlob((blob) => {
+    //       let url = URL.createObjectURL(blob);
+    //       let Link = document.createElement("a");
+    //       Link.download = "下载名字";
+    //       Link.href = url;
+    //       Link.click();
+    //       Link.remove();
+    //       // 用完释放URL对象
+    //       URL.revokeObjectURL(url);
+    //     });
+    //   };
+    // },
     dowload(flag, event) {
       let dowload_url = "http://124.220.197.196/";
       if (flag == 1) {
@@ -184,8 +206,10 @@ export default {
       } else {
         dowload_url = this.imgurl.chg;
         window.open(dowload_url);
+        // this.downloadImage(dowload_url);
         dowload_url = this.imgurl.seq;
         window.open(dowload_url);
+        // this.downloadImage(dowload_url);
       }
       // console.log(dowload_url)
 
@@ -235,7 +259,8 @@ export default {
 }
 .showimg {
   /* cursor: zoom-in; */
-  width: 80%; height: 80%
+  width: 80%;
+  height: 80%;
   /* width: 80%; */
 }
 </style>

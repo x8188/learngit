@@ -356,11 +356,9 @@ export default {
       Seq2: "",
       uploading: false,
       MH63modellist: [
-        "MH63_Shoot_Li",
-        "MH63_Ear_Sun",
-        "MH63_Shoot_Peng",
-        "MH63_Ear_Li",
-        "MH63_Tassel_Sun",
+        "MH_MH63_H3K4",
+        "MH_MH63_H3K9",
+        "MH_MH64_RNAP2",
       ],
       // PDImodellist: ["SHOOT1", "EAR", "SHOOT2"],
       options: [{ value: "1" }, { value: "2" }],
@@ -461,7 +459,7 @@ export default {
               id: "input1",
             },
             style: {
-              width: "80%",
+              width: "60%",
             },
             on: {
               input: function (event) {

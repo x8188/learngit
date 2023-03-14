@@ -432,7 +432,7 @@ export default {
               id: "input1",
             },
             style: {
-              width: "80%",
+              width: "60%",
             },
             on: {
               input: function (event) {

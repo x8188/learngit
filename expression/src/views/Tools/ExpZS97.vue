@@ -356,11 +356,9 @@ export default {
       Seq2: "",
       uploading: false,
       ZS97modellist: [
-        "ZS97_Shoot_Li",
-        "ZS97_Ear_Sun",
-        "ZS97_Shoot_Peng",
-        "ZS97_Ear_Li",
-        "ZS97_Tassel_Sun",
+        "ZS_ZS_H3K4",
+        "ZS_ZS_H3K9",
+        "ZS_ZS_RNAP2",
       ],
       // PDImodellist: ["SHOOT1", "EAR", "SHOOT2"],
       options: [{ value: "1" }, { value: "2" }],
@@ -461,7 +459,7 @@ export default {
               id: "input1",
             },
             style: {
-              width: "80%",
+              width: "60%",
             },
             on: {
               input: function (event) {
