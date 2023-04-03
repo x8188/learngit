@@ -8,29 +8,29 @@
         </div>
 
         <div class="link-wrapper" style="display: flex">
-          <router-link to="/">HOME</router-link>
+          <router-link to="/">Home</router-link>
           <a-dropdown placement="bottomCenter">
             <a class="ant-dropdown-link">
-              TOOLS<i class="el-icon-arrow-down el-icon--right"></i>
+              Tools<i class="el-icon-arrow-down el-icon--right"></i>
             </a>
             <a-menu slot="overlay" id="tool">
               <a-menu-item
                 ><router-link to="/Expression/index"
-                  >Expression</router-link
+                  >Corn</router-link
                 ></a-menu-item
               >
               <a-menu-item
                 ><router-link to="/Expression/indexShui"
-                  >Methylation</router-link
+                  >Rice</router-link
                 ></a-menu-item
               >
             </a-menu>
           </a-dropdown>
           <!-- <router-link to="/Expression/index">TOOLS</router-link> -->
-          <router-link to="/search">SEARCH</router-link>
-          <router-link to="/result">RESULT</router-link>
-          <router-link to="/about">CONTACT</router-link>
-          <router-link to="/tutorial">TUTORIAL</router-link>
+          <router-link to="/search">Search</router-link>
+          <router-link to="/result">Result</router-link>
+          <router-link to="/about">Contact</router-link>
+          <router-link to="/tutorial">Tutorial</router-link>
         </div>
       </div>
       <section class="featured1"></section>
@@ -58,7 +58,8 @@
         >
           Address: Room C423, Research Office of Artificial Intelligence
           Research Group, Huazhong Agricultural university, Wuhan, 430070, China
-          湖北省武汉市南湖狮子山街一号逸夫楼C座423室 Tel: 027-87280350 Email:
+          <br><br/>
+          Room 423, Block C, Yifu Building, Shizishan Street No. 1, Nanhu, Wuhan, Hubei Province Tel: 027-87280350 Email:
         </p>
       </div>
     </div>
@@ -157,7 +158,7 @@ body {
   font-size: 25px;
   color: #fff;
 
-  text-decoration: none;
+  /* text-decoration: none; */
 }
 
 #nav .link-wrapper {

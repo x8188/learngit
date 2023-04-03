@@ -86,6 +86,8 @@ export default {
   position: absolute;
   z-index: 999;
   left: 30px;
+
+  height: 60%;
 }
 
 .buttonClass {

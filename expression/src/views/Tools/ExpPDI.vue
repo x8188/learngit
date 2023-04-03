@@ -462,8 +462,8 @@ export default {
           type: "warning",
           center: true,
           showCancelButton: true,
-          confirmButtonText: "confirm",
-          cancelButtonText: "refresh",
+          confirmButtonText: "Confirm",
+          cancelButtonText: "Refresh",
           distinguishCancelAndClose: true,
           beforeClose: async (action, instance, done) => {
             // console.log(action);

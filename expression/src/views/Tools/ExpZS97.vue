@@ -3,336 +3,388 @@
  * @LastEditors: Lvshijie
 -->
 <template>
-  <div class="tool">
-    <Steps :steps1="steps1"></Steps>
-    <div class="tool-up">
-      <div class="top-text">
-        <h1 style="font-size: 35px; font-weight: bolder">
-          Maize Expression prediction base on DNA
-        </h1>
-      </div>
-
-      <div style="margin-top: 20px">
-        <div style="width: 100%">
-          <!-- 输入数据模式 -->
-          <el-row type="flex" justify="center">
-            <el-col :span="12">
-              <el-card class="cardModel">
-                <div slot="header">
-                  <span class="mdoelT">ZS97 Prediction</span>
-                </div>
-                <div>
-                  <h3>
-                    In these models, the strength of plant core promoter(labels
-                    of samples) is defined as the ability to drive expression of
-                    a barcoded reporter gene in maize protoplasts with or
-                    without enhancer in dark.
-                  </h3>
-                  <h3>Promoter proximal region interaction (ZS97)</h3>
-
-                  <h3 style="color: #fb6672; font-weight: bold">
-                    Please select ZS97 models here👇
-                  </h3>
-                  <el-select
-                    style="width: 240px"
-                    placeholder="-----Select Model-----"
-                    @change="ZS97changeTools"
-                    v-model="ZS97model"
-                  >
-                    <el-option
-                      v-for="value in ZS97modellist"
-                      :key="value"
-                      :value="value"
-                    >
-                      {{ value }}
-                    </el-option>
-                  </el-select>
-                </div>
-              </el-card>
-            </el-col>
-            <el-col :span="8">
-              <el-card>
-                <div slot="header">
-                  <span class="cardTitle">Note</span>
-                </div>
-                <div>
-                  <p style="font-size: 15px">
-                    To run the ZS97-based model, you need to prepare the data in
-                    fasta format, where the length of each chromatin sequence is
-                    3000bp. You can upload the required forecast data and
-                    forecast tasks in two formats, online or locally. Each task
-                    will take different time depending on the amount of data you
-                    provide. When you submit your homework, please keep it in
-                    mind ID, so that you can check the results later.
-                  </p>
-                </div>
-              </el-card>
-            </el-col>
-          </el-row>
-          <el-tabs
-            tab-position="top"
-            stretch
-            @tab-click="methodsChange"
-            value="input"
-            style="margin-top: 40px; margin-bottom: 20px"
+  <div>
+    <!-- <div class="about-style-one-area default-padding">
+      <div class="container">
+        <div class="row align-center">
+          <div
+            class="col-xl-5 col-lg-6 about-style-one"
           >
-            <!-- 选择模型输入序列 -->
-            <el-tab-pane name="input">
-              <span slot="label" class="tabLable"
-                ><i class="el-icon-edit"></i> Manual input</span
-              >
-              <div>
-                <el-alert
-                  title="BE CAREFUL-------After switching the method, the entered sequence will be cleared"
-                  style="width: 50%; margin: 0 auto; margin-bottom: 10px"
-                  center
-                  type="info"
-                  close-text="got it"
-                >
-                </el-alert>
-                <div class="tipsButton">
-                  <el-popover
-                    placement="top"
-                    width="500"
-                    trigger="hover"
-                    :open-delay="100"
-                  >
-                    <h2 style="text-align: center; margin: 0 auto">
-                      Right example
-                    </h2>
-                    <el-input
-                      type="textarea"
-                      style="width: 95%; margin: 10px"
-                      :value="exampleSeq"
-                      rows="10"
-                      :readonly="true"
-                    />
-                    <el-button
-                      slot="reference"
-                      class="el-icon-info"
-                      ref="dataBu"
-                    >
-                      First : Correct data format</el-button
-                    >
-                  </el-popover>
-                  <el-popover
-                    placement="top"
-                    width="400"
-                    trigger="hover"
-                    :open-delay="100"
-                  >
-                    <h2 style="text-align: center; margin: 0 auto">
-                      Wrong example
-                    </h2>
-                    <el-input
-                      type="textarea"
-                      style="width: 43%; margin: 10px"
-                      :value="NumSeq1"
-                      rows="5"
-                      :readonly="true"
-                    />
-                    <el-input
-                      type="textarea"
-                      style="width: 43%; margin: 10px"
-                      :value="NumSeq2"
-                      rows="5"
-                      :readonly="true"
-                    />
-                    <el-button
-                      slot="reference"
-                      class="el-icon-info"
-                      ref="numBu"
-                    >
-                      Second : Same number of genes</el-button
-                    >
-                  </el-popover>
-                  <el-popover
-                    placement="top"
-                    width="400"
-                    trigger="hover"
-                    :open-delay="100"
-                  >
-                    <h2 style="text-align: center; margin: 0 auto">
-                      Wrong example
-                    </h2>
-                    <el-input
-                      type="textarea"
-                      style="width: 43%; margin: 10px"
-                      :value="NameSeq1"
-                      rows="5"
-                      :readonly="true"
-                    />
-                    <el-input
-                      type="textarea"
-                      style="width: 43%; margin: 10px"
-                      :value="NameSeq2"
-                      rows="5"
-                      :readonly="true"
-                    />
-                    <el-button
-                      slot="reference"
-                      class="el-icon-info"
-                      ref="nameBu"
-                    >
-                      Third : Different gene names</el-button
-                    >
-                  </el-popover>
+            <div class="thumb">
+              <img src="../../assets/picture/5.jpg" alt="Image Not Found" />
+              <div class="sub-item">
+                <img src="../../assets/picture/1.jpg" alt="Image Not Found" />
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-7 col-lg-6 about-style-one">
+            <div class="row align-center">
+              <div class="col-xl-7">
+                <h2 class="heading">
+                  Agriculture For <br />
+                  Future Development
+                </h2>
+                <p>
+                  There are many variations of passages of ipsum available but
+                  the majority have suffered alteration in some form by injected
+                  humor or random word which don’t look even. Comparison new ham
+                  melancholy son themselves.
+                </p>
+                <ul class="check-solid-list mt-20">
+                  <li>Organic food contains more vitamins</li>
+                  <li>Eat organic because supply meets demand</li>
+                  <li>Organic food is never irradiated</li>
+                </ul>
+              </div>
+              <div class="col-xl-5">
+                <div class="top-product-item">
+                  <img src="../../assets/picture/1.svg" alt="Icon" />
+                  <h5><a href="#">Natural Farming</a></h5>
+                  <p>Resolve parties but trying she shewing of moment.</p>
                 </div>
-                <div>
-                  <el-input
-                    type="textarea"
-                    style="width: 47%; margin: 10px"
-                    v-model="Seq1"
-                    :disabled="!seqflag"
-                    rows="4"
-                    placeholder="Please select the model from above first"
-                    @blur="checkinput(1)"
-                  />
-                  <el-input
-                    type="textarea"
-                    style="width: 47%; margin: 10px"
-                    v-model="Seq2"
-                    :disabled="!seqflag"
-                    rows="4"
-                    placeholder="Please select the model from above first"
-                    @blur="checkinput(2)"
-                  />
-                </div>
-                <div class="ToolButton" style="display: flex">
-                  <el-button
-                    icon="el-icon-s-data"
-                    @click="updataEx"
-                    style="margin: 0 auto"
-                    :disabled="!seqflag"
-                    >Example</el-button
-                  >
+                <div class="top-product-item">
+                  <img src="../../assets/picture/2.svg" alt="Icon" />
+                  <h5><a href="#">Quality Products</a></h5>
+                  <p>Always parties but trying she shewing of moment.</p>
                 </div>
               </div>
-            </el-tab-pane>
-            <!-- 或者直接上传文件 -->
-            <el-tab-pane name="file">
-              <span slot="label" class="tabLable"
-                ><i class="el-icon-folder-add"></i> Upload files</span
-              >
-              <el-row style="text-align: center">
-                <el-alert
-                  title="BE CAREFUL-------After switching the method, the uploaded file will be cleared"
-                  style="width: 50%; margin: 0 auto"
-                  center
-                  type="info"
-                  close-text="got it"
-                >
-                </el-alert>
-                <el-col :span="24" style="margin-top: 10px">
-                  <div>
-                    <h1
-                      v-if="!seqflag"
-                      style="color: #fb6672; font-weight: bold"
-                    >
-                      👆👆👆 Please select the model from above first
-                    </h1>
-                    <h1
-                      v-if="fileFlag"
-                      style="color: #47b347; font-weight: bold"
-                    >
-                      Successfully uploaded the file
-                    </h1>
-                  </div>
-                  <el-upload
-                    class="upload-demo"
-                    drag
-                    action=""
-                    multiple
-                    :on-change="fileChange"
-                    :file-list="fileList"
-                    :auto-upload="false"
-                    accept=".fasta"
-                    :disabled="!seqflag"
-                    :limit="1"
-                  >
-                    <div v-if="seqflag">
-                      <i class="el-icon-upload"></i>
-                      <div class="el-upload__text">
-                        Drop files here, Or <em>Click Upload</em>
-                      </div>
-                    </div>
-                    <div v-else>
-                      <!-- <i class="el-icon-upload" style="color:#d32f2f"></i> -->
-                      <span
-                        class="iconfont icon-jinyong"
-                        style="font-size: 70px; color: #d32f2f"
-                      ></span>
-
-                      <div class="el-upload__text">
-                        You haven't selected the model from above
-                      </div>
-                    </div>
-
-                    <div class="el-upload__tip" slot="tip">
-                      Only .fasta files can be uploaded
-                    </div>
-                  </el-upload>
-                </el-col>
-                <!-- <el-col :span="3" style="margin-top: 5px">
-              <h1 style="float: left; margin-left: 40%">E-mail:</h1>
-            </el-col> -->
-              </el-row>
-            </el-tab-pane>
-          </el-tabs>
-
-          <!-- 输入邮箱 -->
-          <el-row type="flex" justify="center">
-            <el-col :span="12" style="margin-top: 10px">
-              <el-form :model="updataForm" ref="updataForm">
-                <el-form-item
-                  prop="email"
-                  label-width="100px"
-                  :rules="[
-                    {
-                      required: true,
-                      message: 'Please enter the email address',
-                      trigger: 'blur',
-                    },
-                    {
-                      type: 'email',
-                      message: 'Please enter the correct email address',
-                      trigger: ['blur'],
-                    },
-                  ]"
-                >
-                  <span slot="label" style="font-size: 20px"> E-mail: </span>
-                  <el-input v-model="updataForm.email"></el-input>
-                </el-form-item>
-              </el-form>
-            </el-col>
-          </el-row>
-          <!-- 提交 -->
-          <el-row type="flex" justify="center">
-            <div class="ToolButton">
-              <el-button
-                style="margin-top: 6px"
-                type="primary"
-                @click="submitInputSeq"
-              >
-                {{ uploading ? "Uploading" : "Start Upload" }}
-              </el-button>
-              <el-button
-                type="danger"
-                icon="el-icon-refresh-right"
-                @click="resetInfo"
-                >RESET</el-button
-              >
             </div>
-          </el-row>
-          <!-- <input type="file" @change="fileChange"></input> -->
-          <!-- <img :src="captchaImg" />
-          <el-input v-model="inputCaptcha"></el-input> -->
+          </div>
         </div>
       </div>
-      <!-- <div>
+    </div> -->
+    <div class="tool">
+      <Steps :steps1="steps1"></Steps>
+      <div class="tool-up">
+        <div class="top-text">
+          <h1 style="font-size: 35px; font-weight: bolder">
+            Maize Expression prediction base on DNA
+          </h1>
+        </div>
+
+        <div style="margin-top: 20px">
+          <div style="width: 100%">
+            <!-- 输入数据模式 -->
+            <el-row type="flex" justify="center">
+              <el-col :span="12">
+                <el-card class="cardModel">
+                  <div slot="header">
+                    <span class="mdoelT">ZS97 Prediction</span>
+                  </div>
+                  <div>
+                    <h3>
+                      In these models, the strength of plant core
+                      promoter(labels of samples) is defined as the ability to
+                      drive expression of a barcoded reporter gene in maize
+                      protoplasts with or without enhancer in dark.
+                    </h3>
+                    <h3>Promoter proximal region interaction (ZS97)</h3>
+
+                    <h3 style="color: #fb6672; font-weight: bold">
+                      Please select ZS97 models here👇
+                    </h3>
+                    <el-select
+                      style="width: 240px"
+                      placeholder="-----Select Model-----"
+                      @change="ZS97changeTools"
+                      v-model="ZS97model"
+                    >
+                      <el-option
+                        v-for="value in ZS97modellist"
+                        :key="value"
+                        :value="value"
+                      >
+                        {{ value }}
+                      </el-option>
+                    </el-select>
+                  </div>
+                </el-card>
+              </el-col>
+              <el-col :span="8">
+                <el-card>
+                  <div slot="header">
+                    <span class="cardTitle">Note</span>
+                  </div>
+                  <div>
+                    <p style="font-size: 15px">
+                      To run the ZS97-based model, you need to prepare the data
+                      in fasta format, where the length of each chromatin
+                      sequence is 3000bp. You can upload the required forecast
+                      data and forecast tasks in two formats, online or locally.
+                      Each task will take different time depending on the amount
+                      of data you provide. When you submit your homework, please
+                      keep it in mind ID, so that you can check the results
+                      later.
+                    </p>
+                  </div>
+                </el-card>
+              </el-col>
+            </el-row>
+            <el-tabs
+              tab-position="top"
+              stretch
+              @tab-click="methodsChange"
+              value="input"
+              style="margin-top: 40px; margin-bottom: 20px"
+            >
+              <!-- 选择模型输入序列 -->
+              <el-tab-pane name="input">
+                <span slot="label" class="tabLable"
+                  ><i class="el-icon-edit"></i> Manual input</span
+                >
+                <div>
+                  <el-alert
+                    title="BE CAREFUL-------After switching the method, the entered sequence will be cleared"
+                    style="width: 50%; margin: 0 auto; margin-bottom: 10px"
+                    center
+                    type="info"
+                    close-text="got it"
+                  >
+                  </el-alert>
+                  <div class="tipsButton">
+                    <el-popover
+                      placement="top"
+                      width="500"
+                      trigger="hover"
+                      :open-delay="100"
+                    >
+                      <h2 style="text-align: center; margin: 0 auto">
+                        Right example
+                      </h2>
+                      <el-input
+                        type="textarea"
+                        style="width: 95%; margin: 10px"
+                        :value="exampleSeq"
+                        rows="10"
+                        :readonly="true"
+                      />
+                      <el-button
+                        slot="reference"
+                        class="el-icon-info"
+                        ref="dataBu"
+                      >
+                        First : Correct data format</el-button
+                      >
+                    </el-popover>
+                    <el-popover
+                      placement="top"
+                      width="400"
+                      trigger="hover"
+                      :open-delay="100"
+                    >
+                      <h2 style="text-align: center; margin: 0 auto">
+                        Wrong example
+                      </h2>
+                      <el-input
+                        type="textarea"
+                        style="width: 43%; margin: 10px"
+                        :value="NumSeq1"
+                        rows="5"
+                        :readonly="true"
+                      />
+                      <el-input
+                        type="textarea"
+                        style="width: 43%; margin: 10px"
+                        :value="NumSeq2"
+                        rows="5"
+                        :readonly="true"
+                      />
+                      <el-button
+                        slot="reference"
+                        class="el-icon-info"
+                        ref="numBu"
+                      >
+                        Second : Same number of genes</el-button
+                      >
+                    </el-popover>
+                    <el-popover
+                      placement="top"
+                      width="400"
+                      trigger="hover"
+                      :open-delay="100"
+                    >
+                      <h2 style="text-align: center; margin: 0 auto">
+                        Wrong example
+                      </h2>
+                      <el-input
+                        type="textarea"
+                        style="width: 43%; margin: 10px"
+                        :value="NameSeq1"
+                        rows="5"
+                        :readonly="true"
+                      />
+                      <el-input
+                        type="textarea"
+                        style="width: 43%; margin: 10px"
+                        :value="NameSeq2"
+                        rows="5"
+                        :readonly="true"
+                      />
+                      <el-button
+                        slot="reference"
+                        class="el-icon-info"
+                        ref="nameBu"
+                      >
+                        Third : Different gene names</el-button
+                      >
+                    </el-popover>
+                  </div>
+                  <div>
+                    <el-input
+                      type="textarea"
+                      style="width: 47%; margin: 10px"
+                      v-model="Seq1"
+                      :disabled="!seqflag"
+                      rows="4"
+                      placeholder="Please select the model from above first"
+                      @blur="checkinput(1)"
+                    />
+                    <el-input
+                      type="textarea"
+                      style="width: 47%; margin: 10px"
+                      v-model="Seq2"
+                      :disabled="!seqflag"
+                      rows="4"
+                      placeholder="Please select the model from above first"
+                      @blur="checkinput(2)"
+                    />
+                  </div>
+                  <div class="ToolButton" style="display: flex">
+                    <el-button
+                      icon="el-icon-s-data"
+                      @click="updataEx"
+                      style="margin: 0 auto"
+                      :disabled="!seqflag"
+                      >Example</el-button
+                    >
+                  </div>
+                </div>
+              </el-tab-pane>
+              <!-- 或者直接上传文件 -->
+              <el-tab-pane name="file">
+                <span slot="label" class="tabLable"
+                  ><i class="el-icon-folder-add"></i> Upload files</span
+                >
+                <el-row style="text-align: center">
+                  <el-alert
+                    title="BE CAREFUL-------After switching the method, the uploaded file will be cleared"
+                    style="width: 50%; margin: 0 auto"
+                    center
+                    type="info"
+                    close-text="got it"
+                  >
+                  </el-alert>
+                  <el-col :span="24" style="margin-top: 10px">
+                    <div>
+                      <h1
+                        v-if="!seqflag"
+                        style="color: #fb6672; font-weight: bold"
+                      >
+                        👆👆👆 Please select the model from above first
+                      </h1>
+                      <h1
+                        v-if="fileFlag"
+                        style="color: #47b347; font-weight: bold"
+                      >
+                        Successfully uploaded the file
+                      </h1>
+                    </div>
+                    <el-upload
+                      class="upload-demo"
+                      drag
+                      action=""
+                      multiple
+                      :on-change="fileChange"
+                      :file-list="fileList"
+                      :auto-upload="false"
+                      accept=".fasta"
+                      :disabled="!seqflag"
+                      :limit="1"
+                    >
+                      <div v-if="seqflag">
+                        <i class="el-icon-upload"></i>
+                        <div class="el-upload__text">
+                          Drop files here, Or <em>Click Upload</em>
+                        </div>
+                      </div>
+                      <div v-else>
+                        <!-- <i class="el-icon-upload" style="color:#d32f2f"></i> -->
+                        <span
+                          class="iconfont icon-jinyong"
+                          style="font-size: 70px; color: #d32f2f"
+                        ></span>
+
+                        <div class="el-upload__text">
+                          You haven't selected the model from above
+                        </div>
+                      </div>
+
+                      <div class="el-upload__tip" slot="tip">
+                        Only .fasta files can be uploaded
+                      </div>
+                    </el-upload>
+                  </el-col>
+                  <!-- <el-col :span="3" style="margin-top: 5px">
+              <h1 style="float: left; margin-left: 40%">E-mail:</h1>
+            </el-col> -->
+                </el-row>
+              </el-tab-pane>
+            </el-tabs>
+
+            <!-- 输入邮箱 -->
+            <el-row type="flex" justify="center">
+              <el-col :span="12" style="margin-top: 10px">
+                <el-form :model="updataForm" ref="updataForm">
+                  <el-form-item
+                    prop="email"
+                    label-width="100px"
+                    :rules="[
+                      {
+                        required: true,
+                        message: 'Please enter the email address',
+                        trigger: 'blur',
+                      },
+                      {
+                        type: 'email',
+                        message: 'Please enter the correct email address',
+                        trigger: ['blur'],
+                      },
+                    ]"
+                  >
+                    <span slot="label" style="font-size: 20px"> E-mail: </span>
+                    <el-input v-model="updataForm.email"></el-input>
+                  </el-form-item>
+                </el-form>
+              </el-col>
+            </el-row>
+            <!-- 提交 -->
+            <el-row type="flex" justify="center">
+              <div class="ToolButton">
+                <el-button
+                  style="margin-top: 6px"
+                  type="primary"
+                  @click="submitInputSeq"
+                >
+                  {{ uploading ? "Uploading" : "Start Upload" }}
+                </el-button>
+                <el-button
+                  type="danger"
+                  icon="el-icon-refresh-right"
+                  @click="resetInfo"
+                  >RESET</el-button
+                >
+              </div>
+            </el-row>
+            <!-- <input type="file" @change="fileChange"></input> -->
+            <!-- <img :src="captchaImg" />
+          <el-input v-model="inputCaptcha"></el-input> -->
+          </div>
+        </div>
+        <!-- <div>
         <input type="text" ref="myInput"/>
         <button @click="handleClick">Click me</button>
       </div> -->
+      </div>
     </div>
   </div>
 </template>
@@ -355,11 +407,7 @@ export default {
       Seq1: "",
       Seq2: "",
       uploading: false,
-      ZS97modellist: [
-        "ZS_ZS_H3K4",
-        "ZS_ZS_H3K9",
-        "ZS_ZS_RNAP2",
-      ],
+      ZS97modellist: ["ZS_ZS_H3K4", "ZS_ZS_H3K9", "ZS_ZS_RNAP2"],
       // PDImodellist: ["SHOOT1", "EAR", "SHOOT2"],
       options: [{ value: "1" }, { value: "2" }],
       updataForm: {
@@ -481,7 +529,7 @@ export default {
           },
           // 在这里。需要加上key才能保证el.msgbox每次都能渲染组件。
           // 详情见el官方文档。
-          key:Date.now()
+          key: Date.now(),
         });
 
         // 将 input 和 img 元素放到 Vue 组件之外的 div 中
@@ -492,8 +540,8 @@ export default {
           type: "warning",
           center: true,
           showCancelButton: true,
-          confirmButtonText: "confirm",
-          cancelButtonText: "refresh",
+          confirmButtonText: "Confirm",
+          cancelButtonText: "Refresh",
           distinguishCancelAndClose: true,
           beforeClose: async (action, instance, done) => {
             // console.log(action);
@@ -829,6 +877,9 @@ export default {
 };
 </script>
 <style scoped>
+/* @import "../../assets/css/bootstrap.min.css";
+@import "../../assets/css/style.css"; */
+
 .tool {
   /* height: 1500px; */
   margin-bottom: 50px;
