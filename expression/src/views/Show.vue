@@ -44,16 +44,29 @@
       <el-card>
         <div slot="header">
           <span class="tableTitle">SEQ TABLE</span>
-          <el-button
+          <!-- <el-button
             class="dowload"
             icon="el-icon-download"
             @click="dowload(2, $event)"
             >Dowload</el-button
-          >
+          > -->
+          <el-select
+              style="width: 240px;float: right;"
+              @change="seqChange"
+              v-model="visSeq"
+            >
+              <el-option
+                v-for="value in visSeqOp"
+                :key="value.index"
+                :value="value.index"
+              >
+                {{ value.value }}
+              </el-option>
+            </el-select>
         </div>
         <div>
           <!-- <Table :tableId="1" :tdata="data2"></Table> -->
-          <Chart chartName="chart1"></Chart>
+          <Chart chartName="chart1" v-if="visData" :visData="visData"></Chart>
         </div>
       </el-card>
     </div>
@@ -113,47 +126,14 @@ export default {
       fileurl: [],
       dowloadTable: "",
       dowloadTable2: "",
+
+      visSeq:0,
+      visSeqOp:[],
+
+      visData:undefined
     };
   },
   methods: {
-    //读取数据
-    // readCsv(file, fileList) {
-    //   let reader = new FileReader();
-    //   reader.readAsText(file.raw, "UTF-8");
-    //   let data = [];
-    //   reader.onload = (evt) => {
-    //     // 读取文件内容 csv格式
-    //     let fileString = evt.target.result;
-    //     //转化为array对象
-    //     // console.log(fileString);
-
-    //     var delimiter = ",";
-    //     const headers = fileString
-    //       .slice(0, fileString.indexOf("\n"))
-    //       .split(delimiter);
-    //     const rows = fileString.slice(fileString.indexOf("\n") + 1).split("\n");
-
-    //     headers[headers.length - 1] = headers
-    //       .slice(-1)[0]
-    //       .replace(/[\r\n]/g, "");
-
-    //     // rows.forEach((element,index) => {
-    //     //     rows[index]=element.replace(/[\r\n]/g, "")
-    //     // });
-
-    //     data = rows.map((row) => {
-    //       const values = row.split(delimiter);
-    //       return headers.reduce((object, header, index) => {
-    //         object[header] = values[index];
-    //         return object;
-    //       }, {});
-    //     });
-
-    //     this.expData = data;
-    //   };
-    //   //最后清楚选择文件信息，可以再进行选择文件继续操作
-    //   //   this.$refs.uploadFile.clearFiles();
-    // },
     async getTaskInfo() {
       let result = await this.$API.reqTaskResultInfo(this.id);
       if (result.code == 200) {
@@ -172,30 +152,11 @@ export default {
           if (this.fileurl[i].search("saliency.csv") != -1)
             this.dowloadTable2 = "http://124.220.197.196/" + this.fileurl[i];
         }
+        this.visSeqOp=this.expData.map((x,index)=>{
+          return {index:index,value:index+" : "+x.Ann1_name+x.Ann2_name}
+        })
       }
     },
-    // downloadImage(imgsrc) {
-    //   let image = new Image();
-    //   image.setAttribute("crossOrigin", "anonymous");
-    //   image.src = imgsrc;
-    //   image.onload = () => {
-    //     let canvas = document.createElement("canvas");
-    //     canvas.width = image.width;
-    //     canvas.height = image.height;
-    //     let ctx = canvas.getContext("2d");
-    //     ctx.drawImage(image, 0, 0, image.width, image.height);
-    //     canvas.toBlob((blob) => {
-    //       let url = URL.createObjectURL(blob);
-    //       let Link = document.createElement("a");
-    //       Link.download = "下载名字";
-    //       Link.href = url;
-    //       Link.click();
-    //       Link.remove();
-    //       // 用完释放URL对象
-    //       URL.revokeObjectURL(url);
-    //     });
-    //   };
-    // },
     dowload(flag, event) {
       let dowload_url = "http://124.220.197.196/";
       if (flag == 1) {
@@ -220,9 +181,21 @@ export default {
       }
       target.blur();
     },
+
+    async seqChange(){
+      let result= await this.$API.reqVisImg(this.id,this.visSeq)
+      // console.log(result)
+      if(result.code==200){
+        this.$nextTick(()=>{
+          this.visData=result.data
+        })
+        
+      }
+    }
   },
   created() {
     this.getTaskInfo();
+    this.seqChange();
   },
 };
 </script>

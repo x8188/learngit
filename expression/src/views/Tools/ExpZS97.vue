@@ -480,7 +480,7 @@ export default {
         "AATGGCCTCCTCTAACATCTGTCCTTCCCTTCCATAAAAACCCCCTGCGAATCTTATCAATAGCTCTAA",
 
       dataCate: "",
-      dataCateOp: ["ppi", "pdi"],
+      dataCateOp: ["zs97", "mh63"],
     };
   },
   computed: {
@@ -505,10 +505,10 @@ export default {
     dataChange() {
       this.resetInfo();
 
-      if (this.dataCate == "ppi") {
-        this.modellist = this.PPImodellist;
+      if (this.dataCate == "zs97") {
+        this.modellist = this.ZS97modellist;
       } else {
-        this.modellist = this.PDImodellist;
+        this.modellist = this.MH63modellist;
       }
     },
     confirmtype() {
@@ -928,7 +928,7 @@ export default {
   margin: 0 auto;
   height: 70px;
   margin-top: 30px;
-
+  margin-bottom: 50px;
   /* background:-webkit-linear-gradient(left,#93a5cf,#e4efe9) ; */
   /* background: -webkit-linear-gradient(left, #fff1eb, #ace0f9); */
   border-radius: 8px;

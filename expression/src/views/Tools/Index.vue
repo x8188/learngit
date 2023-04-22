@@ -58,7 +58,7 @@
             </p> -->
             <el-button
               class="rouButton"
-              @click="$router.push('/Expression/ExpZS97')"
+              @click="$router.push('/Expression/zs97')"
               >Go Rice</el-button
             >
           </div>
