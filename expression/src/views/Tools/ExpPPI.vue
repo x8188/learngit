@@ -10,6 +10,22 @@
         <h1 style="font-size: 35px; font-weight: bolder">
           Maize Expression prediction base on DNA
         </h1>
+        <div>
+          <el-select
+              style="width: 240px"
+              placeholder="-----Select Model-----"
+              @change="dataChange"
+              v-model="dataCate"
+            >
+              <el-option
+                v-for="value in dataCateOp"
+                :key="value"
+                :value="value"
+              >
+                {{ value }}
+              </el-option>
+            </el-select>
+        </div>
       </div>
 
       <div style="margin-top: 20px">
@@ -38,9 +54,10 @@
                     placeholder="-----Select Model-----"
                     @change="PPIchangeTools"
                     v-model="PPImodel"
+                    :disabled="!modelflag"
                   >
                     <el-option
-                      v-for="value in PPImodellist"
+                      v-for="value in modellist"
                       :key="value"
                       :value="value"
                     >
@@ -355,6 +372,7 @@ export default {
       Seq1: "",
       Seq2: "",
       uploading: false,
+      modellist: [],
       PPImodellist: [
         "PPI_Shoot_Li",
         "PPI_Ear_Sun",
@@ -362,6 +380,7 @@ export default {
         "PPI_Ear_Li",
         "PPI_Tassel_Sun",
       ],
+      PDImodellist: ["PDI_Shoot_Li", "PDI_Ear_Li", "PDI_Shoot_Peng"],
       // PDImodellist: ["SHOOT1", "EAR", "SHOOT2"],
       options: [{ value: "1" }, { value: "2" }],
       updataForm: {
@@ -413,6 +432,9 @@ export default {
       EXseq2:
         ">Zm00001d027235_1_+_121120-122620_122114-123614\n" +
         "AATGGCCTCCTCTAACATCTGTCCTTCCCTTCCATAAAAACCCCCTGCGAATCTTATCAATAGCTCTAA",
+      
+      dataCate:"",
+      dataCateOp:["ppi","pdi"],
     };
   },
   computed: {
@@ -428,16 +450,24 @@ export default {
       if (this.PPImodel) return true;
       else return false;
     },
+    modelflag(){
+      if (this.dataCate) return true;
+      else return false;
+    }
   },
   methods: {
-    // handleClick() {
-    //   console.log("id:",document.getElementById("myInput")); // 输出input元素
-    //   console.log("ref:",this.$refs.myInput); // 输出undefined
-    //   // 使用this.$nextTick在DOM更新后获取DOM节点
-    //   // this.$nextTick(() => {
-    //   //   console.log(3,this.$refs.myInput); // 输出input元素
-    //   // });
-    // },
+    dataChange(){
+
+      this.resetInfo()
+      
+      if(this.dataCate=='ppi'){
+        this.modellist=this.PPImodellist
+      }else{
+        this.modellist=this.PDImodellist
+      }
+
+
+    },
     confirmtype() {
       this.loading = !this.loading;
       console.log(this.methltype);
@@ -852,7 +882,7 @@ export default {
   margin: 0 auto;
   height: 70px;
   margin-top: 30px;
-
+  margin-bottom: 50px;
   /* background:-webkit-linear-gradient(left,#93a5cf,#e4efe9) ; */
   /* background: -webkit-linear-gradient(left, #fff1eb, #ace0f9); */
   border-radius: 8px;

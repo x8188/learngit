@@ -60,6 +60,22 @@
           <h1 style="font-size: 35px; font-weight: bolder">
             Maize Expression prediction base on DNA
           </h1>
+          <div>
+            <el-select
+              style="width: 240px"
+              placeholder="-----Select Model-----"
+              @change="dataChange"
+              v-model="dataCate"
+            >
+              <el-option
+                v-for="value in dataCateOp"
+                :key="value"
+                :value="value"
+              >
+                {{ value }}
+              </el-option>
+            </el-select>
+          </div>
         </div>
 
         <div style="margin-top: 20px">
@@ -88,9 +104,10 @@
                       placeholder="-----Select Model-----"
                       @change="ZS97changeTools"
                       v-model="ZS97model"
+                      :disabled="!modelflag"
                     >
                       <el-option
-                        v-for="value in ZS97modellist"
+                        v-for="value in modellist"
                         :key="value"
                         :value="value"
                       >
@@ -407,7 +424,9 @@ export default {
       Seq1: "",
       Seq2: "",
       uploading: false,
+      modellist: [],
       ZS97modellist: ["ZS_ZS_H3K4", "ZS_ZS_H3K9", "ZS_ZS_RNAP2"],
+      MH63modellist: ["MH_MH63_H3K4", "MH_MH63_H3K9", "MH_MH64_RNAP2"],
       // PDImodellist: ["SHOOT1", "EAR", "SHOOT2"],
       options: [{ value: "1" }, { value: "2" }],
       updataForm: {
@@ -459,6 +478,9 @@ export default {
       EXseq2:
         ">Zm00001d027235_1_+_121120-122620_122114-123614\n" +
         "AATGGCCTCCTCTAACATCTGTCCTTCCCTTCCATAAAAACCCCCTGCGAATCTTATCAATAGCTCTAA",
+
+      dataCate: "",
+      dataCateOp: ["ppi", "pdi"],
     };
   },
   computed: {
@@ -474,16 +496,21 @@ export default {
       if (this.ZS97model) return true;
       else return false;
     },
+    modelflag() {
+      if (this.dataCate) return true;
+      else return false;
+    },
   },
   methods: {
-    // handleClick() {
-    //   console.log("id:",document.getElementById("myInput")); // 输出input元素
-    //   console.log("ref:",this.$refs.myInput); // 输出undefined
-    //   // 使用this.$nextTick在DOM更新后获取DOM节点
-    //   // this.$nextTick(() => {
-    //   //   console.log(3,this.$refs.myInput); // 输出input元素
-    //   // });
-    // },
+    dataChange() {
+      this.resetInfo();
+
+      if (this.dataCate == "ppi") {
+        this.modellist = this.PPImodellist;
+      } else {
+        this.modellist = this.PDImodellist;
+      }
+    },
     confirmtype() {
       this.loading = !this.loading;
       console.log(this.methltype);

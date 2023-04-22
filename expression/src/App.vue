@@ -9,7 +9,7 @@
 
         <div class="link-wrapper" style="display: flex">
           <router-link to="/">Home</router-link>
-          <a-dropdown placement="bottomCenter">
+          <!-- <a-dropdown placement="bottomCenter">
             <a class="ant-dropdown-link">
               Tools<i class="el-icon-arrow-down el-icon--right"></i>
             </a>
@@ -25,8 +25,8 @@
                 ></a-menu-item
               >
             </a-menu>
-          </a-dropdown>
-          <!-- <router-link to="/Expression/index">TOOLS</router-link> -->
+          </a-dropdown> -->
+          <router-link to="/Expression/index">TOOLS</router-link>
           <router-link to="/search">Search</router-link>
           <router-link to="/result">Result</router-link>
           <router-link to="/about">Contact</router-link>

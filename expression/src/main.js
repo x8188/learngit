@@ -39,6 +39,11 @@ import './assets/iconfont/iconfont.css'
 // import jquery from 'jquery'
 // Vue.prototype.$ = jquery
 
+// import * as echarts from "echarts";
+// Vue.prototype.echarts = echarts
+
+import Chart from "./components/Chart.vue"
+Vue.component(Chart.name,Chart)
 new Vue({
   router,
   store,

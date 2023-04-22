@@ -126,10 +126,12 @@ export default {
   created() {},
 };
 </script>
+
+<style scoped src='../assets/css/bootstrap.css'></style>
+<style scoped src='../assets/css/style.css'></style>
+<style scoped src='../assets/css/flaticon-set.css'></style>
+
 <style scoped>
-@import "../assets/css/bootstrap.css";
-@import "../assets/css/style.css";
-@import "../assets/css/flaticon-set.css";
 
 .about {
   height: 1000px;

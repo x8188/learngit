@@ -52,7 +52,8 @@
           >
         </div>
         <div>
-          <Table :tableId="1" :tdata="data2"></Table>
+          <!-- <Table :tableId="1" :tdata="data2"></Table> -->
+          <Chart chartName="chart1"></Chart>
         </div>
       </el-card>
     </div>

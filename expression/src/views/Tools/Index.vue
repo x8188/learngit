@@ -9,10 +9,10 @@
       <el-col :span="12" class="cardFa">
         <el-card class="card">
           <div slot="header">
-            <span class="cardTitle">PPI</span>
+            <span class="cardTitle">Corn</span>
           </div>
           <div style="text-align: center">
-            <p class="modelP">
+            <!-- <p class="modelP">
               In this study, the definition of the proximal region of the
               promoter based on prior research is as follows: the proximal
               region of the gene promoter is defined as 1Kb upstream and 0.5Kb
@@ -27,11 +27,11 @@
               from 2Kb upstream to 1.5Kb downstream of the gene transcription
               start site), which is defined as the region adjacent to the
               promoter Interaction (Promoter proximal region interaction, PPI).
-            </p>
+            </p> -->
             <el-button
               class="rouButton"
               @click="$router.push('/Expression/PPI')"
-              >Go PPI</el-button
+              >Go Corn</el-button
             >
           </div>
         </el-card>
@@ -39,10 +39,10 @@
       <el-col :span="12" class="cardFa">
         <el-card class="card">
           <div slot="header">
-            <span class="cardTitle">PDI</span>
+            <span class="cardTitle">Rice</span>
           </div>
           <div style="text-align: center">
-            <p class="modelP">
+            <!-- <p class="modelP">
               Compared with the definition of the proximal region of the gene
               promoter defined in this study, any region that does not conform
               to the proximal region is defined as the distal region of the gene
@@ -55,11 +55,11 @@
               distal interaction, we selected a sequence of 1500 bp upstream 1k
               and 0.5k downstream of the gene promoter as the chromatin sequence
               corresponding to the gene.
-            </p>
+            </p> -->
             <el-button
               class="rouButton"
-              @click="$router.push('/Expression/PDI')"
-              >Go PDI</el-button
+              @click="$router.push('/Expression/ExpZS97')"
+              >Go Rice</el-button
             >
           </div>
         </el-card>
