@@ -51,22 +51,28 @@
             >Dowload</el-button
           > -->
           <el-select
-              style="width: 240px;float: right;"
-              @change="seqChange"
-              v-model="visSeq"
+            style="width: 240px; float: right"
+            @change="seqChange"
+            v-model="visSeq"
+          >
+            <el-option
+              v-for="value in visSeqOp"
+              :key="value.index"
+              :value="value.index"
             >
-              <el-option
-                v-for="value in visSeqOp"
-                :key="value.index"
-                :value="value.index"
-              >
-                {{ value.value }}
-              </el-option>
-            </el-select>
+              {{ value.value }}
+            </el-option>
+          </el-select>
         </div>
         <div>
           <!-- <Table :tableId="1" :tdata="data2"></Table> -->
-          <Chart chartName="chart1" v-if="visData" :visData="visData"></Chart>
+          <Chart
+            :chartName="id + '-gradient'"
+            :chartHotname="id + '-HotMap'"
+            v-if="visData"
+            :visData="visData"
+            :chartHotData="chartHotData"
+          ></Chart>
         </div>
       </el-card>
     </div>
@@ -127,10 +133,11 @@ export default {
       dowloadTable: "",
       dowloadTable2: "",
 
-      visSeq:0,
-      visSeqOp:[],
+      visSeq: 0,
+      visSeqOp: [],
 
-      visData:undefined
+      visData: undefined,
+      chartHotData: undefined,
     };
   },
   methods: {
@@ -152,9 +159,12 @@ export default {
           if (this.fileurl[i].search("saliency.csv") != -1)
             this.dowloadTable2 = "http://124.220.197.196/" + this.fileurl[i];
         }
-        this.visSeqOp=this.expData.map((x,index)=>{
-          return {index:index,value:index+" : "+x.Ann1_name+x.Ann2_name}
-        })
+        this.visSeqOp = this.expData.map((x, index) => {
+          return {
+            index: index,
+            value: index + " : " + x.Ann1_name + x.Ann2_name,
+          };
+        });
       }
     },
     dowload(flag, event) {
@@ -182,16 +192,16 @@ export default {
       target.blur();
     },
 
-    async seqChange(){
-      let result= await this.$API.reqVisImg(this.id,this.visSeq)
+    async seqChange() {
+      let result = await this.$API.reqVisImg(this.id, this.visSeq);
       // console.log(result)
-      if(result.code==200){
-        this.$nextTick(()=>{
-          this.visData=result.data
-        })
-        
+      if (result.code == 200) {
+        this.$nextTick(() => {
+          this.visData = result.gradient;
+          this.chartHotData = result.heat;
+        });
       }
-    }
+    },
   },
   created() {
     this.getTaskInfo();

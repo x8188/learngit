@@ -30,4 +30,4 @@ export const reqCaptchaImg = () =>
   requests({ url: `/model/captcha`, method: "get" });
 
 export const reqVisImg = (taskID,seqID) =>
-  requests({ url: `/model/gradient`, method: "get",params: { taskID,seqID } });
+  requests({ url: `/model/saliency`, method: "get",params: { taskID,seqID } });

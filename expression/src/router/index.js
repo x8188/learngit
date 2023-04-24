@@ -66,6 +66,12 @@ const routes = [
 
   },
   {
+    path: '/Expression/cotton',
+    name: 'Cotton',
+    component: () => import('../views/Tools/Cotton.vue'),
+
+  },
+  {
     path: '/result',
     name: 'Result',
     // route level code-splitting

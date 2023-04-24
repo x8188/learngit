@@ -198,14 +198,14 @@
                   style="width: 60%; margin: 0 auto"
                 >
                   <div class="product-list-item">
-                    <a @click="$router.push('/Expression/index')">
+                    <a @click="$router.push('/Expression/PPI')">
                       <img src="../assets/picture/yumiICON.png" alt="Icon" />
                       <h5>Corn</h5>
                     </a>
                   </div>
 
                   <div class="product-list-item">
-                    <a @click="$router.push('/Expression/indexShui')">
+                    <a @click="$router.push('/Expression/zs97')">
                       <img
                         src="../assets/picture/southeast-removebg-preview.png"
                         alt="Icon"
