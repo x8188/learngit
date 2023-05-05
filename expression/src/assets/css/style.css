@@ -530,3 +530,88 @@ Sidebar heading:  20px 'Manrope', sans-serif
 	font-weight: 500;
 }
 
+
+.gallery-style-one {
+	position: relative;
+	padding-bottom: 30px;
+	overflow: hidden;
+}
+
+.gallery-style-one .overlay {
+	background: var(--dark);
+	display: inline-block;
+	position: absolute;
+	z-index: 1;
+	right: 30px;
+	bottom: -80px;
+	padding: 20px 30px;
+	min-width: 65%;
+	transition: all 0.35s ease-in-out;
+	visibility: hidden;
+	opacity: 0;
+}
+
+.gallery-style-one .overlay::after {
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	content: "";
+	height: 100px;
+	width: 100px;
+	background: url(../picture/leaf-2.png);
+	background-repeat: no-repeat;
+	background-position: right bottom;
+	background-size: contain;
+	z-index: -1;
+	opacity: 0.1;
+}
+
+.gallery-style-one:hover .overlay {
+	bottom: 0;
+	visibility: visible;
+	opacity: 1;
+}
+
+.gallery-style-one .overlay span {
+	font-family: var(--font-secondary);
+	font-weight: 800;
+	color: var(--white);
+	opacity: 0.95;
+}
+
+.gallery-style-one .overlay h4 {
+	margin: 0;
+}
+
+.gallery-style-one .overlay a {
+	color: var(--white);
+}
+
+.gallery-style-one img {
+	border: none;
+	outline: none;
+	max-width: 100%;
+}
+
+
+.hvr-grow-shadow {
+  
+	display: inline-block;
+	vertical-align: middle;
+	-webkit-transform: perspective(1px) translateZ(0);
+	transform: perspective(1px) translateZ(0);
+	box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+	-webkit-transition-duration: 0.3s;
+	transition-duration: 0.3s;
+	-webkit-transition-property: box-shadow, transform;
+	transition-property: box-shadow, transform;
+  }
+  .hvr-grow-shadow:hover, .hvr-grow-shadow:focus, .hvr-grow-shadow:active {
+	
+	box-shadow: 0 10px 10px -10px rgba(0, 0, 0, 0.5);
+	-webkit-transform: scale(1.1);
+	transform: scale(1.1);
+  }
+.detailP{
+	text-align:justify;
+}

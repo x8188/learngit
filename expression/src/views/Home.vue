@@ -66,11 +66,14 @@
               style="position: relative; left: 10%"
               >TUORIAL</el-button
             >
-            <div class="shape-bottom-right" style="left:0;opacity: 0.3;">
-                  <img src="../assets/picture/11.png" alt="Image Not Found" style="width: 1100px;"/>
+            <div class="shape-bottom-right" style="left: 0; opacity: 0.3">
+              <img
+                src="../assets/picture/11.png"
+                alt="Image Not Found"
+                style="width: 1100px"
+              />
             </div>
           </el-card>
-
         </a-col>
       </a-row>
     </div>
@@ -165,7 +168,6 @@
                   /* background: -webkit-linear-gradient(left, #fff1eb, #ace0f9); */
                 "
               >
-
                 <p>
                   &nbsp;&nbsp;&nbsp;&nbsp;Secondly, take the encoded one-pot
                   encoding matrix as the input of the CNN Layer, use the ReLU
@@ -195,7 +197,7 @@
 
                 <div
                   class="product-list-box"
-                  style="width: 60%; margin: 0 auto"
+                  style="width: 80%; margin: 0 auto"
                 >
                   <div class="product-list-item">
                     <a @click="$router.push('/Expression/PPI')">
@@ -211,6 +213,12 @@
                         alt="Icon"
                       />
                       <h5>Rice</h5>
+                    </a>
+                  </div>
+                  <div class="product-list-item">
+                    <a @click="$router.push('/Expression/cotton')">
+                      <img src="../assets/picture/mianhuaICON.png" alt="Icon" />
+                      <h5>Cotton</h5>
                     </a>
                   </div>
                 </div>
@@ -261,7 +269,11 @@
               </p>
             </div>
             <div class="shape-bottom-right">
-                  <img src="../assets/picture/v1.png" alt="Image Not Found" style="height: 300px;"/>
+              <img
+                src="../assets/picture/v1.png"
+                alt="Image Not Found"
+                style="height: 300px"
+              />
             </div>
           </el-card>
         </el-col>
@@ -329,7 +341,7 @@ export default {
   text-align: center;
   height: 100%;
   /* background-color: #296D7F; */
-	position: relative;
+  position: relative;
 
   z-index: 1;
 }
@@ -449,7 +461,7 @@ export default {
 
   color: #050505;
   border-radius: 30px;
-  background: linear-gradient(120deg, #EAEAEA 0%, #8B8B8B 100%);
+  background: linear-gradient(120deg, #eaeaea 0%, #8b8b8b 100%);
 
   position: relative;
 

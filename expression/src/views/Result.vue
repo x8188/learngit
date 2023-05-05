@@ -21,16 +21,16 @@
       <div>
         <el-tabs tab-position="top" stretch>
           <el-tab-pane :lazy=true label="ear(Li et al. 2019)">
-            <!-- <Table :tableId="0" :tdata="ppi_dou_ear"></Table> -->
-            <Chart chartName="chart1"></Chart>
+            <Table :tableId="0" :tdata="ppi_dou_ear"></Table>
+            <!-- <Chart chartName="chart1"></Chart> -->
           </el-tab-pane>
           <el-tab-pane :lazy=true label="ear(Sun et al. 2020)">
-            <!-- <Table :tableId="0" :tdata="ppi_dou_pie"></Table> -->
-            <Chart chartName="chart2"></Chart>
+            <Table :tableId="0" :tdata="ppi_dou_pie"></Table>
+            <!-- <Chart chartName="chart2"></Chart> -->
           </el-tab-pane>
           <el-tab-pane :lazy=true label="tassel(Sun et al. 2020)">
-            <!-- <Table :tableId="0" :tdata="ppi_dou_pit"></Table> -->
-            <Chart chartName="chart3"></Chart>
+            <Table :tableId="0" :tdata="ppi_dou_pit"></Table>
+            <!-- <Chart chartName="chart3"></Chart> -->
           </el-tab-pane>
           <el-tab-pane label="shoot(Peng et al. 2019)">
             <Table :tableId="0" :tdata="ppi_dou_py"></Table>

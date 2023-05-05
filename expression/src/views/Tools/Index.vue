@@ -4,15 +4,9 @@
 -->
 <template>
   <div class="tool">
-    <h1 id="modelSelect">Please Select PPI/PDI Model</h1>
-    <el-row type="flex" style="margin-bottom:30px">
-      <el-col :span="12" class="cardFa">
-        <el-card class="card">
-          <div slot="header">
-            <span class="cardTitle">Corn</span>
-          </div>
-          <div style="text-align: center">
-            <!-- <p class="modelP">
+    <h1 id="modelSelect">Please Select species</h1>            
+    
+    <!-- <p class="modelP">
               In this study, the definition of the proximal region of the
               promoter based on prior research is as follows: the proximal
               region of the gene promoter is defined as 1Kb upstream and 0.5Kb
@@ -28,6 +22,28 @@
               start site), which is defined as the region adjacent to the
               promoter Interaction (Promoter proximal region interaction, PPI).
             </p> -->
+                        <!-- <p class="modelP">
+              Compared with the definition of the proximal region of the gene
+              promoter defined in this study, any region that does not conform
+              to the proximal region is defined as the distal region of the gene
+              promoter, that is, one end of the interaction fragment intersects
+              with the gene promoter and the other end Intersection with distal
+              elements is defined as Promoter-distal element interactions (PDI).
+            </p>
+            <p class="modelP">
+              In this study, when predicting gene expression based on chromatin
+              distal interaction, we selected a sequence of 1500 bp upstream 1k
+              and 0.5k downstream of the gene promoter as the chromatin sequence
+              corresponding to the gene.
+            </p> -->
+    <!-- <el-row type="flex" style="margin-bottom: 30px">
+      <el-col :span="12" class="cardFa">
+        <el-card class="card">
+          <div slot="header">
+            <span class="cardTitle">Corn</span>
+          </div>
+          <div style="text-align: center">
+
             <el-button
               class="rouButton"
               @click="$router.push('/Expression/PPI')"
@@ -42,20 +58,6 @@
             <span class="cardTitle">Rice</span>
           </div>
           <div style="text-align: center">
-            <!-- <p class="modelP">
-              Compared with the definition of the proximal region of the gene
-              promoter defined in this study, any region that does not conform
-              to the proximal region is defined as the distal region of the gene
-              promoter, that is, one end of the interaction fragment intersects
-              with the gene promoter and the other end Intersection with distal
-              elements is defined as Promoter-distal element interactions (PDI).
-            </p>
-            <p class="modelP">
-              In this study, when predicting gene expression based on chromatin
-              distal interaction, we selected a sequence of 1500 bp upstream 1k
-              and 0.5k downstream of the gene promoter as the chromatin sequence
-              corresponding to the gene.
-            </p> -->
             <el-button
               class="rouButton"
               @click="$router.push('/Expression/zs97')"
@@ -64,7 +66,148 @@
           </div>
         </el-card>
       </el-col>
-    </el-row>
+    </el-row> -->
+    <div class="gallery-style-one-area default-padding-top">
+      <div class="">
+        <div class="row justify-content-md-center">
+          <div class="col-xl-3 Colcenter">
+            <div>
+              <div
+                class="gallery-style-one cursor"
+                onclick=" window.open('https://riceome.hzau.edu.cn','_blank'); "
+              >
+                <img
+                  class="hvr-grow-shadow"
+                  src="../../assets/picture/shuidao.jpg"
+                  alt="Thumb"
+                />
+                <div class="overlay">
+                  <span>Rice Gene Index</span>
+                  <h4><a style="pointer-events: none">Rice</a></h4>
+                </div>
+              </div>
+              <div>
+                <p class="detailP">
+                  Happen active county. Winding morning ambition shyness evident
+                  to poor. Because elderly new to the point to main success.
+                  Happen active county. Winding morning ambition shyness evident
+                  to poor. Because elderly new to the point to main success.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3 Colcenter">
+            <div>
+              <div
+                class="gallery-style-one cursor"
+                onclick=" window.open('http://yanglab.hzau.edu.cn/BnIR','_blank'); "
+              >
+                <img
+                  class="hvr-grow-shadow"
+                  src="../../assets/picture/7.jpg"
+                  alt="Thumb"
+                />
+                <div class="overlay" style="">
+                  <span>Brassica napus <br />Information Resource</span>
+                  <h4><a style="pointer-events: none">油菜</a></h4>
+                </div>
+              </div>
+              <div>
+                <p class="detailP">
+                  BnIRis a a multi-omics collaborative resource and tool
+                  platform for Brassica napus. It integrates and analyzes
+                  datasets from genomics, epigenomics, transcriptomics,
+                  metabolomics and phenomics, and offers multiple tools.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3 Colcenter">
+            <div>
+              <div
+                class="gallery-style-one cursor"
+                onclick=" window.open('http://www.zeamap.com/','_blank'); "
+              >
+                <img
+                  class="hvr-grow-shadow"
+                  src="../../assets/picture/8.jpg"
+                  alt="Thumb"
+                />
+                <div class="overlay">
+                  <span>ZEAMAP</span>
+                  <h4><a style="pointer-events: none">玉米</a></h4>
+                </div>
+              </div>
+              <div>
+                <p class="detailP">
+                  ZEAMAP is a database for pan-zea genomics and maize genetic
+                  improvements by integrating the maize multidimensional data
+                  including genom assemblies, transcriptomes, pan-genomes,
+                  genetic variations, genetic mappings and evolutionary
+                  selection sites
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row justify-content-md-center">
+          <div class="col-xl-3 Colcenter">
+            <div>
+              <div
+                class="gallery-style-one cursor"
+                onclick=" window.open('http://www.baidu.com','_blank'); "
+              >
+                <img
+                  class="hvr-grow-shadow"
+                  src="../../assets/picture/mianhua.jpg"
+                  alt="Thumb"
+                />
+                <div class="overlay">
+                  <span>XXXXX</span>
+                  <h4><a style="pointer-events: none">棉花</a></h4>
+                </div>
+              </div>
+              <div>
+                <p class="detailP">
+                  Happen active county. Winding morning ambition shyness evident
+                  to poor. Because elderly new to the point to main success.
+                  Happen active county. Winding morning ambition shyness evident
+                  to poor. Because elderly new to the point to main success.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3 Colcenter">
+            <div>
+              <div
+                class="gallery-style-one cursor"
+                id="ex2"
+                onclick=" window.open('http://plantphenomics.hzau.edu.cn/information','_blank'); "
+              >
+                <img
+                  class="hvr-grow-shadow"
+                  src="../../assets/picture/7.jpg"
+                  alt="Thumb"
+                />
+                <div class="overlay">
+                  <span>Crop Phenotype <br />Management Platform</span>
+                  <h4><a style="pointer-events: none">表型</a></h4>
+                </div>
+              </div>
+              <div>
+                <p class="detailP">
+                  The crop phenotype data management platform offers the search
+                  and analysis of massive experimental data such as water
+                  saving, drought resistance, tillering, genome-wide association
+                  study (GWAS), recombinant inbred lines (RIL), quantitative
+                  trait locus (QTL).
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     <Back></Back>
   </div>
 </template>
@@ -83,11 +226,15 @@ export default {
   created() {},
 };
 </script>
+
+<style scoped src='../../assets/css/bootstrap.min.css'></style>
+<style scoped src='../../assets/css/style.css'></style>
+
 <style scoped>
 .tool {
   width: 80%;
   margin: 0 auto;
-  height: 800px;
+  /* height: 800px; */
 }
 
 .cardTitle {
@@ -101,9 +248,9 @@ export default {
   width: 80%;
   height: 100%;
 }
-.cardFa{
-  display:flex;
-justify-content:center;
+.cardFa {
+  display: flex;
+  justify-content: center;
 }
 .modelP {
   text-align: justify;
