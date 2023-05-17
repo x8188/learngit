@@ -76,7 +76,7 @@
         </div>
       </el-card>
     </div>
-    <div class="childShow">
+    <!-- <div class="childShow">
       <el-card>
         <div slot="header">
           <span class="tableTitle">Visualization image</span>
@@ -88,7 +88,6 @@
           >
         </div>
         <div>
-          <!-- <el-button class="dowload" icon="el-icon-download">Dowload</el-button> -->
           <div>
             <el-image
               class="showimg"
@@ -102,12 +101,10 @@
               :preview-src-list="[imgurl.chg, imgurl.seq]"
             >
             </el-image>
-            <!-- <img style="width: 100%; height: 280px" :src="imgurl.chg" />
-            <img style="width: 100%; height: 300px" :src="imgurl.seq" /> -->
           </div>
         </div>
       </el-card>
-    </div>
+    </div> -->
   </div>
 </template>
 

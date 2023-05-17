@@ -7,7 +7,44 @@
     <!-- <div style="margin: 15px; margin: 0 auto; width: 80%; text-align: center">
       <h1>This is an result page</h1>
     </div> -->
-    <div class="top wrap1">
+    <div class="product-list-box" style="width: 70%; margin: 0 auto">
+      <div class="product-list-item">
+        <div class="cursor" @click="changeType('Corn')">
+          <img src="../assets/picture/yumiICON.png" alt="Icon" />
+          <h5>Corn</h5>
+        </div>
+      </div>
+
+      <div class="product-list-item">
+        <div class="cursor"  @click="changeType('Rice')">
+          <img
+            src="../assets/picture/southeast-removebg-preview.png"
+            alt="Icon"
+          />
+          <h5>Rice</h5>
+        </div>
+      </div>
+      <div class="product-list-item">
+        <div class="cursor"  @click="changeType('Cotton')">
+          <img src="../assets/picture/mianhuaICON.png" alt="Icon" />
+          <h5>Cotton</h5>
+        </div>
+      </div>
+      <div class="product-list-item">
+        <div class="cursor"  @click="changeType('Rice')">
+          <img
+            src="../assets/picture/southeast-removebg-preview.png"
+            alt="Icon"
+          />
+          <h5>Rice</h5>
+        </div>
+      </div>
+    </div>
+    <div v-show="type==''">
+      <h1>Please select a species</h1>
+    </div>
+    <div v-show="type=='Corn'">
+      <div class="top wrap1">
       <!-- <div class="box box1"> -->
       <h1 style="font-size: 40px; font-weight: bold">
         Promoter proximal region interaction
@@ -20,15 +57,15 @@
       </div>
       <div>
         <el-tabs tab-position="top" stretch>
-          <el-tab-pane :lazy=true label="ear(Li et al. 2019)">
+          <el-tab-pane label="ear(Li et al. 2019)">
             <Table :tableId="0" :tdata="ppi_dou_ear"></Table>
             <!-- <Chart chartName="chart1"></Chart> -->
           </el-tab-pane>
-          <el-tab-pane :lazy=true label="ear(Sun et al. 2020)">
+          <el-tab-pane  label="ear(Sun et al. 2020)">
             <Table :tableId="0" :tdata="ppi_dou_pie"></Table>
             <!-- <Chart chartName="chart2"></Chart> -->
           </el-tab-pane>
-          <el-tab-pane :lazy=true label="tassel(Sun et al. 2020)">
+          <el-tab-pane label="tassel(Sun et al. 2020)">
             <Table :tableId="0" :tdata="ppi_dou_pit"></Table>
             <!-- <Chart chartName="chart3"></Chart> -->
           </el-tab-pane>
@@ -47,17 +84,41 @@
       </div>
       <div>
         <el-tabs tab-position="top" stretch class="resTabs">
-          <el-tab-pane label="gene1">
-            <Table :tableId="1" :tdata="ppi_seq1"></Table>
+          <el-tab-pane label="gene1" :lazy="true">
+            <Chart
+              chartName="gradient1"
+              chartHotname="HotMap1"
+              v-if="ppi_seq1.gradient"
+              :visData="ppi_seq1.gradient"
+              :chartHotData="ppi_seq1.heat"
+            ></Chart>
           </el-tab-pane>
-          <el-tab-pane label="gene2">
-            <Table :tableId="1" :tdata="ppi_seq2"></Table>
+          <el-tab-pane label="gene2" :lazy="true">
+            <Chart
+              chartName="gradient2"
+              chartHotname="HotMap2"
+              v-if="ppi_seq2.gradient"
+              :visData="ppi_seq2.gradient"
+              :chartHotData="ppi_seq2.heat"
+            ></Chart>
           </el-tab-pane>
-          <el-tab-pane label="gen3">
-            <Table :tableId="1" :tdata="ppi_seq3"></Table>
+          <el-tab-pane label="gen3" :lazy="true">
+            <Chart
+              chartName="gradient3"
+              chartHotname="HotMap3"
+              v-if="ppi_seq3.gradient"
+              :visData="ppi_seq3.gradient"
+              :chartHotData="ppi_seq3.heat"
+            ></Chart>
           </el-tab-pane>
-          <el-tab-pane label="gene4">
-            <Table :tableId="1" :tdata="ppi_seq4"></Table>
+          <el-tab-pane label="gene4" :lazy="true">
+            <Chart
+              chartName="gradient4"
+              chartHotname="HotMap4"
+              v-if="ppi_seq4.gradient"
+              :visData="ppi_seq4.gradient"
+              :chartHotData="ppi_seq4.heat"
+            ></Chart>
           </el-tab-pane>
         </el-tabs>
       </div>
@@ -94,22 +155,57 @@
       </div>
       <div>
         <el-tabs tab-position="top" stretch class="resTabs">
-          <el-tab-pane label="gene1">
-            <Table :tableId="1" :tdata="pdi_seq1"></Table>
+          <el-tab-pane label="gene1" :lazy="true">
+            <Chart
+              chartName="gradient5"
+              chartHotname="HotMap5"
+              v-if="pdi_seq1.gradient"
+              :visData="pdi_seq1.gradient"
+              :chartHotData="pdi_seq1.heat"
+            ></Chart>
           </el-tab-pane>
-          <el-tab-pane label="gene2">
-            <Table :tableId="1" :tdata="pdi_seq2"></Table>
+          <el-tab-pane label="gene2" :lazy="true">
+            <Chart
+              chartName="gradient6"
+              chartHotname="HotMap6"
+              v-if="pdi_seq2.gradient"
+              :visData="pdi_seq2.gradient"
+              :chartHotData="pdi_seq2.heat"
+            ></Chart>
           </el-tab-pane>
-          <el-tab-pane label="gen3">
-            <Table :tableId="1" :tdata="pdi_seq3"></Table>
+          <el-tab-pane label="gen3" :lazy="true">
+            <Chart
+              chartName="gradient7"
+              chartHotname="HotMap7"
+              v-if="pdi_seq3.gradient"
+              :visData="pdi_seq3.gradient"
+              :chartHotData="pdi_seq3.heat"
+            ></Chart>
           </el-tab-pane>
-          <el-tab-pane label="gene4">
-            <Table :tableId="1" :tdata="pdi_seq4"></Table>
+          <el-tab-pane label="gene4" :lazy="true">
+            <Chart
+              chartName="gradient8"
+              chartHotname="HotMap8"
+              v-if="pdi_seq3.gradient"
+              :visData="pdi_seq3.gradient"
+              :chartHotData="pdi_seq3.heat"
+            ></Chart>
           </el-tab-pane>
         </el-tabs>
       </div>
     </el-card>
 
+
+    </div>
+    <div v-show="type=='Rice'">
+      <h1>Rice</h1>
+    </div>
+    <div v-show="type=='Cotton'">
+      <h1>Cotton</h1>
+    </div>
+    <div v-show="type=='Rice'">
+      <h1>Rice</h1>
+    </div>
     <Back></Back>
   </div>
 </template>
@@ -117,12 +213,14 @@
 <script>
 // @ is an alias to /src
 // import HelloWorld from '@/components/HelloWorld.vue'
-import Chart from '../components/Chart.vue';
+import Chart from "../components/Chart.vue";
 export default {
   name: "Result",
-  components: {Chart},
+  components: { Chart },
   data() {
     return {
+      type:"",
+
       ppi_dou_ear: [],
       ppi_dou_shoot: [],
       ppi_dou_py: [],
@@ -131,15 +229,14 @@ export default {
       pdi_dou_ear: [],
       pdi_dou_py: [],
       pdi_dou_shoot: [],
-      ppi_seq1: [],
-      ppi_seq2: [],
-      ppi_seq3: [],
-      ppi_seq4: [],
-      pdi_seq1: [],
-      pdi_seq2: [],
-      pdi_seq3: [],
-      pdi_seq4: [],
-
+      ppi_seq1: {},
+      ppi_seq2: {},
+      ppi_seq3: {},
+      ppi_seq4: {},
+      pdi_seq1: {},
+      pdi_seq2: {},
+      pdi_seq3: {},
+      pdi_seq4: {},
     };
   },
   methods: {
@@ -169,12 +266,18 @@ export default {
         this.pdi_seq4 = result["pdi/tp%Dm8-5125573-5135954%Zm00001d008316.csv"];
       }
     },
+    changeType(ty){
+      this.type=ty
+    }
   },
   created() {
     this.getTable();
   },
 };
 </script>
+
+<style scoped src='../assets/css/style.css'></style>
+
 <style scoped>
 .result {
   /* height: 80%; */

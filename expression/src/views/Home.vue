@@ -200,26 +200,26 @@
                   style="width: 80%; margin: 0 auto"
                 >
                   <div class="product-list-item">
-                    <a @click="$router.push('/Expression/PPI')">
+                    <div class="cursor" @click="$router.push('/Expression/PPI')">
                       <img src="../assets/picture/yumiICON.png" alt="Icon" />
                       <h5>Corn</h5>
-                    </a>
+                    </div>
                   </div>
 
                   <div class="product-list-item">
-                    <a @click="$router.push('/Expression/zs97')">
+                    <div class="cursor" @click="$router.push('/Expression/zs97')">
                       <img
                         src="../assets/picture/southeast-removebg-preview.png"
                         alt="Icon"
                       />
                       <h5>Rice</h5>
-                    </a>
+                    </div>
                   </div>
                   <div class="product-list-item">
-                    <a @click="$router.push('/Expression/cotton')">
+                    <div class="cursor" @click="$router.push('/Expression/cotton')">
                       <img src="../assets/picture/mianhuaICON.png" alt="Icon" />
                       <h5>Cotton</h5>
-                    </a>
+                    </div>
                   </div>
                 </div>
                 <div class="shape-bottom-right">
@@ -289,7 +289,7 @@
 <script>
 // @ is an alias to /src
 // import HelloWorld from '@/components/HelloWorld.vue'
-import "../assets/css/style.css";
+// import "../assets/css/style.css";
 export default {
   name: "Home",
   components: {},
@@ -302,6 +302,7 @@ export default {
   created() {},
 };
 </script>
+<style scoped src='../assets/css/style.css'></style>
 <style scoped>
 #components-layout-demo-basic .ant-layout-content {
   background: rgb(255, 255, 255);

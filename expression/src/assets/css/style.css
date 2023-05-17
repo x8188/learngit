@@ -121,15 +121,16 @@ Sidebar heading:  20px 'Manrope', sans-serif
 	background: var(--bg-gray);
 }
 
-.product-list-item a {
+.product-list-item div {
 	background: #2c5848;
 	/* background: #4DB6AC; */
 	padding: 5px 20px 20px;
 	border-radius: 10px;
-	display: block;
+	display: flex;
 	font-weight: 700;
 	margin-top: 20px;
 	margin-bottom: 10px;
+	flex-direction: column;
 }
 
 .product-list-box {
@@ -144,36 +145,26 @@ Sidebar heading:  20px 'Manrope', sans-serif
 	margin: 0;
 
 	font-size: 20px;
-	color: var(--white);
+	color: #ffffff;
+	text-align: center;
 }
 
-.product-list-item a:hover {
-	background: var(--color-secondary);
+.product-list-item div:hover {
+	background: #f7c35f;
 }
 
-.product-list-item a:hover h5 {
-	color: var(--color-heading);
+.product-list-item div:hover h5 {
+	color: #04000b;
 }
 
-.product-list-item a h5 {
+.product-list-item div h5 {
 	transition: all 0.35s ease-in-out;
 }
-
-/* .bg-gray .product-list-item a:hover {
-	background: var(--color-primary);
-}
-
-.bg-gray .product-list-item a:hover h5 {
-	color: var(--white);
-}
-
-.bg-gray .product-list-item a h5 {
-	transition: all 0.35s ease-in-out;
-} */
 
 .product-list-item img {
 	height: 100px;
 	margin-bottom: 10px;
+	object-fit: contain;
 }
 
 .product-list-item h4 {
@@ -538,7 +529,7 @@ Sidebar heading:  20px 'Manrope', sans-serif
 }
 
 .gallery-style-one .overlay {
-	background: var(--dark);
+	background: #1f4e3d;
 	display: inline-block;
 	position: absolute;
 	z-index: 1;
@@ -575,7 +566,7 @@ Sidebar heading:  20px 'Manrope', sans-serif
 .gallery-style-one .overlay span {
 	font-family: var(--font-secondary);
 	font-weight: 800;
-	color: var(--white);
+	color: #ffffff;
 	opacity: 0.95;
 }
 
@@ -584,13 +575,14 @@ Sidebar heading:  20px 'Manrope', sans-serif
 }
 
 .gallery-style-one .overlay a {
-	color: var(--white);
+	color: #ffffff;
 }
 
 .gallery-style-one img {
 	border: none;
 	outline: none;
 	max-width: 100%;
+	border-radius: 10%;
 }
 
 

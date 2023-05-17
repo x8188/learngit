@@ -74,7 +74,7 @@
             <div>
               <div
                 class="gallery-style-one cursor"
-                onclick=" window.open('https://riceome.hzau.edu.cn','_blank'); "
+                @click=" $router.push('/Expression/zs97') "
               >
                 <img
                   class="hvr-grow-shadow"
@@ -82,7 +82,7 @@
                   alt="Thumb"
                 />
                 <div class="overlay">
-                  <span>Rice Gene Index</span>
+                  <span>zs97/mh63</span>
                   <h4><a style="pointer-events: none">Rice</a></h4>
                 </div>
               </div>
@@ -100,16 +100,16 @@
             <div>
               <div
                 class="gallery-style-one cursor"
-                onclick=" window.open('http://yanglab.hzau.edu.cn/BnIR','_blank'); "
+                @click=" $router.push('/Expression/cotton') "
               >
                 <img
                   class="hvr-grow-shadow"
-                  src="../../assets/picture/7.jpg"
+                  src="../../assets/picture/mianhua.jpg"
                   alt="Thumb"
                 />
                 <div class="overlay" style="">
-                  <span>Brassica napus <br />Information Resource</span>
-                  <h4><a style="pointer-events: none">油菜</a></h4>
+                  <span>Cotton</span>
+                  <h4><a style="pointer-events: none">Cotton</a></h4>
                 </div>
               </div>
               <div>
@@ -126,7 +126,7 @@
             <div>
               <div
                 class="gallery-style-one cursor"
-                onclick=" window.open('http://www.zeamap.com/','_blank'); "
+                @click=" $router.push('/Expression/PPI') "
               >
                 <img
                   class="hvr-grow-shadow"
@@ -134,8 +134,8 @@
                   alt="Thumb"
                 />
                 <div class="overlay">
-                  <span>ZEAMAP</span>
-                  <h4><a style="pointer-events: none">玉米</a></h4>
+                  <span>PPI/PDI</span>
+                  <h4><a style="pointer-events: none">Maize</a></h4>
                 </div>
               </div>
               <div>
@@ -155,7 +155,7 @@
             <div>
               <div
                 class="gallery-style-one cursor"
-                onclick=" window.open('http://www.baidu.com','_blank'); "
+                @click=" $router.push('/Expression/zs97') "
               >
                 <img
                   class="hvr-grow-shadow"
@@ -182,7 +182,7 @@
               <div
                 class="gallery-style-one cursor"
                 id="ex2"
-                onclick=" window.open('http://plantphenomics.hzau.edu.cn/information','_blank'); "
+                @click=" $router.push('/Expression/zs97') "
               >
                 <img
                   class="hvr-grow-shadow"
