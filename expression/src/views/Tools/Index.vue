@@ -100,32 +100,6 @@
             <div>
               <div
                 class="gallery-style-one cursor"
-                @click=" $router.push('/Expression/cotton') "
-              >
-                <img
-                  class="hvr-grow-shadow"
-                  src="../../assets/picture/mianhua.jpg"
-                  alt="Thumb"
-                />
-                <div class="overlay" style="">
-                  <span>Cotton</span>
-                  <h4><a style="pointer-events: none">Cotton</a></h4>
-                </div>
-              </div>
-              <div>
-                <p class="detailP">
-                  BnIRis a a multi-omics collaborative resource and tool
-                  platform for Brassica napus. It integrates and analyzes
-                  datasets from genomics, epigenomics, transcriptomics,
-                  metabolomics and phenomics, and offers multiple tools.
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="col-xl-3 Colcenter">
-            <div>
-              <div
-                class="gallery-style-one cursor"
                 @click=" $router.push('/Expression/PPI') "
               >
                 <img
@@ -149,30 +123,28 @@
               </div>
             </div>
           </div>
-        </div>
-        <div class="row justify-content-md-center">
           <div class="col-xl-3 Colcenter">
             <div>
               <div
                 class="gallery-style-one cursor"
-                @click=" $router.push('/Expression/zs97') "
+                @click=" $router.push('/Expression/cotton') "
               >
                 <img
                   class="hvr-grow-shadow"
                   src="../../assets/picture/mianhua.jpg"
                   alt="Thumb"
                 />
-                <div class="overlay">
-                  <span>XXXXX</span>
-                  <h4><a style="pointer-events: none">棉花</a></h4>
+                <div class="overlay" style="">
+                  <span>Cotton</span>
+                  <h4><a style="pointer-events: none">Cotton</a></h4>
                 </div>
               </div>
               <div>
                 <p class="detailP">
-                  Happen active county. Winding morning ambition shyness evident
-                  to poor. Because elderly new to the point to main success.
-                  Happen active county. Winding morning ambition shyness evident
-                  to poor. Because elderly new to the point to main success.
+                  BnIRis a a multi-omics collaborative resource and tool
+                  platform for Brassica napus. It integrates and analyzes
+                  datasets from genomics, epigenomics, transcriptomics,
+                  metabolomics and phenomics, and offers multiple tools.
                 </p>
               </div>
             </div>
@@ -206,6 +178,62 @@
             </div>
           </div>
         </div>
+        <!-- <div class="row justify-content-md-center">
+          <div class="col-xl-3 Colcenter">
+            <div>
+              <div
+                class="gallery-style-one cursor"
+                @click=" $router.push('/Expression/cotton') "
+              >
+                <img
+                  class="hvr-grow-shadow"
+                  src="../../assets/picture/mianhua.jpg"
+                  alt="Thumb"
+                />
+                <div class="overlay" style="">
+                  <span>Cotton</span>
+                  <h4><a style="pointer-events: none">Cotton</a></h4>
+                </div>
+              </div>
+              <div>
+                <p class="detailP">
+                  BnIRis a a multi-omics collaborative resource and tool
+                  platform for Brassica napus. It integrates and analyzes
+                  datasets from genomics, epigenomics, transcriptomics,
+                  metabolomics and phenomics, and offers multiple tools.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3 Colcenter">
+            <div>
+              <div
+                class="gallery-style-one cursor"
+                id="ex2"
+                @click=" $router.push('/Expression/zs97') "
+              >
+                <img
+                  class="hvr-grow-shadow"
+                  src="../../assets/picture/7.jpg"
+                  alt="Thumb"
+                />
+                <div class="overlay">
+                  <span>Crop Phenotype <br />Management Platform</span>
+                  <h4><a style="pointer-events: none">表型</a></h4>
+                </div>
+              </div>
+              <div>
+                <p class="detailP">
+                  The crop phenotype data management platform offers the search
+                  and analysis of massive experimental data such as water
+                  saving, drought resistance, tillering, genome-wide association
+                  study (GWAS), recombinant inbred lines (RIL), quantitative
+                  trait locus (QTL).
+                </p>
+              </div>
+            </div>
+          </div>
+        </div> -->
       </div>
     </div>
     <Back></Back>
@@ -234,7 +262,7 @@ export default {
 .tool {
   width: 80%;
   margin: 0 auto;
-  /* height: 800px; */
+  height: 800px;
 }
 
 .cardTitle {

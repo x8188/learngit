@@ -199,12 +199,12 @@ Sidebar heading:  20px 'Manrope', sans-serif
 	border-radius: 8px;
 	border: 1px solid transparent;
 	transition: all 0.35s ease-in-out;
-	background: var(--white);
+	background:#ffffff;
 }
 
 .services-style-two:nth-child(1) .services-style-two-item, 
 .services-style-two-item:hover {
-	border: 1px solid var(--dark);
+	border: 1px solid #1f4e3d;
 }
 
 .services-style-two-item .info {
@@ -222,7 +222,7 @@ Sidebar heading:  20px 'Manrope', sans-serif
 
 .services-style-two-item .title a {
 	margin: 0;
-	background: var(--dark);
+	background: #1f4e3d;
 	padding: 15px;
 	display: flex;
 	align-items: center;
@@ -232,7 +232,7 @@ Sidebar heading:  20px 'Manrope', sans-serif
 }
 
 .services-style-two-item .title a {
-	color: var(--white);
+	color: #ffffff;
     font-weight: 600;
     text-decoration: none;
     font-size: 20px;
@@ -240,7 +240,7 @@ Sidebar heading:  20px 'Manrope', sans-serif
 
 .services-style-two-item .title i {
 	display: inline-block;
-	color: var(--color-secondary);
+	color: #f7c35f;
 	font-size: 45px;
 	margin-right: 13px;
 }

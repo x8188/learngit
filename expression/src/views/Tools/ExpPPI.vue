@@ -12,19 +12,15 @@
         </h1>
         <div>
           <el-select
-              style="width: 240px"
-              placeholder="-----Select Model-----"
-              @change="dataChange"
-              v-model="dataCate"
-            >
-              <el-option
-                v-for="value in dataCateOp"
-                :key="value"
-                :value="value"
-              >
-                {{ value }}
-              </el-option>
-            </el-select>
+            style="width: 240px"
+            placeholder="-----Select Model-----"
+            @change="dataChange"
+            v-model="dataCate"
+          >
+            <el-option v-for="value in dataCateOp" :key="value" :value="value">
+              {{ value }}
+            </el-option>
+          </el-select>
         </div>
       </div>
 
@@ -329,6 +325,7 @@
               <el-button
                 style="margin-top: 6px"
                 type="primary"
+                icon="el-icon-s-promotion"
                 @click="submitInputSeq"
               >
                 {{ uploading ? "Uploading" : "Start Upload" }}
@@ -432,9 +429,9 @@ export default {
       EXseq2:
         ">Zm00001d027235_1_+_121120-122620_122114-123614\n" +
         "AATGGCCTCCTCTAACATCTGTCCTTCCCTTCCATAAAAACCCCCTGCGAATCTTATCAATAGCTCTAA",
-      
-      dataCate:"",
-      dataCateOp:["ppi","pdi"],
+
+      dataCate: "",
+      dataCateOp: ["ppi", "pdi"],
     };
   },
   computed: {
@@ -450,23 +447,20 @@ export default {
       if (this.PPImodel) return true;
       else return false;
     },
-    modelflag(){
+    modelflag() {
       if (this.dataCate) return true;
       else return false;
-    }
+    },
   },
   methods: {
-    dataChange(){
+    dataChange() {
+      this.resetInfo();
 
-      this.resetInfo()
-      
-      if(this.dataCate=='ppi'){
-        this.modellist=this.PPImodellist
-      }else{
-        this.modellist=this.PDImodellist
+      if (this.dataCate == "ppi") {
+        this.modellist = this.PPImodellist;
+      } else {
+        this.modellist = this.PDImodellist;
       }
-
-
     },
     confirmtype() {
       this.loading = !this.loading;
@@ -513,7 +507,7 @@ export default {
           },
           // 在这里。需要加上key才能保证el.msgbox每次都能渲染组件。
           // 详情见el官方文档。
-          key:Date.now()
+          key: Date.now(),
         });
 
         // 将 input 和 img 元素放到 Vue 组件之外的 div 中
@@ -863,7 +857,6 @@ export default {
 <style scoped>
 .tool {
   /* height: 1500px; */
-  margin-bottom: 50px;
 }
 ::v-deep .el-tabs__nav-scroll {
   width: 50%;
@@ -875,13 +868,15 @@ export default {
 .tool-up {
   width: 70%;
   margin: 0 auto;
+  background-color: #f4f4f4;
+  padding-bottom: 40px;
+  padding-top: 40px;
 }
 
 .top-text {
   text-align: center;
   margin: 0 auto;
   height: 70px;
-  margin-top: 30px;
   margin-bottom: 50px;
   /* background:-webkit-linear-gradient(left,#93a5cf,#e4efe9) ; */
   /* background: -webkit-linear-gradient(left, #fff1eb, #ace0f9); */
@@ -898,12 +893,17 @@ td.column-money {
 }
 
 .ToolButton button:nth-child(2) {
-  background-color: #d32f2f;
-  border-color: #d32f2f;
+  /* background-color: #d32f2f;
+  border-color: #d32f2f; */
+  background-color: #ec971f;
+  border-color: #ec971f;
 }
 .ToolButton button:nth-child(2):hover {
-  background: #df6666 !important;
-  border-color: #df6666 !important;
+  /* background: #df6666 !important;
+  border-color: #df6666 !important; */
+  background: #f0ad4e !important;
+  border-color: #f0ad4e !important;
+
   color: #fff !important;
 }
 

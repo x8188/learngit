@@ -9,14 +9,14 @@
     </div> -->
     <div class="product-list-box" style="width: 70%; margin: 0 auto">
       <div class="product-list-item">
-        <div class="cursor" @click="changeType('Corn')">
+        <div id="Corn" class="cursor" @click="changeType('Corn')">
           <img src="../assets/picture/yumiICON.png" alt="Icon" />
           <h5>Corn</h5>
         </div>
       </div>
 
       <div class="product-list-item">
-        <div class="cursor"  @click="changeType('Rice')">
+        <div id="Rice" class="cursor" @click="changeType('Rice')">
           <img
             src="../assets/picture/southeast-removebg-preview.png"
             alt="Icon"
@@ -25,186 +25,490 @@
         </div>
       </div>
       <div class="product-list-item">
-        <div class="cursor"  @click="changeType('Cotton')">
+        <div id="Cotton" class="cursor" @click="changeType('Cotton')">
           <img src="../assets/picture/mianhuaICON.png" alt="Icon" />
           <h5>Cotton</h5>
         </div>
       </div>
       <div class="product-list-item">
-        <div class="cursor"  @click="changeType('Rice')">
+        <div id="xx" class="cursor" @click="changeType('xx')">
           <img
             src="../assets/picture/southeast-removebg-preview.png"
             alt="Icon"
           />
-          <h5>Rice</h5>
+          <h5>xx</h5>
         </div>
       </div>
     </div>
-    <div v-show="type==''">
+    <!-- <div v-show="type == ''">
       <h1>Please select a species</h1>
-    </div>
-    <div v-show="type=='Corn'">
-      <div class="top wrap1">
-      <!-- <div class="box box1"> -->
-      <h1 style="font-size: 40px; font-weight: bold">
-        Promoter proximal region interaction
-      </h1>
-      <!-- </div> -->
-    </div>
-    <el-card class="resTabs">
-      <div slot="header">
-        <span class="tableTitle">PPI EXPRESSION TABLE</span>
-      </div>
+    </div> -->
+    <div v-if="type == 'Corn'">
       <div>
-        <el-tabs tab-position="top" stretch>
-          <el-tab-pane label="ear(Li et al. 2019)">
-            <Table :tableId="0" :tdata="ppi_dou_ear"></Table>
-            <!-- <Chart chartName="chart1"></Chart> -->
-          </el-tab-pane>
-          <el-tab-pane  label="ear(Sun et al. 2020)">
-            <Table :tableId="0" :tdata="ppi_dou_pie"></Table>
-            <!-- <Chart chartName="chart2"></Chart> -->
-          </el-tab-pane>
-          <el-tab-pane label="tassel(Sun et al. 2020)">
-            <Table :tableId="0" :tdata="ppi_dou_pit"></Table>
-            <!-- <Chart chartName="chart3"></Chart> -->
-          </el-tab-pane>
-          <el-tab-pane label="shoot(Peng et al. 2019)">
-            <Table :tableId="0" :tdata="ppi_dou_py"></Table>
-          </el-tab-pane>
-          <el-tab-pane label="shoot(Li et al. 2019)">
-            <Table :tableId="0" :tdata="ppi_dou_shoot"></Table>
-          </el-tab-pane>
-        </el-tabs>
-      </div>
-    </el-card>
-    <el-card class="resTabs">
-      <div slot="header">
-        <span class="tableTitle">PPI SEQ TABLE</span>
-      </div>
-      <div>
-        <el-tabs tab-position="top" stretch class="resTabs">
-          <el-tab-pane label="gene1" :lazy="true">
-            <Chart
-              chartName="gradient1"
-              chartHotname="HotMap1"
-              v-if="ppi_seq1.gradient"
-              :visData="ppi_seq1.gradient"
-              :chartHotData="ppi_seq1.heat"
-            ></Chart>
-          </el-tab-pane>
-          <el-tab-pane label="gene2" :lazy="true">
-            <Chart
-              chartName="gradient2"
-              chartHotname="HotMap2"
-              v-if="ppi_seq2.gradient"
-              :visData="ppi_seq2.gradient"
-              :chartHotData="ppi_seq2.heat"
-            ></Chart>
-          </el-tab-pane>
-          <el-tab-pane label="gen3" :lazy="true">
-            <Chart
-              chartName="gradient3"
-              chartHotname="HotMap3"
-              v-if="ppi_seq3.gradient"
-              :visData="ppi_seq3.gradient"
-              :chartHotData="ppi_seq3.heat"
-            ></Chart>
-          </el-tab-pane>
-          <el-tab-pane label="gene4" :lazy="true">
-            <Chart
-              chartName="gradient4"
-              chartHotname="HotMap4"
-              v-if="ppi_seq4.gradient"
-              :visData="ppi_seq4.gradient"
-              :chartHotData="ppi_seq4.heat"
-            ></Chart>
-          </el-tab-pane>
-        </el-tabs>
-      </div>
-    </el-card>
+        <div class="top wrap1">
+          <!-- <div class="box box1"> -->
+          <h1 style="font-size: 40px; font-weight: bold">
+            Promoter proximal region interaction
+          </h1>
+          <!-- </div> -->
+        </div>
+        <el-card class="resTabs">
+          <div slot="header">
+            <span class="tableTitle">PPI EXPRESSION TABLE</span>
+          </div>
+          <div>
+            <el-tabs tab-position="top" stretch>
+              <el-tab-pane label="ear(Li et al. 2019)">
+                <Table :tableId="0" :tdata="ppi_dou_ear"></Table>
+                <!-- <Chart chartName="chart1"></Chart> -->
+              </el-tab-pane>
+              <el-tab-pane label="ear(Sun et al. 2020)">
+                <Table :tableId="0" :tdata="ppi_dou_pie"></Table>
+                <!-- <Chart chartName="chart2"></Chart> -->
+              </el-tab-pane>
+              <el-tab-pane label="tassel(Sun et al. 2020)">
+                <Table :tableId="0" :tdata="ppi_dou_pit"></Table>
+                <!-- <Chart chartName="chart3"></Chart> -->
+              </el-tab-pane>
+              <el-tab-pane label="shoot(Peng et al. 2019)">
+                <Table :tableId="0" :tdata="ppi_dou_py"></Table>
+              </el-tab-pane>
+              <el-tab-pane label="shoot(Li et al. 2019)">
+                <Table :tableId="0" :tdata="ppi_dou_shoot"></Table>
+              </el-tab-pane>
+            </el-tabs>
+          </div>
+        </el-card>
+        <el-card class="resTabs">
+          <div slot="header">
+            <span class="tableTitle">PPI SEQ TABLE</span>
+          </div>
+          <div>
+            <el-tabs tab-position="top" stretch class="resTabs">
+              <el-tab-pane label="gene1" :lazy="true">
+                <Chart
+                  chartName="gradient1"
+                  chartHotname="HotMap1"
+                  v-if="ppi_seq1.gradient"
+                  :visData="ppi_seq1.gradient"
+                  :chartHotData="ppi_seq1.heat"
+                ></Chart>
+              </el-tab-pane>
+              <el-tab-pane label="gene2" :lazy="true">
+                <Chart
+                  chartName="gradient2"
+                  chartHotname="HotMap2"
+                  v-if="ppi_seq2.gradient"
+                  :visData="ppi_seq2.gradient"
+                  :chartHotData="ppi_seq2.heat"
+                ></Chart>
+              </el-tab-pane>
+              <el-tab-pane label="gen3" :lazy="true">
+                <Chart
+                  chartName="gradient3"
+                  chartHotname="HotMap3"
+                  v-if="ppi_seq3.gradient"
+                  :visData="ppi_seq3.gradient"
+                  :chartHotData="ppi_seq3.heat"
+                ></Chart>
+              </el-tab-pane>
+              <el-tab-pane label="gene4" :lazy="true">
+                <Chart
+                  chartName="gradient4"
+                  chartHotname="HotMap4"
+                  v-if="ppi_seq4.gradient"
+                  :visData="ppi_seq4.gradient"
+                  :chartHotData="ppi_seq4.heat"
+                ></Chart>
+              </el-tab-pane>
+            </el-tabs>
+          </div>
+        </el-card>
 
-    <div class="top wrap1">
-      <!-- <div class="box box1"> -->
-      <h1 style="font-size: 40px; font-weight: bold">
-        Promoter-distal element interaction
-      </h1>
-      <!-- </div> -->
+        <div class="top wrap1">
+          <!-- <div class="box box1"> -->
+          <h1 style="font-size: 40px; font-weight: bold">
+            Promoter-distal element interaction
+          </h1>
+          <!-- </div> -->
+        </div>
+        <el-card class="resTabs">
+          <div slot="header">
+            <span class="tableTitle">PDI EXPRESSION TABLE</span>
+          </div>
+          <div>
+            <el-tabs tab-position="top" stretch class="resTabs">
+              <el-tab-pane label="ear(Li et al. 2019)">
+                <Table :tableId="0" :tdata="pdi_dou_ear"></Table>
+              </el-tab-pane>
+              <el-tab-pane label="shoot(Peng et al. 2019)">
+                <Table :tableId="0" :tdata="pdi_dou_py"></Table>
+              </el-tab-pane>
+              <el-tab-pane label="shoot(Li et al. 2019)">
+                <Table :tableId="0" :tdata="pdi_dou_shoot"></Table>
+              </el-tab-pane>
+            </el-tabs>
+          </div>
+        </el-card>
+        <el-card class="resTabs">
+          <div slot="header">
+            <span class="tableTitle">PDI SEQ TABLE</span>
+          </div>
+          <div>
+            <el-tabs tab-position="top" stretch class="resTabs">
+              <el-tab-pane label="gene1" :lazy="true">
+                <Chart
+                  chartName="gradient5"
+                  chartHotname="HotMap5"
+                  v-if="pdi_seq1.gradient"
+                  :visData="pdi_seq1.gradient"
+                  :chartHotData="pdi_seq1.heat"
+                ></Chart>
+              </el-tab-pane>
+              <el-tab-pane label="gene2" :lazy="true">
+                <Chart
+                  chartName="gradient6"
+                  chartHotname="HotMap6"
+                  v-if="pdi_seq2.gradient"
+                  :visData="pdi_seq2.gradient"
+                  :chartHotData="pdi_seq2.heat"
+                ></Chart>
+              </el-tab-pane>
+              <el-tab-pane label="gen3" :lazy="true">
+                <Chart
+                  chartName="gradient7"
+                  chartHotname="HotMap7"
+                  v-if="pdi_seq3.gradient"
+                  :visData="pdi_seq3.gradient"
+                  :chartHotData="pdi_seq3.heat"
+                ></Chart>
+              </el-tab-pane>
+              <el-tab-pane label="gene4" :lazy="true">
+                <Chart
+                  chartName="gradient8"
+                  chartHotname="HotMap8"
+                  v-if="pdi_seq3.gradient"
+                  :visData="pdi_seq3.gradient"
+                  :chartHotData="pdi_seq3.heat"
+                ></Chart>
+              </el-tab-pane>
+            </el-tabs>
+          </div>
+        </el-card>
+      </div>
     </div>
-    <el-card class="resTabs">
-      <div slot="header">
-        <span class="tableTitle">PDI EXPRESSION TABLE</span>
-      </div>
-      <div>
-        <el-tabs tab-position="top" stretch class="resTabs">
-          <el-tab-pane label="ear(Li et al. 2019)">
-            <Table :tableId="0" :tdata="pdi_dou_ear"></Table>
-          </el-tab-pane>
-          <el-tab-pane label="shoot(Peng et al. 2019)">
-            <Table :tableId="0" :tdata="pdi_dou_py"></Table>
-          </el-tab-pane>
-          <el-tab-pane label="shoot(Li et al. 2019)">
-            <Table :tableId="0" :tdata="pdi_dou_shoot"></Table>
-          </el-tab-pane>
-        </el-tabs>
-      </div>
-    </el-card>
-    <el-card class="resTabs">
-      <div slot="header">
-        <span class="tableTitle">PDI SEQ TABLE</span>
-      </div>
-      <div>
-        <el-tabs tab-position="top" stretch class="resTabs">
-          <el-tab-pane label="gene1" :lazy="true">
-            <Chart
-              chartName="gradient5"
-              chartHotname="HotMap5"
-              v-if="pdi_seq1.gradient"
-              :visData="pdi_seq1.gradient"
-              :chartHotData="pdi_seq1.heat"
-            ></Chart>
-          </el-tab-pane>
-          <el-tab-pane label="gene2" :lazy="true">
-            <Chart
-              chartName="gradient6"
-              chartHotname="HotMap6"
-              v-if="pdi_seq2.gradient"
-              :visData="pdi_seq2.gradient"
-              :chartHotData="pdi_seq2.heat"
-            ></Chart>
-          </el-tab-pane>
-          <el-tab-pane label="gen3" :lazy="true">
-            <Chart
-              chartName="gradient7"
-              chartHotname="HotMap7"
-              v-if="pdi_seq3.gradient"
-              :visData="pdi_seq3.gradient"
-              :chartHotData="pdi_seq3.heat"
-            ></Chart>
-          </el-tab-pane>
-          <el-tab-pane label="gene4" :lazy="true">
-            <Chart
-              chartName="gradient8"
-              chartHotname="HotMap8"
-              v-if="pdi_seq3.gradient"
-              :visData="pdi_seq3.gradient"
-              :chartHotData="pdi_seq3.heat"
-            ></Chart>
-          </el-tab-pane>
-        </el-tabs>
-      </div>
-    </el-card>
-
-
-    </div>
-    <div v-show="type=='Rice'">
+    <div v-if="type == 'Rice'">
       <h1>Rice</h1>
+      <div>
+        <div class="top wrap1">
+          <!-- <div class="box box1"> -->
+          <h1 style="font-size: 40px; font-weight: bold">
+            Promoter proximal region interaction
+          </h1>
+          <!-- </div> -->
+        </div>
+        <el-card class="resTabs">
+          <div slot="header">
+            <span class="tableTitle">PPI EXPRESSION TABLE</span>
+          </div>
+          <div>
+            <el-tabs tab-position="top" stretch>
+              <el-tab-pane label="ear(Li et al. 2019)">
+                <Table :tableId="0" :tdata="ppi_dou_ear"></Table>
+                <!-- <Chart chartName="chart1"></Chart> -->
+              </el-tab-pane>
+              <el-tab-pane label="ear(Sun et al. 2020)">
+                <Table :tableId="0" :tdata="ppi_dou_pie"></Table>
+                <!-- <Chart chartName="chart2"></Chart> -->
+              </el-tab-pane>
+              <el-tab-pane label="tassel(Sun et al. 2020)">
+                <Table :tableId="0" :tdata="ppi_dou_pit"></Table>
+                <!-- <Chart chartName="chart3"></Chart> -->
+              </el-tab-pane>
+              <el-tab-pane label="shoot(Peng et al. 2019)">
+                <Table :tableId="0" :tdata="ppi_dou_py"></Table>
+              </el-tab-pane>
+              <el-tab-pane label="shoot(Li et al. 2019)">
+                <Table :tableId="0" :tdata="ppi_dou_shoot"></Table>
+              </el-tab-pane>
+            </el-tabs>
+          </div>
+        </el-card>
+        <el-card class="resTabs">
+          <div slot="header">
+            <span class="tableTitle">PPI SEQ TABLE</span>
+          </div>
+          <div>
+            <el-tabs tab-position="top" stretch class="resTabs">
+              <el-tab-pane label="gene1" :lazy="true">
+                <Chart
+                  chartName="gradient1"
+                  chartHotname="HotMap1"
+                  v-if="ppi_seq1.gradient"
+                  :visData="ppi_seq1.gradient"
+                  :chartHotData="ppi_seq1.heat"
+                ></Chart>
+              </el-tab-pane>
+              <el-tab-pane label="gene2" :lazy="true">
+                <Chart
+                  chartName="gradient2"
+                  chartHotname="HotMap2"
+                  v-if="ppi_seq2.gradient"
+                  :visData="ppi_seq2.gradient"
+                  :chartHotData="ppi_seq2.heat"
+                ></Chart>
+              </el-tab-pane>
+              <el-tab-pane label="gen3" :lazy="true">
+                <Chart
+                  chartName="gradient3"
+                  chartHotname="HotMap3"
+                  v-if="ppi_seq3.gradient"
+                  :visData="ppi_seq3.gradient"
+                  :chartHotData="ppi_seq3.heat"
+                ></Chart>
+              </el-tab-pane>
+              <el-tab-pane label="gene4" :lazy="true">
+                <Chart
+                  chartName="gradient4"
+                  chartHotname="HotMap4"
+                  v-if="ppi_seq4.gradient"
+                  :visData="ppi_seq4.gradient"
+                  :chartHotData="ppi_seq4.heat"
+                ></Chart>
+              </el-tab-pane>
+            </el-tabs>
+          </div>
+        </el-card>
+
+        <div class="top wrap1">
+          <!-- <div class="box box1"> -->
+          <h1 style="font-size: 40px; font-weight: bold">
+            Promoter-distal element interaction
+          </h1>
+          <!-- </div> -->
+        </div>
+        <el-card class="resTabs">
+          <div slot="header">
+            <span class="tableTitle">PDI EXPRESSION TABLE</span>
+          </div>
+          <div>
+            <el-tabs tab-position="top" stretch class="resTabs">
+              <el-tab-pane label="ear(Li et al. 2019)">
+                <Table :tableId="0" :tdata="pdi_dou_ear"></Table>
+              </el-tab-pane>
+              <el-tab-pane label="shoot(Peng et al. 2019)">
+                <Table :tableId="0" :tdata="pdi_dou_py"></Table>
+              </el-tab-pane>
+              <el-tab-pane label="shoot(Li et al. 2019)">
+                <Table :tableId="0" :tdata="pdi_dou_shoot"></Table>
+              </el-tab-pane>
+            </el-tabs>
+          </div>
+        </el-card>
+        <el-card class="resTabs">
+          <div slot="header">
+            <span class="tableTitle">PDI SEQ TABLE</span>
+          </div>
+          <div>
+            <el-tabs tab-position="top" stretch class="resTabs">
+              <el-tab-pane label="gene1" :lazy="true">
+                <Chart
+                  chartName="gradient5"
+                  chartHotname="HotMap5"
+                  v-if="pdi_seq1.gradient"
+                  :visData="pdi_seq1.gradient"
+                  :chartHotData="pdi_seq1.heat"
+                ></Chart>
+              </el-tab-pane>
+              <el-tab-pane label="gene2" :lazy="true">
+                <Chart
+                  chartName="gradient6"
+                  chartHotname="HotMap6"
+                  v-if="pdi_seq2.gradient"
+                  :visData="pdi_seq2.gradient"
+                  :chartHotData="pdi_seq2.heat"
+                ></Chart>
+              </el-tab-pane>
+              <el-tab-pane label="gen3" :lazy="true">
+                <Chart
+                  chartName="gradient7"
+                  chartHotname="HotMap7"
+                  v-if="pdi_seq3.gradient"
+                  :visData="pdi_seq3.gradient"
+                  :chartHotData="pdi_seq3.heat"
+                ></Chart>
+              </el-tab-pane>
+              <el-tab-pane label="gene4" :lazy="true">
+                <Chart
+                  chartName="gradient8"
+                  chartHotname="HotMap8"
+                  v-if="pdi_seq3.gradient"
+                  :visData="pdi_seq3.gradient"
+                  :chartHotData="pdi_seq3.heat"
+                ></Chart>
+              </el-tab-pane>
+            </el-tabs>
+          </div>
+        </el-card>
+      </div>
     </div>
-    <div v-show="type=='Cotton'">
+    <div v-if="type == 'Cotton'">
       <h1>Cotton</h1>
+      <div>
+        <div class="top wrap1">
+          <!-- <div class="box box1"> -->
+          <h1 style="font-size: 40px; font-weight: bold">
+            Promoter proximal region interaction
+          </h1>
+          <!-- </div> -->
+        </div>
+        <el-card class="resTabs">
+          <div slot="header">
+            <span class="tableTitle">PPI EXPRESSION TABLE</span>
+          </div>
+          <div>
+            <el-tabs tab-position="top" stretch>
+              <el-tab-pane label="ear(Li et al. 2019)">
+                <Table :tableId="0" :tdata="ppi_dou_ear"></Table>
+                <!-- <Chart chartName="chart1"></Chart> -->
+              </el-tab-pane>
+              <el-tab-pane label="ear(Sun et al. 2020)">
+                <Table :tableId="0" :tdata="ppi_dou_pie"></Table>
+                <!-- <Chart chartName="chart2"></Chart> -->
+              </el-tab-pane>
+              <el-tab-pane label="tassel(Sun et al. 2020)">
+                <Table :tableId="0" :tdata="ppi_dou_pit"></Table>
+                <!-- <Chart chartName="chart3"></Chart> -->
+              </el-tab-pane>
+              <el-tab-pane label="shoot(Peng et al. 2019)">
+                <Table :tableId="0" :tdata="ppi_dou_py"></Table>
+              </el-tab-pane>
+              <el-tab-pane label="shoot(Li et al. 2019)">
+                <Table :tableId="0" :tdata="ppi_dou_shoot"></Table>
+              </el-tab-pane>
+            </el-tabs>
+          </div>
+        </el-card>
+        <el-card class="resTabs">
+          <div slot="header">
+            <span class="tableTitle">PPI SEQ TABLE</span>
+          </div>
+          <div>
+            <el-tabs tab-position="top" stretch class="resTabs">
+              <el-tab-pane label="gene1" :lazy="true">
+                <Chart
+                  chartName="gradient1"
+                  chartHotname="HotMap1"
+                  v-if="ppi_seq1.gradient"
+                  :visData="ppi_seq1.gradient"
+                  :chartHotData="ppi_seq1.heat"
+                ></Chart>
+              </el-tab-pane>
+              <el-tab-pane label="gene2" :lazy="true">
+                <Chart
+                  chartName="gradient2"
+                  chartHotname="HotMap2"
+                  v-if="ppi_seq2.gradient"
+                  :visData="ppi_seq2.gradient"
+                  :chartHotData="ppi_seq2.heat"
+                ></Chart>
+              </el-tab-pane>
+              <el-tab-pane label="gen3" :lazy="true">
+                <Chart
+                  chartName="gradient3"
+                  chartHotname="HotMap3"
+                  v-if="ppi_seq3.gradient"
+                  :visData="ppi_seq3.gradient"
+                  :chartHotData="ppi_seq3.heat"
+                ></Chart>
+              </el-tab-pane>
+              <el-tab-pane label="gene4" :lazy="true">
+                <Chart
+                  chartName="gradient4"
+                  chartHotname="HotMap4"
+                  v-if="ppi_seq4.gradient"
+                  :visData="ppi_seq4.gradient"
+                  :chartHotData="ppi_seq4.heat"
+                ></Chart>
+              </el-tab-pane>
+            </el-tabs>
+          </div>
+        </el-card>
+
+        <div class="top wrap1">
+          <!-- <div class="box box1"> -->
+          <h1 style="font-size: 40px; font-weight: bold">
+            Promoter-distal element interaction
+          </h1>
+          <!-- </div> -->
+        </div>
+        <el-card class="resTabs">
+          <div slot="header">
+            <span class="tableTitle">PDI EXPRESSION TABLE</span>
+          </div>
+          <div>
+            <el-tabs tab-position="top" stretch class="resTabs">
+              <el-tab-pane label="ear(Li et al. 2019)">
+                <Table :tableId="0" :tdata="pdi_dou_ear"></Table>
+              </el-tab-pane>
+              <el-tab-pane label="shoot(Peng et al. 2019)">
+                <Table :tableId="0" :tdata="pdi_dou_py"></Table>
+              </el-tab-pane>
+              <el-tab-pane label="shoot(Li et al. 2019)">
+                <Table :tableId="0" :tdata="pdi_dou_shoot"></Table>
+              </el-tab-pane>
+            </el-tabs>
+          </div>
+        </el-card>
+        <el-card class="resTabs">
+          <div slot="header">
+            <span class="tableTitle">PDI SEQ TABLE</span>
+          </div>
+          <div>
+            <el-tabs tab-position="top" stretch class="resTabs">
+              <el-tab-pane label="gene1" :lazy="true">
+                <Chart
+                  chartName="gradient5"
+                  chartHotname="HotMap5"
+                  v-if="pdi_seq1.gradient"
+                  :visData="pdi_seq1.gradient"
+                  :chartHotData="pdi_seq1.heat"
+                ></Chart>
+              </el-tab-pane>
+              <el-tab-pane label="gene2" :lazy="true">
+                <Chart
+                  chartName="gradient6"
+                  chartHotname="HotMap6"
+                  v-if="pdi_seq2.gradient"
+                  :visData="pdi_seq2.gradient"
+                  :chartHotData="pdi_seq2.heat"
+                ></Chart>
+              </el-tab-pane>
+              <el-tab-pane label="gen3" :lazy="true">
+                <Chart
+                  chartName="gradient7"
+                  chartHotname="HotMap7"
+                  v-if="pdi_seq3.gradient"
+                  :visData="pdi_seq3.gradient"
+                  :chartHotData="pdi_seq3.heat"
+                ></Chart>
+              </el-tab-pane>
+              <el-tab-pane label="gene4" :lazy="true">
+                <Chart
+                  chartName="gradient8"
+                  chartHotname="HotMap8"
+                  v-if="pdi_seq3.gradient"
+                  :visData="pdi_seq3.gradient"
+                  :chartHotData="pdi_seq3.heat"
+                ></Chart>
+              </el-tab-pane>
+            </el-tabs>
+          </div>
+        </el-card>
+      </div>
     </div>
-    <div v-show="type=='Rice'">
-      <h1>Rice</h1>
+    <div v-if="type == 'xx'">
+      <h1>xx</h1>
     </div>
     <Back></Back>
   </div>
@@ -219,7 +523,7 @@ export default {
   components: { Chart },
   data() {
     return {
-      type:"",
+      type: "Corn",
 
       ppi_dou_ear: [],
       ppi_dou_shoot: [],
@@ -266,12 +570,18 @@ export default {
         this.pdi_seq4 = result["pdi/tp%Dm8-5125573-5135954%Zm00001d008316.csv"];
       }
     },
-    changeType(ty){
-      this.type=ty
-    }
+    changeType(ty) {
+      var rediv = document.getElementById(this.type);
+      rediv.classList.remove("active")
+
+      this.type = ty;
+      var div = document.getElementById(ty);
+      div.classList.add("active");
+    },
   },
-  created() {
+  mounted() {
     this.getTable();
+    this.changeType(this.type)
   },
 };
 </script>
@@ -316,5 +626,15 @@ export default {
   font-size: 20px;
   font-weight: bold;
   /* color:#FB636F ; */
+}
+
+.active{
+  background: #f7c35f !important;
+}
+.active h5 {
+  color: #04000b;
+}
+.product-list-box{
+  max-width: 900px;
 }
 </style>
