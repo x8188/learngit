@@ -74,33 +74,7 @@
             <div>
               <div
                 class="gallery-style-one cursor"
-                @click=" $router.push('/Expression/zs97') "
-              >
-                <img
-                  class="hvr-grow-shadow"
-                  src="../../assets/picture/shuidao.jpg"
-                  alt="Thumb"
-                />
-                <div class="overlay">
-                  <span>zs97/mh63</span>
-                  <h4><a style="pointer-events: none">Rice</a></h4>
-                </div>
-              </div>
-              <div>
-                <p class="detailP">
-                  Happen active county. Winding morning ambition shyness evident
-                  to poor. Because elderly new to the point to main success.
-                  Happen active county. Winding morning ambition shyness evident
-                  to poor. Because elderly new to the point to main success.
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="col-xl-3 Colcenter">
-            <div>
-              <div
-                class="gallery-style-one cursor"
-                @click=" $router.push('/Expression/PPI') "
+                @click=" $router.push('/Expression/maize') "
               >
                 <img
                   class="hvr-grow-shadow"
@@ -127,6 +101,32 @@
             <div>
               <div
                 class="gallery-style-one cursor"
+                @click=" $router.push('/Expression/rice') "
+              >
+                <img
+                  class="hvr-grow-shadow"
+                  src="../../assets/picture/shuidao.jpg"
+                  alt="Thumb"
+                />
+                <div class="overlay">
+                  <span>zs97/mh63</span>
+                  <h4><a style="pointer-events: none">Rice</a></h4>
+                </div>
+              </div>
+              <div>
+                <p class="detailP">
+                  Happen active county. Winding morning ambition shyness evident
+                  to poor. Because elderly new to the point to main success.
+                  Happen active county. Winding morning ambition shyness evident
+                  to poor. Because elderly new to the point to main success.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3 Colcenter">
+            <div>
+              <div
+                class="gallery-style-one cursor"
                 @click=" $router.push('/Expression/cotton') "
               >
                 <img
@@ -135,7 +135,7 @@
                   alt="Thumb"
                 />
                 <div class="overlay" style="">
-                  <span>Cotton</span>
+                  <span>A2/B1/C1/D5...</span>
                   <h4><a style="pointer-events: none">Cotton</a></h4>
                 </div>
               </div>
@@ -154,16 +154,16 @@
               <div
                 class="gallery-style-one cursor"
                 id="ex2"
-                @click=" $router.push('/Expression/zs97') "
+                @click=" $router.push('/Expression/') "
               >
                 <img
                   class="hvr-grow-shadow"
-                  src="../../assets/picture/7.jpg"
+                  src="../../assets/picture/xiaomai.jpg"
                   alt="Thumb"
                 />
                 <div class="overlay">
-                  <span>Crop Phenotype <br />Management Platform</span>
-                  <h4><a style="pointer-events: none">表型</a></h4>
+                  <span>TPM</span>
+                  <h4><a style="pointer-events: none">Wheat</a></h4>
                 </div>
               </div>
               <div>

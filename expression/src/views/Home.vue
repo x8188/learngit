@@ -165,6 +165,7 @@
                   color: #ffffff;
                   border-radius: 15px;
                   background: #1f4e3d;
+                  min-width: 800px;
                   /* background: -webkit-linear-gradient(left, #fff1eb, #ace0f9); */
                 "
               >
@@ -197,17 +198,17 @@
 
                 <div
                   class="product-list-box"
-                  style="width: 80%; margin: 0 auto"
+                  style="width: 100%; margin: 0 auto"
                 >
                   <div class="product-list-item">
-                    <div class="cursor" @click="$router.push('/Expression/PPI')">
+                    <div class="cursor" @click="$router.push('/Expression/maize')">
                       <img src="../assets/picture/yumiICON.png" alt="Icon" />
-                      <h5>Corn</h5>
+                      <h5>Maize</h5>
                     </div>
                   </div>
 
                   <div class="product-list-item">
-                    <div class="cursor" @click="$router.push('/Expression/zs97')">
+                    <div class="cursor" @click="$router.push('/Expression/rice')">
                       <img
                         src="../assets/picture/southeast-removebg-preview.png"
                         alt="Icon"
@@ -219,6 +220,12 @@
                     <div class="cursor" @click="$router.push('/Expression/cotton')">
                       <img src="../assets/picture/mianhuaICON.png" alt="Icon" />
                       <h5>Cotton</h5>
+                    </div>
+                  </div>
+                  <div class="product-list-item">
+                    <div class="cursor" @click="$router.push('/Expression/')">
+                      <img src="../assets/picture/xiaomaiICON.png" alt="Icon" />
+                      <h5>Wheat</h5>
                     </div>
                   </div>
                 </div>

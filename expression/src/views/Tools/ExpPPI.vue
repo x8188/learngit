@@ -4,24 +4,12 @@
 -->
 <template>
   <div class="tool">
-    <Steps :steps1="steps1"></Steps>
+    <!-- <Steps :steps1="steps1"></Steps> -->
     <div class="tool-up">
       <div class="top-text">
         <h1 style="font-size: 35px; font-weight: bolder">
           Maize Expression prediction base on DNA
         </h1>
-        <div>
-          <el-select
-            style="width: 240px"
-            placeholder="-----Select Model-----"
-            @change="dataChange"
-            v-model="dataCate"
-          >
-            <el-option v-for="value in dataCateOp" :key="value" :value="value">
-              {{ value }}
-            </el-option>
-          </el-select>
-        </div>
       </div>
 
       <div style="margin-top: 20px">
@@ -41,7 +29,22 @@
                     without enhancer in dark.
                   </h3>
                   <h3>Promoter proximal region interaction (PPI)</h3>
-
+                  <div>
+                    <el-select
+                      style="width: 240px"
+                      placeholder="-----Select Sample-----"
+                      @change="dataChange"
+                      v-model="dataCate"
+                    >
+                      <el-option
+                        v-for="value in dataCateOp"
+                        :key="value"
+                        :value="value"
+                      >
+                        {{ value }}
+                      </el-option>
+                    </el-select>
+                  </div>
                   <h3 style="color: #fb6672; font-weight: bold">
                     Please select PPI models here👇
                   </h3>
@@ -319,6 +322,23 @@
               </el-form>
             </el-col>
           </el-row>
+          <el-row type="flex" justify="center">
+            <el-col :span="12" style="margin-top: 10px">
+              <div style="display: flex; align-items: center">
+                <span style="font-size: 20px">Captcha:</span>
+                <el-input
+                  v-model="inputCaptcha"
+                  style="margin: 0 20px 0 20px"
+                ></el-input>
+                <img
+                  :src="captchaImg"
+                  alt=""
+                  @click="reflshCaptch"
+                  style="cursor: pointer"
+                />
+              </div>
+            </el-col>
+          </el-row>
           <!-- 提交 -->
           <el-row type="flex" justify="center">
             <div class="ToolButton">
@@ -431,7 +451,7 @@ export default {
         "AATGGCCTCCTCTAACATCTGTCCTTCCCTTCCATAAAAACCCCCTGCGAATCTTATCAATAGCTCTAA",
 
       dataCate: "",
-      dataCateOp: ["ppi", "pdi"],
+      dataCateOp: ["B73(ppi)", "B73(pdi)"],
     };
   },
   computed: {
@@ -456,7 +476,7 @@ export default {
     dataChange() {
       this.resetInfo();
 
-      if (this.dataCate == "ppi") {
+      if (this.dataCate == "B73(ppi)") {
         this.modellist = this.PPImodellist;
       } else {
         this.modellist = this.PDImodellist;
@@ -465,6 +485,14 @@ export default {
     confirmtype() {
       this.loading = !this.loading;
       console.log(this.methltype);
+    },
+    async reflshCaptch() {
+      this.inputCaptcha = undefined;
+      let result = await this.$API.reqCaptchaImg();
+      if (result.code == 200) {
+        this.captchaImg = "data:image/png;base64," + result.img;
+        this.uuid = result.uuid;
+      }
     },
 
     async getcaptch() {
@@ -567,9 +595,9 @@ export default {
             // 暂时直接显示成功
             // 判断步骤2是否成功
             if (this.fileFlag) {
-              let t = await this.getcaptch();
+              // let t = await this.getcaptch();
 
-              if (t != true) return;
+              // if (t != true) return;
 
               this.taskBoby_file.file = this.fileList[0].raw;
               this.taskBoby_file.email = this.updataForm.email;
@@ -623,8 +651,8 @@ export default {
           else {
             // 判断步骤2是否成功
             if (this.inputFlag) {
-              let t = await this.getcaptch();
-              if (t != true) return;
+              // let t = await this.getcaptch();
+              // if (t != true) return;
 
               this.taskBoby_seq.seq = [];
               this.taskBoby_seq.seq.push(this.Seq1);
@@ -852,6 +880,9 @@ export default {
     },
   },
   created() {},
+  mounted() {
+    this.reflshCaptch();
+  },
 };
 </script>
 <style scoped>

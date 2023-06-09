@@ -1,8 +1,20 @@
 import requests from "./Ajax";
 
 // 获取result页面表格
-export const reqResultInfo = () =>
-  requests({ url: `/model/show`, method: "get" });
+export const reqResultInfo = (Type) =>
+  requests({ url: `/model/show/${Type}`, method: "get" });
+
+// export const reqRiceResultInfo = () =>
+//   requests({ url: `/model/show/rice`, method: "get" });
+
+// export const reqCornResultInfo = () =>
+//   requests({ url: `/model/show/maize`, method: "get" });
+
+// export const reqCottonResultInfo = () =>
+//   requests({ url: `/model/show/cotton`, method: "get" });
+
+// export const reqWheatResultInfo = () =>
+//   requests({ url: `/model/show/wheat`, method: "get" });
 
 // 提交序列作业接口
 export const reqSubmitSeq = (taskBody) =>

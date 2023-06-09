@@ -36,31 +36,31 @@ const routes = [
 
   },
   {
-    path: '/Expression/PPI',
+    path: '/Expression/maize',
     name: 'ExpPPI',
     component: () => import('../views/Tools/ExpPPI'),
 
   },
-  {
-    path: '/Expression/PDI',
-    name: 'ExpPDI',
-    component: () => import('../views/Tools/ExpPDI'),
+  // {
+  //   path: '/Expression/PDI',
+  //   name: 'ExpPDI',
+  //   component: () => import('../views/Tools/ExpPDI'),
 
-  },
-  {
-    path: '/Expression/indexShui',
-    name: 'indexShui',
-    component: () => import('../views/Tools/indexShui'),
+  // },
+  // {
+  //   path: '/Expression/indexShui',
+  //   name: 'indexShui',
+  //   component: () => import('../views/Tools/indexShui'),
 
-  },
-  {
-    path: '/Expression/mh63',
-    name: 'ExpMh63',
-    component: () => import('../views/Tools/ExpMH63'),
+  // },
+  // {
+  //   path: '/Expression/mh63',
+  //   name: 'ExpMh63',
+  //   component: () => import('../views/Tools/ExpMH63'),
 
-  },
+  // },
   {
-    path: '/Expression/zs97',
+    path: '/Expression/rice',
     name: 'ExpZs97',
     component: () => import('../views/Tools/ExpZS97'),
 

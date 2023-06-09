@@ -53,7 +53,7 @@
         <img src="../img/roc.png" style="width: 65%" />
       </div>
     </div> -->
-    <Steps :steps1="3" :steps2="steps2"></Steps>
+    <!-- <Steps :steps1="3" :steps2="steps2"></Steps> -->
     <div class="top-text">
       <h1 style="font-size: 40px; font-weight: bolder; color: #22cac4">
         Task Queue
@@ -63,7 +63,7 @@
     <h1 style="color: #0dbc79; font-size: 30px">Result retrieval</h1>
     <el-divider></el-divider>
     <p style="font-size: 20px">
-      NOTE: The result files will be kept for 30 days on our server. Please
+      NOTE: The result files will be kept for 10 days on our server. Please
       download and save your files on time.
     </p>
     <div style="text-align: center">
@@ -108,7 +108,7 @@
           >
           </el-table-column>
           <el-table-column
-            label="tast status"
+            label="task Status"
             :filters="filter_statu"
             :filter-method="filterStatu"
             width="150"
@@ -118,21 +118,21 @@
                 <i
                   class="el-icon-success"
                   style="color: #0dbc79"
-                  v-show="row.stataus == 2"
+                  v-show="row.status == 2"
                 ></i>
                 <i
                   class="el-icon-error"
                   style="color: #d32f2f"
-                  v-show="row.stataus == 3"
+                  v-show="row.status == 3"
                 ></i>
-                <i class="el-icon-loading" v-show="row.stataus == 1"></i>
-                <span class="iconfont icon-paidui" v-show="row.stataus == 0" style="font-size:20px"></span>
+                <i class="el-icon-loading" v-show="row.status == 1"></i>
+                <span class="iconfont icon-paidui" v-show="row.status == 0" style="font-size:20px"></span>
               </div>
             </template>
           </el-table-column>
           <el-table-column prop="submitTime" label="submit Time">
           </el-table-column>
-          <el-table-column prop="ttl1" label="Time remaining">
+          <el-table-column prop="ttl1" label="time Remaining" width="210">
           </el-table-column>
           <el-table-column label="function">
             <template slot-scope="{ row }">

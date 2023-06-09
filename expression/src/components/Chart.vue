@@ -105,8 +105,8 @@ export default {
     initEcharts() {
       // 基本柱状图
       const option = {
-        title:{
-          text:this.chartName
+        title: {
+          text: this.chartName,
         },
         tooltip: {
           trigger: "axis",
@@ -198,10 +198,10 @@ export default {
       //   return [item[1], item[0], item[2] || "-"];
       // })
       // 基本柱状图
-      let data =this.chartHotData
+      let data = this.chartHotData;
       const option = {
-        title:{
-          text:this.chartHotname
+        title: {
+          text: this.chartHotname,
         },
         xAxis: {
           type: "category",
@@ -211,6 +211,7 @@ export default {
           type: "category",
           data: this.days,
         },
+        tooltip: {},
         visualMap: {
           type: "piecewise",
           min: 0,
@@ -220,8 +221,8 @@ export default {
           calculable: true,
           realtime: false,
           splitNumber: 10,
-          minOpen:true,
-          maxOpen:true,
+          minOpen: true,
+          maxOpen: true,
           inRange: {
             color: [
               "#313695",

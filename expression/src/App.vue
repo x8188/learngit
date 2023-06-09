@@ -3,7 +3,7 @@
     <div style="">
       <div id="nav" :style="opacityStyle">
         <div id="title">
-          <span>DEEPCBA</span>
+          <span>DeepCBA</span>
           <img src="./img/logo/logo.png" style="width: 70px; height: 65px" />
         </div>
 
@@ -26,11 +26,11 @@
               >
             </a-menu>
           </a-dropdown> -->
-          <router-link to="/Expression/index">TOOLS</router-link>
+          <router-link to="/Expression/index">Tools</router-link>
           <router-link to="/search">Search</router-link>
           <router-link to="/result">Result</router-link>
-          <router-link to="/about">Contact</router-link>
           <router-link to="/tutorial">Tutorial</router-link>
+          <router-link to="/about">Contact</router-link>
         </div>
       </div>
       <section class="featured1"></section>

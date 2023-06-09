@@ -4,7 +4,7 @@
 -->
 <template>
   <div class="tool">
-    <Steps :steps1="steps1"></Steps>
+    <!-- <Steps :steps1="steps1"></Steps> -->
     <div class="tool-up">
       <div class="top-text">
         <h1 style="font-size: 35px; font-weight: bolder">

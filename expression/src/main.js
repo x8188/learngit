@@ -22,6 +22,9 @@ Vue.config.productionTip = false
 Vue.prototype.$msgbox = MessageBox;
 Vue.prototype.$alert = MessageBox.alert;
 
+import Plugin from 'v-fit-columns';
+Vue.use(Plugin);
+
 import Steps from "./components/Steps.vue"
 Vue.component(Steps.name,Steps)
 

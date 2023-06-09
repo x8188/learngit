@@ -1,6 +1,6 @@
 <template>
   <div id="show">
-    <Steps :steps1="3" :steps2="steps2"></Steps>
+    <!-- <Steps :steps1="3" :steps2="steps2"></Steps> -->
 
     <h1
       style="
