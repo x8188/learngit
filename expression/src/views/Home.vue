@@ -125,7 +125,7 @@
               </figure>
             </el-col>
           </el-row> -->
-          <el-row :gutter="40" type="flex">
+          <el-row :gutter="40"  type="flex">
             <el-col :span="12">
               <el-card
                 class="homecard"
@@ -135,16 +135,16 @@
                   border-radius: 15px;
                 "
               >
-                <p style="font-weight: bold; font-size: 30px">Introduction</p>
+                <p style="font-weight: bold; font-size: 30px;">Introduction</p>
                 <p>
-                  &nbsp;&nbsp;&nbsp;&nbsp;The core structure of the deep neural
+                  &ensp;&ensp;&ensp;The core structure of the deep neural
                   network used in Deep CBA can be divided into three modules:
                   convolution neural network module, bidirectional long-term and
                   short-term memory network module and self-attention mechanism
                   module, as shown in the following figure. <br />
-                  &nbsp;&nbsp;&nbsp;&nbsp;The overall process of DeepCBA is as
-                  follows: <br />
-                  &nbsp;&nbsp;&nbsp;&nbsp;First, encode the sequence with length
+                  &ensp;&ensp;&ensp;The overall process of DeepCBA is as
+                  follows:<br />
+                  &ensp;&ensp;&ensp;First, encode the sequence with length
                   of 3000 bp and 1500 bp into 4*3000/4*1500 one-pot encoding
                   matrix;
                 </p>
@@ -170,17 +170,17 @@
                 "
               >
                 <p>
-                  &nbsp;&nbsp;&nbsp;&nbsp;Secondly, take the encoded one-pot
+                  &ensp;&ensp;&ensp;Secondly, take the encoded one-pot
                   encoding matrix as the input of the CNN Layer, use the ReLU
                   activation function to propagate the forward output and
                   eliminate the reverse output, and then use the maximum pooling
                   operation to reduce the dimension, and achieve the extraction
                   of higher-level features; <br />
-                  &nbsp;&nbsp;&nbsp;&nbsp;Next, combine the information output
+                  &ensp;&ensp;&ensp;Next, combine the information output
                   by CNN and input it into the bidirectional long-term and
                   short-term memory network to extract more important
                   information from the merged CNN information;<br />
-                  &nbsp;&nbsp;&nbsp;&nbsp;Finally, use Self-Attention to
+                  &ensp;&ensp;&ensp;Finally, use Self-Attention to
                   redistribute the weights of the network model, and then
                   realize the final prediction.
                 </p>

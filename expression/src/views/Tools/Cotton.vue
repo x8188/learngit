@@ -9,7 +9,7 @@
       <div class="tool-up">
         <div class="top-text">
           <h1 style="font-size: 35px; font-weight: bolder">
-            Maize Expression prediction base on DNA
+            Cotton Expression prediction base on DNA
           </h1>
         </div>
 
@@ -18,12 +18,12 @@
             <!-- 输入数据模式 -->
             <el-row type="flex" justify="center">
               <el-col :span="12">
-                <el-card class="cardModel">
+                <el-card class="cardModel" style="height: 100%;">
                   <div slot="header">
                     <span class="mdoelT">Cotton Prediction</span>
                   </div>
                   <div>
-                    <h3>
+                    <h3 style=" text-align: justify;">
                       In these models, the strength of plant core
                       promoter(labels of samples) is defined as the ability to
                       drive expression of a barcoded reporter gene in maize
@@ -33,7 +33,7 @@
                     <div>
                       <el-select
                         style="width: 240px"
-                        placeholder="-----Select Model-----"
+                        placeholder="-----Select Sample-----"
                         @change="dataChange"
                         v-model="dataCate"
                       >
@@ -68,12 +68,12 @@
                 </el-card>
               </el-col>
               <el-col :span="8">
-                <el-card>
+                <el-card style="height: 100%;">
                   <div slot="header">
                     <span class="cardTitle">Note</span>
                   </div>
                   <div>
-                    <p style="font-size: 15px">
+                    <p style="font-size: 15px;text-align: justify;">
                       To run the Cotton-based model, you need to prepare the
                       data in fasta format, where the length of each chromatin
                       sequence is 3000bp. You can upload the required forecast
@@ -82,6 +82,8 @@
                       of data you provide. When you submit your homework, please
                       keep it in mind ID, so that you can check the results
                       later.
+                      <br>
+                      Friendship link : <a href="https://figshare.com/articles/dataset/Gossypium_anomalum_B1_genome/17280074" target="_blank" >Gossypium</a>
                     </p>
                   </div>
                 </el-card>
@@ -139,7 +141,7 @@
                       trigger="hover"
                       :open-delay="100"
                     >
-                      <h2 style="text-align: center; margin: 0 auto">
+                      <h2 style="text-align: center; margin: 0 auto;color: #f03141;">
                         Wrong example
                       </h2>
                       <el-input
@@ -170,7 +172,7 @@
                       trigger="hover"
                       :open-delay="100"
                     >
-                      <h2 style="text-align: center; margin: 0 auto">
+                      <h2 style="text-align: center; margin: 0 auto;color: #f03141;">
                         Wrong example
                       </h2>
                       <el-input
