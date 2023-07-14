@@ -152,7 +152,7 @@
                   class="image-content"
                   style="margin-top: 10px; width: 100%"
                 >
-                  <img src="../img/home_2.jpg" style="width: 80%" />
+                  <img src="../img/home_2.jpg" style="width: 90%" />
                 </div>
               </el-card>
             </el-col>
@@ -188,7 +188,7 @@
                   class="image-content"
                   style="margin-top: 10px; width: 100%"
                 >
-                  <img src="../img/home_3.jpg" style="width: 80%" />
+                  <img src="../img/home_3.jpg" style="width: 90%" />
                 </div>
                 <!-- <el-button
                   class="rouButton"

@@ -3,8 +3,8 @@
     <div style="">
       <div id="nav" :style="opacityStyle">
         <div id="title">
-          <span>DeepCBA</span>
-          <img src="./img/logo/logo.png" style="width: 70px; height: 65px" />
+          <!-- <span>DeepCBA</span> -->
+          <img src="./img/logo/logo2.png" style="height: 55px" />
         </div>
 
         <div class="link-wrapper" style="display: flex">
