@@ -60,6 +60,12 @@ const routes = [
 
   // },
   {
+    path: '/Expression/wheat',
+    name: 'ExpZs97',
+    component: () => import('../views/Tools/Wheat'),
+
+  },
+  {
     path: '/Expression/rice',
     name: 'ExpZs97',
     component: () => import('../views/Tools/ExpZS97'),

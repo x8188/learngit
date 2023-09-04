@@ -125,7 +125,7 @@
               </figure>
             </el-col>
           </el-row> -->
-          <el-row :gutter="40"  type="flex">
+          <el-row :gutter="40" type="flex">
             <el-col :span="12">
               <el-card
                 class="homecard"
@@ -135,7 +135,7 @@
                   border-radius: 15px;
                 "
               >
-                <p style="font-weight: bold; font-size: 30px;">Introduction</p>
+                <p style="font-weight: bold; font-size: 30px">Introduction</p>
                 <p>
                   &ensp;&ensp;&ensp;The core structure of the deep neural
                   network used in Deep CBA can be divided into three modules:
@@ -144,8 +144,8 @@
                   module, as shown in the following figure. <br />
                   &ensp;&ensp;&ensp;The overall process of DeepCBA is as
                   follows:<br />
-                  &ensp;&ensp;&ensp;First, encode the sequence with length
-                  of 3000 bp and 1500 bp into 4*3000/4*1500 one-pot encoding
+                  &ensp;&ensp;&ensp;First, encode the sequence with length of
+                  3000 bp and 1500 bp into 4*3000/4*1500 one-pot encoding
                   matrix;
                 </p>
                 <div
@@ -165,24 +165,24 @@
                   color: #ffffff;
                   border-radius: 15px;
                   background: #1f4e3d;
-                  min-width: 800px;
+                  /* min-width: 800px; */
                   /* background: -webkit-linear-gradient(left, #fff1eb, #ace0f9); */
                 "
               >
                 <p>
-                  &ensp;&ensp;&ensp;Secondly, take the encoded one-pot
-                  encoding matrix as the input of the CNN Layer, use the ReLU
-                  activation function to propagate the forward output and
-                  eliminate the reverse output, and then use the maximum pooling
-                  operation to reduce the dimension, and achieve the extraction
-                  of higher-level features; <br />
-                  &ensp;&ensp;&ensp;Next, combine the information output
-                  by CNN and input it into the bidirectional long-term and
-                  short-term memory network to extract more important
-                  information from the merged CNN information;<br />
-                  &ensp;&ensp;&ensp;Finally, use Self-Attention to
-                  redistribute the weights of the network model, and then
-                  realize the final prediction.
+                  &ensp;&ensp;&ensp;Secondly, take the encoded one-pot encoding
+                  matrix as the input of the CNN Layer, use the ReLU activation
+                  function to propagate the forward output and eliminate the
+                  reverse output, and then use the maximum pooling operation to
+                  reduce the dimension, and achieve the extraction of
+                  higher-level features; <br />
+                  &ensp;&ensp;&ensp;Next, combine the information output by CNN
+                  and input it into the bidirectional long-term and short-term
+                  memory network to extract more important information from the
+                  merged CNN information;<br />
+                  &ensp;&ensp;&ensp;Finally, use Self-Attention to redistribute
+                  the weights of the network model, and then realize the final
+                  prediction.
                 </p>
                 <div
                   class="image-content"
@@ -201,14 +201,20 @@
                   style="width: 100%; margin: 0 auto"
                 >
                   <div class="product-list-item">
-                    <div class="cursor" @click="$router.push('/Expression/maize')">
+                    <div
+                      class="cursor"
+                      @click="$router.push('/Expression/maize')"
+                    >
                       <img src="../assets/picture/yumiICON.png" alt="Icon" />
                       <h5>Maize</h5>
                     </div>
                   </div>
 
                   <div class="product-list-item">
-                    <div class="cursor" @click="$router.push('/Expression/rice')">
+                    <div
+                      class="cursor"
+                      @click="$router.push('/Expression/rice')"
+                    >
                       <img
                         src="../assets/picture/southeast-removebg-preview.png"
                         alt="Icon"
@@ -217,13 +223,19 @@
                     </div>
                   </div>
                   <div class="product-list-item">
-                    <div class="cursor" @click="$router.push('/Expression/cotton')">
+                    <div
+                      class="cursor"
+                      @click="$router.push('/Expression/cotton')"
+                    >
                       <img src="../assets/picture/mianhuaICON.png" alt="Icon" />
                       <h5>Cotton</h5>
                     </div>
                   </div>
                   <div class="product-list-item">
-                    <div class="cursor" @click="$router.push('/Expression/')">
+                    <div
+                      class="cursor"
+                      @click="$router.push('/Expression/wheat')"
+                    >
                       <img src="../assets/picture/xiaomaiICON.png" alt="Icon" />
                       <h5>Wheat</h5>
                     </div>
@@ -247,32 +259,41 @@
       "
     >
       <el-row type="flex" justify="center">
-        <el-col :span="20">
+        <el-col :span="24">
           <el-card class="bottom-card">
             <div style="margin-bottom: 50px; text-align: justify">
               <p style="font-size: 20px">
-                &nbsp; &nbsp;&nbsp;&nbsp;The DeepCBA framework includes a CNN
-                module for extracting sequence features and feature
-                dimensionality reduction, a Bidirectional Long Short-term Memory
-                Network (BiLSTM) for capturing sequence timing features, and an
-                attention for weight reassignment. The force mechanism has three
-                parts. DeepCBA first performs one-hot encoding on the input
-                chromatin sequence of length 3000; its encoding format is as
-                follows: A(1,0,0,0)T, C(0,1,0,0)T, G( 0,0,1,0)T, T(0,0,0,1)T;
-                Input the encoded sequence into the convolutional neural network
-                to achieve feature dimensionality reduction and feature
-                extraction; in order to capture the time-series features in the
-                sequence, such as sequence Before and after the influence of the
-                middle bases, etc., use the bidirectional long short-term memory
-                network to capture the timing features hidden in the DNA
-                sequence, and obtain two vector matrices of 3*64; vertically
-                splicing the two vector matrices to obtain a matrix of 6*64, and
-                then use the attention The force mechanism enhances the
-                contribution of key features to the model, and uses dropout to
-                prevent overfitting, etc. In the output layer, the
-                sigmoid/linear function is used to complete the corresponding
-                promoter proximal interaction and the prediction of maize gene
-                expression fused with PPI data, etc.
+                &nbsp; &nbsp;&nbsp;&nbsp;Chromatin interaction connects
+                regulatory elements and target genes to cause expression
+                changes. Therefore, it is very important to carry out gene
+                expression prediction research based on maize chromatin
+                interaction to further understand expression regulation and
+                phenotypic variation. However, the existing methods mainly use
+                the sequence of the gene itself to predict the expression level,
+                and lack the sequence information of the remote interactive
+                regulatory elements, which affects the accuracy of the
+                prediction to a certain extent. This study developed a model
+                based on deep learning combined with maize chromatin interaction
+                to predict gene expression with high accuracy: DeepCBA. Compared
+                with existing models, DeepCBA has higher accuracy in expression
+                classification and expression value prediction. Compared with
+                the traditional use of only gene adjacent sequences, after
+                adding chromatin interaction sequence information, the DeepCBA
+                model can improve the Pearson correlation coefficient (PCC) by
+                50.2% in the expression value prediction. Motif analysis of the
+                sequence based on DeepCBA revealed that it was enriched in open
+                chromatin regions and expression quantitative trait loci (eQTL),
+                with molecular characteristics such as tissue specificity.
+                Importantly, DeepCBA enables the study of remote regulatory
+                elements to be accurate to the base sequence, and at the same
+                time edits the promoters of the example genes (ZmCLE7, ZmVTE4),
+                indicating the importance of this model in exploring the
+                regulatory sequences that affect expression. sex. All in all,
+                the DeepCBA model innovatively uses chromatin interaction to
+                achieve more accurate prediction of expression, and further
+                understands the sequence characteristics of regulatory elements.
+                At the same time, the design of precise gene expression provides
+                a new idea for future intelligent breeding.
               </p>
             </div>
             <div class="shape-bottom-right">
@@ -452,8 +473,9 @@ export default {
   /* position: relative; */
   display: flex;
   flex-direction: column;
-  min-width: 960px;
-  min-height: calc(100vh - 60px);
+  width: 100%;
+  /* min-width: 960px;
+  min-height: calc(100vh - 60px); */
   background: -webkit-linear-gradient(rgba(250, 250, 250, 0.8), #fafafa 50%);
   padding-left: 0;
   padding-top: 193px !important;

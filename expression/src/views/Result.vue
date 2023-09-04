@@ -308,6 +308,59 @@
 // import HelloWorld from '@/components/HelloWorld.vue'
 import { Loading } from "element-ui";
 import Chart from "../components/Chart.vue";
+
+function convertToElTableFormat(data) {
+  const formattedData = [];
+
+  // 获取所有列名
+  const columns = Object.keys(data);
+
+  // 假设以第一个列数据的长度为基准，保证所有列数据的长度一致
+  const numRows = data[columns[0]].length;
+
+  for (let i = 0; i < numRows; i++) {
+    const row = {};
+    for (const column of columns) {
+      row[column] = data[column][i];
+    }
+    formattedData.push(row);
+  }
+
+  return formattedData;
+}
+
+function convertToCustomFormat(array) {
+  const result = [];
+
+  for (let i = 0; i < array.length; i++) {
+    for (let j = 0; j < array[i].length; j++) {
+      result.push([j, i, array[i][j]]);
+    }
+  }
+
+  return result;
+}
+
+function verticalSum(arr) {
+  const n = arr[0].length;
+  const result = new Array(n).fill(0);
+
+  for (let i = 0; i < 4; i++) {
+    for (let j = 0; j < n; j++) {
+      result[j] += arr[i][j];
+    }
+  }
+
+  return result;
+}
+// 因为列是自动生成的，所以在这里调整pre的顺序
+function lastpre(data) {
+
+  const preValue = data.pre;
+  delete data.pre;
+  data.pre=preValue
+  return data;
+}
 export default {
   name: "Result",
   components: { Chart },
@@ -393,53 +446,66 @@ export default {
 
 
       let result = await this.$API.reqResultInfo(ty);
-      console.log(result);
+      // console.log(result);
+      console.log(ty);
       if (ty == "maize") {
-        this.ppi_dou_ear = result["ppi/dou_ear.csv"];
-        this.ppi_dou_pie = result["ppi/dou_pie.csv"];
-        this.ppi_dou_pit = result["ppi/dou_pit.csv"];
-        this.ppi_dou_py = result["ppi/dou_py.csv"];
-        this.ppi_dou_shoot = result["ppi/dou_shoot.csv"];
-        this.pdi_dou_ear = result["pdi/dou_ear.csv"];
-        this.pdi_dou_py = result["pdi/dou_py.csv"];
-        this.pdi_dou_shoot = result["pdi/dou_shoot.csv"];
+        console.log(result["ppi/dou_ear.csv"])
+        console.log(lastpre(result["ppi/dou_ear.csv"]))
+        this.ppi_dou_ear = convertToElTableFormat(lastpre(result["ppi/dou_ear.csv"]));
+        this.ppi_dou_pie = convertToElTableFormat (lastpre(result["ppi/dou_pie.csv"]));
+        this.ppi_dou_pit = convertToElTableFormat (lastpre(result["ppi/dou_pit.csv"]));
+        this.ppi_dou_py = convertToElTableFormat (lastpre(result["ppi/dou_py.csv"]));
+        this.ppi_dou_shoot = convertToElTableFormat (lastpre( result["ppi/dou_shoot.csv"]));
+        this.pdi_dou_ear = convertToElTableFormat (lastpre(result["pdi/dou_ear.csv"]));
+        this.pdi_dou_py = convertToElTableFormat (lastpre(result["pdi/dou_py.csv"]));
+        this.pdi_dou_shoot = convertToElTableFormat (lastpre(result["pdi/dou_shoot.csv"]));
 
-        this.ppi_seq1 = result["ppi/tp%Zm00001d015179%Zm00001d013461.csv"];
-        this.ppi_seq2 = result["ppi/tp%Zm00001d015196%Zm00001d015201.csv"];
-        this.ppi_seq3 = result["ppi/tp%Zm00001d015200%Zm00001d015195.csv"];
-        this.ppi_seq4 = result["ppi/tp%Zm00001d015437%Zm00001d015442.csv"];
+        this.ppi_seq1.heat = convertToCustomFormat(result["ppi/tn%Zm00001d001808%Zm00001d001799.csv"]);
+        this.ppi_seq1.gradient= verticalSum(result["ppi/tn%Zm00001d001808%Zm00001d001799.csv"]);
+        this.ppi_seq2.heat = convertToCustomFormat(result["ppi/tn%Zm00001d001831%Zm00001d001837.csv"]);
+        this.ppi_seq2.gradient = verticalSum(result["ppi/tn%Zm00001d001831%Zm00001d001837.csv"]);
+        this.ppi_seq3.heat = convertToCustomFormat(result["ppi/tn%Zm00001d001839%Zm00001d001841.csv"]);
+        this.ppi_seq3.gradient = verticalSum(result["ppi/tn%Zm00001d001839%Zm00001d001841.csv"]);
+        this.ppi_seq4.heat = convertToCustomFormat(result["ppi/tn%Zm00001d001933%Zm00001d001936.csv"]);
+        this.ppi_seq4.gradient = verticalSum(result["ppi/tn%Zm00001d001933%Zm00001d001936.csv"]);
+        // this.ppi_seq3 = result[""];
+        // this.ppi_seq4 = result[""];
 
-        this.pdi_seq1 =
-          result["pdi/tp%Dm7-172648446-172650936%Zm00001d022198.csv"];
-        this.pdi_seq2 =
-          result["pdi/tp%Dm7-173145242-173149220%Zm00001d022226.csv"];
-        this.pdi_seq3 =
-          result["pdi/tp%Dm7-179246147-179251064%Zm00001d022425.csv"];
-        this.pdi_seq4 = result["pdi/tp%Dm8-5125573-5135954%Zm00001d008316.csv"];
+        this.pdi_seq1.heat =convertToCustomFormat(result["pdi/tp%Dm3-21615911-21620132%Zm00001d039976.csv"]);
+        this.pdi_seq1.gradient =verticalSum(result["pdi/tp%Dm3-21615911-21620132%Zm00001d039976.csv"]);
+        this.pdi_seq2.heat =convertToCustomFormat (result["pdi/tp%Dm3-172766947-172771212%Zm00001d042589.csv"]);
+        this.pdi_seq2.gradient =verticalSum (result["pdi/tp%Dm3-172766947-172771212%Zm00001d042589.csv"]);
+        this.pdi_seq3.heat =convertToCustomFormat (result["pdi/tp%Dm3-196060252-196064377%Zm00001d043312.csv"]);
+        this.pdi_seq3.gradient =verticalSum (result["pdi/tp%Dm3-196060252-196064377%Zm00001d043312.csv"]);
+        this.pdi_seq2.heat =convertToCustomFormat (result["pdi/tp%Dm3-203900476-203903784%Zm00001d043562.csv"]);
+        this.pdi_seq2.gradient =verticalSum (result["pdi/tp%Dm3-203900476-203903784%Zm00001d043562.csv"]);
+        // this.pdi_seq3 =
+        //   result["pdi/tp%Dm7-179246147-179251064%Zm00001d022425.csv"];
+        // this.pdi_seq4 = result["pdi/tp%Dm8-5125573-5135954%Zm00001d008316.csv"];
       } else if (ty == "rice") {
-        this.table1 = result["rice/MH63.H3K4me3.csv"];
-        this.table2 = result["rice/MH63.H3K9me2.csv"];
-        this.table3 = result["rice/MH63.RNAP2.csv"];
-        this.table4 = result["rice/ZS_H3K4.csv"];
-        this.table5 = result["rice/pred_MH_MH63.H3K4me3.csv"];
-        this.table6 = result["rice/pred_MH_MH63.H3K9me2.csv"];
-        this.table7 = result["rice/pred_MH_MH63.RNAP2.csv"];
-        this.table8 = result["rice/pred_ZS_ZS_H3K4.csv"];
-        this.table9 = result["rice/pred_ZS_ZS_H3K9.csv"];
-        this.table10 = result["rice/pred_ZS_ZS_RNAP2.csv"];
+        this.table1 =  convertToElTableFormat(result["rice/MH63.H3K4me3.csv"]);
+        this.table2 =  convertToElTableFormat(result["rice/MH63.H3K9me2.csv"]);
+        this.table3 =  convertToElTableFormat(result["rice/MH63.RNAP2.csv"]);
+        this.table4 =  convertToElTableFormat(result["rice/ZS_H3K4.csv"]);
+        this.table5 =  convertToElTableFormat (lastpre(result["rice/pred_MH_MH63.H3K4me3.csv"]));
+        this.table6 =  convertToElTableFormat (lastpre(result["rice/pred_MH_MH63.H3K9me2.csv"]));
+        this.table7 = convertToElTableFormat (lastpre(result["rice/pred_MH_MH63.RNAP2.csv"]));
+        this.table8 =  convertToElTableFormat (lastpre(result["rice/pred_ZS_ZS_H3K4.csv"]));
+        this.table9 =  convertToElTableFormat (lastpre(result["rice/pred_ZS_ZS_H3K9.csv"]));
+        this.table10 =  convertToElTableFormat (lastpre(result["rice/pred_ZS_ZS_RNAP2.csv"]));
       }else if(ty=='cotton'){
-        this.table1 = result["cotton/A2-enhancer-gene.csv"];
-        this.table2 = result["cotton/B1-enhancer-genedu.csv"];
-        this.table3 = result["cotton/C1-gene-genedu.csv"];
-        this.table4 = result["cotton/D5-enhancer-genedu.csv"];
-        this.table5 = result["cotton/output_A2_enhancer-gene.csv"];
-        this.table6 = result["cotton/output_B1_gene-enhancer.csv"];
-        this.table7 = result["cotton/output_C1_gene-gene.csv"];
-        this.table8 = result["cotton/output_D5_enhancer-gene.csv"];
+        this.table1 = convertToElTableFormat(result["cotton/A2-enhancer-gene.csv"]);
+        this.table2 = convertToElTableFormat(result["cotton/B1-enhancer-genedu.csv"]);
+        this.table3 = convertToElTableFormat(result["cotton/C1-gene-genedu.csv"]);
+        this.table4 = convertToElTableFormat(result["cotton/D5-enhancer-genedu.csv"]);
+        this.table5 = convertToElTableFormat(result["cotton/output_A2_enhancer-gene.csv"]);
+        this.table6 = convertToElTableFormat(result["cotton/output_B1_gene-enhancer.csv"]);
+        this.table7 = convertToElTableFormat(result["cotton/output_C1_gene-gene.csv"]);
+        this.table8 = convertToElTableFormat(result["cotton/output_D5_enhancer-gene.csv"]);
 
       }else{
-        this.table1 = result["wheat/pred_wheat-interaction-experssion(TPM).csv"];
-        this.table2 = result["wheat/wheat-interaction-experssion(TPM).csv"];
+        this.table1 = convertToElTableFormat (lastpre(result["wheat/pred_wheat-interaction-experssion(TPM).csv"]));
+        this.table2 = convertToElTableFormat(result["wheat/wheat-interaction-experssion(TPM).csv"]);
       }
 
     },

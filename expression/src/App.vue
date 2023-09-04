@@ -2,7 +2,7 @@
   <div id="app">
     <div style="">
       <div id="nav" :style="opacityStyle">
-        <div id="title">
+        <div id="title" @click="$router.push('/')">
           <!-- <span>DeepCBA</span> -->
           <img src="./img/logo/logo2.png" style="height: 55px" />
         </div>
@@ -132,6 +132,7 @@ body {
   margin-left: 30px;
   /* text-shadow: 0 2px 4px rgba(255, 255, 255, 0.5); */
   text-shadow: 3px 3px 8px rgba(255, 255, 255, 0.5);
+  cursor: pointer;
 }
 /* #welcome{
   width: 100%;

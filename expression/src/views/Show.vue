@@ -67,7 +67,7 @@
         <div>
           <!-- <Table :tableId="1" :tdata="data2"></Table> -->
           <Chart
-            :chartName="id + '-gradient'"
+            :chartName="id + '-Gradient'"
             :chartHotname="id + '-HotMap'"
             v-if="visData"
             :visData="visData"
@@ -111,6 +111,52 @@
 <script>
 import axios from "axios";
 
+function convertToElTableFormat(data) {
+  const formattedData = [];
+
+  // 获取所有列名
+  const columns = Object.keys(data);
+
+  // 假设以第一个列数据的长度为基准，保证所有列数据的长度一致
+  const numRows = data[columns[0]].length;
+
+  for (let i = 0; i < numRows; i++) {
+    const row = {};
+    for (const column of columns) {
+      row[column] = data[column][i];
+    }
+    formattedData.push(row);
+  }
+
+  return formattedData;
+}
+
+function convertToCustomFormat(array) {
+  const result = [];
+
+  for (let i = 0; i < array.length; i++) {
+    for (let j = 0; j < array[i].length; j++) {
+      result.push([j, i, array[i][j]]);
+    }
+  }
+
+  return result;
+}
+
+function verticalSum(arr) {
+  const num=arr.length
+  const n = arr[0].length;
+  const result = new Array(n).fill(0);
+
+  for (let i = 0; i < num; i++) {
+    for (let j = 0; j < n; j++) {
+      result[j] += arr[i][j];
+    }
+  }
+
+  return result;
+}
+
 export default {
   name: "Show",
   components: {},
@@ -143,7 +189,7 @@ export default {
       if (result.code == 200) {
         // console.log(result);
 
-        this.expData = result[this.id + "_predict.csv"];
+        this.expData = convertToElTableFormat(result[this.id + "_predict.csv"]);
         this.data2 = result[this.id + "_saliency.csv"];
         this.fileurl = result.fileurl;
         for (var i = 0; i < this.fileurl.length; i++) {
@@ -194,8 +240,10 @@ export default {
       // console.log(result)
       if (result.code == 200) {
         this.$nextTick(() => {
-          this.visData = result.gradient;
-          this.chartHotData = result.heat;
+          let name=this.id+"_saliency"
+          console.log(result[name])
+          this.visData = verticalSum(result[name]);
+          this.chartHotData = convertToCustomFormat (result[name]);
         });
       }
     },

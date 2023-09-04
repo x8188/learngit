@@ -88,11 +88,9 @@
               </div>
               <div>
                 <p class="detailP">
-                  ZEAMAP is a database for pan-zea genomics and maize genetic
-                  improvements by integrating the maize multidimensional data
-                  including genom assemblies, transcriptomes, pan-genomes,
-                  genetic variations, genetic mappings and evolutionary
-                  selection sites
+                  Provide online and real-time services for high-precision prediction of gene expression levels based on near- and far-end interactions of chromatin in maize.
+                <br>(1) Prediction of gene expression based on chromatin interaction (training data and three tissues in the source B73 material)
+                <br>(2) Mining important segments in chromatin interaction sequences that affect gene expression
                 </p>
               </div>
             </div>
@@ -115,10 +113,8 @@
               </div>
               <div>
                 <p class="detailP">
-                  Happen active county. Winding morning ambition shyness evident
-                  to poor. Because elderly new to the point to main success.
-                  Happen active county. Winding morning ambition shyness evident
-                  to poor. Because elderly new to the point to main success.
+                  Provide online real-time services for high-precision prediction of gene expression based on gene-gene interaction in rice species.
+                  <br>(1) Model construction based on different data sets under the two materials of rice MH63 and ZS97 to achieve high-precision prediction of rice gene expression
                 </p>
               </div>
             </div>
@@ -141,10 +137,8 @@
               </div>
               <div>
                 <p class="detailP">
-                  BnIRis a a multi-omics collaborative resource and tool
-                  platform for Brassica napus. It integrates and analyzes
-                  datasets from genomics, epigenomics, transcriptomics,
-                  metabolomics and phenomics, and offers multiple tools.
+                  Provide online real-time service of high-precision prediction of gene expression based on gene-gene interaction for eight materials of cotton species.
+                  <br>(1) The cotton materials involved are: A2, B1, C1, D5, E1, F1, G1, K2
                 </p>
               </div>
             </div>
@@ -154,7 +148,7 @@
               <div
                 class="gallery-style-one cursor"
                 id="ex2"
-                @click=" $router.push('/Expression/') "
+                @click=" $router.push('/Expression/wheat') "
               >
                 <img
                   class="hvr-grow-shadow"
@@ -168,11 +162,7 @@
               </div>
               <div>
                 <p class="detailP">
-                  The crop phenotype data management platform offers the search
-                  and analysis of massive experimental data such as water
-                  saving, drought resistance, tillering, genome-wide association
-                  study (GWAS), recombinant inbred lines (RIL), quantitative
-                  trait locus (QTL).
+                  Provide online real-time service for high-precision prediction of gene expression based on gene-gene interaction in wheat species.
                 </p>
               </div>
             </div>

@@ -15,6 +15,11 @@
       :id="chartHotname"
       style="margin-top: 50px; width: 100%; height: 400px; float: left"
     ></div>
+    <!-- <div
+      class="echart"
+      :id="chartName + 'xx'"
+      style="margin-top: 50px; width: 100%; height: 300px; float: left"
+    ></div> -->
   </div>
 </template>
   
@@ -47,7 +52,10 @@ export default {
     return {
       value: [1000, 2000], //范围检索
       // xData: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"], //横坐标
-      xData: Array.from({ length: 6000 }, (_, index) => index + 1), //折线图横坐标
+      xData: Array.from(
+        { length: this.visData.length },
+        (_, index) => index + 1
+      ), //折线图横坐标
       // yData: [23, 24, 18, 25, 27, 28, 25], //折线图纵坐标
       //下面的data由后台传过来，一维数组
 
@@ -99,6 +107,7 @@ export default {
 
     //热图初始化
     this.initEchartsHot();
+    // this.initTem();
   },
   methods: {
     //折线图初始化
@@ -300,6 +309,304 @@ export default {
         myChartHot.resize();
       });
     },
+    // initTem() {
+    //   // 模拟数据。改成自己数据时可以不管
+    //   console.log(this.chartHotData)
+    //   let data1 = this.chartHotData.map(function (item) {
+    //     return [item[0], item[1]+4, item[2]];
+    //   });
+    //   let data2 = this.chartHotData.slice(0,12000).map(function (item) {
+    //     return [item[0], item[1]+8, item[2]];
+    //   });
+    //   let data = this.chartHotData.concat(data1).concat(data2);
+
+    //   const option = {
+    //     title: {
+    //       text: this.chartHotname,
+    //     },
+    //     xAxis: {
+    //       type: "category",
+    //       nameLocation: "middle",
+    //       nameGap: 30,
+    //       data: this.xData,
+    //       splitArea: {
+    //         show: false,
+    //       },
+    //       axisTick: {
+    //         show: true,
+    //       },
+    //       axisLine: {
+    //         show: true,
+    //       },
+    //     },
+    //     yAxis: {
+    //       type: "category",
+    //       data: [
+    //         "chr1",
+    //         "chr2",
+    //         "chr3",
+    //         "chr4",
+    //         "chr5",
+    //         "chr6",
+    //         "chr7",
+    //         "chr8",
+    //         "chr9",
+    //         "chr10",
+    //       ],
+    //       axisLine: {
+    //         show: true,
+    //       },
+    //       axisTick: {
+    //         show: false,
+    //       },
+    //       splitArea: {
+    //         show: false,
+    //       },
+    //       splitLine: {
+    //         show: true,
+    //         lineStyle: {
+    //           color: "#ffff",
+    //           width: 5,
+    //         },
+    //       },
+    //     },
+    //     tooltip: {
+    //       trigger: "item",
+    //       formatter: function (params) {
+    //         let res =
+    //           "Variation Density<br>" +
+    //           params.data[0] +
+    //           "Mb: " +
+    //           params.data[2];
+    //         return res;
+    //       },
+    //       // position: 'top'
+    //     },
+    //     visualMap: {
+    //       min: 0, //1,//365,
+    //       max: 0.5, //13313,//78178,
+    //       calculable: true,
+    //       // orient: 'horizontal',
+    //       left: "right",
+    //       text: ["High", "Low"],
+    //       // bottom: '5%',
+    //       inRange: {
+    //         color: ["#0d6e11", "#feff08", "#d01c10"],
+    //       },
+    //     },
+    //     series: [
+    //       {
+    //         type: "heatmap",
+    //         // data: this.chartHotData,
+    //         data: data,
+    //         label: {
+    //           normal: {
+    //             show: false,
+    //           },
+    //         },
+    //         emphasis: {
+    //           shadowBlur: 10,
+    //           shadowColor: "rgba(0, 0, 0, 0.5)",
+    //         },
+    //         zlevel: -1,
+    //       },
+    //     ],
+    //     dataZoom: [
+    //       {
+    //         startValue: "0",
+    //       },
+    //       {
+    //         type: "inside",
+    //       },
+    //     ],
+    //     toolbox: {
+    //       right: 50,
+    //       feature: {
+    //         saveAsImage: {},
+    //       },
+    //     },
+    //   };
+    //   const myChartHot = echarts.init(
+    //     document.getElementById(this.chartName + "xx")
+    //   );
+    //   myChartHot.setOption(option);
+    //   //随着屏幕大小调节图表
+    //   window.addEventListener("resize", () => {
+    //     myChartHot.resize();
+    //   });
+    // },
+    // initTem() {
+    //   let data = this.chartHotData.slice(0, 6000);
+    //   console.log(data);
+    //   const option = {
+    //     title: {
+    //       text: "Rainfall vs Evaporation",
+    //       left: "center",
+    //     },
+    //     tooltip: {
+    //       trigger: "item",
+    //       axisPointer: {
+    //         animation: false,
+    //       },
+    //     },
+    //     axisPointer: {
+    //       link: [
+    //         {
+    //           xAxisIndex: "all",
+    //         },
+    //       ],
+    //     },
+    //     dataZoom: [
+    //       {
+    //         show: true,
+    //         realtime: true,
+    //         start: 30,
+    //         end: 70,
+    //         xAxisIndex: [0, 1, 2],
+    //       },
+    //       {
+    //         type: "inside",
+    //         realtime: true,
+    //         start: 30,
+    //         end: 70,
+    //         xAxisIndex: [0, 1, 2],
+    //       },
+    //       {
+    //         type: "inside",
+    //         realtime: true,
+    //         start: 30,
+    //         end: 70,
+    //         xAxisIndex: [0, 1, 2],
+    //       },
+    //     ],
+    //     grid: [
+    //       {
+    //         left: 60,
+    //         right: 50,
+    //         height: "5%",
+    //       },
+    //       {
+    //         left: 60,
+    //         right: 50,
+    //         top: "45%",
+    //         height: "5%",
+    //       },
+    //       {
+    //         left: 60,
+    //         right: 50,
+    //         top: "75%",
+    //         height: "5%",
+    //       },
+    //     ],
+    //     xAxis: [
+    //       {
+    //         type: "category",
+    //       },
+    //       {
+    //         gridIndex: 1,
+    //         type: "category",
+    //       },
+    //       {
+    //         gridIndex: 2,
+    //         type: "category",
+    //         data: this.xData,
+    //       },
+    //     ],
+    //     yAxis: [
+    //       {
+    //         type: "category",
+    //         data: ["T"],
+    //       },
+    //       {
+    //         gridIndex: 1,
+    //         type: "category",
+    //         data: ["T"],
+    //       },
+    //       {
+    //         gridIndex: 2,
+    //         type: "category",
+    //         data: ["T"],
+    //       },
+    //     ],
+    //     series: [
+    //       {
+    //         type: "heatmap",
+    //         name: "snp density",
+    //         symbolSize: 8,
+    //         data: data,
+    //         emphasis: {
+    //           itemStyle: {
+    //             borderColor: "#333",
+    //             borderWidth: 1,
+    //           },
+    //         },
+    //         progressive: 1000,
+    //         animation: false,
+    //       },
+    //       {
+    //         type: "heatmap",
+    //         name: "snp density",
+    //         symbolSize: 8,
+    //         data: data,
+    //         emphasis: {
+    //           itemStyle: {
+    //             borderColor: "#333",
+    //             borderWidth: 1,
+    //           },
+    //         },
+    //         progressive: 1000,
+    //         animation: false,
+    //         xAxisIndex: 1,
+    //         yAxisIndex: 1,
+    //       },
+    //       {
+    //         type: "heatmap",
+    //         name: "snp density",
+    //         symbolSize: 8,
+    //         data: data,
+    //         emphasis: {
+    //           itemStyle: {
+    //             borderColor: "#333",
+    //             borderWidth: 1,
+    //           },
+    //         },
+    //         progressive: 1000,
+    //         animation: false,
+    //         xAxisIndex: 2,
+    //         yAxisIndex: 2,
+    //       },
+    //     ],
+    //     visualMap: {
+    //       min: 0,
+    //       max: 0.5,
+    //       calculable: true,
+    //       realtime: false,
+    //       inRange: {
+    //         color: [
+    //           "#313695",
+    //           "#4575b4",
+    //           "#74add1",
+    //           "#abd9e9",
+    //           "#e0f3f8",
+    //           "#ffffbf",
+    //           "#fee090",
+    //           "#fdae61",
+    //           "#f46d43",
+    //           "#d73027",
+    //           "#a50026",
+    //         ],
+    //       },
+    //     },
+    //   };
+    //   const myChartHot = echarts.init(
+    //     document.getElementById(this.chartName + "xx")
+    //   );
+    //   myChartHot.setOption(option);
+    //   //随着屏幕大小调节图表
+    //   window.addEventListener("resize", () => {
+    //     myChartHot.resize();
+    //   });
+    // },
   },
 };
 </script>
