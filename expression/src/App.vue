@@ -56,10 +56,10 @@
             padding: 10px 0;
           "
         >
-          Address: Room C423, Research Office of Artificial Intelligence
+          Address: Room B320, Research Office of Artificial Intelligence
           Research Group, Huazhong Agricultural university, Wuhan, 430070, China
           <br><br/>
-          Room 423, Block C, Yifu Building, Shizishan Street No. 1, Nanhu, Wuhan, Hubei Province Tel: 027-87280350 Email:
+          Room 320, Block B, The first comprehensive building, Shizishan Street No. 1, Nanhu, Wuhan, Hubei Province Tel: 027-87280350 Email:
         </p>
       </div>
     </div>
@@ -190,9 +190,9 @@ body {
 .foot {
   /* position: fixed; */
   bottom: 0px;
-  background-color: black;
+  background-color: #427c63;
   color: white;
-  height: 200px;
+  height: 150px;
   /* text-align: center; */
   /* margin: 0 auto; */
 }

@@ -19,7 +19,7 @@
             <el-col :span="12">
               <el-card class="cardModel" style="height: 100%;">
                 <div slot="header">
-                  <span class="mdoelT">PPI Prediction</span>
+                  <span class="mdoelT">Maize Prediction</span>
                 </div>
                 <div>
                   <h3 style="  text-align: justify;">
@@ -28,7 +28,7 @@
                     a barcoded reporter gene in maize protoplasts with or
                     without enhancer in dark.
                   </h3>
-                  <h3>Promoter proximal region interaction (PPI)</h3>
+                  <h3>MAIZE</h3>
                   <div>
                     <el-select
                       style="width: 240px"
@@ -46,7 +46,7 @@
                     </el-select>
                   </div>
                   <h3 style="color: #fb6672; font-weight: bold">
-                    Please select PPI models here👇
+                    Please select Maize models
                   </h3>
                   <el-select
                     style="width: 240px"
@@ -73,7 +73,7 @@
                 </div>
                 <div>
                   <p style="font-size: 15px;text-align: justify;">
-                    To run the PPI-based model, you need to prepare the data in
+                    To run the DeepCBA-based model, you need to prepare the data in
                     fasta format, where the length of each chromatin sequence is
                     3000bp. You can upload the required forecast data and
                     forecast tasks in two formats, online or locally. Each task
@@ -350,13 +350,13 @@
                 icon="el-icon-s-promotion"
                 @click="submitInputSeq"
               >
-                {{ uploading ? "Uploading" : "Start Upload" }}
+                Submit
               </el-button>
               <el-button
                 type="danger"
                 icon="el-icon-refresh-right"
                 @click="resetInfo"
-                >RESET</el-button
+                >Reset</el-button
               >
             </div>
           </el-row>
@@ -453,7 +453,7 @@ export default {
         "AATGGCCTCCTCTAACATCTGTCCTTCCCTTCCATAAAAACCCCCTGCGAATCTTATCAATAGCTCTAA",
 
       dataCate: "",
-      dataCateOp: ["B73(ppi)", "B73(pdi)"],
+      dataCateOp: ["B73(PPI)", "B73(PDI)"],
     };
   },
   computed: {
@@ -478,7 +478,7 @@ export default {
     dataChange() {
       this.resetInfo();
 
-      if (this.dataCate == "B73(ppi)") {
+      if (this.dataCate == "B73(PPI)") {
         this.modellist = this.PPImodellist;
       } else {
         this.modellist = this.PDImodellist;

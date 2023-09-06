@@ -51,7 +51,7 @@
               class="image-content"
               style="margin-top: 10px; width: 100%; text-align: center"
             >
-              <img src="../img/home_1.jpg" style="width: 60%" />
+              <!-- <img src="../img/home_1.jpg" style="width: 60%" /> -->
             </div>
 
             <el-button
@@ -139,20 +139,20 @@
                 <p>
                   &ensp;&ensp;&ensp;The core structure of the deep neural
                   network used in Deep CBA can be divided into three modules:
-                  convolution neural network module, bidirectional long-term and
+                  <!-- convolution neural network module, bidirectional long-term and
                   short-term memory network module and self-attention mechanism
                   module, as shown in the following figure. <br />
                   &ensp;&ensp;&ensp;The overall process of DeepCBA is as
                   follows:<br />
                   &ensp;&ensp;&ensp;First, encode the sequence with length of
                   3000 bp and 1500 bp into 4*3000/4*1500 one-pot encoding
-                  matrix;
+                  matrix; -->
                 </p>
                 <div
                   class="image-content"
                   style="margin-top: 10px; width: 100%"
                 >
-                  <img src="../img/home_2.jpg" style="width: 90%" />
+                  <img src="../img/homeimg.png" style="width: 90%" />
                 </div>
               </el-card>
             </el-col>

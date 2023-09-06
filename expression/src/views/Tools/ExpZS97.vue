@@ -78,7 +78,7 @@
                       drive expression of a barcoded reporter gene in maize
                       protoplasts with or without enhancer in dark.
                     </h3>
-                    <h3>Promoter proximal region interaction (ZS97)</h3>
+                    <h3>RICE</h3>
                     <div>
                       <el-select
                         style="width: 240px"
@@ -96,7 +96,7 @@
                       </el-select>
                     </div>
                     <h3 style="color: #fb6672; font-weight: bold">
-                      Please select ZS97 models here👇
+                      Please select ZS97 models
                     </h3>
                     <el-select
                       style="width: 240px"
@@ -123,7 +123,7 @@
                   </div>
                   <div>
                     <p style="font-size: 15px;text-align: justify;">
-                      To run the ZS97-based model, you need to prepare the data
+                      To run the DeepCBA-based model, you need to prepare the data
                       in fasta format, where the length of each chromatin
                       sequence is 3000bp. You can upload the required forecast
                       data and forecast tasks in two formats, online or locally.
@@ -399,15 +399,16 @@
                 <el-button
                   style="margin-top: 6px"
                   type="primary"
+                  icon="el-icon-s-promotion"
                   @click="submitInputSeq"
                 >
-                  {{ uploading ? "Uploading" : "Start Upload" }}
+                  Submit
                 </el-button>
                 <el-button
                   type="danger"
                   icon="el-icon-refresh-right"
                   @click="resetInfo"
-                  >RESET</el-button
+                  >Reset</el-button
                 >
               </div>
             </el-row>
@@ -499,7 +500,7 @@ export default {
         "AATGGCCTCCTCTAACATCTGTCCTTCCCTTCCATAAAAACCCCCTGCGAATCTTATCAATAGCTCTAA",
 
       dataCate: "",
-      dataCateOp: ["zs97", "mh63"],
+      dataCateOp: ["ZS97", "MH63"],
     };
   },
   computed: {
@@ -524,7 +525,7 @@ export default {
     dataChange() {
       this.resetInfo();
 
-      if (this.dataCate == "zs97") {
+      if (this.dataCate == "ZS97") {
         this.modellist = this.ZS97modellist;
       } else {
         this.modellist = this.MH63modellist;
@@ -938,7 +939,7 @@ export default {
 
 .tool {
   /* height: 1500px; */
-  margin-bottom: 50px;
+  /* margin-bottom: 50px; */
 }
 ::v-deep .el-tabs__nav-scroll {
   width: 50%;
@@ -950,13 +951,15 @@ export default {
 .tool-up {
   width: 70%;
   margin: 0 auto;
+  background-color: #f4f4f4;
+  padding-bottom: 40px;
+  padding-top: 40px;
 }
 
 .top-text {
   text-align: center;
   margin: 0 auto;
   height: 70px;
-  margin-top: 30px;
   margin-bottom: 50px;
   /* background:-webkit-linear-gradient(left,#93a5cf,#e4efe9) ; */
   /* background: -webkit-linear-gradient(left, #fff1eb, #ace0f9); */
@@ -973,12 +976,12 @@ td.column-money {
 }
 
 .ToolButton button:nth-child(2) {
-  background-color: #d32f2f;
-  border-color: #d32f2f;
+  background-color: #ec971f;
+  border-color: #ec971f;
 }
 .ToolButton button:nth-child(2):hover {
-  background: #df6666 !important;
-  border-color: #df6666 !important;
+  background: #f0ad4e !important;
+  border-color: #f0ad4e !important;
   color: #fff !important;
 }
 

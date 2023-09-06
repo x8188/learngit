@@ -29,7 +29,7 @@
                       drive expression of a barcoded reporter gene in maize
                       protoplasts with or without enhancer in dark.
                     </h3>
-                    <h3>Promoter proximal region interaction (Wheat)</h3>
+                    <h3>WHEAT</h3>
                     <div>
                       <el-select
                         style="width: 240px"
@@ -47,7 +47,7 @@
                       </el-select>
                     </div>
                     <h3 style="color: #fb6672; font-weight: bold">
-                      Please select Wheat models here👇
+                      Please select Wheat models
                     </h3>
                     <el-select
                       style="width: 240px"
@@ -349,15 +349,16 @@
                 <el-button
                   style="margin-top: 6px"
                   type="primary"
+                  icon="el-icon-s-promotion"
                   @click="submitInputSeq"
                 >
-                  {{ uploading ? "Uploading" : "Start Upload" }}
+                Submit
                 </el-button>
                 <el-button
                   type="danger"
                   icon="el-icon-refresh-right"
                   @click="resetInfo"
-                  >RESET</el-button
+                  >Reset</el-button
                 >
               </div>
             </el-row>
@@ -393,7 +394,7 @@ export default {
       Seq1: "",
       Seq2: "",
       uploading: false,
-      modellist: [],
+      modellist: ["wheat-interaction-expression"],
       // A2modellist: ["A2_enhancer-gene", "A2_gene-enhancer", "A2_gene-gene"],
       // B1modellist: ["B1_enhancer-gene", "B1_gene-enhancer", "B1_gene-gene"],
       // C1modellist: ["C1_enhancer-gene", "C1_gene-enhancer", "C1_gene-gene"],
@@ -905,7 +906,7 @@ export default {
 
 .tool {
   /* height: 1500px; */
-  margin-bottom: 50px;
+  /* margin-bottom: 50px; */
 }
 ::v-deep .el-tabs__nav-scroll {
   width: 50%;
@@ -917,13 +918,15 @@ export default {
 .tool-up {
   width: 70%;
   margin: 0 auto;
+  background-color: #f4f4f4;
+  padding-bottom: 40px;
+  padding-top: 40px;
 }
 
 .top-text {
   text-align: center;
   margin: 0 auto;
   height: 70px;
-  margin-top: 30px;
   margin-bottom: 50px;
   /* background:-webkit-linear-gradient(left,#93a5cf,#e4efe9) ; */
   /* background: -webkit-linear-gradient(left, #fff1eb, #ace0f9); */
@@ -940,12 +943,12 @@ td.column-money {
 }
 
 .ToolButton button:nth-child(2) {
-  background-color: #d32f2f;
-  border-color: #d32f2f;
+  background-color: #ec971f;
+  border-color: #ec971f;
 }
 .ToolButton button:nth-child(2):hover {
-  background: #df6666 !important;
-  border-color: #df6666 !important;
+  background: #f0ad4e !important;
+  border-color: #f0ad4e !important;
   color: #fff !important;
 }
 
