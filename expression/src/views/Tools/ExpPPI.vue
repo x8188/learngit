@@ -6,11 +6,11 @@
   <div class="tool">
     <!-- <Steps :steps1="steps1"></Steps> -->
     <div class="tool-up">
-      <div class="top-text">
+      <!-- <div class="top-text">
         <h1 style="font-size: 35px; font-weight: bolder">
           Maize Expression prediction base on DNA
         </h1>
-      </div>
+      </div> -->
 
       <div style="margin-top: 20px">
         <div style="width: 100%">
@@ -23,10 +23,9 @@
                 </div>
                 <div>
                   <h3 style="  text-align: justify;">
-                    In these models, the strength of plant core promoter(labels
-                    of samples) is defined as the ability to drive expression of
-                    a barcoded reporter gene in maize protoplasts with or
-                    without enhancer in dark.
+                    Here we provide two maize gene expression prediction models: PPI and PDI
+                    <br>(1) The input chromatin sequence in PPI mode is 3kb, and the input in PDI mode is 1.5kb chromatin sequence;
+                    <br>(2) There are five models in PPI mode, corresponding to three organizations of five sets of data. There are three models in PDI mode, corresponding to three organizations of three sets of data.
                   </h3>
                   <h3>MAIZE</h3>
                   <div>
@@ -72,14 +71,12 @@
                   <span class="cardTitle">Note</span>
                 </div>
                 <div>
-                  <p style="font-size: 15px;text-align: justify;">
-                    To run the DeepCBA-based model, you need to prepare the data in
-                    fasta format, where the length of each chromatin sequence is
-                    3000bp. You can upload the required forecast data and
-                    forecast tasks in two formats, online or locally. Each task
-                    will take different time depending on the amount of data you
-                    provide. When you submit your homework, please keep it in
-                    mind ID, so that you can check the results later.
+                  <p style="font-size: 15px;text-align: justify;font-weight: bold;">
+                    <br>(1) We provide two ways to input sequences: online input and local upload;
+                    <br>(2) The above two input methods must satisfy the form of the input interactive pair (see example below);
+                    <br>(3) In both input methods, the standard fasta format sequence is required to be input;
+                    <br>(4) In order to send you the real-time status of your homework, the email option below is required.
+                    <br>
                     <br>
                     Friendship link : <a href="http://alpha.maizegdb.org/" target="_blank" >MaizeGDB</a>
                   </p>
@@ -100,14 +97,14 @@
                 ><i class="el-icon-edit"></i> Manual input</span
               >
               <div>
-                <el-alert
+                <!-- <el-alert
                   title="BE CAREFUL-------After switching the method, the entered sequence will be cleared"
                   style="width: 50%; margin: 0 auto; margin-bottom: 10px"
                   center
                   type="info"
                   close-text="got it"
                 >
-                </el-alert>
+                </el-alert> -->
                 <div class="tipsButton">
                   <el-popover
                     placement="top"
@@ -133,7 +130,7 @@
                       First : Correct data format</el-button
                     >
                   </el-popover>
-                  <el-popover
+                  <!-- <el-popover
                     placement="top"
                     width="400"
                     trigger="hover"
@@ -194,12 +191,22 @@
                     >
                       Third : Different gene names</el-button
                     >
-                  </el-popover>
+                  </el-popover> -->
+                  <div class="ToolButton" style="display: flex">
+                    <el-button
+                      icon="el-icon-s-data"
+                      @click="updataEx"
+                      style="margin: 0 auto"
+                      :disabled="!seqflag"
+                      >Example</el-button
+                    >
+                  </div>
                 </div>
                 <div>
                   <el-input
                     type="textarea"
                     style="width: 47%; margin: 10px"
+                    :autosize="{ minRows: 8, maxRows: 16}"
                     v-model="Seq1"
                     :disabled="!seqflag"
                     rows="4"
@@ -209,6 +216,7 @@
                   <el-input
                     type="textarea"
                     style="width: 47%; margin: 10px"
+                    :autosize="{ minRows: 8, maxRows: 16}"
                     v-model="Seq2"
                     :disabled="!seqflag"
                     rows="4"
@@ -216,15 +224,7 @@
                     @blur="checkinput(2)"
                   />
                 </div>
-                <div class="ToolButton" style="display: flex">
-                  <el-button
-                    icon="el-icon-s-data"
-                    @click="updataEx"
-                    style="margin: 0 auto"
-                    :disabled="!seqflag"
-                    >Example</el-button
-                  >
-                </div>
+
               </div>
             </el-tab-pane>
             <!-- 或者直接上传文件 -->
@@ -393,13 +393,13 @@ export default {
       uploading: false,
       modellist: [],
       PPImodellist: [
-        "PPI_Shoot_Li",
-        "PPI_Ear_Sun",
-        "PPI_Shoot_Peng",
-        "PPI_Ear_Li",
-        "PPI_Tassel_Sun",
+        "Shoot(Li et al. 2019)",
+        "Ear(Sun et al. 2020)",
+        "Shoot(Peng et al. 2019)",
+        "Ear(Li et al. 2019)",
+        "Tassel(Sun et al. 2020)",
       ],
-      PDImodellist: ["PDI_Shoot_Li", "PDI_Ear_Li", "PDI_Shoot_Peng"],
+      PDImodellist: ["Shoot(Peng et al. 2019 PDI)", "Shoot(Li et al. 2019 PDI)", "Ear(Li et al. 2019 PDI)"],
       // PDImodellist: ["SHOOT1", "EAR", "SHOOT2"],
       options: [{ value: "1" }, { value: "2" }],
       updataForm: {
@@ -454,6 +454,18 @@ export default {
 
       dataCate: "",
       dataCateOp: ["B73(PPI)", "B73(PDI)"],
+
+      transName:{
+        'Shoot(Peng et al. 2019)':'PPI_Shoot_Peng',
+        'Shoot(Li et al. 2019)':'PPI_Shoot_Li',
+        'Ear(Li et al. 2019)':'PPI_Ear_Li',
+        'Ear(Sun et al. 2020)':'PPI_Ear_Sun',
+        'Tassel(Sun et al. 2020)':'PPI_Tassel_Sun',
+
+        'Shoot(Peng et al. 2019 PDI)':'PDI_Shoot_Li', 
+        'Shoot(Li et al. 2019 PDI)':'PDI_Ear_Li', 
+        'Ear(Li et al. 2019 PDI)':'PDI_Shoot_Peng'
+      }
     };
   },
   computed: {
@@ -603,7 +615,7 @@ export default {
 
               this.taskBoby_file.file = this.fileList[0].raw;
               this.taskBoby_file.email = this.updataForm.email;
-              this.taskBoby_file.modelName = this.PPImodel;
+              this.taskBoby_file.modelName = this.transName[this.PPImodel];
               this.taskBoby_file.uuid = this.uuid;
               this.taskBoby_file.captcha = this.inputCaptcha;
 
@@ -660,7 +672,7 @@ export default {
               this.taskBoby_seq.seq.push(this.Seq1);
               this.taskBoby_seq.seq.push(this.Seq2);
               this.taskBoby_seq.email = this.updataForm.email;
-              this.taskBoby_seq.modelName = this.PPImodel;
+              this.taskBoby_seq.modelName = this.transName[this.PPImodel];
               this.taskBoby_seq.uuid = this.uuid;
               this.taskBoby_seq.captcha = this.inputCaptcha;
 

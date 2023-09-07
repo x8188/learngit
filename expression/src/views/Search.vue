@@ -60,7 +60,7 @@
       </h1>
     </div>
 
-    <h1 style="color: #0dbc79; font-size: 30px">Result retrieval</h1>
+    <!-- <h1 style="color: #0dbc79; font-size: 30px">Result retrieval</h1> -->
     <el-divider></el-divider>
     <p style="font-size: 20px">
       NOTE: The result files will be kept for 10 days on our server. Please
@@ -80,7 +80,7 @@
         ></el-button>
       </el-input>
       <p style="color: #0dbc79; font-size: 20px; text-align: left">
-        Job queue monitor (update in 10 seconds):
+        Job queue monitor(update every 10 seconds):
       </p>
       <div style="text-align: right; margin-top: -50px">
         <!-- <el-button @click="clearFilter" type="warning" plain class="reFilter"
@@ -98,17 +98,17 @@
 
       <el-card class="box-card">
         <el-table :data="taskTable" ref="filterTable" style="font-size: 15px;"  max-height="500">
-          <el-table-column prop="taskID" label="task ID"> </el-table-column>
+          <el-table-column prop="Task ID" label="task ID"> </el-table-column>
           <el-table-column
             prop="modelName"
-            label="model Name"
+            label="Model Name"
             :filters="filters"
             :filter-method="filterHandler"
             
           >
           </el-table-column>
           <el-table-column
-            label="task Status"
+            label="Task Status"
             :filters="filter_statu"
             :filter-method="filterStatu"
             width="150"
@@ -130,11 +130,11 @@
               </div>
             </template>
           </el-table-column>
-          <el-table-column prop="submitTime" label="submit Time">
+          <el-table-column prop="submitTime" label="Submit Time">
           </el-table-column>
-          <el-table-column prop="ttl1" label="time Remaining" width="210">
+          <el-table-column prop="ttl1" label="Time Remaining" width="210">
           </el-table-column>
-          <el-table-column label="function">
+          <el-table-column label="Details Result(Click)">
             <template slot-scope="{ row }">
               <el-button
                 type="primary"
@@ -359,6 +359,11 @@ export default {
   created() {
     this.getTasks();
   },
+  mounted(){
+    setInterval(() => {
+        this.getTasks()
+      }, 10000);
+  }
 };
 </script>
 <style scoped>

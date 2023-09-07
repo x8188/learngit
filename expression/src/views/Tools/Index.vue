@@ -82,15 +82,13 @@
                   alt="Thumb"
                 />
                 <div class="overlay">
-                  <span>PPI/PDI</span>
+                  <!-- <span>PPI/PDI</span> -->
                   <h4><a style="pointer-events: none">Maize</a></h4>
                 </div>
               </div>
               <div>
                 <p class="detailP">
-                  Provide online and real-time services for high-precision prediction of gene expression levels based on near- and far-end interactions of chromatin in maize.
-                <br>(1) Prediction of gene expression based on chromatin interaction (training data and three tissues in the source B73 material)
-                <br>(2) Mining important segments in chromatin interaction sequences that affect gene expression
+                  Two expression prediction models, PPI and PDI, are provided based on corn B73 material.
                 </p>
               </div>
             </div>
@@ -107,14 +105,13 @@
                   alt="Thumb"
                 />
                 <div class="overlay">
-                  <span>zs97/mh63</span>
+                  <!-- <span>zs97/mh63</span> -->
                   <h4><a style="pointer-events: none">Rice</a></h4>
                 </div>
               </div>
               <div>
                 <p class="detailP">
-                  Provide online real-time services for high-precision prediction of gene expression based on gene-gene interaction in rice species.
-                  <br>(1) Model construction based on different data sets under the two materials of rice MH63 and ZS97 to achieve high-precision prediction of rice gene expression
+                  Provide gene expression prediction based on two materials of maize ZS97 and MH63.
                 </p>
               </div>
             </div>
@@ -131,14 +128,13 @@
                   alt="Thumb"
                 />
                 <div class="overlay" style="">
-                  <span>A2/B1/C1/D5...</span>
+                  <!-- <span>A2/B1/C1/D5...</span> -->
                   <h4><a style="pointer-events: none">Cotton</a></h4>
                 </div>
               </div>
               <div>
                 <p class="detailP">
-                  Provide online real-time service of high-precision prediction of gene expression based on gene-gene interaction for eight materials of cotton species.
-                  <br>(1) The cotton materials involved are: A2, B1, C1, D5, E1, F1, G1, K2
+                  Gene expression prediction based on eight Cotton materials.
                 </p>
               </div>
             </div>
@@ -156,13 +152,13 @@
                   alt="Thumb"
                 />
                 <div class="overlay">
-                  <span>TPM</span>
+                  <!-- <span>TPM</span> -->
                   <h4><a style="pointer-events: none">Wheat</a></h4>
                 </div>
               </div>
               <div>
                 <p class="detailP">
-                  Provide online real-time service for high-precision prediction of gene expression based on gene-gene interaction in wheat species.
+                  Expression prediction based on chromatin interaction between seedling genes.
                 </p>
               </div>
             </div>

@@ -10,13 +10,13 @@
         margin-top: 20px;
       "
     >
-      TASK ID : {{ id }} RESULT
+      Result of {{ id }}
     </h1>
 
     <div class="childShow">
       <el-card>
         <div slot="header">
-          <span class="tableTitle">EXPRESSION TABLE</span>
+          <span class="tableTitle"></span>
           <el-button
             class="dowload"
             icon="el-icon-download"
@@ -26,13 +26,18 @@
         </div>
         <div>
           <!-- <Table :tableId="0" :tdata="expData"></Table> -->
-          <el-table :data="expData" stripe style="width: 100%" height="400">
+          <el-table :data="expData" stripe height="400">
             <el-table-column prop="Ann1_name" label="Annotation1">
             </el-table-column>
             <el-table-column prop="Ann2_name" label="Annotation2">
             </el-table-column>
             <!-- <el-table-column prop="exp" label="exp"> </el-table-column> -->
-            <el-table-column prop="predict_val" label="pre"> </el-table-column>
+            <el-table-column prop="predict_val" label="Prediction result"> </el-table-column>
+            <el-table-column prop="" label="Expression in Shoot-1" width="180"> </el-table-column>
+            <el-table-column prop="" label="Expression in Ear-1" width="180"> </el-table-column>
+            <el-table-column prop="" label="Expression in Shoot-2" width="180"> </el-table-column>
+            <el-table-column prop="" label="Expression in Ear-2" width="180"> </el-table-column>
+            <el-table-column prop="" label="Expression in Tassel-1" width="180"> </el-table-column>
           </el-table>
         </div>
       </el-card>
@@ -43,7 +48,7 @@
     <div class="childShow">
       <el-card>
         <div slot="header">
-          <span class="tableTitle">SEQ TABLE</span>
+          <span class="tableTitle"></span>
           <!-- <el-button
             class="dowload"
             icon="el-icon-download"

@@ -262,8 +262,8 @@
         <el-col :span="24">
           <el-card class="bottom-card">
             <div style="margin-bottom: 50px; text-align: justify">
-              <p style="font-size: 20px">
-                &nbsp; &nbsp;&nbsp;&nbsp;Chromatin interaction connects
+              <p style="font-size: 20px;width: 100%;">
+                <!-- &nbsp; &nbsp;&nbsp;&nbsp;Chromatin interaction connects
                 regulatory elements and target genes to cause expression
                 changes. Therefore, it is very important to carry out gene
                 expression prediction research based on maize chromatin
@@ -293,7 +293,13 @@
                 achieve more accurate prediction of expression, and further
                 understands the sequence characteristics of regulatory elements.
                 At the same time, the design of precise gene expression provides
-                a new idea for future intelligent breeding.
+                a new idea for future intelligent breeding. -->
+                1.	Peng Y, Xiong D, Zhao L, et al. Chromatin interaction maps reveal genetic regulation for quantitative traits in maize. Nature Communications 10: 2632(2019).<br>
+                2.	Li E, Liu H, Huang L, et al. Long-range interactions between proximal and distal regulatory regions in maize.   Nature Communications 10: 2633(2019).<br>
+                3.	Sun Y, Dong L, Zhang Y, et al. 3D genome architecture coordinates trans and cis regulation of differentially expressed ear and tassel genes in maize. Genome Biology  21(1): 1-25(2020).<br>
+                4.	Washburn J D, Mejia-Guerra M K, Ramstein G, et al. Evolutionarily informed deep learning methods for predicting relative transcript abundance from DNA sequence. Proceedings of the National Academy of Sciences of the United States of America  116(12): 5542-5549(2019).<br>
+                5.	Tu, X., Mejía-Guerra, M.K., Valdes Franco, J.A. et al. Reconstructing the maize leaf regulatory network using ChIP-seq data of 104 transcription factors. Nat Commun 11, 5089 (2020). <br>
+                6.	Tian, T., Wang, S., Yang, S. et al. Genome assembly and genetic dissection of a prominent drought-resistant maize germplasm. Nat Genet 55, 496–506 (2023).
               </p>
             </div>
             <div class="shape-bottom-right">

@@ -73,7 +73,7 @@
                     <span class="cardTitle">Note</span>
                   </div>
                   <div>
-                    <p style="font-size: 15px;text-align: justify;">
+                    <p style="font-size: 15px;text-align: justify;font-weight: bold;">
                       To run the Cotton-based model, you need to prepare the
                       data in fasta format, where the length of each chromatin
                       sequence is 3000bp. You can upload the required forecast
@@ -102,14 +102,14 @@
                   ><i class="el-icon-edit"></i> Manual input</span
                 >
                 <div>
-                  <el-alert
+                  <!-- <el-alert
                     title="BE CAREFUL-------After switching the method, the entered sequence will be cleared"
                     style="width: 50%; margin: 0 auto; margin-bottom: 10px"
                     center
                     type="info"
                     close-text="got it"
                   >
-                  </el-alert>
+                  </el-alert> -->
                   <div class="tipsButton">
                     <el-popover
                       placement="top"
@@ -135,7 +135,7 @@
                         First : Correct data format</el-button
                       >
                     </el-popover>
-                    <el-popover
+                    <!-- <el-popover
                       placement="top"
                       width="400"
                       trigger="hover"
@@ -147,6 +147,7 @@
                       <el-input
                         type="textarea"
                         style="width: 43%; margin: 10px"
+                        :autosize="{ minRows: 8, maxRows: 16}"
                         :value="NumSeq1"
                         rows="5"
                         :readonly="true"
@@ -154,6 +155,7 @@
                       <el-input
                         type="textarea"
                         style="width: 43%; margin: 10px"
+                        :autosize="{ minRows: 8, maxRows: 16}"
                         :value="NumSeq2"
                         rows="5"
                         :readonly="true"
@@ -196,7 +198,16 @@
                       >
                         Third : Different gene names</el-button
                       >
-                    </el-popover>
+                    </el-popover> -->
+                    <div class="ToolButton" style="display: flex">
+                      <el-button
+                        icon="el-icon-s-data"
+                        @click="updataEx"
+                        style="margin: 0 auto"
+                        :disabled="!seqflag"
+                        >Example</el-button
+                      >
+                    </div>
                   </div>
                   <div>
                     <el-input
@@ -218,15 +229,7 @@
                       @blur="checkinput(2)"
                     />
                   </div>
-                  <div class="ToolButton" style="display: flex">
-                    <el-button
-                      icon="el-icon-s-data"
-                      @click="updataEx"
-                      style="margin: 0 auto"
-                      :disabled="!seqflag"
-                      >Example</el-button
-                    >
-                  </div>
+
                 </div>
               </el-tab-pane>
               <!-- 或者直接上传文件 -->
