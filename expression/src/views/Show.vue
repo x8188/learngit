@@ -27,18 +27,27 @@
         <div>
           <!-- <Table :tableId="0" :tdata="expData"></Table> -->
           <el-table :data="expData" stripe height="400">
-            <el-table-column prop="Ann1_name" label="Annotation1">
+            <el-table-column prop="Ann1_name" label="GeneA">
             </el-table-column>
-            <el-table-column prop="Ann2_name" label="Annotation2">
+            <el-table-column prop="Ann2_name" label="GeneB" >
             </el-table-column>
             <!-- <el-table-column prop="exp" label="exp"> </el-table-column> -->
-            <el-table-column prop="predict_val" label="Prediction result"> </el-table-column>
-            <el-table-column prop="" label="Expression in Shoot-1" width="180"> </el-table-column>
-            <el-table-column prop="" label="Expression in Ear-1" width="180"> </el-table-column>
-            <el-table-column prop="" label="Expression in Shoot-2" width="180"> </el-table-column>
-            <el-table-column prop="" label="Expression in Ear-2" width="180"> </el-table-column>
-            <el-table-column prop="" label="Expression in Tassel-1" width="180"> </el-table-column>
+            <el-table-column prop="predict_val" label="Prediction" > </el-table-column>
+            <el-table-column v-if="isMaize" prop="Shoot-1" label="Expression in Shoot-1" width="180"> </el-table-column>
+            <el-table-column v-if="isMaize" prop="Ear-1" label="Expression in Ear-1" width="180"> </el-table-column>
+            <el-table-column v-if="isMaize" prop="Shoot-2" label="Expression in Shoot-2" width="180"> </el-table-column>
+            <el-table-column v-if="isMaize" prop="Ear-2" label="Expression in Ear-2" width="180"> </el-table-column>
+            <el-table-column v-if="isMaize" prop="Tassel-1" label="Expression in Tassel-1" width="180"> </el-table-column>
           </el-table>
+          <el-pagination
+            @size-change="handleSizeChange"
+            @current-change="handleCurrentChange"
+            :current-page.sync="pageNum"
+            :page-sizes="[10, 50, 100]"
+            :page-size.sync="pageSize"
+            layout="total,sizes, prev, pager, next"
+            :total.sync="total">
+          </el-pagination>
         </div>
       </el-card>
 
@@ -56,21 +65,20 @@
             >Dowload</el-button
           > -->
           <el-select
-            style="width: 240px; float: right"
+            style="width: 440px; float: right"
             @change="seqChange"
             v-model="visSeq"
           >
             <el-option
               v-for="value in visSeqOp"
-              :key="value.index"
-              :value="value.index"
+              :key="value.value"
+              :value="value.value"
+              :label="value.label"
             >
-              {{ value.value }}
             </el-option>
           </el-select>
         </div>
         <div>
-          <!-- <Table :tableId="1" :tdata="data2"></Table> -->
           <Chart
             :chartName="id + '-Gradient'"
             :chartHotname="id + '-HotMap'"
@@ -169,7 +177,6 @@ export default {
     return {
       id: this.$route.params.id,
       expData: [],
-      data2: [],
 
       imgurl: {
         chg: "",
@@ -186,31 +193,51 @@ export default {
 
       visData: undefined,
       chartHotData: undefined,
+      
+      pageNum: 1,
+      pageSize: 10,
+      total:0,
+
+      isMaize:false
     };
   },
+  
   methods: {
     async getTaskInfo() {
-      let result = await this.$API.reqTaskResultInfo(this.id);
-      if (result.code == 200) {
+      let data={
+        taskID:this.id,
+        page:this.pageNum,
+        limit:this.pageSize
+      }
+      let result1 = await this.$API.reqTaskResultInfo(data);
+      if (result1.code == 200) {
         // console.log(result);
-
-        this.expData = convertToElTableFormat(result[this.id + "_predict.csv"]);
-        this.data2 = result[this.id + "_saliency.csv"];
-        this.fileurl = result.fileurl;
-        for (var i = 0; i < this.fileurl.length; i++) {
-          if (this.fileurl[i].search("tmpcvre.png") != -1)
-            this.imgurl.chg = "http://124.220.197.196/" + this.fileurl[i];
-          if (this.fileurl[i].search("tmp.png") != -1)
-            this.imgurl.seq = "http://124.220.197.196/" + this.fileurl[i];
-          if (this.fileurl[i].search("predict.csv") != -1)
-            this.dowloadTable = "http://124.220.197.196/" + this.fileurl[i];
-          if (this.fileurl[i].search("saliency.csv") != -1)
-            this.dowloadTable2 = "http://124.220.197.196/" + this.fileurl[i];
+        if(result1.project=='maize'){
+          this.isMaize=true
         }
+        let result=result1[this.id + "_predict.csv"]
+
+        // this.expData = convertToElTableFormat(result[this.id + "_predict.csv"]);
+        this.expData = convertToElTableFormat(result['data']);
+        this.total=result.totalLine
+        this.pageNum=result.currentPage
+        this.pageSize=result.limit
+        // this.fileurl = result.fileurl;
+        // for (var i = 0; i < this.fileurl.length; i++) {
+        //   if (this.fileurl[i].search("tmpcvre.png") != -1)
+        //     this.imgurl.chg = "http://124.220.197.196/" + this.fileurl[i];
+        //   if (this.fileurl[i].search("tmp.png") != -1)
+        //     this.imgurl.seq = "http://124.220.197.196/" + this.fileurl[i];
+        //   if (this.fileurl[i].search("predict.csv") != -1)
+        //     this.dowloadTable = "http://124.220.197.196/" + this.fileurl[i];
+        //   if (this.fileurl[i].search("saliency.csv") != -1)
+        //     this.dowloadTable2 = "http://124.220.197.196/" + this.fileurl[i];
+        // }
+        
         this.visSeqOp = this.expData.map((x, index) => {
           return {
-            index: index,
-            value: index + " : " + x.Ann1_name + x.Ann2_name,
+            value: index,
+            label: index + " : " + x.Ann1_name +' and '+ x.Ann2_name,
           };
         });
       }
@@ -252,6 +279,12 @@ export default {
         });
       }
     },
+    handleSizeChange(){
+      this.getTaskInfo()
+    },
+    handleCurrentChange(){
+      this.getTaskInfo()
+    }
   },
   created() {
     this.getTaskInfo();
@@ -266,6 +299,8 @@ export default {
   margin: 0 auto;
 
   text-align: center;
+
+  min-width: 1400px;
 }
 
 .dowload {

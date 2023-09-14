@@ -62,10 +62,10 @@
 
     <!-- <h1 style="color: #0dbc79; font-size: 30px">Result retrieval</h1> -->
     <el-divider></el-divider>
-    <p style="font-size: 20px">
+    <!-- <p style="font-size: 20px">
       NOTE: The result files will be kept for 10 days on our server. Please
       download and save your files on time.
-    </p>
+    </p> -->
     <div style="text-align: center">
       <el-input
         v-model="searchValue"
@@ -98,7 +98,7 @@
 
       <el-card class="box-card">
         <el-table :data="taskTable" ref="filterTable" style="font-size: 15px;"  max-height="500">
-          <el-table-column prop="Task ID" label="task ID"> </el-table-column>
+          <el-table-column prop="taskID" label="task ID"> </el-table-column>
           <el-table-column
             prop="modelName"
             label="Model Name"
@@ -197,7 +197,7 @@ export default {
         {
           email: "",
           modelName: "",
-          stataus: "",
+          status: "",
           submitTime: "",
           taskID: "",
           ttl: 0,
@@ -222,21 +222,21 @@ export default {
       // 在此向服务器发请求，成功后删除
     },
     visTask(row) {
-      if (row.stataus == 0) {
+      if (row.status == 0) {
         this.$alert("This task is queuing", "Please wait patiently", {
           confirmButtonText: "confrim",
           type: "warning",
         });
         return;
       }
-      else if(row.stataus == 1){
+      else if(row.status == 1){
         this.$alert("This task is running", "Please wait patiently", {
           confirmButtonText: "confrim",
           type: "info",
         });
         return;
       }
-      else if(row.stataus == 3){
+      else if(row.status == 3){
         this.$alert("This task failed to run", "Error", {
           confirmButtonText: "confrim",
           type: "error",
@@ -347,8 +347,8 @@ export default {
     filterStatu(value, row, column) {
       // const property = column['property'];
       // return row[property] === value;
-      // console.log(row.stataus,value)
-      return row.stataus == value;
+      // console.log(row.status,value)
+      return row.status == value;
     },
     refresh(){
       this.$refs.filterTable.clearFilter();

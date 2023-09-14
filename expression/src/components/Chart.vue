@@ -120,11 +120,11 @@ export default {
         tooltip: {
           trigger: "axis",
         },
-        grid: {
-          left: "5%",
-          right: "15%",
-          bottom: "10%",
-        },
+        // grid: {
+        //   left: "5%",
+        //   right: "15%",
+        //   bottom: "10%",
+        // },
         xAxis: {
           data: this.xData,
         },
@@ -150,8 +150,8 @@ export default {
           },
         ],
         visualMap: {
-          top: 50,
-          right: 50,
+          left: "right",
+          top: "center",
           pieces: [
             {
               gt: 0,

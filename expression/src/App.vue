@@ -38,7 +38,7 @@
         <router-view />
       </div>
       <div class="foot">
-        <h1
+        <!-- <h1
           style="
             color: white;
             font-weight: bold;
@@ -47,10 +47,63 @@
           "
         >
           Contact
-        </h1>
+        </h1> -->
+        <div style="display: flex;width: 80%;margin: 0 auto;">
+          <div style="flex: 1;">
+            <h3 style="color: #fff;font-size: 1rem;font-weight: 500;">POWERED BY</h3>
+            <el-row >
+              <el-col :span="24">
+                <a href="http://www.hzau.edu.cn/" target="_blank">
+                  <img src="./img/footImg/hzau_logo_h100.png" alt="" class="img-fluid">
+                </a>
+              </el-col>
+            </el-row >
+          </div>
+
+          <div style="flex: 7;text-align: center;">
+            <h3 style="color: #fff;font-size: 1rem;font-weight: bolder;">LINKS</h3>
+            <el-row :gutter="40"  type="flex" justify="center">
+              <el-col :span="3">
+                <a href="https://figshare.com/articles/dataset/Gossypium_anomalum_B1_genome/17280074" target="_blank">
+                  <img src="./img/footImg/Cotton-1-logo.png" alt="" class="img-fluid">
+                </a>
+              </el-col>
+              <el-col :span="3">
+                <a href="https://maizegdb.org/" target="_blank">
+                  <img src="./img/footImg/maizeGDB.png" alt="" class="img-fluid">
+                </a>
+              </el-col>
+              <el-col :span="3">
+                <a href="http://maizego.org/index.html" target="_blank">
+                  <img src="./img/footImg/maizego_h100.png" alt="" class="img-fluid">
+                </a>
+              </el-col>
+              <el-col :span="3">
+                <a href="https://meme-suite.org/meme/index.html" target="_blank">
+                  <img src="./img/footImg/MEME.png" alt="" class="img-fluid">
+                </a>
+              </el-col>
+              <el-col :span="2">
+                <a href="http://plantdeepsea.ncpgr.cn/" target="_blank">
+                  <img src="./img/footImg/PlantDeepSEA.png" alt="" class="img-fluid">
+                </a>
+              </el-col>
+              <el-col :span="3">
+                <a href="http://planttfdb.gao-lab.org/index.php" target="_blank">
+                  <img src="./img/footImg/PlantTFDB.png" alt="" class="img-fluid">
+                </a>
+              </el-col>
+              <el-col :span="3">
+                <a href="http://rice.hzau.edu.cn/rice_rs2/" target="_blank">
+                  <img src="./img/footImg/Rice-data-logo.png" alt="" class="img-fluid">
+                </a>
+              </el-col>
+            </el-row >
+          </div>
+        </div>
         <p
           style="
-            width: 50%;
+            width: 80%;
             text-align: center;
             margin: 0 auto;
             padding: 10px 0;
@@ -58,8 +111,6 @@
         >
           Address: Room B320, Research Office of Artificial Intelligence
           Research Group, Huazhong Agricultural university, Wuhan, 430070, China
-          <br><br/>
-          Room 320, Block B, The first comprehensive building, Shizishan Street No. 1, Nanhu, Wuhan, Hubei Province Tel: 027-87280350 Email:
         </p>
       </div>
     </div>
@@ -190,11 +241,12 @@ body {
 .foot {
   /* position: fixed; */
   bottom: 0px;
-  background-color: #427c63;
+  background-color: #2a2730;
   color: white;
-  height: 150px;
+  height: 210px;
   /* text-align: center; */
   /* margin: 0 auto; */
+  padding-top: 2em;
 }
 section.featured1 {
   padding: 40px 0 60px;
@@ -202,5 +254,10 @@ section.featured1 {
   background-color: #004b5f;
 
   color: #fdfdfd;
+}
+
+.img-fluid {
+    max-width: 100%;
+    height: auto;
 }
 </style>

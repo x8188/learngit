@@ -1,0 +1,25 @@
+1、华中农业大学
+http://www.hzau.edu.cn/
+
+2、MaizeGDB
+https://maizegdb.org/
+
+3、Maizego
+http://maizego.org/index.html
+
+
+4、PlantDeepSEA
+http://plantdeepsea.ncpgr.cn/
+
+5、PlantTFDB
+http://planttfdb.gao-lab.org/index.php
+
+6、Rice-data
+http://rice.hzau.edu.cn/rice_rs2/
+
+7、Cotton-data
+https://figshare.com/articles/dataset/Gossypium_anomalum_B1_genome/17280074
+
+8、The MEME Suite
+https://meme-suite.org/meme/index.html
+

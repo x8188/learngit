@@ -21,10 +21,7 @@
         <p></p>
         <div class="welcome-bd">
           <div class="weather"></div>
-          <div class="temp">
-            DeepCBA: Gene expression prediction by integrating maize promoter
-            proximal and distal region interaction using deep learning
-          </div>
+          <div class="temp">DeepCBA: 文章名字</div>
         </div>
       </div>
     </div>
@@ -34,17 +31,18 @@
         <a-col :span="14">
           <el-card class="homecard" style="border-radius: 20px">
             <div>
+              <p style="font-weight: bold; font-size: 30px">Introduction</p>
               <p>
-                &nbsp; &nbsp;&nbsp;&nbsp; MaizeDeepCBA is a web server that
-                integrates maize chromatin interaction and deep learning models
-                for maize Gene expression prediction. Based on the interaction
-                between the proximal and distal ends of the maize promoter, it
-                predicts gene expression in relevant target tissues. At the same
-                time, MaizeDeepCBA can achieve Gene expression prediction across
-                tissues and genotypes. Based on related computer vision methods,
-                MaizeDeepCBA can mine important segments, sites or motifs that
-                affect Gene expression in the proximal and distal interactions
-                of promoters. Maize DeepCBA is freely accessible for all users.
+                &nbsp; &nbsp;&nbsp;&nbsp;DeepCBA realizes the prediction of
+                target gene expression based on the proximal and distal
+                interactions of chromatin in different tissues of higher plants.
+                What's more important is that DeepCBA can mine important motifs
+                that affect gene expression levels, and conduct detailed
+                analysis of remote regulatory elements to achieve auxiliary
+                design of target gene expression. DeepCBA can realize the
+                prediction of gene expression across tissues and genotypes, and
+                provides a new idea for the precise correlation of gene
+                expression.
               </p>
             </div>
             <div
@@ -56,9 +54,9 @@
 
             <el-button
               class="rouButton"
-              @click="$router.push('/result')"
+              @click="$router.push('/Expression/index')"
               style="position: relative; right: 10%"
-              >RESULT</el-button
+              >TOOLS</el-button
             >
             <el-button
               class="rouButton"
@@ -66,7 +64,7 @@
               style="position: relative; left: 10%"
               >TUORIAL</el-button
             >
-            <div class="shape-bottom-right" style="left: 0; opacity: 0.3">
+            <div class="shape-bottom-right" style="left: 0; opacity: 0.2">
               <img
                 src="../assets/picture/11.png"
                 alt="Image Not Found"
@@ -135,10 +133,12 @@
                   border-radius: 15px;
                 "
               >
-                <p style="font-weight: bold; font-size: 30px">Introduction</p>
                 <p>
-                  &ensp;&ensp;&ensp;The core structure of the deep neural
-                  network used in Deep CBA can be divided into three modules:
+                  &ensp;&ensp;&ensp;DeepCBA integrates a total of 3kb chromatin
+                  sequences upstream and downstream of the transcription
+                  initiation site and transcription termination site of higher
+                  plants (Maize, Rice, Cotton and Wheat) to predict gene
+                  expression.
                   <!-- convolution neural network module, bidirectional long-term and
                   short-term memory network module and self-attention mechanism
                   module, as shown in the following figure. <br />
@@ -170,25 +170,17 @@
                 "
               >
                 <p>
-                  &ensp;&ensp;&ensp;Secondly, take the encoded one-pot encoding
-                  matrix as the input of the CNN Layer, use the ReLU activation
-                  function to propagate the forward output and eliminate the
-                  reverse output, and then use the maximum pooling operation to
-                  reduce the dimension, and achieve the extraction of
-                  higher-level features; <br />
-                  &ensp;&ensp;&ensp;Next, combine the information output by CNN
-                  and input it into the bidirectional long-term and short-term
-                  memory network to extract more important information from the
-                  merged CNN information;<br />
-                  &ensp;&ensp;&ensp;Finally, use Self-Attention to redistribute
-                  the weights of the network model, and then realize the final
-                  prediction.
+                  &ensp;&ensp;&ensp;DeepCBA integrates data from different
+                  tissues of higher plants to predict gene expression. It can
+                  also realize important motif mining, cross-tissue and genotype
+                  expression prediction, and refined research on remote
+                  regulatory elements.
                 </p>
                 <div
                   class="image-content"
                   style="margin-top: 10px; width: 100%"
                 >
-                  <img src="../img/home_3.jpg" style="width: 90%" />
+                  <img src="../img/home3.png" style="width: 90%" />
                 </div>
                 <!-- <el-button
                   class="rouButton"
@@ -262,44 +254,34 @@
         <el-col :span="24">
           <el-card class="bottom-card">
             <div style="margin-bottom: 50px; text-align: justify">
-              <p style="font-size: 20px;width: 100%;">
-                <!-- &nbsp; &nbsp;&nbsp;&nbsp;Chromatin interaction connects
-                regulatory elements and target genes to cause expression
-                changes. Therefore, it is very important to carry out gene
-                expression prediction research based on maize chromatin
-                interaction to further understand expression regulation and
-                phenotypic variation. However, the existing methods mainly use
-                the sequence of the gene itself to predict the expression level,
-                and lack the sequence information of the remote interactive
-                regulatory elements, which affects the accuracy of the
-                prediction to a certain extent. This study developed a model
-                based on deep learning combined with maize chromatin interaction
-                to predict gene expression with high accuracy: DeepCBA. Compared
-                with existing models, DeepCBA has higher accuracy in expression
-                classification and expression value prediction. Compared with
-                the traditional use of only gene adjacent sequences, after
-                adding chromatin interaction sequence information, the DeepCBA
-                model can improve the Pearson correlation coefficient (PCC) by
-                50.2% in the expression value prediction. Motif analysis of the
-                sequence based on DeepCBA revealed that it was enriched in open
-                chromatin regions and expression quantitative trait loci (eQTL),
-                with molecular characteristics such as tissue specificity.
-                Importantly, DeepCBA enables the study of remote regulatory
-                elements to be accurate to the base sequence, and at the same
-                time edits the promoters of the example genes (ZmCLE7, ZmVTE4),
-                indicating the importance of this model in exploring the
-                regulatory sequences that affect expression. sex. All in all,
-                the DeepCBA model innovatively uses chromatin interaction to
-                achieve more accurate prediction of expression, and further
-                understands the sequence characteristics of regulatory elements.
-                At the same time, the design of precise gene expression provides
-                a new idea for future intelligent breeding. -->
-                1.	Peng Y, Xiong D, Zhao L, et al. Chromatin interaction maps reveal genetic regulation for quantitative traits in maize. Nature Communications 10: 2632(2019).<br>
-                2.	Li E, Liu H, Huang L, et al. Long-range interactions between proximal and distal regulatory regions in maize.   Nature Communications 10: 2633(2019).<br>
-                3.	Sun Y, Dong L, Zhang Y, et al. 3D genome architecture coordinates trans and cis regulation of differentially expressed ear and tassel genes in maize. Genome Biology  21(1): 1-25(2020).<br>
-                4.	Washburn J D, Mejia-Guerra M K, Ramstein G, et al. Evolutionarily informed deep learning methods for predicting relative transcript abundance from DNA sequence. Proceedings of the National Academy of Sciences of the United States of America  116(12): 5542-5549(2019).<br>
-                5.	Tu, X., Mejía-Guerra, M.K., Valdes Franco, J.A. et al. Reconstructing the maize leaf regulatory network using ChIP-seq data of 104 transcription factors. Nat Commun 11, 5089 (2020). <br>
-                6.	Tian, T., Wang, S., Yang, S. et al. Genome assembly and genetic dissection of a prominent drought-resistant maize germplasm. Nat Genet 55, 496–506 (2023).
+              <h2 style="font-weight: bold; font-size: 30px;position: relative;display: inline-block;" class="section-header">Related Publications</h2>
+              <p style="font-size: 20px; width: 100%">
+                Peng Y, Xiong D, Zhao L, et al. <strong>Chromatin interaction maps
+                reveal genetic regulation for quantitative traits in maize.</strong> 
+                Nature Communications 10: 2632(2019).<br />
+                Li E, Liu H, Huang L, et al. <strong>Long-range interactions between
+                proximal and distal regulatory regions in maize.</strong>  Nature
+                Communications 10: 2633(2019).<br />
+                Sun Y, Dong L, Zhang Y, et al. <strong>3D genome architecture
+                coordinates trans and cis regulation of differentially expressed
+                ear and tassel genes in maize.</strong>  Genome Biology 21(1):
+                1-25(2020).<br />
+                Washburn J D, Mejia-Guerra M K, Ramstein G, et al. <strong>
+                  Evolutionarily informed deep learning methods for predicting
+                relative transcript abundance from DNA sequence.</strong>
+                 Proceedings of the National Academy of Sciences of the United States of America
+                116(12): 5542-5549(2019).<br />
+                Tu, X., Mejía-Guerra, M.K., Valdes Franco, J.A. et al. <strong>
+                  Reconstructing the maize leaf regulatory network using ChIP-seq
+                data of 104 transcription factors.
+                </strong>
+                 Nat Commun 11, 5089 (2020).
+                <br />
+                Tian, T., Wang, S., Yang, S. et al. <strong>
+                  Genome assembly and
+                genetic dissection of a prominent drought-resistant maize
+                germplasm.
+                </strong>  Nat Genet 55, 496–506 (2023).
               </p>
             </div>
             <div class="shape-bottom-right">
@@ -497,10 +479,21 @@ export default {
 
   color: #050505;
   border-radius: 30px;
-  background: linear-gradient(120deg, #eaeaea 0%, #8b8b8b 100%);
+  background: linear-gradient(120deg, #eaeaea 0%, #c0c0c0 100%);
 
   position: relative;
 
   z-index: 1;
+}
+
+.section-header:after {
+    display: block;
+    width: 100%;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    content: ' ';
+    height: 3px;
+    background: #28a745;
 }
 </style>

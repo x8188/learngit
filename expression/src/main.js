@@ -12,8 +12,8 @@ import ElementUI from 'element-ui';
 import '../public/Element_custom_theme/theme/index.css'
 
 import 'ant-design-vue/dist/antd.css';
-
-Vue.use(ElementUI)
+import locale from 'element-ui/lib/locale/lang/en' 
+Vue.use(ElementUI,{locale})
 Vue.use(Antd);
 
 import { MessageBox } from 'element-ui';

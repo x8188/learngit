@@ -18,12 +18,12 @@ export const reqResultInfo = (Type) =>
 
 // 提交序列作业接口
 export const reqSubmitSeq = (taskBody) =>
-  requests({ url: `model/expression/submit`, method: "post", data: taskBody });
+  requests({ url: `model/submit/custom`, method: "post", data: taskBody });
 
 // 提交文件作业接口
 export const reqSubmitFlie = (taskBody) =>
   requests({
-    url: `model/expression/file`,
+    url: `/model/submit/file`,
     method: "post",
     data: taskBody,
     headers: {
@@ -34,12 +34,12 @@ export const reqSubmitFlie = (taskBody) =>
 export const reqTasksInfo = () =>
   requests({ url: `/model/status`, method: "get" });
 
-export const reqTaskResultInfo = (taskID) =>
-  requests({ url: `/model/result`, method: "get", params: { taskID: taskID } });
+export const reqTaskResultInfo = (params) =>
+  requests({ url: `/model/result/predict`, method: "get", params: params });
 
 
 export const reqCaptchaImg = () =>
   requests({ url: `/model/captcha`, method: "get" });
 
 export const reqVisImg = (taskID,seqID) =>
-  requests({ url: `/model/saliency`, method: "get",params: { taskID,seqID } });
+  requests({ url: `/model/result/saliency`, method: "get",params: { taskID,seqID } });

@@ -293,4 +293,10 @@ export default {
   border-color: #71d8ce !important;
   color: #fff !important;
 }
+
+.detailP{
+  font-size: 20px;
+  font-weight: bolder;
+  font-family: "Times New Roman";
+}
 </style>
