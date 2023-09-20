@@ -25,6 +25,17 @@
         <a-card-meta title="Contact" description="lsj<at>google.con" />
       </a-card>
     </div> -->
+    <!-- <img src="liuLab.jpg" alt="" style="width: 100%;margin: 20px 0px;"> -->
+    <div class="container-block">
+        <img src="liuLab.jpg">
+        <div class="inner-block">
+          <div class="slider-top-right"></div>
+        </div>
+        <div class="block-content">
+          <h1>Contact us</h1>
+        </div>
+      </div>
+
     <div class="row">
       <div class="services-style-two col-xl-3 col-md-3">
         <div class="services-style-two-item">
@@ -32,9 +43,11 @@
             <div class="thumb">
               <img src="../assets/picture/34.jpg" alt="Image Not Found" />
             </div>
+            <p style="font-size: 25px;font-weight: bolder;">
+              xxxxxx
+            </p>
             <p>
-              Continue indulged speaking technical maximum horrible domestic
-              position seeing.
+              email:xxxxxxxxxxxx@xxx.xxx
             </p>
           </div>
           <h5 class="title">
@@ -50,9 +63,11 @@
             <div class="thumb">
               <img src="../assets/picture/34.jpg" alt="Image Not Found" />
             </div>
+            <p style="font-size: 25px;font-weight: bolder;">
+              xxxxxx
+            </p>
             <p>
-              Recenting indulged speaking technical maximum horrible domestic
-              position seeing.
+              email:xxxxxxxxxxxx@xxx.xxx
             </p>
           </div>
           <h5 class="title">
@@ -68,9 +83,11 @@
             <div class="thumb">
               <img src="../assets/picture/34.jpg" alt="Image Not Found" />
             </div>
+            <p style="font-size: 25px;font-weight: bolder;">
+              xxxxxx
+            </p>
             <p>
-              Continue indulged speaking technical maximum horrible domestic
-              position seeing.
+              email:xxxxxxxxxxxx@xxx.xxx
             </p>
           </div>
           <h5 class="title">
@@ -86,9 +103,11 @@
             <div class="thumb">
               <img src="../assets/picture/34.jpg" alt="Image Not Found" />
             </div>
+            <p style="font-size: 25px;font-weight: bolder;">
+              xxxxxx
+            </p>
             <p>
-              Maximum indulged speaking technical maximum horrible domestic
-              position seeing.
+              email:xxxxxxxxxxxx@xxx.xxx
             </p>
           </div>
           <h5 class="title">
@@ -98,8 +117,8 @@
           </h5>
         </div>
       </div>
-      <!-- End Single Item -->
     </div>
+  
   </div>
 </template>
 
@@ -134,7 +153,7 @@ export default {
 <style scoped>
 
 .about {
-  height: 1000px;
+  height: 1200px;
   text-align: center;
   width: 70%;
   margin: 0 auto;
@@ -159,5 +178,101 @@ export default {
 <style lang="less" scoped>
 /deep/.ant-card-meta-detail > div:not(:last-child) {
   margin-bottom: 0px;
+}
+
+.container-block {
+	color: #fff;
+	display: inline-block;
+	margin: 2rem;
+	// max-width: 500px;
+	position: relative;	
+	&::before {
+		background-color: rgba(0, 0, 0, .1);
+		bottom: 0;
+		content: '';
+		display: block;
+		position: absolute;
+		top: 0;
+		width: 100%;
+	}
+	&:hover {
+		.inner-block:before,
+		.slider-top-right:after {
+			height: 100%;
+		}
+		.inner-block:after,
+		.slider-top-right:before {
+			width: 100%;
+		}
+	}
+	img {
+		display: block;
+		max-width: 100%;
+	}
+}
+
+.block-content {
+	position: absolute;
+	bottom: 10%;
+	left: 10%;
+	padding: 0 1rem;
+}
+
+.slider-top-right:before,
+.inner-block:after {
+	height: 4px;
+	transition: width .75s ease;
+	width: 0%;
+}
+
+.slider-top-right:after,
+.inner-block:before {
+	height: 0%;
+	transition: height .75s ease;
+	width: 4px;
+}
+
+.inner-block:before,
+.inner-block:after,
+.slider-top-right:before,
+.slider-top-right:after {
+	background-color: #fff;
+	content: '';
+	display: block;
+	position: absolute;
+}
+
+.inner-block {
+	font-size: 2em;
+	width: 90%;
+	height: 90%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	margin: auto;
+	&:before {
+		bottom: 0;
+		left: 0;
+	}
+	&:after {
+		bottom: 0;
+		right: 0;
+	}
+}
+
+.slider-top-right {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	&:before {
+		top: 0;
+		left: 0;
+	}
+	&:after {
+		top: 0;
+		right: 0;
+	}
 }
 </style>
