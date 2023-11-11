@@ -4,8 +4,8 @@
 -->
 <template>
   <div class="about">
-    <div style="margin: 15px">
-      <h1 style="font-size: 40px; font-weight: bold">TOUR TEAM</h1>
+    <div>
+      <h1 style="font-size: 40px; font-weight: bold">OUR TEAM</h1>
     </div>
     <!-- <div class="member">
       <a-card
@@ -36,7 +36,22 @@
         </div>
       </div>
 
-    <div class="row">
+      <div>
+          <p style="font-size: 25px;font-weight: bolder;">
+          Zhenye Wang
+            </p>
+            <p>
+              wangzhenye@webmail.hzau.edu.cn
+            </p>
+            <p style="font-size: 25px;font-weight: bolder;">
+              Jianxiao Liu
+            </p>
+            <p>
+              liujianxiao321@webmail.hzau.edu.cn
+            </p>
+      </div>
+
+    <!-- <div class="row">
       <div class="services-style-two col-xl-3 col-md-3">
         <div class="services-style-two-item">
           <div class="info">
@@ -117,7 +132,7 @@
           </h5>
         </div>
       </div>
-    </div>
+    </div> -->
   
   </div>
 </template>
@@ -153,7 +168,7 @@ export default {
 <style scoped>
 
 .about {
-  height: 1200px;
+  /* height: 1200px; */
   text-align: center;
   width: 70%;
   margin: 0 auto;

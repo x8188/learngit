@@ -43,7 +43,7 @@
             @size-change="handleSizeChange"
             @current-change="handleCurrentChange"
             :current-page.sync="pageNum"
-            :page-sizes="[10, 50, 100]"
+            :page-sizes="[10,20,30,50]"
             :page-size.sync="pageSize"
             layout="total,sizes, prev, pager, next"
             :total.sync="total">
@@ -236,28 +236,33 @@ export default {
         
         this.visSeqOp = this.expData.map((x, index) => {
           return {
-            value: index,
-            label: index + " : " + x.Ann1_name +' and '+ x.Ann2_name,
+            value: (this.pageNum-1)*this.pageSize+index,
+            label: (this.pageNum-1)*this.pageSize+index + " : " + x.Ann1_name +' and '+ x.Ann2_name,
           };
         });
+
+        this.visSeq=(this.pageNum-1)*this.pageSize
       }
     },
     dowload(flag, event) {
-      let dowload_url = "http://124.220.197.196/";
-      if (flag == 1) {
-        dowload_url = this.dowloadTable;
-        window.open(dowload_url);
-      } else if (flag == 2) {
-        dowload_url = this.dowloadTable2;
-        window.open(dowload_url);
-      } else {
-        dowload_url = this.imgurl.chg;
-        window.open(dowload_url);
-        // this.downloadImage(dowload_url);
-        dowload_url = this.imgurl.seq;
-        window.open(dowload_url);
-        // this.downloadImage(dowload_url);
-      }
+      let dowload_url = "http://124.220.197.196/"+`result/${this.id}_predict_expression.csv`;
+
+      window.open(dowload_url);
+
+      // if (flag == 1) {
+      //   dowload_url = this.dowloadTable;
+      //   window.open(dowload_url);
+      // } else if (flag == 2) {
+      //   dowload_url = this.dowloadTable2;
+      //   window.open(dowload_url);
+      // } else {
+      //   dowload_url = this.imgurl.chg;
+      //   window.open(dowload_url);
+      //   // this.downloadImage(dowload_url);
+      //   dowload_url = this.imgurl.seq;
+      //   window.open(dowload_url);
+      //   // this.downloadImage(dowload_url);
+      // }
       // console.log(dowload_url)
 
       let target = event.target;
@@ -280,10 +285,12 @@ export default {
       }
     },
     handleSizeChange(){
-      this.getTaskInfo()
+      this.getTaskInfo();
+      this.seqChange();
     },
     handleCurrentChange(){
-      this.getTaskInfo()
+      this.getTaskInfo();
+      this.seqChange();
     }
   },
   created() {

@@ -56,22 +56,22 @@
             </div>
             <div>
               <el-tabs tab-position="top" stretch>
-                <el-tab-pane label="ear(Li et al. 2019)">
+                <el-tab-pane label="Ear(Li et al. 2019)">
                   <Table :tdata="ppi_dou_ear"></Table>
                   <!-- <Chart chartName="chart1"></Chart> -->
                 </el-tab-pane>
-                <el-tab-pane label="ear(Sun et al. 2020)">
+                <el-tab-pane label="Ear(Sun et al. 2020)">
                   <Table :tdata="ppi_dou_pie"></Table>
                   <!-- <Chart chartName="chart2"></Chart> -->
                 </el-tab-pane>
-                <el-tab-pane label="tassel(Sun et al. 2020)">
+                <el-tab-pane label="Tassel(Sun et al. 2020)">
                   <Table :tdata="ppi_dou_pit"></Table>
                   <!-- <Chart chartName="chart3"></Chart> -->
                 </el-tab-pane>
-                <el-tab-pane label="shoot(Peng et al. 2019)">
+                <el-tab-pane label="Shoot(Peng et al. 2019)">
                   <Table :tdata="ppi_dou_py"></Table>
                 </el-tab-pane>
-                <el-tab-pane label="shoot(Li et al. 2019)">
+                <el-tab-pane label="Shoot(Li et al. 2019)">
                   <Table :tdata="ppi_dou_shoot"></Table>
                 </el-tab-pane>
               </el-tabs>
@@ -82,8 +82,8 @@
               <span class="tableTitle">PPI SEQ TABLE</span>
             </div>
             <div>
-              <el-tabs tab-position="top" stretch class="resTabs">
-                <el-tab-pane label="gene1" :lazy="true">
+              <el-tabs tab-position="top" stretch class="resTabs" @tab-click="changeMaizeHot">
+                <el-tab-pane label="PPI-gene1" :lazy="true">
                   <Chart
                     chartName="gradient1"
                     chartHotname="HotMap1"
@@ -92,7 +92,7 @@
                     :chartHotData="ppi_seq1.heat"
                   ></Chart>
                 </el-tab-pane>
-                <el-tab-pane label="gene2" :lazy="true">
+                <el-tab-pane label="PPI-gene2" :lazy="true">
                   <Chart
                     chartName="gradient2"
                     chartHotname="HotMap2"
@@ -101,7 +101,7 @@
                     :chartHotData="ppi_seq2.heat"
                   ></Chart>
                 </el-tab-pane>
-                <el-tab-pane label="gen3" :lazy="true">
+                <el-tab-pane label="PPI-gene3" :lazy="true">
                   <Chart
                     chartName="gradient3"
                     chartHotname="HotMap3"
@@ -110,7 +110,7 @@
                     :chartHotData="ppi_seq3.heat"
                   ></Chart>
                 </el-tab-pane>
-                <el-tab-pane label="gene4" :lazy="true">
+                <el-tab-pane label="PPI-gene4" :lazy="true">
                   <Chart
                     chartName="gradient4"
                     chartHotname="HotMap4"
@@ -136,13 +136,13 @@
             </div>
             <div>
               <el-tabs tab-position="top" stretch class="resTabs">
-                <el-tab-pane label="ear(Li et al. 2019)">
+                <el-tab-pane label="Ear(Li et al. 2019)">
                   <Table :tdata="pdi_dou_ear"></Table>
                 </el-tab-pane>
-                <el-tab-pane label="shoot(Peng et al. 2019)">
+                <el-tab-pane label="Shoot(Peng et al. 2019)">
                   <Table :tdata="pdi_dou_py"></Table>
                 </el-tab-pane>
-                <el-tab-pane label="shoot(Li et al. 2019)">
+                <el-tab-pane label="Shoot(Li et al. 2019)">
                   <Table :tdata="pdi_dou_shoot"></Table>
                 </el-tab-pane>
               </el-tabs>
@@ -153,8 +153,8 @@
               <span class="tableTitle">PDI SEQ TABLE</span>
             </div>
             <div>
-              <el-tabs tab-position="top" stretch class="resTabs">
-                <el-tab-pane label="gene1" :lazy="true">
+              <el-tabs tab-position="top" stretch class="resTabs"  @tab-click="changeMaizeHot">
+                <el-tab-pane label="PDI-gene1" :lazy="true">
                   <Chart
                     chartName="gradient5"
                     chartHotname="HotMap5"
@@ -163,7 +163,7 @@
                     :chartHotData="pdi_seq1.heat"
                   ></Chart>
                 </el-tab-pane>
-                <el-tab-pane label="gene2" :lazy="true">
+                <el-tab-pane label="PDI-gene2" :lazy="true">
                   <Chart
                     chartName="gradient6"
                     chartHotname="HotMap6"
@@ -172,7 +172,7 @@
                     :chartHotData="pdi_seq2.heat"
                   ></Chart>
                 </el-tab-pane>
-                <el-tab-pane label="gen3" :lazy="true">
+                <el-tab-pane label="PDI-gene3" :lazy="true">
                   <Chart
                     chartName="gradient7"
                     chartHotname="HotMap7"
@@ -181,7 +181,7 @@
                     :chartHotData="pdi_seq3.heat"
                   ></Chart>
                 </el-tab-pane>
-                <el-tab-pane label="gene4" :lazy="true">
+                <el-tab-pane label="PDI-gene4" :lazy="true">
                   <Chart
                     chartName="gradient8"
                     chartHotname="HotMap8"
@@ -215,22 +215,22 @@
                 <el-tab-pane label="H3K4">
                   <Table :tdata="table4"></Table>
                 </el-tab-pane>
-                <el-tab-pane label="pred_H3K4me3">
+                <el-tab-pane label="Pred_H3K4me3">
                   <Table :tdata="table5"></Table>
                 </el-tab-pane>
-                <el-tab-pane label="pred_H3K9me2">
+                <el-tab-pane label="Pred_H3K9me2">
                   <Table :tdata="table6"></Table>
                 </el-tab-pane>
-                <el-tab-pane label="pred_RNAP2">
+                <el-tab-pane label="Pred_RNAP2">
                   <Table :tdata="table7"></Table>
                 </el-tab-pane>
-                <el-tab-pane label="pred_H3K4">
+                <el-tab-pane label="Pred_H3K4">
                   <Table :tdata="table8"></Table>
                 </el-tab-pane>
-                <el-tab-pane label="pred_H3K9">
+                <el-tab-pane label="Pred_H3K9">
                   <Table :tdata="table9"></Table>
                 </el-tab-pane>
-                <el-tab-pane label="pred_ZS_RNAP2">
+                <el-tab-pane label="Pred_ZS_RNAP2">
                   <Table :tdata="table10"></Table>
                 </el-tab-pane>
               </el-tabs>
@@ -261,16 +261,16 @@
                 <el-tab-pane label="D5">
                   <Table :tdata="table4"></Table>
                 </el-tab-pane>
-                <el-tab-pane label="outA1">
+                <el-tab-pane label="OutA1">
                   <Table :tdata="table5"></Table>
                 </el-tab-pane>
-                <el-tab-pane label="outB1">
+                <el-tab-pane label="OutB1">
                   <Table :tdata="table6"></Table>
                 </el-tab-pane>
-                <el-tab-pane label="outC1">
+                <el-tab-pane label="OutC1">
                   <Table :tdata="table7"></Table>
                 </el-tab-pane>
-                <el-tab-pane label="outD5">
+                <el-tab-pane label="OutD5">
                   <Table :tdata="table8"></Table>
                 </el-tab-pane>
               </el-tabs>
@@ -286,10 +286,10 @@
             </div>
             <div>
               <el-tabs tab-position="top" stretch>
-                <el-tab-pane label="pred_wheat-interaction">
+                <el-tab-pane label="Pred_wheat-interaction">
                   <Table :tdata="table1"></Table>
                 </el-tab-pane>
-                <el-tab-pane label="wheat-interaction">
+                <el-tab-pane label="Wheat-interaction">
                   <Table :tdata="table2"></Table>
                 </el-tab-pane>
               </el-tabs>
@@ -356,9 +356,9 @@ function verticalSum(arr) {
 // 因为列是自动生成的，所以在这里调整pre的顺序
 function lastpre(data) {
 
-  const preValue = data.pre;
-  delete data.pre;
-  data.pre=preValue
+  const preValue = data.Prediction;
+  delete data.Prediction;
+  data.Prediction=preValue
   return data;
 }
 export default {
@@ -413,18 +413,18 @@ export default {
         this.pdi_dou_py = result["pdi/dou_py.csv"];
         this.pdi_dou_shoot = result["pdi/dou_shoot.csv"];
 
-        this.ppi_seq1 = result["ppi/tp%Zm00001d015179%Zm00001d013461.csv"];
-        this.ppi_seq2 = result["ppi/tp%Zm00001d015196%Zm00001d015201.csv"];
-        this.ppi_seq3 = result["ppi/tp%Zm00001d015200%Zm00001d015195.csv"];
-        this.ppi_seq4 = result["ppi/tp%Zm00001d015437%Zm00001d015442.csv"];
+        // this.ppi_seq1 = result["ppi/tp%Zm00001d015179%Zm00001d013461.csv"];
+        // this.ppi_seq2 = result["ppi/tp%Zm00001d015196%Zm00001d015201.csv"];
+        // this.ppi_seq3 = result["ppi/tp%Zm00001d015200%Zm00001d015195.csv"];
+        // this.ppi_seq4 = result["ppi/tp%Zm00001d015437%Zm00001d015442.csv"];
 
-        this.pdi_seq1 =
-          result["pdi/tp%Dm7-172648446-172650936%Zm00001d022198.csv"];
-        this.pdi_seq2 =
-          result["pdi/tp%Dm7-173145242-173149220%Zm00001d022226.csv"];
-        this.pdi_seq3 =
-          result["pdi/tp%Dm7-179246147-179251064%Zm00001d022425.csv"];
-        this.pdi_seq4 = result["pdi/tp%Dm8-5125573-5135954%Zm00001d008316.csv"];
+        // this.pdi_seq1 =
+        //   result["pdi/tp%Dm7-172648446-172650936%Zm00001d022198.csv"];
+        // this.pdi_seq2 =
+        //   result["pdi/tp%Dm7-173145242-173149220%Zm00001d022226.csv"];
+        // this.pdi_seq3 =
+        //   result["pdi/tp%Dm7-179246147-179251064%Zm00001d022425.csv"];
+        // this.pdi_seq4 = result["pdi/tp%Dm8-5125573-5135954%Zm00001d008316.csv"];
       }
     },
     async changeType(ty) {
@@ -449,8 +449,8 @@ export default {
       // console.log(result);
       console.log(ty);
       if (ty == "maize") {
-        console.log(result["ppi/dou_ear.csv"])
-        console.log(lastpre(result["ppi/dou_ear.csv"]))
+        // console.log(result["ppi/dou_ear.csv"])
+        // console.log(lastpre(result["ppi/dou_ear.csv"]))
         this.ppi_dou_ear = convertToElTableFormat(lastpre(result["ppi/dou_ear.csv"]));
         this.ppi_dou_pie = convertToElTableFormat (lastpre(result["ppi/dou_pie.csv"]));
         this.ppi_dou_pit = convertToElTableFormat (lastpre(result["ppi/dou_pit.csv"]));
@@ -460,25 +460,41 @@ export default {
         this.pdi_dou_py = convertToElTableFormat (lastpre(result["pdi/dou_py.csv"]));
         this.pdi_dou_shoot = convertToElTableFormat (lastpre(result["pdi/dou_shoot.csv"]));
 
-        this.ppi_seq1.heat = convertToCustomFormat(result["ppi/tn%Zm00001d001808%Zm00001d001799.csv"]);
-        this.ppi_seq1.gradient= verticalSum(result["ppi/tn%Zm00001d001808%Zm00001d001799.csv"]);
-        this.ppi_seq2.heat = convertToCustomFormat(result["ppi/tn%Zm00001d001831%Zm00001d001837.csv"]);
-        this.ppi_seq2.gradient = verticalSum(result["ppi/tn%Zm00001d001831%Zm00001d001837.csv"]);
-        this.ppi_seq3.heat = convertToCustomFormat(result["ppi/tn%Zm00001d001839%Zm00001d001841.csv"]);
-        this.ppi_seq3.gradient = verticalSum(result["ppi/tn%Zm00001d001839%Zm00001d001841.csv"]);
-        this.ppi_seq4.heat = convertToCustomFormat(result["ppi/tn%Zm00001d001933%Zm00001d001936.csv"]);
-        this.ppi_seq4.gradient = verticalSum(result["ppi/tn%Zm00001d001933%Zm00001d001936.csv"]);
-        // this.ppi_seq3 = result[""];
-        // this.ppi_seq4 = result[""];
+        // let id=1
+        // let result1=await this.$API.reqMaizeHot(id)
+        // if(id==1){
+        //   this.ppi_seq1.heat = convertToCustomFormat(result1['data'])
+        //   this.ppi_seq1.gradient = verticalSum(result1['data'])
+        // }
 
-        this.pdi_seq1.heat =convertToCustomFormat(result["pdi/tp%Dm3-21615911-21620132%Zm00001d039976.csv"]);
-        this.pdi_seq1.gradient =verticalSum(result["pdi/tp%Dm3-21615911-21620132%Zm00001d039976.csv"]);
-        this.pdi_seq2.heat =convertToCustomFormat (result["pdi/tp%Dm3-172766947-172771212%Zm00001d042589.csv"]);
-        this.pdi_seq2.gradient =verticalSum (result["pdi/tp%Dm3-172766947-172771212%Zm00001d042589.csv"]);
-        this.pdi_seq3.heat =convertToCustomFormat (result["pdi/tp%Dm3-196060252-196064377%Zm00001d043312.csv"]);
-        this.pdi_seq3.gradient =verticalSum (result["pdi/tp%Dm3-196060252-196064377%Zm00001d043312.csv"]);
-        this.pdi_seq2.heat =convertToCustomFormat (result["pdi/tp%Dm3-203900476-203903784%Zm00001d043562.csv"]);
-        this.pdi_seq2.gradient =verticalSum (result["pdi/tp%Dm3-203900476-203903784%Zm00001d043562.csv"]);
+        // await this.getMaizeHot(0);
+        // await this.getMaizeHot(1);
+        // await this.getMaizeHot(2);
+        // await this.getMaizeHot(3);
+        // await this.getMaizeHot(4);
+        // await this.getMaizeHot(5);
+        // await this.getMaizeHot(6);
+        // await this.getMaizeHot(7);
+
+        // this.ppi_seq1.heat = convertToCustomFormat(result["ppi/tn%Zm00001d001808%Zm00001d001799.csv"]);
+        // this.ppi_seq1.gradient= verticalSum(result["ppi/tn%Zm00001d001808%Zm00001d001799.csv"]);
+        // this.ppi_seq2.heat = convertToCustomFormat(result["ppi/tn%Zm00001d001831%Zm00001d001837.csv"]);
+        // this.ppi_seq2.gradient = verticalSum(result["ppi/tn%Zm00001d001831%Zm00001d001837.csv"]);
+        // this.ppi_seq3.heat = convertToCustomFormat(result["ppi/tn%Zm00001d001839%Zm00001d001841.csv"]);
+        // this.ppi_seq3.gradient = verticalSum(result["ppi/tn%Zm00001d001839%Zm00001d001841.csv"]);
+        // this.ppi_seq4.heat = convertToCustomFormat(result["ppi/tn%Zm00001d001933%Zm00001d001936.csv"]);
+        // this.ppi_seq4.gradient = verticalSum(result["ppi/tn%Zm00001d001933%Zm00001d001936.csv"]);
+        // // this.ppi_seq3 = result[""];
+        // // this.ppi_seq4 = result[""];
+
+        // this.pdi_seq1.heat =convertToCustomFormat(result["pdi/tp%Dm3-21615911-21620132%Zm00001d039976.csv"]);
+        // this.pdi_seq1.gradient =verticalSum(result["pdi/tp%Dm3-21615911-21620132%Zm00001d039976.csv"]);
+        // this.pdi_seq2.heat =convertToCustomFormat (result["pdi/tp%Dm3-172766947-172771212%Zm00001d042589.csv"]);
+        // this.pdi_seq2.gradient =verticalSum (result["pdi/tp%Dm3-172766947-172771212%Zm00001d042589.csv"]);
+        // this.pdi_seq3.heat =convertToCustomFormat (result["pdi/tp%Dm3-196060252-196064377%Zm00001d043312.csv"]);
+        // this.pdi_seq3.gradient =verticalSum (result["pdi/tp%Dm3-196060252-196064377%Zm00001d043312.csv"]);
+        // this.pdi_seq2.heat =convertToCustomFormat (result["pdi/tp%Dm3-203900476-203903784%Zm00001d043562.csv"]);
+        // this.pdi_seq2.gradient =verticalSum (result["pdi/tp%Dm3-203900476-203903784%Zm00001d043562.csv"]);
         // this.pdi_seq3 =
         //   result["pdi/tp%Dm7-179246147-179251064%Zm00001d022425.csv"];
         // this.pdi_seq4 = result["pdi/tp%Dm8-5125573-5135954%Zm00001d008316.csv"];
@@ -509,10 +525,62 @@ export default {
       }
 
     },
+    async changeMaizeHot(tab, event){
+      console.log(tab, event);
+      if(tab.label=='PPIgene1') {await this.getMaizeHot(0)}
+      else if(tab.label=='PPIgene2') {await this.getMaizeHot(1);}
+    },
+
+    async getMaizeHot(id){
+      let result=await this.$API.reqMaizeHot(id)
+      if(id==0){
+        this.ppi_seq1.heat = convertToCustomFormat(result['data'])
+        this.ppi_seq1.gradient = verticalSum(result['data'])
+      }else if(id==1){
+        this.ppi_seq2.heat = convertToCustomFormat(result['data'])
+        this.ppi_seq2.gradient = verticalSum(result['data'])
+      }else if(id==2){
+        this.ppi_seq3.heat = convertToCustomFormat(result['data'])
+        this.ppi_seq3.gradient = verticalSum(result['data'])
+      }else if(id==3){
+        this.ppi_seq4.heat = convertToCustomFormat(result['data'])
+        this.ppi_seq4.gradient = verticalSum(result['data'])
+      }else if(id==4){
+        this.pdi_seq1.heat = convertToCustomFormat(result['data'])
+        this.pdi_seq1.gradient = verticalSum(result['data'])
+      }else if(id==5){
+        this.pdi_seq2.heat = convertToCustomFormat(result['data'])
+        this.pdi_seq2.gradient = verticalSum(result['data'])
+      }else if(id==6){
+        this.pdi_seq3.heat = convertToCustomFormat(result['data'])
+        this.pdi_seq3.gradient = verticalSum(result['data'])
+      }else if(id==7){
+        this.pdi_seq4.heat = convertToCustomFormat(result['data'])
+        this.pdi_seq4.gradient = verticalSum(result['data'])
+      }
+
+    },
   },
-  mounted() {
+  // async created(){
+  //   await this.getMaizeHot(0);
+  //   console.log(this.ppi_seq1.gradient!=undefined)
+  // },
+  async mounted() {
     // this.getTable();
+
+    await this.getMaizeHot(0);
+    await this.getMaizeHot(1);
+    await this.getMaizeHot(2);
+    await this.getMaizeHot(3);
+    await this.getMaizeHot(4);
+    await this.getMaizeHot(5);
+    await this.getMaizeHot(6);
+    await this.getMaizeHot(7);
+
     this.changeType(this.type);
+    
+    // console.log(this.ppi_seq1.gradient!=undefined)
+
   },
 };
 </script>

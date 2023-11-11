@@ -23,7 +23,7 @@
                     <span class="mdoelT">Cotton Prediction</span>
                   </div>
                   <div>
-                    <h3 style=" text-align: justify; font-family: 'Times New Roman'; font-weight: bolder;">
+                    <h3 style=" text-align: justify; font-family: 'Times New Roman';">
                       Here we provide training models based on eight cotton materials for prediction.
                       <br>(1) The eight cotton materials involved are numbered: A2, B1, C1, D5, E1, F1, G1 and K2;
                       <br>(2) The length of the chromatin interaction sequence of the input gene is 3kb.
@@ -71,7 +71,7 @@
                     <span class="cardTitle">Note</span>
                   </div>
                   <div>
-                    <p style="font-size: 15px;text-align: justify;font-weight: bold;">
+                    <p style="font-size: 15px;text-align: justify; font-family: 'Times New Roman';">
                       (1) We provide two ways to input sequences: online input and local upload;
                     <br>(2) The above two input methods must satisfy the form of the input interactive pair (see example below);
                     <br>(3) In both input methods, the standard fasta format sequence is required to be input;
@@ -240,14 +240,14 @@
                   ><i class="el-icon-folder-add"></i> Upload files</span
                 >
                 <el-row style="text-align: center">
-                  <el-alert
+                  <!-- <el-alert
                     title="BE CAREFUL-------After switching the method, the uploaded file will be cleared"
                     style="width: 50%; margin: 0 auto"
                     center
                     type="info"
                     close-text="got it"
                   >
-                  </el-alert>
+                  </el-alert> -->
                   <el-col :span="24" style="margin-top: 10px">
                     <div>
                       <h1
@@ -330,7 +330,7 @@
                   </el-form-item>
                   <el-form-item
                   prop="verify"
-                  label-width="100px"
+                  label-width="200px"
                   :rules="[
                     {
                       required: true,
@@ -339,7 +339,7 @@
                     },
                   ]"
                 >
-                  <span slot="label" style="font-size: 20px"> Verify: </span>
+                  <span slot="label" style="font-size: 20px">Enter the number: </span>
                   <div style="display: flex;">
                     <el-input
                   v-model="inputCaptcha"
@@ -887,15 +887,15 @@ export default {
     // 文件改变时监视，限制文件大小
     fileChange(file, fileList) {
       const isSize = file.size / 1024 / 1024;
-      let lim = 10;
+      let lim = 0.5;
       if (isSize > lim) {
         this.$msgbox({
-          message: "The file size exceeds the limit. Cotton:10mb PDI:10mb",
+          message: "The file size exceeds the limit. MAX:500kb",
           type: "error",
           confirmButtonText: "confrim",
         });
-        // const currIdx = this.fileList.indexOf(file);
-        // this.fileList.splice(currIdx, 1);
+        const currIdx = this.fileList.indexOf(file);
+        this.fileList.splice(currIdx, 1);
         return;
       }
 

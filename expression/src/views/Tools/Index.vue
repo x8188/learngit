@@ -88,7 +88,7 @@
               </div>
               <div>
                 <p class="detailP">
-                  Two expression prediction models, PPI and PDI, are provided based on corn B73 material.
+                  Two expression prediction models, PPI and PDI, are provided based on maize B73 material.
                 </p>
               </div>
             </div>
@@ -111,7 +111,7 @@
               </div>
               <div>
                 <p class="detailP">
-                  Provide gene expression prediction based on two materials of maize ZS97 and MH63.
+                  Provide gene expression prediction based on two materials of rice ZS97 and MH63.
                 </p>
               </div>
             </div>
@@ -158,7 +158,7 @@
               </div>
               <div>
                 <p class="detailP">
-                  Expression prediction based on chromatin interaction between seedling genes.
+                  Gene expression prediction based on Chinese Spring materials.
                 </p>
               </div>
             </div>

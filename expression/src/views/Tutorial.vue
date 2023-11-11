@@ -1,44 +1,6 @@
 <template>
   <div>
-    <a-affix :offset-top="100" id="content">
-      <!-- <i class="el-icon-notebook-2" style="font-weight: bold; font-size: 40px"
-        >CONTENT</i
-      > -->
-      <!-- <el-menu
-        default-active="2"
-        class="el-menu-vertical-demo"
-      >
-        <el-submenu index="1" @click="goTop(1)">
-          <template slot="title">
-            <i class="el-icon-location"></i>
-            <span>导航一</span>
-          </template>
-          <el-menu-item-group>
-            <template slot="title">分组一</template>
-            <el-menu-item index="1-1">选项1</el-menu-item>
-            <el-menu-item index="1-2">选项2</el-menu-item>
-          </el-menu-item-group>
-          <el-menu-item-group title="分组2">
-            <el-menu-item index="1-3">选项3</el-menu-item>
-          </el-menu-item-group>
-          <el-submenu index="1-4">
-            <template slot="title">选项4</template>
-            <el-menu-item index="1-4-1">选项1</el-menu-item>
-          </el-submenu>
-        </el-submenu>
-        <el-menu-item index="2" @click="goTop(2)">
-          <i class="el-icon-menu"></i>
-          <span slot="title">导航二</span>
-        </el-menu-item>
-        <el-menu-item index="3" @click="goTop(3)">
-          <i class="el-icon-document"></i>
-          <span slot="title">导航三</span>
-        </el-menu-item>
-        <el-menu-item index="4" @click="goTop(4)">
-          <i class="el-icon-setting"></i>
-          <span slot="title">导航四</span>
-        </el-menu-item>
-      </el-menu> -->
+    <!-- <a-affix :offset-top="100" id="content">
 
       <el-tree
         :data="data"
@@ -47,10 +9,10 @@
 
         :default-expand-all="true"
       ></el-tree>
-    </a-affix>
-
+    </a-affix> -->
+    <el-backtop target="" style="width: 70px;height: 70px;font-size: 40px;"></el-backtop>
     <el-row class="tac" type="flex" justify="center">
-      <el-col :span="12" id="doc">
+      <el-col :span="16" id="doc">
         <!-- <i class="el-icon-s-management" ref="top1">导航1</i>
         <h2>选项1</h2>
         <p>
@@ -177,10 +139,8 @@
                 mso-fareast-font-family: ����;
                 font-size: 14pt;
                 mso-font-kerning: 1pt;
-                background: rgb(255, 255, 0);
-                mso-highlight: rgb(255, 255, 0);
               "
-              >Selene Python SDK and Django</span
+              >Selene JAVA and VUE</span
             ><span
               style="
                 mso-spacerun: 'yes';
@@ -258,9 +218,9 @@
                 font-size: 14pt;
                 mso-font-kerning: 1pt;
               "
-              >Wang ZY#, Peng Y#, Li J#, Xie A, Zhang JL, Li KQ, Shi JQ, Xing GJ,
-              Shi WH, Liu JX* and Yan JB*(2023). Precise prediction of maize gene
-              expression from chromatin interactions with DeepCBA.</span
+              >Zhenye Wang<sup>#</sup>, Yong Peng<sup>#</sup>, Jie Li<sup>#</sup>, Jiying Li, Ao Xie, Jiangling Zhang, Hao Yuan, Xinru Ding, Shouzhe Wang, 
+              Keqin Li, Jiaqi Shi, Guangjie Xing, Weihan Shi, Jianbing Yan, Jianxiao Liu<sup>*</sup> (2023). 
+              DeepCBA: a deep learning framework for gene expression prediction in maize based on DNA sequence and chromatin interaction</span
             ><b
               ><span
                 style="
@@ -341,7 +301,7 @@
                 font-size: 14pt;
                 mso-font-kerning: 1pt;
               "
-              ><span style="mso-list: Ignore">&#216;<span>&nbsp;</span></span></span
+              ><span style="mso-list: Ignore">&#216;</span></span
             ><![endif]><span
               style="
                 mso-spacerun: 'yes';
@@ -350,6 +310,8 @@
                 font-size: 14pt;
                 mso-font-kerning: 1pt;
               "
+              class="mulu"
+              @click="clickTo('HomePage')"
               >Home Page</span
             ><span
               style="
@@ -381,7 +343,7 @@
                 font-size: 14pt;
                 mso-font-kerning: 1pt;
               "
-              ><span style="mso-list: Ignore">&#216;<span>&nbsp;</span></span></span
+              ><span style="mso-list: Ignore">&#216;</span></span
             ><![endif]><span
               style="
                 mso-spacerun: 'yes';
@@ -392,6 +354,8 @@
                 font-size: 14pt;
                 mso-font-kerning: 1pt;
               "
+              class="mulu"
+              @click="clickTo('Tools')"
               ><font face="Times New Roman">Tools</font></span
             ><span
               style="
@@ -423,19 +387,8 @@
                 font-size: 14pt;
                 mso-font-kerning: 1pt;
               "
-              ><span style="mso-list: Ignore">&#108;<span>&nbsp;</span></span></span
+              ><span style="mso-list: Ignore">&#108;</span></span
             ><![endif]><span
-              style="
-                mso-spacerun: 'yes';
-                font-family: ����;
-                mso-ascii-font-family: 'Times New Roman';
-                mso-hansi-font-family: 'Times New Roman';
-                mso-bidi-font-family: 'Times New Roman';
-                font-size: 14pt;
-                mso-font-kerning: 1pt;
-              "
-              ><font face="Times New Roman">S</font></span
-            ><span
               style="
                 mso-spacerun: 'yes';
                 font-family: 'Times New Roman';
@@ -443,7 +396,9 @@
                 font-size: 14pt;
                 mso-font-kerning: 1pt;
               "
-              >pecies Select</span
+              class="mulu"
+              @click="clickTo('SpeciesSelect')"
+              >Species Select</span
             ><span
               style="
                 mso-spacerun: 'yes';
@@ -474,19 +429,8 @@
                 font-size: 14pt;
                 mso-font-kerning: 1pt;
               "
-              ><span style="mso-list: Ignore">&#108;<span>&nbsp;</span></span></span
+              ><span style="mso-list: Ignore">&#108;</span></span
             ><![endif]><span
-              style="
-                mso-spacerun: 'yes';
-                font-family: ����;
-                mso-ascii-font-family: 'Times New Roman';
-                mso-hansi-font-family: 'Times New Roman';
-                mso-bidi-font-family: 'Times New Roman';
-                font-size: 14pt;
-                mso-font-kerning: 1pt;
-              "
-              ><font face="Times New Roman">M</font></span
-            ><span
               style="
                 mso-spacerun: 'yes';
                 font-family: 'Times New Roman';
@@ -494,7 +438,9 @@
                 font-size: 14pt;
                 mso-font-kerning: 1pt;
               "
-              >odel Select</span
+              class="mulu"
+              @click="clickTo('ModelSelect')"
+              >Model Select</span
             ><span
               style="
                 mso-spacerun: 'yes';
@@ -525,7 +471,7 @@
                 font-size: 14pt;
                 mso-font-kerning: 1pt;
               "
-              ><span style="mso-list: Ignore">&#108;<span>&nbsp;</span></span></span
+              ><span style="mso-list: Ignore">&#108;</span></span
             ><![endif]><span
               style="
                 mso-spacerun: 'yes';
@@ -534,6 +480,8 @@
                 font-size: 14pt;
                 mso-font-kerning: 1pt;
               "
+              class="mulu"
+              @click="clickTo('TargetInteraction')"
               >Target Interaction Pair Sequence Input(online or upload from
               disk)</span
             ><span
@@ -566,7 +514,7 @@
                 font-size: 14pt;
                 mso-font-kerning: 1pt;
               "
-              ><span style="mso-list: Ignore">&#108;<span>&nbsp;</span></span></span
+              ><span style="mso-list: Ignore">&#108;</span></span
             ><![endif]><span
               style="
                 mso-spacerun: 'yes';
@@ -575,6 +523,8 @@
                 font-size: 14pt;
                 mso-font-kerning: 1pt;
               "
+              class="mulu"
+              @click="clickTo('SubmitTask')"
               >Submit Task</span
             ><span
               style="
@@ -608,19 +558,8 @@
                 font-size: 14pt;
                 mso-font-kerning: 1pt;
               "
-              ><span style="mso-list: Ignore">&#216;<span>&nbsp;</span></span></span
+              ><span style="mso-list: Ignore">&#216;</span></span
             ><![endif]><span
-              style="
-                mso-spacerun: 'yes';
-                font-family: ����;
-                mso-ascii-font-family: 'Times New Roman';
-                mso-hansi-font-family: 'Times New Roman';
-                mso-bidi-font-family: 'Times New Roman';
-                font-size: 14pt;
-                mso-font-kerning: 1pt;
-              "
-              ><font face="Times New Roman">S</font></span
-            ><span
               style="
                 mso-spacerun: 'yes';
                 font-family: 'Times New Roman';
@@ -628,7 +567,9 @@
                 font-size: 14pt;
                 mso-font-kerning: 1pt;
               "
-              >earch</span
+              class="mulu"
+              @click="clickTo('Search')"
+              >Search</span
             ><span
               style="
                 mso-spacerun: 'yes';
@@ -659,19 +600,8 @@
                 font-size: 14pt;
                 mso-font-kerning: 1pt;
               "
-              ><span style="mso-list: Ignore">&#108;<span>&nbsp;</span></span></span
+              ><span style="mso-list: Ignore">&#108;</span></span
             ><![endif]><span
-              style="
-                mso-spacerun: 'yes';
-                font-family: ����;
-                mso-ascii-font-family: 'Times New Roman';
-                mso-hansi-font-family: 'Times New Roman';
-                mso-bidi-font-family: 'Times New Roman';
-                font-size: 14pt;
-                mso-font-kerning: 1pt;
-              "
-              ><font face="Times New Roman">Q</font></span
-            ><span
               style="
                 mso-spacerun: 'yes';
                 font-family: 'Times New Roman';
@@ -679,7 +609,9 @@
                 font-size: 14pt;
                 mso-font-kerning: 1pt;
               "
-              >uery Your Job</span
+              class="mulu"
+              @click="clickTo('QueryYour')"
+              >Query Your Job</span
             ><span
               style="
                 mso-spacerun: 'yes';
@@ -710,7 +642,7 @@
                 font-size: 14pt;
                 mso-font-kerning: 1pt;
               "
-              ><span style="mso-list: Ignore">&#108;<span>&nbsp;</span></span></span
+              ><span style="mso-list: Ignore">&#108;</span></span
             ><![endif]><span
               style="
                 mso-spacerun: 'yes';
@@ -719,6 +651,8 @@
                 font-size: 14pt;
                 mso-font-kerning: 1pt;
               "
+              class="mulu"
+              @click="clickTo('JobQueue')"
               >Job Queue</span
             ><span
               style="
@@ -752,7 +686,7 @@
                 font-size: 14pt;
                 mso-font-kerning: 1pt;
               "
-              ><span style="mso-list: Ignore">&#108;<span>&nbsp;</span></span></span
+              ><span style="mso-list: Ignore">&#108;</span></span
             ><![endif]><span
               style="
                 mso-spacerun: 'yes';
@@ -761,6 +695,8 @@
                 font-size: 14pt;
                 mso-font-kerning: 1pt;
               "
+              class="mulu"
+              @click="clickTo('DetailedResults')"
               >Detailed Results Display of Your Job</span
             ><span
               style="
@@ -794,19 +730,8 @@
                 font-size: 14pt;
                 mso-font-kerning: 1pt;
               "
-              ><span style="mso-list: Ignore">&#216;<span>&nbsp;</span></span></span
+              ><span style="mso-list: Ignore">&#216;</span></span
             ><![endif]><span
-              style="
-                mso-spacerun: 'yes';
-                font-family: ����;
-                mso-ascii-font-family: 'Times New Roman';
-                mso-hansi-font-family: 'Times New Roman';
-                mso-bidi-font-family: 'Times New Roman';
-                font-size: 14pt;
-                mso-font-kerning: 1pt;
-              "
-              ><font face="Times New Roman">R</font></span
-            ><span
               style="
                 mso-spacerun: 'yes';
                 font-family: 'Times New Roman';
@@ -814,7 +739,9 @@
                 font-size: 14pt;
                 mso-font-kerning: 1pt;
               "
-              >esults</span
+              class="mulu"
+              @click="clickTo('Results')"
+              >Results</span
             ><span
               style="
                 mso-spacerun: 'yes';
@@ -845,7 +772,7 @@
                 font-size: 14pt;
                 mso-font-kerning: 1pt;
               "
-              ><span style="mso-list: Ignore">&#108;<span>&nbsp;</span></span></span
+              ><span style="mso-list: Ignore">&#108;</span></span
             ><![endif]><span
               style="
                 mso-spacerun: 'yes';
@@ -854,6 +781,8 @@
                 font-size: 14pt;
                 mso-font-kerning: 1pt;
               "
+              class="mulu"
+              @click="clickTo('SpeciesSelect2')"
               >Species Select</span
             ><span
               style="
@@ -885,7 +814,7 @@
                 font-size: 14pt;
                 mso-font-kerning: 1pt;
               "
-              ><span style="mso-list: Ignore">&#108;<span>&nbsp;</span></span></span
+              ><span style="mso-list: Ignore">&#108;</span></span
             ><![endif]><span
               style="
                 mso-spacerun: 'yes';
@@ -894,6 +823,8 @@
                 font-size: 14pt;
                 mso-font-kerning: 1pt;
               "
+              class="mulu"
+              @click="clickTo('Statistics')"
               >Statistics</span
             ><span
               style="
@@ -925,19 +856,8 @@
                 font-size: 14pt;
                 mso-font-kerning: 1pt;
               "
-              ><span style="mso-list: Ignore">&#216;<span>&nbsp;</span></span></span
+              ><span style="mso-list: Ignore">&#216;</span></span
             ><![endif]><span
-              style="
-                mso-spacerun: 'yes';
-                font-family: ����;
-                mso-ascii-font-family: 'Times New Roman';
-                mso-hansi-font-family: 'Times New Roman';
-                mso-bidi-font-family: 'Times New Roman';
-                font-size: 14pt;
-                mso-font-kerning: 1pt;
-              "
-              ><font face="Times New Roman">T</font></span
-            ><span
               style="
                 mso-spacerun: 'yes';
                 font-family: 'Times New Roman';
@@ -945,7 +865,9 @@
                 font-size: 14pt;
                 mso-font-kerning: 1pt;
               "
-              >utorial</span
+              class="mulu"
+              @click="clickTo('Tutorial')"
+              >Tutorial</span
             ><span
               style="
                 mso-spacerun: 'yes';
@@ -976,7 +898,7 @@
                 font-size: 14pt;
                 mso-font-kerning: 1pt;
               "
-              ><span style="mso-list: Ignore">&#108;<span>&nbsp;</span></span></span
+              ><span style="mso-list: Ignore">&#108;</span></span
             ><![endif]><span
               style="
                 mso-spacerun: 'yes';
@@ -985,6 +907,8 @@
                 font-size: 14pt;
                 mso-font-kerning: 1pt;
               "
+              class="mulu"
+              @click="clickTo('ServiceGuide')"
               >Service Guide</span
             ><span
               style="
@@ -1018,19 +942,8 @@
                 font-size: 14pt;
                 mso-font-kerning: 1pt;
               "
-              ><span style="mso-list: Ignore">&#216;<span>&nbsp;</span></span></span
+              ><span style="mso-list: Ignore">&#216;</span></span
             ><![endif]><span
-              style="
-                mso-spacerun: 'yes';
-                font-family: ����;
-                mso-ascii-font-family: 'Times New Roman';
-                mso-hansi-font-family: 'Times New Roman';
-                mso-bidi-font-family: 'Times New Roman';
-                font-size: 14pt;
-                mso-font-kerning: 1pt;
-              "
-              ><font face="Times New Roman">R</font></span
-            ><span
               style="
                 mso-spacerun: 'yes';
                 font-family: 'Times New Roman';
@@ -1038,7 +951,9 @@
                 font-size: 14pt;
                 mso-font-kerning: 1pt;
               "
-              >esources</span
+              class="mulu"
+              @click="clickTo('Resources')"
+              >Resources</span
             ><span
               style="
                 mso-spacerun: 'yes';
@@ -1093,39 +1008,18 @@
                 font-size: 14pt;
                 mso-font-kerning: 1pt;
               "
-              >1</span
-            ><span
-              style="
-                mso-spacerun: 'yes';
-                font-family: ����;
-                mso-ascii-font-family: 'Times New Roman';
-                mso-hansi-font-family: 'Times New Roman';
-                mso-bidi-font-family: 'Times New Roman';
-                font-size: 14pt;
-                mso-font-kerning: 1pt;
-              "
-              ><font face="����">��</font
-              ><font face="Times New Roman">H</font></span
+              ></span
             ><span
               style="
                 mso-spacerun: 'yes';
                 font-family: 'Times New Roman';
                 mso-fareast-font-family: ����;
-                font-size: 14pt;
+                font-size: 18pt;
                 mso-font-kerning: 1pt;
+                font-weight: bold;
               "
-              >ome P</span
-            ><span
-              style="
-                mso-spacerun: 'yes';
-                font-family: ����;
-                mso-ascii-font-family: 'Times New Roman';
-                mso-hansi-font-family: 'Times New Roman';
-                mso-bidi-font-family: 'Times New Roman';
-                font-size: 14pt;
-                mso-font-kerning: 1pt;
-              "
-              ><font face="Times New Roman">age</font></span
+              ref="HomePage"
+              >1、Home Page</span
             ><span
               style="
                 mso-spacerun: 'yes';
@@ -1192,7 +1086,7 @@
                 font-size: 12pt;
                 mso-font-kerning: 1pt;
               "
-              >Here, you can select the species, go to Toos, result, statistics,
+              >Here, you can select the species, go to Tools, result, statistics,
               tutorial.</span
             ><span
               style="
@@ -1255,11 +1149,12 @@
                 mso-ascii-font-family: 'Times New Roman';
                 mso-hansi-font-family: 'Times New Roman';
                 mso-bidi-font-family: 'Times New Roman';
-                font-size: 14pt;
+                font-size: 18pt;
                 mso-font-kerning: 1pt;
+                font-weight: bold;
               "
-              ><font face="Times New Roman">2</font><font face="����">��</font
-              ><font face="Times New Roman">Tools</font></span
+              ref="Tools"
+              ><font face="Times New Roman">2、</font><font face="Times New Roman">Tools</font></span
             ><span
               style="
                 mso-spacerun: 'yes';
@@ -1275,23 +1170,14 @@
             <span
               style="
                 mso-spacerun: 'yes';
-                font-family: ����;
-                mso-ascii-font-family: 'Times New Roman';
-                mso-hansi-font-family: 'Times New Roman';
-                mso-bidi-font-family: 'Times New Roman';
-                font-size: 14pt;
-                mso-font-kerning: 1pt;
-              "
-              ><font face="Times New Roman">(</font></span
-            ><span
-              style="
-                mso-spacerun: 'yes';
                 font-family: 'Times New Roman';
                 mso-fareast-font-family: ����;
-                font-size: 14pt;
+                font-size: 16pt;
+                font-weight: bold;
                 mso-font-kerning: 1pt;
               "
-              >1)Species Select</span
+              ref="SpeciesSelect"
+              >(1)Species Select</span
             ><span
               style="
                 mso-spacerun: 'yes';
@@ -1367,23 +1253,14 @@
             <span
               style="
                 mso-spacerun: 'yes';
-                font-family: ����;
-                mso-ascii-font-family: 'Times New Roman';
-                mso-hansi-font-family: 'Times New Roman';
-                mso-bidi-font-family: 'Times New Roman';
-                font-size: 14pt;
-                mso-font-kerning: 1pt;
-              "
-              ><font face="Times New Roman">(</font></span
-            ><span
-              style="
-                mso-spacerun: 'yes';
                 font-family: 'Times New Roman';
                 mso-fareast-font-family: ����;
-                font-size: 14pt;
+                font-size: 16pt;
+                font-weight: bold;
                 mso-font-kerning: 1pt;
               "
-              >2)Model select</span
+              ref="Modelselect"
+              >(2)Model select</span
             ><span
               style="
                 mso-spacerun: 'yes';
@@ -1419,57 +1296,12 @@
                 mso-spacerun: 'yes';
                 font-family: 'Times New Roman';
                 mso-fareast-font-family: ����;
-                font-size: 14pt;
+                font-size: 16pt;
+                font-weight:bold ;
                 mso-font-kerning: 1pt;
               "
-              ><o:p>&nbsp;</o:p></span
-            >
-          </p>
-          <p class="MsoNormal" style="text-align: left">
-            <span
-              style="
-                mso-spacerun: 'yes';
-                font-family: 'Times New Roman';
-                mso-fareast-font-family: ����;
-                font-size: 14pt;
-                mso-font-kerning: 1pt;
-              "
-              ><o:p>&nbsp;</o:p></span
-            >
-          </p>
-          <p class="MsoNormal" style="text-align: left">
-            <span
-              style="
-                mso-spacerun: 'yes';
-                font-family: 'Times New Roman';
-                mso-fareast-font-family: ����;
-                font-size: 14pt;
-                mso-font-kerning: 1pt;
-              "
-              ><o:p>&nbsp;</o:p></span
-            >
-          </p>
-          <p class="MsoNormal" style="text-align: left">
-            <span
-              style="
-                mso-spacerun: 'yes';
-                font-family: ����;
-                mso-ascii-font-family: 'Times New Roman';
-                mso-hansi-font-family: 'Times New Roman';
-                mso-bidi-font-family: 'Times New Roman';
-                font-size: 14pt;
-                mso-font-kerning: 1pt;
-              "
-              ><font face="Times New Roman">(</font></span
-            ><span
-              style="
-                mso-spacerun: 'yes';
-                font-family: 'Times New Roman';
-                mso-fareast-font-family: ����;
-                font-size: 14pt;
-                mso-font-kerning: 1pt;
-              "
-              >3) Target Interaction Pair Sequence Input(online or upload from
+              ref="TargetInteraction"
+              >(3) Target Interaction Pair Sequence Input(online or upload from
               disk)</span
             ><span
               style="
@@ -1482,7 +1314,7 @@
               ><o:p></o:p
             ></span>
           </p>
-          <p class="MsoNormal">
+          <p class="MsoNormal" align="center" style="text-align: center">
             <img
               width="554"
               height="145"
@@ -1526,23 +1358,14 @@
             <span
               style="
                 mso-spacerun: 'yes';
-                font-family: ����;
-                mso-ascii-font-family: 'Times New Roman';
-                mso-hansi-font-family: 'Times New Roman';
-                mso-bidi-font-family: 'Times New Roman';
-                font-size: 14pt;
-                mso-font-kerning: 1pt;
-              "
-              ><font face="Times New Roman">(</font></span
-            ><span
-              style="
-                mso-spacerun: 'yes';
                 font-family: 'Times New Roman';
                 mso-fareast-font-family: ����;
-                font-size: 14pt;
+                font-size: 16pt;
+                font-weight:bold ;
                 mso-font-kerning: 1pt;
               "
-              >4)Submit Task</span
+              ref="SubmitTask"
+              >(4)Submit Task</span
             ><span
               style="
                 mso-spacerun: 'yes';
@@ -1554,7 +1377,7 @@
               ><o:p></o:p
             ></span>
           </p>
-          <p class="MsoNormal">
+          <p class="MsoNormal" align="center" style="text-align: center">
             <img
               width="554"
               height="230"
@@ -1598,15 +1421,6 @@
             <span
               style="
                 mso-spacerun: 'yes';
-                font-family: 'Times New Roman';
-                mso-fareast-font-family: ����;
-                font-size: 14pt;
-                mso-font-kerning: 1pt;
-              "
-              >3</span
-            ><span
-              style="
-                mso-spacerun: 'yes';
                 font-family: ����;
                 mso-ascii-font-family: 'Times New Roman';
                 mso-hansi-font-family: 'Times New Roman';
@@ -1614,16 +1428,18 @@
                 font-size: 14pt;
                 mso-font-kerning: 1pt;
               "
-              ><font face="����">��</font></span
+              ></span
             ><span
               style="
                 mso-spacerun: 'yes';
                 font-family: 'Times New Roman';
                 mso-fareast-font-family: ����;
-                font-size: 14pt;
+                font-size: 18pt;
+                font-weight:bold ;
                 mso-font-kerning: 1pt;
               "
-              >Search </span
+              ref="Search"
+              >3、Search</span
             ><span
               style="
                 mso-spacerun: 'yes';
@@ -1639,23 +1455,14 @@
             <span
               style="
                 mso-spacerun: 'yes';
-                font-family: ����;
-                mso-ascii-font-family: 'Times New Roman';
-                mso-hansi-font-family: 'Times New Roman';
-                mso-bidi-font-family: 'Times New Roman';
-                font-size: 14pt;
-                mso-font-kerning: 1pt;
-              "
-              ><font face="Times New Roman">(</font></span
-            ><span
-              style="
-                mso-spacerun: 'yes';
                 font-family: 'Times New Roman';
                 mso-fareast-font-family: ����;
-                font-size: 14pt;
+                font-size: 16pt;
+                font-weight:bold ;
                 mso-font-kerning: 1pt;
               "
-              >1)Query Your Job</span
+              ref="QueryYour"
+              >(1)Query Your Job</span
             ><span
               style="
                 mso-spacerun: 'yes';
@@ -1667,7 +1474,7 @@
               ><o:p></o:p
             ></span>
           </p>
-          <p class="MsoNormal">
+          <p class="MsoNormal" align="center" style="text-align: center">
             <img
               width="554"
               height="172"
@@ -1711,23 +1518,14 @@
             <span
               style="
                 mso-spacerun: 'yes';
-                font-family: ����;
-                mso-ascii-font-family: 'Times New Roman';
-                mso-hansi-font-family: 'Times New Roman';
-                mso-bidi-font-family: 'Times New Roman';
-                font-size: 14pt;
-                mso-font-kerning: 1pt;
-              "
-              ><font face="Times New Roman">(</font></span
-            ><span
-              style="
-                mso-spacerun: 'yes';
                 font-family: 'Times New Roman';
                 mso-fareast-font-family: ����;
-                font-size: 14pt;
+                font-size: 16pt;
+                font-weight:bold ;
                 mso-font-kerning: 1pt;
               "
-              >2)Job Queue</span
+              ref="JobQueue"
+              >(2)Job Queue</span
             ><span
               style="
                 mso-spacerun: 'yes';
@@ -1739,7 +1537,7 @@
               ><o:p></o:p
             ></span>
           </p>
-          <p class="MsoNormal">
+          <p class="MsoNormal" align="center" style="text-align: center">
             <img
               width="554"
               height="236"
@@ -1811,36 +1609,17 @@
           <p
             class="MsoNormal"
             style="line-height: 21pt; mso-line-height-rule: exactly"
-          >
-            <span
-              style="
-                mso-spacerun: 'yes';
-                font-family: ����;
-                mso-ascii-font-family: 'Times New Roman';
-                mso-hansi-font-family: 'Times New Roman';
-                mso-bidi-font-family: 'Times New Roman';
-                font-size: 14pt;
-                mso-font-kerning: 1pt;
-              "
-              ><font face="Times New Roman">(</font></span
-            ><span
+          ><span
               style="
                 mso-spacerun: 'yes';
                 font-family: 'Times New Roman';
                 mso-fareast-font-family: ����;
-                font-size: 14pt;
+                font-size: 16pt;
+                font-weight:bold ;
                 mso-font-kerning: 1pt;
               "
-              >3)</span
-            ><span
-              style="
-                mso-spacerun: 'yes';
-                font-family: 'Times New Roman';
-                mso-fareast-font-family: ����;
-                font-size: 12pt;
-                mso-font-kerning: 1pt;
-              "
-              >&nbsp;Detailed Results Display of Your Job</span
+              ref="DetailedResults" 
+              >&nbsp;(3)Detailed Results Display of Your Job</span
             ><span
               style="
                 mso-spacerun: 'yes';
@@ -1854,7 +1633,7 @@
               ><o:p></o:p
             ></span>
           </p>
-          <p class="MsoNormal">
+          <p class="MsoNormal" align="center" style="text-align: center">
             <img
               width="554"
               height="701"
@@ -1894,7 +1673,7 @@
               ><o:p></o:p
             ></span>
           </p>
-          <p class="MsoNormal">
+          <p class="MsoNormal" align="center" style="text-align: center">
             <img
               width="554"
               height="181"
@@ -1933,7 +1712,7 @@
               ><o:p></o:p
             ></span>
           </p>
-          <p class="MsoNormal">
+          <p class="MsoNormal" align="center" style="text-align: center">
             <img
               width="554"
               height="224"
@@ -1973,7 +1752,7 @@
               ><o:p></o:p
             ></span>
           </p>
-          <p class="MsoNormal">
+          <p class="MsoNormal" align="center" style="text-align: center">
             <img
               width="554"
               height="200"
@@ -2018,24 +1797,14 @@
             <span
               style="
                 mso-spacerun: 'yes';
-                font-family: ����;
-                mso-ascii-font-family: 'Times New Roman';
-                mso-hansi-font-family: 'Times New Roman';
-                mso-bidi-font-family: 'Times New Roman';
-                font-size: 14pt;
-                mso-font-kerning: 1pt;
-              "
-              ><font face="Times New Roman">4</font
-              ><font face="����">��</font></span
-            ><span
-              style="
-                mso-spacerun: 'yes';
                 font-family: 'Times New Roman';
                 mso-fareast-font-family: ����;
-                font-size: 14pt;
+                font-size: 18pt;
+                font-weight: bold;
                 mso-font-kerning: 1pt;
               "
-              >Result</span
+              ref="Result"
+              >4、Result</span
             ><span
               style="
                 mso-spacerun: 'yes';
@@ -2048,26 +1817,17 @@
             ></span>
           </p>
           <p class="MsoNormal">
-            <span
-              style="
-                mso-spacerun: 'yes';
-                font-family: ����;
-                mso-ascii-font-family: 'Times New Roman';
-                mso-hansi-font-family: 'Times New Roman';
-                mso-bidi-font-family: 'Times New Roman';
-                font-size: 14pt;
-                mso-font-kerning: 1pt;
-              "
-              ><font face="Times New Roman">(</font></span
-            ><span
+           <span
               style="
                 mso-spacerun: 'yes';
                 font-family: 'Times New Roman';
                 mso-fareast-font-family: ����;
-                font-size: 14pt;
+                font-size: 16pt;
+                font-weight: bold;
                 mso-font-kerning: 1pt;
               "
-              >1)Species Select</span
+              ref="SpeciesSelect2"
+              >(1)Species Select</span
             ><span
               style="
                 mso-spacerun: 'yes';
@@ -2079,7 +1839,7 @@
               ><o:p></o:p
             ></span>
           </p>
-          <p class="MsoNormal">
+          <p class="MsoNormal" align="center" style="text-align: center">
             <img
               width="554"
               height="127"
@@ -2122,23 +1882,14 @@
             <span
               style="
                 mso-spacerun: 'yes';
-                font-family: ����;
-                mso-ascii-font-family: 'Times New Roman';
-                mso-hansi-font-family: 'Times New Roman';
-                mso-bidi-font-family: 'Times New Roman';
-                font-size: 14pt;
-                mso-font-kerning: 1pt;
-              "
-              ><font face="Times New Roman">(</font></span
-            ><span
-              style="
-                mso-spacerun: 'yes';
                 font-family: 'Times New Roman';
                 mso-fareast-font-family: ����;
-                font-size: 14pt;
+                font-size: 16pt;
+                font-weight: bold;
                 mso-font-kerning: 1pt;
               "
-              >2)Statistics</span
+              ref="Statistics"
+              >(2)Statistics</span
             ><span
               style="
                 mso-spacerun: 'yes';
@@ -2190,72 +1941,20 @@
               ><o:p>&nbsp;</o:p></span
             >
           </p>
+
+
           <p class="MsoNormal">
-            <span
+           <span
               style="
                 mso-spacerun: 'yes';
                 font-family: 'Times New Roman';
                 mso-fareast-font-family: ����;
-                font-size: 14pt;
+                font-size: 18pt;
+                font-weight: bold;
                 mso-font-kerning: 1pt;
               "
-              ><o:p>&nbsp;</o:p></span
-            >
-          </p>
-          <p class="MsoNormal">
-            <span
-              style="
-                mso-spacerun: 'yes';
-                font-family: 'Times New Roman';
-                mso-fareast-font-family: ����;
-                font-size: 14pt;
-                mso-font-kerning: 1pt;
-              "
-              ><o:p>&nbsp;</o:p></span
-            >
-          </p>
-          <p class="MsoNormal">
-            <span
-              style="
-                mso-spacerun: 'yes';
-                font-family: ����;
-                mso-ascii-font-family: 'Times New Roman';
-                mso-hansi-font-family: 'Times New Roman';
-                mso-bidi-font-family: 'Times New Roman';
-                font-size: 14pt;
-                mso-font-kerning: 1pt;
-              "
-              ><font face="Times New Roman">5</font
-              ><font face="����">��</font></span
-            ><span
-              style="
-                mso-spacerun: 'yes';
-                font-family: 'Times New Roman';
-                mso-fareast-font-family: ����;
-                font-size: 14pt;
-                mso-font-kerning: 1pt;
-              "
-              >T</span
-            ><span
-              style="
-                mso-spacerun: 'yes';
-                font-family: ����;
-                mso-ascii-font-family: 'Times New Roman';
-                mso-hansi-font-family: 'Times New Roman';
-                mso-bidi-font-family: 'Times New Roman';
-                font-size: 14pt;
-                mso-font-kerning: 1pt;
-              "
-              ><font face="Times New Roman">u</font></span
-            ><span
-              style="
-                mso-spacerun: 'yes';
-                font-family: 'Times New Roman';
-                mso-fareast-font-family: ����;
-                font-size: 14pt;
-                mso-font-kerning: 1pt;
-              "
-              >torial</span
+              ref="Tutorial"
+              >5、Tutorial</span
             ><span
               style="
                 mso-spacerun: 'yes';
@@ -2289,36 +1988,17 @@
             ></span>
           </p>
           <p class="MsoNormal">
-            <span
+           <span
               style="
                 mso-spacerun: 'yes';
                 font-family: 'Times New Roman';
                 mso-fareast-font-family: ����;
-                font-size: 14pt;
+                font-size: 16pt;
+                font-weight: bold;
                 mso-font-kerning: 1pt;
               "
-              >6</span
-            ><span
-              style="
-                mso-spacerun: 'yes';
-                font-family: ����;
-                mso-ascii-font-family: 'Times New Roman';
-                mso-hansi-font-family: 'Times New Roman';
-                mso-bidi-font-family: 'Times New Roman';
-                font-size: 14pt;
-                mso-font-kerning: 1pt;
-              "
-              ><font face="����">��</font
-              ><font face="Times New Roman">Re</font></span
-            ><span
-              style="
-                mso-spacerun: 'yes';
-                font-family: 'Times New Roman';
-                mso-fareast-font-family: ����;
-                font-size: 14pt;
-                mso-font-kerning: 1pt;
-              "
-              >sources</span
+              ref="Resources"
+              >6、Resources</span
             ><span
               style="
                 mso-spacerun: 'yes';
@@ -2353,7 +2033,7 @@
               ><o:p></o:p
             ></span>
           </p>
-          <p class="MsoNormal">
+          <p class="MsoNormal" align="center" style="text-align: center">
             <img
               width="554"
               height="481"
@@ -2369,58 +2049,7 @@
               ><o:p>&nbsp;</o:p></span
             >
           </p>
-          <p class="MsoNormal">
-            <span
-              style="
-                mso-spacerun: 'yes';
-                font-family: 'Times New Roman';
-                mso-fareast-font-family: ����;
-                font-size: 14pt;
-                mso-font-kerning: 1pt;
-              "
-              ><o:p>&nbsp;</o:p></span
-            >
-          </p>
-          <p class="MsoNormal">
-            <span
-              style="
-                mso-spacerun: 'yes';
-                font-family: 'Times New Roman';
-                mso-fareast-font-family: ����;
-                font-size: 14pt;
-                mso-font-kerning: 1pt;
-              "
-              ><o:p>&nbsp;</o:p></span
-            >
-          </p>
-          <p class="MsoNormal">
-            <span
-              style="
-                mso-spacerun: 'yes';
-                font-family: ����;
-                mso-ascii-font-family: 'Times New Roman';
-                mso-hansi-font-family: 'Times New Roman';
-                mso-bidi-font-family: 'Times New Roman';
-                font-size: 14pt;
-                mso-font-kerning: 1pt;
-              "
-              ><o:p>&nbsp;</o:p></span
-            >
-          </p>
-          <p class="MsoNormal">
-            <span
-              style="
-                mso-spacerun: 'yes';
-                font-family: ����;
-                mso-ascii-font-family: 'Times New Roman';
-                mso-hansi-font-family: 'Times New Roman';
-                mso-bidi-font-family: 'Times New Roman';
-                font-size: 14pt;
-                mso-font-kerning: 1pt;
-              "
-              ><o:p>&nbsp;</o:p></span
-            >
-          </p>
+
         </div>
       </el-col>
     </el-row>
@@ -2479,6 +2108,13 @@ export default {
         block: "center", // start 上边框  center 中间  end 底部边框 与视窗顶部平齐
       });
     },
+
+    clickTo(id){
+      this.$refs[id].scrollIntoView({
+        behavior: "smooth", // 平滑过渡
+        block: "center", // start 上边框  center 中间  end 底部边框 与视窗顶部平齐
+      });
+    }
   },
 };
 </script>
@@ -2525,6 +2161,11 @@ letter-spacing: 1px;
 .el-tree-node:focus > .el-tree-node__content {
     /* background-color: #66b1ff87 !important; */
     color: #22CAB3;
+}
+
+.mulu{
+  cursor: pointer;
+  color: #4ea1db;
 }
 </style>
 

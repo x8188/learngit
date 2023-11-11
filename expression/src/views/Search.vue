@@ -98,7 +98,7 @@
 
       <el-card class="box-card">
         <el-table :data="taskTable" ref="filterTable" style="font-size: 15px;"  max-height="500">
-          <el-table-column prop="taskID" label="task ID"> </el-table-column>
+          <el-table-column prop="taskID" label="Task ID"> </el-table-column>
           <el-table-column
             prop="modelName"
             label="Model Name"
@@ -132,8 +132,8 @@
           </el-table-column>
           <el-table-column prop="submitTime" label="Submit Time">
           </el-table-column>
-          <el-table-column prop="ttl1" label="Time Remaining" width="210">
-          </el-table-column>
+          <!-- <el-table-column prop="ttl1" label="Time Remaining" width="210">
+          </el-table-column> -->
           <el-table-column label="Details Result(Click)">
             <template slot-scope="{ row }">
               <el-button
@@ -215,6 +215,7 @@ export default {
       ],
 
       statu: ["wait", ""],
+      timer:null,
     };
   },
   methods: {
@@ -360,10 +361,13 @@ export default {
     this.getTasks();
   },
   mounted(){
-    setInterval(() => {
+    this.timer =setInterval(() => {
         this.getTasks()
       }, 10000);
-  }
+  },
+  beforeDestroy(){
+    clearInterval(this.timer);
+  },
 };
 </script>
 <style scoped>

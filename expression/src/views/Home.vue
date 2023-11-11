@@ -17,12 +17,12 @@
           where you can simply understand DeepCBA and use online tools
           conveniently
         </p>
-        <p class="welcome-time">Zhenye Wang#,&nbsp;&nbsp; Jianxiao Liu*</p>
+        <!-- <p class="welcome-time"></p> -->
         <p></p>
-        <div class="welcome-bd">
+        <!-- <div class="welcome-bd">
           <div class="weather"></div>
-          <div class="temp">DeepCBA: 文章名字</div>
-        </div>
+          <div class="temp">DeepCBA: Precise prediction of maize gene expression based on chromatin interactions using DeepCBA</div>
+        </div> -->
       </div>
     </div>
 
@@ -136,7 +136,7 @@
                 <p>
                   &ensp;&ensp;&ensp;DeepCBA integrates a total of 3kb chromatin
                   sequences upstream and downstream of the transcription
-                  initiation site and transcription termination site of higher
+                  start site and transcription termination site of higher
                   plants (Maize, Rice, Cotton and Wheat) to predict gene
                   expression.
                   <!-- convolution neural network module, bidirectional long-term and
@@ -147,12 +147,14 @@
                   &ensp;&ensp;&ensp;First, encode the sequence with length of
                   3000 bp and 1500 bp into 4*3000/4*1500 one-pot encoding
                   matrix; -->
+                  <br />
+                  <br />
                 </p>
                 <div
                   class="image-content"
                   style="margin-top: 10px; width: 100%"
                 >
-                  <img src="../img/homeimg.png" style="width: 90%" />
+                  <img src="../img/homeimg.png" style="width: 95%;;" />
                 </div>
               </el-card>
             </el-col>
@@ -178,9 +180,9 @@
                 </p>
                 <div
                   class="image-content"
-                  style="margin-top: 10px; width: 100%"
+                  style="margin-top: 10px; width: 100%;"
                 >
-                  <img src="../img/home3.png" style="width: 90%" />
+                  <img src="../img/home3.png" style="width: 82%" />
                 </div>
                 <!-- <el-button
                   class="rouButton"
@@ -275,13 +277,13 @@
                   Reconstructing the maize leaf regulatory network using ChIP-seq
                 data of 104 transcription factors.
                 </strong>
-                 Nat Commun 11, 5089 (2020).
+                 Nature Communications 11, 5089 (2020).
                 <br />
                 Tian, T., Wang, S., Yang, S. et al. <strong>
                   Genome assembly and
                 genetic dissection of a prominent drought-resistant maize
                 germplasm.
-                </strong>  Nat Genet 55, 496–506 (2023).
+                </strong>  Nature Genetics 55, 496–506 (2023).
               </p>
             </div>
             <div class="shape-bottom-right">

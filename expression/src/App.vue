@@ -28,7 +28,7 @@
           </a-dropdown> -->
           <router-link to="/Expression/index">Tools</router-link>
           <router-link to="/search">Search</router-link>
-          <router-link to="/result">Result</router-link>
+          <router-link to="/result">Results</router-link>
           <router-link to="/tutorial">Tutorial</router-link>
           <router-link to="/about">Contact</router-link>
         </div>
@@ -61,7 +61,7 @@
           </div>
 
           <div style="flex: 7;text-align: center;">
-            <h3 style="color: #fff;font-size: 1rem;font-weight: bolder;">LINKS</h3>
+            <!-- <h3 style="color: #fff;font-size: 1rem;font-weight: bolder;">LINKS</h3> -->
             <el-row :gutter="40"  type="flex" justify="center">
               <el-col :span="3">
                 <a href="https://figshare.com/articles/dataset/Gossypium_anomalum_B1_genome/17280074" target="_blank">
@@ -109,8 +109,7 @@
             padding: 10px 0;
           "
         >
-          Address: Room B320, Research Office of Artificial Intelligence
-          Research Group, Huazhong Agricultural university, Wuhan, 430070, China
+          Huazhong Agricultural university, Wuhan, 430070, China
         </p>
       </div>
     </div>
@@ -243,7 +242,7 @@ body {
   bottom: 0px;
   background-color: #2a2730;
   color: white;
-  height: 210px;
+  height: 160px;
   /* text-align: center; */
   /* margin: 0 auto; */
   padding-top: 2em;

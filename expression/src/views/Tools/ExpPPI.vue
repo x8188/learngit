@@ -22,7 +22,7 @@
                   <span class="mdoelT">Maize Prediction</span>
                 </div>
                 <div>
-                  <h3 style="  text-align: justify;  font-family: 'Times New Roman'; font-weight: bolder;">
+                  <h3 style="  text-align: justify;  font-family: 'Times New Roman';">
                     Here we provide two maize gene expression prediction models: PPI and PDI
                     <br>(1) The input chromatin sequence in PPI mode is 3kb, and the input in PDI mode is 1.5kb chromatin sequence;
                     <br>(2) There are five models in PPI mode, corresponding to three organizations of five sets of data. There are three models in PDI mode, corresponding to three organizations of three sets of data.
@@ -70,7 +70,7 @@
                   <span class="cardTitle">Note</span>
                 </div>
                 <div>
-                  <p style="font-size: 15px;text-align: justify;font-weight: bold;">
+                  <p style="font-size: 15px;text-align: justify; font-family: 'Times New Roman';">
                     (1) We provide two ways to input sequences: online input and local upload;
                     <br>(2) The above two input methods must satisfy the form of the input interactive pair (see example below);
                     <br>(3) In both input methods, the standard fasta format sequence is required to be input;
@@ -237,14 +237,14 @@
                 ><i class="el-icon-folder-add"></i> Upload files</span
               >
               <el-row style="text-align: center">
-                <el-alert
+                <!-- <el-alert
                   title="BE CAREFUL-------After switching the method, the uploaded file will be cleared"
                   style="width: 50%; margin: 0 auto"
                   center
                   type="info"
                   close-text="got it"
                 >
-                </el-alert>
+                </el-alert> -->
                 <el-col :span="24" style="margin-top: 10px">
                   <div>
                     <h1
@@ -305,7 +305,7 @@
           <!-- 输入邮箱 -->
           <el-row type="flex" justify="center">
             <el-col :span="12" style="margin-top: 10px">
-              <el-form :model="updataForm" ref="updataForm">
+              <el-form :model="updataForm" ref="updataForm" label-position='right'>
                 <el-form-item
                   prop="email"
                   label-width="100px"
@@ -327,7 +327,7 @@
                 </el-form-item>
                 <el-form-item
                   prop="verify"
-                  label-width="100px"
+                  label-width="200px"
                   :rules="[
                     {
                       required: true,
@@ -336,7 +336,7 @@
                     },
                   ]"
                 >
-                  <span slot="label" style="font-size: 20px"> Verify: </span>
+                  <span slot="label" style="font-size: 20px;"> Enter the number: </span>
                   <div style="display: flex;">
                     <el-input
                   v-model="inputCaptcha"
@@ -740,6 +740,7 @@ export default {
                 }
 
               this.taskBoby_seq.email = this.updataForm.email;
+              console.log(this.transName[this.PPImodel])
               this.taskBoby_seq.modelName = this.transName[this.PPImodel];
               this.taskBoby_seq.uuid = this.uuid;
               this.taskBoby_seq.captcha = this.inputCaptcha;
@@ -810,15 +811,15 @@ export default {
     // 文件改变时监视，限制文件大小
     fileChange(file, fileList) {
       const isSize = file.size / 1024 / 1024;
-      let lim = 20;
+      let lim = 0.5;
       if (isSize > lim) {
         this.$msgbox({
-          message: "The file size exceeds the limit. PPI:20mb PDI:20mb",
+          message: "The file size exceeds the limit. MAX:500kb",
           type: "error",
           confirmButtonText: "confrim",
         });
-        // const currIdx = this.fileList.indexOf(file);
-        // this.fileList.splice(currIdx, 1);
+        const currIdx = this.fileList.indexOf(file);
+        this.fileList.splice(currIdx, 1);
         return;
       }
 
