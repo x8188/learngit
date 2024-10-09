@@ -31,6 +31,18 @@
           <router-link to="/result">Results</router-link>
           <router-link to="/tutorial">Tutorial</router-link>
           <router-link to="/about">Contact</router-link>
+          <a-dropdown placement="bottomCenter">
+            <a class="ant-dropdown-link">
+              Links<i class="el-icon-arrow-down el-icon--right"></i>
+            </a>
+            <a-menu slot="overlay" id="tool">
+              <a-menu-item
+                ><router-link to="/qtg-lgbm"
+                  >QTG-LGBM</router-link
+                ></a-menu-item
+              >
+            </a-menu>
+          </a-dropdown>
         </div>
       </div>
       <section class="featured1"></section>
@@ -88,16 +100,17 @@
                   <img src="./img/footImg/PlantDeepSEA.png" alt="" class="img-fluid">
                 </a>
               </el-col>
-              <el-col :span="3">
+              <!-- <el-col :span="3">
                 <a href="http://planttfdb.gao-lab.org/index.php" target="_blank">
                   <img src="./img/footImg/PlantTFDB.png" alt="" class="img-fluid">
                 </a>
-              </el-col>
+              </el-col> -->
               <el-col :span="3">
                 <a href="http://rice.hzau.edu.cn/rice_rs2/" target="_blank">
                   <img src="./img/footImg/Rice-data-logo.png" alt="" class="img-fluid">
                 </a>
               </el-col>
+
             </el-row >
           </div>
         </div>
@@ -109,8 +122,12 @@
             padding: 10px 0;
           "
         >
-          Huazhong Agricultural university, Wuhan, 430070, China
+          Huazhong Agricultural university, Wuhan, 430070, China&nbsp;&nbsp;
+          <a href="https://beian.mps.gov.cn/#/query/webSearch?code=42011102005355" rel="noreferrer" target="_blank">鄂公网安备42011102005355</a>
+          &nbsp;&nbsp;<a href="https://beian.miit.gov.cn/" rel="noreferrer" target="_blank">鄂ICP备2023020828号</a>
         </p>
+        <div ref="revolverMapsContainer" style="float: right;margin-top: -130px;margin-right: 15px;"></div>
+
       </div>
     </div>
   </div>
@@ -128,6 +145,7 @@ export default {
   },
   mounted() {
     window.addEventListener("scroll", this.handleScroll);
+    this.insertRevolverMapsScript();
   },
   methods: {
     handleScroll() {
@@ -158,6 +176,16 @@ export default {
     },
     visibleChange(visible) {
       console.log(visible);
+    },
+    insertRevolverMapsScript() {
+      // 创建 script 元素
+      const script = document.createElement('script');
+      script.type = 'text/javascript';
+      script.src = '//rf.revolvermaps.com/0/0/4.js?i=5bvli5yq3jd&m=0&h=128&c=ff0000&r=0';
+      script.async = true;
+
+      // 将 script 插入到 revloverMapsContainer 中
+      this.$refs.revolverMapsContainer.appendChild(script);
     },
   },
 };
@@ -233,6 +261,8 @@ body {
   font-weight: bold;
   font-size: 20px;
   color: #42b983;
+
+  margin-top: 10px;
 }
 #nav a.router-link-exact-active {
   color: #42b983;

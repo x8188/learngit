@@ -44,6 +44,8 @@ export const reqCaptchaImg = () =>
 export const reqVisImg = (taskID,seqID) =>
   requests({ url: `/model/result/saliency`, method: "get",params: { taskID,seqID } });
 
-
-  export const reqMaizeHot = (id) =>
+export const reqMaizeHot = (id) =>
   requests({ url: `/model/maize/heat/${id}`, method: "get"});
+
+export const reqLGBMtask = (taskBody) =>
+  requests({ url: `/model/submit/qtg_lgbm`, method: "post", data: taskBody });

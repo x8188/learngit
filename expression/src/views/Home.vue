@@ -10,6 +10,7 @@
     </el-carousel> -->
   <div id="components-layout-demo-basic">
     <div class="teacher-overview-welcome" style="width: 70%; margin: 0 auto">
+      <!-- <tem></tem> -->
       <div class="welcome">
         <p class="welcome-title">WELCOME</p>
         <p class="welcome-organization">This is website of DeepCBA</p>
@@ -302,12 +303,21 @@
         <img src="../img/expression_fig1.jpg" style="width: 80%" />
       </div> -->
   </div>
+
 </template>
 
 <script>
 // @ is an alias to /src
 // import HelloWorld from '@/components/HelloWorld.vue'
 // import "../assets/css/style.css";
+import dayjs from 'dayjs';
+const getMockData = (date) => {
+  const data = [{ id: 1, name: 'income', createAt: formatDate(date) }];
+  return data;
+  function formatDate(date) {
+    return dayjs(date).format('YYYY-MM-DD HH:mm:ss');
+  }
+}
 export default {
   name: "Home",
   components: {},
@@ -316,8 +326,6 @@ export default {
       list1: [],
     };
   },
-  methods: {},
-  created() {},
 };
 </script>
 <style scoped src='../assets/css/style.css'></style>
@@ -498,4 +506,5 @@ export default {
     height: 3px;
     background: #28a745;
 }
+/* .container>span { width: 100px; height: 100px; text-align: center; } */
 </style>

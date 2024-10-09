@@ -34,6 +34,9 @@ Vue.component(Table.name,Table)
 import Back from "./components/Back.vue"
 Vue.component(Back.name,Back)
 
+import tem from "./components/tem.vue"
+Vue.component(tem.name,tem)
+
 import * as API  from './request' 
 Vue.prototype.$API=API;
 
